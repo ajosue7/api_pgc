@@ -16,9 +16,11 @@ public class TblGrupo {
     private long idGrupo;
 
     @Column(name = "COD_GRUPO")
+    @ApiModelProperty(notes = "Codigo Grupo", required = true)
     private String codGrupo;
 
     @Column(name = "DESC_GRUPO")
+    @ApiModelProperty(notes = "Descripcion Grupo", required = true)
     private String descGrupo;
 
     @Column(name = "HABILITADA")

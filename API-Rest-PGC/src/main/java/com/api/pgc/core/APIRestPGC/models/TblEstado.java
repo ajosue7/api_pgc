@@ -16,10 +16,11 @@ public class TblEstado {
     private long idEstado;
 
     @Column(name = "COD_ESTADO")
-    @ApiModelProperty(notes = "Codigo Grupo", required = true)
+    @ApiModelProperty(notes = "Codigo Estado", required = true)
     private String codEstado;
 
     @Column(name = "DESC_ESTADO")
+    @ApiModelProperty(notes = "Descripcion Estado", required = true)
     private String descEstado;
 
     @Column(name = "HABILITADA")
