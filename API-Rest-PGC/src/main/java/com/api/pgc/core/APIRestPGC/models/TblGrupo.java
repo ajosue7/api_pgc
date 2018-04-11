@@ -1,6 +1,8 @@
 package com.api.pgc.core.APIRestPGC.models;
 
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class TblGrupo {
     @Id
     @GeneratedValue
     @Column(name = "ID_GRUPO")
+    @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idGrupo;
 
     @Column(name = "COD_GRUPO")
