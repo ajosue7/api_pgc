@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    platform: postgresql
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/PGC_HONDURAS
+    username: postgres
+    password: postgres
+  jpa:
+    database: POSTGRESQL
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+server:
+    port: 8090
