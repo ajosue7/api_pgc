@@ -28,8 +28,8 @@
       <file leaf-file-name="TiposResources.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="41" column="34" lean-forward="true" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+            <state relative-caret-position="204">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -40,8 +40,8 @@
       <file leaf-file-name="TblTipo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="782">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -61,8 +61,8 @@
       <file leaf-file-name="GruposResources.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="40" lean-forward="true" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+            <state relative-caret-position="119">
+              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -119,8 +119,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -201,7 +202,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -209,7 +209,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -311,36 +311,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="5" />
-      <window_info anchor="bottom" id="Messages" order="6" weight="0.32908705" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info active="true" anchor="top" x="1920" y="-7" width="1600" height="878" id="Run" order="0" type="WINDOWED" visible="true" weight="0.3859375" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32908705" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" weight="0.32908705" />
+      <window_info anchor="top" x="1920" y="-7" width="1600" height="878" id="Run" order="0" type="WINDOWED" weight="0.3859375" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2265625" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22620791" />
       <window_info id="Learn" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.39915073" />
       <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.39915073" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.32908705" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -359,6 +358,80 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="34" lean-forward="true" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="40" lean-forward="true" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -478,13 +551,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.2.16.Final/hibernate-core-5.2.16.Final-sources.jar!/org/hibernate/cfg/Ejb3JoinColumn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="831" selection-start-line="831" selection-end-line="831" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.2.16.Final/hibernate-core-5.2.16.Final-sources.jar!/org/hibernate/cfg/Ejb3JoinColumn.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblEstado.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -496,25 +563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1248#1249#0" expanded="true" />
-            <element signature="e#1278#1279#0" expanded="true" />
-            <element signature="e#1322#1323#0" expanded="true" />
-            <element signature="e#1360#1361#0" expanded="true" />
-            <element signature="e#1395#1396#0" expanded="true" />
-            <element signature="e#1426#1427#0" expanded="true" />
-            <element signature="e#1474#1475#0" expanded="true" />
-            <element signature="e#1514#1515#0" expanded="true" />
-            <element signature="e#1550#1551#0" expanded="true" />
-            <element signature="e#1582#1583#0" expanded="true" />
-            <element signature="e#1632#1633#0" expanded="true" />
-            <element signature="e#1674#1675#0" expanded="true" />
-            <element signature="e#1711#1712#0" expanded="true" />
-            <element signature="e#1744#1745#0" expanded="true" />
-            <element signature="e#1797#1798#0" expanded="true" />
-            <element signature="e#1841#1842#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -528,14 +576,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="40" lean-forward="true" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+        <state relative-caret-position="119">
+          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -544,25 +592,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        <state relative-caret-position="782">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.29/tomcat-embed-core-8.5.29-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="192" selection-start-line="192" selection-end-line="192" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.29/tomcat-embed-core-8.5.29-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="41" column="34" lean-forward="true" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+        <state relative-caret-position="204">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
