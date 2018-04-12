@@ -4,14 +4,16 @@ package com.api.pgc.core.APIRestPGC.models;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tbl_grupos")
 public class TblGrupo {
 
     @Id
-    @GeneratedValue
-    @Column(name = "ID_GRUPO")
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "ID_GRUPO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idGrupo;
 
@@ -25,6 +27,10 @@ public class TblGrupo {
 
     @Column(name = "HABILITADA")
     private boolean habilitada;
+
+    /*@OneToMany( cascade = CascadeType.ALL)
+    @JoinColumn( name = "ID_GRUPO", referencedColumnName = "ID_GRUPO")
+    private List<TblTipo> idGrupoTipo;*/
 
 
     //Constructor de la Clase Modelo
@@ -64,4 +70,6 @@ public class TblGrupo {
     public void setHabilitada(boolean habilitada) {
         this.habilitada = habilitada;
     }
+
+
 }

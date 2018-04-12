@@ -32,6 +32,19 @@ public class GruposResources {
 
 
     /**
+     * Metodo que despliega el Grupo de la BD
+     * @autor Nahum Martinez | NAM
+     * @version  11/04/2018/v1.0
+     * @return Grupo de la BD
+     */
+    @ApiOperation(value = "Retorna el Grupo enviado a buscar de la BD")
+    @GetMapping("/show/{id}")
+    public TblGrupo getGroup( @PathVariable ("id") long id  ){
+        return gruposRepository.findByIdGrupo( id );
+    }
+
+
+    /**
      * Metodo que Solcita un json con los datos de la Entidad Grupos
      * @autor Nahum Martinez | NAM
      * @version  10/04/2018/v1.0

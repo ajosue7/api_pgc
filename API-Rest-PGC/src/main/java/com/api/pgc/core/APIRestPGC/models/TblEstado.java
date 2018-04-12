@@ -10,8 +10,8 @@ import javax.persistence.*;
 public class TblEstado {
     //Propiedades de la tabla
     @Id
-    @GeneratedValue
-    @Column(name = "ID_ESTADO")
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "ID_ESTADO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idEstado;
 
