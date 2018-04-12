@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="344fd74c-9519-4a44-a0ef-ee1af0afd42a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblEstado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblEstado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblGrupo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblGrupo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblEstado.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblEstado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblGrupo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblGrupo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblTipo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblTipo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/resourses/TiposResources.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/repository/GruposRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/repository/GruposRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/resourses/GruposResources.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/resourses/GruposResources.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -307,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523467736944</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="NAM | Tercera Subida desde Intellij SRECi, ya se soluciono el tema de las Relaciones, falta el Proceso de Inercion">
+      <created>1523494578525</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1523494578525</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -322,7 +319,7 @@
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info active="true" anchor="top" x="1920" y="-7" width="1600" height="878" id="Run" order="0" type="WINDOWED" visible="true" weight="0.3859375" />
+      <window_info anchor="top" x="1920" y="-7" width="1600" height="878" id="Run" order="0" type="WINDOWED" weight="0.3859375" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32908705" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Capture Tool" order="3" />
@@ -351,7 +348,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="NAM | Primera Subida desde Intellij" />
     <MESSAGE value="NAM | Segunda Subida desde Intellij" />
-    <option name="LAST_COMMIT_MESSAGE" value="NAM | Segunda Subida desde Intellij" />
+    <MESSAGE value="NAM | Tercera Subida desde Intellij SRECi, ya se soluciono el tema de las Relaciones, falta el Proceso de Inercion" />
+    <option name="LAST_COMMIT_MESSAGE" value="NAM | Tercera Subida desde Intellij SRECi, ya se soluciono el tema de las Relaciones, falta el Proceso de Inercion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
