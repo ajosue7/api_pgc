@@ -33,6 +33,7 @@ public class TblTipo {
     // Muchos Tipos = 1 Grupo
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_GRUPO", referencedColumnName = "ID_GRUPO")
+    @ApiModelProperty(notes = "Entidad del Grupo, se envia desde un Json (\"idGrupo\": { \"idGrupo\": \"valor\" })", required = true)
     private TblGrupo idGrupo;
 
     /*@ManyToOne

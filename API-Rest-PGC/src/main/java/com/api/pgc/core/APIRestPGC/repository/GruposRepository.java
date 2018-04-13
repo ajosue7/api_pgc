@@ -14,6 +14,7 @@ public interface GruposRepository extends JpaRepository<TblGrupo, Integer> {
      * @autor Nahum Martinez | NAM
      * @version  11/04/2018/v1.0
      * @return Grupos de la BD, por paramtro de ID
+     * @param idGrupo
      */
     TblGrupo findByIdGrupo(long idGrupo);
 }
