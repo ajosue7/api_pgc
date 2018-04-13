@@ -5,19 +5,27 @@ import com.api.pgc.core.APIRestPGC.models.TblGrupo;
 import com.api.pgc.core.APIRestPGC.models.TblTipo;
 import com.api.pgc.core.APIRestPGC.repository.GruposRepository;
 import com.api.pgc.core.APIRestPGC.repository.TiposRepository;
+import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import jdk.nashorn.internal.ir.ObjectNode;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping(value = "/rest/tipos")
 @Api(value = "tiposapi" , description = "Operaciones sobre el Modulo de Tipos")
 public class TiposResources {
+
+    //Propiedades de la Clase
+    String msgMethod = null;
 
     @Autowired
     TiposRepository tiposRepository;
@@ -33,9 +41,21 @@ public class TiposResources {
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Tipos de la BD")
     @GetMapping(value = "/list", produces = "application/json")
-    public List<TblTipo> getAllTipo(){
-        return tiposRepository.findAll();
-    }
+    public HashMap<String, Object>  getAllTipo() throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        msgMethod = "Listado de todos los Tipos registrados en la BD";
+
+        try{
+            //Sobreescirbe el Metodo de Mensajes
+            msgExeptions.map.put( "data", tiposRepository.findAll() );
+            //Retorno del json
+            return msgExeptions.msgJson( msgMethod, 200 );
+        }catch ( Exception ex ){
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }//FIN
 
 
     /**
@@ -47,10 +67,31 @@ public class TiposResources {
      */
     @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD")
     @GetMapping( value = "/show/{idTipo}", produces = "application/json")
-    public TblTipo getTipo( @ApiParam(value="Identificador del Tipo a Buscar", required=true) @PathVariable ("idTipo") long idTipo  ){
-        return tiposRepository.findByIdTipo( idTipo );
-    }
+    public HashMap<String, Object> getTipo( @ApiParam(value="Identificador del Tipo a Buscar", required=true)
+                                                @PathVariable ("idTipo") long idTipo  ) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
 
+        try{
+            if( tiposRepository.findByIdTipo(idTipo) == null ){
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "No se ha encontrado dato del Tipo consultado";
+                msgExeptions.map.put("error", "No data found");
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 400);
+            }else {
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "Detalle del Tipo Consultado";
+                msgExeptions.map.put("data", tiposRepository.findByIdTipo(idTipo));
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        }catch ( Exception ex ){
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }//FIN
 
 
     /**
@@ -63,10 +104,10 @@ public class TiposResources {
     @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Tipo",
             notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Grupo")
     @PostMapping(value = "/add", produces = "application/json")
-    public String addGroup( @ApiParam(value="Json del nuevo Tipo a Ingresar, con Grupo asociado", required=true)
+    public HashMap<String, Object> addGroup(@ApiParam(value="Json del nuevo Tipo a Ingresar, con Grupo asociado", required=true)
                                        @RequestBody final TblTipo tipoJson) throws Exception {
         //Ejecuta el try Cacth
-        String msgMethod = null;
+        msgExceptions msgExeptions = new msgExceptions();
 
         try {
             //Busca el Grupo, desde el Reporsitorio con el Parametro del Json enviado ( "idGrupo": { "idGrupo": valor })
@@ -82,17 +123,18 @@ public class TiposResources {
 
                 //return tiposRepository.findAll();
                 msgMethod = "Se ha Ingresado de forma satisfactoria!!";
+
+                //Retorno del json
+                return msgExeptions.msgJson( msgMethod, 200 );
+
             }catch ( Exception ex ){
                 msgMethod = "Ha Ocurrido un error al Intentar Grabar el Tipo";
                 throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
             }
         }catch ( Exception ex ){
-            msgMethod = "No existe el Grupo que buscas, por favor verfica que el Grupo ingresado es correcto.";
+            msgMethod = "No existe el Tipo que buscas, por favor verfica que el Grupo ingresado es correcto.";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
-
-        //Retorno del Method
-        return msgMethod;
-    }
+    }//FIN
 
 }
