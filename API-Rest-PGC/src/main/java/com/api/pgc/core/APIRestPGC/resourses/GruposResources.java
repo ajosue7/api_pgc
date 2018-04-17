@@ -24,7 +24,6 @@ public class GruposResources {
     @Autowired
     GruposRepository gruposRepository;
 
-
     /**
      * Metodo que despliega la Lista de todos los Grupos de la BD
      * @autor Nahum Martinez | NAM
