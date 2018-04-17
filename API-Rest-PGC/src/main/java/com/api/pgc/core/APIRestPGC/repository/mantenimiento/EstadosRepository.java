@@ -1,7 +1,6 @@
-package com.api.pgc.core.APIRestPGC.repository;
+package com.api.pgc.core.APIRestPGC.repository.mantenimiento;
 
-import com.api.pgc.core.APIRestPGC.models.TblEstado;
-import com.api.pgc.core.APIRestPGC.models.TblGrupo;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EstadosRepository extends JpaRepository<TblEstado, Integer> {

@@ -1,11 +1,8 @@
-package com.api.pgc.core.APIRestPGC.repository;
+package com.api.pgc.core.APIRestPGC.repository.mantenimiento;
 
 
-import com.api.pgc.core.APIRestPGC.models.TblGrupo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
 
 public interface GruposRepository extends JpaRepository<TblGrupo, Integer> {
 

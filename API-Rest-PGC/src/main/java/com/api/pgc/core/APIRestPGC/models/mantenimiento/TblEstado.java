@@ -1,4 +1,4 @@
-package com.api.pgc.core.APIRestPGC.models;
+package com.api.pgc.core.APIRestPGC.models.mantenimiento;
 
 
 import io.swagger.annotations.ApiModelProperty;

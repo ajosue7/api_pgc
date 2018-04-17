@@ -1,9 +1,6 @@
 package com.api.pgc.core.APIRestPGC.utilities;
 
-import com.api.pgc.core.APIRestPGC.models.TblTipo;
-
 import java.util.HashMap;
-import java.util.List;
 
 public class msgExceptions {
     //Propiedades de la Clase

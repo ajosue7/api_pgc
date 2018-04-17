@@ -1,8 +1,8 @@
-package com.api.pgc.core.APIRestPGC.resourses;
+package com.api.pgc.core.APIRestPGC.resourses.mantenimiento;
 
 
-import com.api.pgc.core.APIRestPGC.models.TblGrupo;
-import com.api.pgc.core.APIRestPGC.repository.GruposRepository;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
+import com.api.pgc.core.APIRestPGC.repository.mantenimiento.GruposRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/rest/grupos")

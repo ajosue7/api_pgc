@@ -1,7 +1,6 @@
-package com.api.pgc.core.APIRestPGC.repository;
+package com.api.pgc.core.APIRestPGC.repository.mantenimiento;
 
-import com.api.pgc.core.APIRestPGC.models.TblGrupo;
-import com.api.pgc.core.APIRestPGC.models.TblTipo;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TiposRepository  extends JpaRepository<TblTipo, Integer> {

@@ -1,23 +1,18 @@
-package com.api.pgc.core.APIRestPGC.resourses;
+package com.api.pgc.core.APIRestPGC.resourses.mantenimiento;
 
 //Imports de la Clase
-import com.api.pgc.core.APIRestPGC.models.TblGrupo;
-import com.api.pgc.core.APIRestPGC.models.TblTipo;
-import com.api.pgc.core.APIRestPGC.repository.GruposRepository;
-import com.api.pgc.core.APIRestPGC.repository.TiposRepository;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
+import com.api.pgc.core.APIRestPGC.repository.mantenimiento.GruposRepository;
+import com.api.pgc.core.APIRestPGC.repository.mantenimiento.TiposRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import jdk.nashorn.internal.ir.ObjectNode;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping(value = "/rest/tipos")

@@ -1,9 +1,8 @@
-package com.api.pgc.core.APIRestPGC.resourses;
+package com.api.pgc.core.APIRestPGC.resourses.mantenimiento;
 
 
-import com.api.pgc.core.APIRestPGC.models.TblEstado;
-import com.api.pgc.core.APIRestPGC.models.TblGrupo;
-import com.api.pgc.core.APIRestPGC.repository.EstadosRepository;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
+import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

@@ -1,10 +1,9 @@
-package com.api.pgc.core.APIRestPGC.models;
+package com.api.pgc.core.APIRestPGC.models.mantenimiento;
 
 
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "tbl_tipos")
