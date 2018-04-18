@@ -3,7 +3,7 @@ package com.api.pgc.core.APIRestPGC.utilities;
 import java.util.HashMap;
 
 public class msgExceptions {
-    //Propiedades de la Clase
+    //Propiedades de la Clase de Msg
     public String msgMethod = null;
     public HashMap<String, Object> map = new HashMap<>();
 
