@@ -44,7 +44,7 @@ public class TblUsuarios {
     private String inicialesUsuario;
 
     @Column(name = "PASSWORD_USUARIO")
-    @ApiModelProperty(notes = "Iniciales", required = true)
+    @ApiModelProperty(notes = "Iniciales Usuario", required = true)
     private String passwordUsuario;
 
     @Column(name = "IMAGEN_USUARIO")

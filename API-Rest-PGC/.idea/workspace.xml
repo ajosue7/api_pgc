@@ -2,32 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="344fd74c-9519-4a44-a0ef-ee1af0afd42a" name="Default" comment="gitAll 3">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/seguridad/TblUsuarios.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/seguridad/UsuariosRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/seguirdad/UsuariosResources.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblEstado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblEstado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblGrupo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblGrupo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblTipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/EstadosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/mantenimiento/EstadosRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/mantenimiento/GruposRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/TiposRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/mantenimiento/TiposRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/EstadosResources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/EstadosResources.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/GruposResources.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/TiposResources.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/utilities/msgExceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/utilities/msgExceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblEstado.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblGrupo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblTipo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/repository/EstadosRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/repository/GruposRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/repository/TiposRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/resourses/EstadosResources.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/resourses/GruposResources.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/resourses/TiposResources.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/seguridad/TblUsuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/seguridad/TblUsuarios.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/utilities/msgExceptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/utilities/msgExceptions.class" afterDir="false" />
-
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,39 +16,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TiposResources.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java">
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="112" column="57" lean-forward="true" selection-start-line="112" selection-start-column="57" selection-end-line="112" selection-end-column="57" />
-      <file leaf-file-name="TblEstado.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblEstado.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="31" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="26" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="278">
+              <caret line="974" column="32" lean-forward="true" selection-start-line="974" selection-start-column="32" selection-end-line="974" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TblTipo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
       <file leaf-file-name="TblUsuarios.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/seguridad/TblUsuarios.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="61" column="46" lean-forward="true" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
+            <state relative-caret-position="275">
+              <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1676#1677#0" expanded="true" />
                 <element signature="e#1708#1709#0" expanded="true" />
+                <element signature="e#1756#1757#0" expanded="true" />
                 <element signature="e#1798#1799#0" expanded="true" />
                 <element signature="e#1835#1836#0" expanded="true" />
                 <element signature="e#1868#1869#0" expanded="true" />
@@ -110,24 +73,6 @@
                 <element signature="e#3458#3459#0" expanded="true" />
                 <element signature="e#3508#3509#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GruposRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GruposResources.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="99" column="30" lean-forward="true" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -185,8 +130,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -247,16 +190,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="APIRestPGC" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="mantenimiento" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Rest-PGC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Rest-PGC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="APIRestPGC" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
               <item name="seguridad" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -267,26 +200,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="APIRestPGC" type="462c0819:PsiDirectoryNode" />
               <item name="repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Rest-PGC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Rest-PGC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="APIRestPGC" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-              <item name="mantenimiento" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Rest-PGC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Rest-PGC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="APIRestPGC" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-              <item name="seguridad" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="API-Rest-PGC" type="b2602c69:ProjectViewProjectNode" />
@@ -303,27 +216,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="APIRestPGC" type="462c0819:PsiDirectoryNode" />
-              <item name="resourses" type="462c0819:PsiDirectoryNode" />
-              <item name="mantenimiento" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Rest-PGC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Rest-PGC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="APIRestPGC" type="462c0819:PsiDirectoryNode" />
-              <item name="resourses" type="462c0819:PsiDirectoryNode" />
-              <item name="seguirdad" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,6 +231,149 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.gitignore</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/utilities/msgExceptions.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/utilities/msgExceptions.class</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblEstado.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblGrupo.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblTipo.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/seguridad/TblUsuarios.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/mantenimiento/EstadosRepository.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/mantenimiento/GruposRepository.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/mantenimiento/TiposRepository.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/seguridad/UsuariosRepository.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/EstadosResources.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/GruposResources.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/TiposResources.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/seguirdad/UsuariosResources.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblEstado.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblGrupo.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/EstadosRepository.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/TiposRepository.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/EstadosResources.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblEstado.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblGrupo.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/models/TblTipo.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/repository/EstadosRepository.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/repository/GruposRepository.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/repository/TiposRepository.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/resourses/EstadosResources.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/resourses/GruposResources.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/api/pgc/core/APIRestPGC/resourses/TiposResources.class</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -476,22 +518,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="5" />
-      <window_info anchor="bottom" id="Messages" order="6" weight="0.32908705" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32750398" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32908705" />
-      <window_info anchor="top" x="1920" y="-7" width="1600" height="878" id="Run" order="0" type="WINDOWED" weight="0.3859375" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32908705" />
+      <window_info anchor="bottom" x="0" y="0" width="1366" height="728" id="Run" order="16" show_stripe_button="false" type="FLOATING" weight="0.3859375" />
+      <window_info anchor="bottom" id="Terminal" order="14" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22620791" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22604166" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22620791" />
       <window_info id="Learn" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -499,14 +541,33 @@
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.39915073" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info id="Designer" order="4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="15" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="13" weight="0.32908705" />
+      <window_info anchor="top" x="1920" y="-7" width="1600" height="878" id="Run" order="0" type="WINDOWED" weight="0.3859375" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="UI Designer" order="6" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39915073" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Learn" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Messages" order="6" weight="0.32908705" />
-
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32908705" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22604166" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -529,133 +590,14 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger/snapcraft.yaml" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger/swagger-config.yaml" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/EstadosRepository.java">
-
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/config/SwaggerConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/mantenimiento/TiposRepository.java">
-
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/config/SwaggerConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/EstadosResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="54" lean-forward="true" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/TiposRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.2.16.Final/hibernate-core-5.2.16.Final-sources.jar!/org/hibernate/cfg/Ejb3JoinColumn.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblEstado.java">
-
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.2.16.Final/hibernate-core-5.2.16.Final-sources.jar!/org/hibernate/cfg/Ejb3JoinColumn.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblEstado.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblGrupo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/mantenimiento/GruposRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/GruposResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblTipo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.29/tomcat-embed-core-8.5.29-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/TiposResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/EstadosResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/ApiRestPgcApplication.java">
-
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblGrupo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblGrupo.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -663,50 +605,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/TblTipo.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.29/tomcat-embed-core-8.5.29-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="120" column="57" lean-forward="true" selection-start-line="120" selection-start-column="57" selection-end-line="120" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/GruposRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-
-        <state relative-caret-position="176">
-          <caret line="16" column="65" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
-
-        <state relative-caret-position="436">
-          <caret line="58" column="12" lean-forward="true" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
-
+        <state relative-caret-position="278">
+          <caret line="974" column="32" lean-forward="true" selection-start-line="974" selection-start-column="32" selection-end-line="974" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -714,9 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -724,9 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
           <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -748,9 +649,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="41" column="34" lean-forward="true" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -758,9 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
           <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -782,9 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="79" selection-start-line="15" selection-end-line="15" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -806,9 +698,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="79" lean-forward="true" selection-start-line="15" selection-end-line="15" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -840,7 +729,6 @@
         </state>
       </provider>
     </entry>
-
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/ApiRestPgcApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -848,7 +736,6 @@
         </state>
       </provider>
     </entry>
-
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -881,16 +768,7 @@
         </state>
       </provider>
     </entry>
-
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/EstadosResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="54" lean-forward="true" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/TiposRepository.java">
-
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/EstadosResources.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/mantenimiento/TblGrupo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -913,7 +791,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/mantenimiento/TiposRepository.java">
-
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
@@ -931,9 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -946,15 +820,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/mantenimiento/EstadosResources.java">
       <provider selected="true" editor-type-id="text-editor">
-
-        <state relative-caret-position="272">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-
         <state relative-caret-position="238">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -962,41 +829,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/seguirdad/UsuariosResources.java">
       <provider selected="true" editor-type-id="text-editor">
-
         <state relative-caret-position="799">
           <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.29/tomcat-embed-core-8.5.29-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="99" column="30" lean-forward="true" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="112" column="57" lean-forward="true" selection-start-line="112" selection-start-column="57" selection-end-line="112" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/GruposResources.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/resourses/TiposResources.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/repository/seguridad/UsuariosRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1008,20 +853,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="31" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="26" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/pgc/core/APIRestPGC/models/seguridad/TblUsuarios.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="61" column="46" lean-forward="true" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
+        <state relative-caret-position="275">
+          <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1676#1677#0" expanded="true" />
             <element signature="e#1708#1709#0" expanded="true" />
+            <element signature="e#1756#1757#0" expanded="true" />
             <element signature="e#1798#1799#0" expanded="true" />
             <element signature="e#1835#1836#0" expanded="true" />
             <element signature="e#1868#1869#0" expanded="true" />
@@ -1059,7 +902,6 @@
             <element signature="e#3400#3401#0" expanded="true" />
             <element signature="e#3458#3459#0" expanded="true" />
             <element signature="e#3508#3509#0" expanded="true" />
-
           </folding>
         </state>
       </provider>
