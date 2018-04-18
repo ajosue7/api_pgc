@@ -1,5 +1,7 @@
 spring:
-  datasource:
+  thymeleaf:
+    cache: false # Ingnorar el cache para las plantillas thymeleaf
+  datasource: # Config conexion a una BD
     platform: postgresql
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/PGC_HONDURAS
@@ -7,9 +9,11 @@ spring:
     password: postgres
   jpa:
     database: POSTGRESQL
-    hibernate.ddl-auto: update
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto: update # Comprueba si las Entities corresponden con las tablas, sino las genera en la BD
     generate-ddl: true
-    show-sql: true
+    show-sql: true # Muestra SQL en pantalla
     properties:
       hibernate:
         temp:

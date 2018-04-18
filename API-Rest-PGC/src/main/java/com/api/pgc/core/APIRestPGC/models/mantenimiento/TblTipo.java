@@ -17,11 +17,11 @@ public class TblTipo {
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idTipo;
 
-    @Column(name = "COD_TIPO")
+    @Column(name = "COD_TIPO", nullable = false, length=10)
     @ApiModelProperty(notes = "Codigo Tipo", required = true)
     private String codTipo;
 
-    @Column(name = "DESC_TIPO")
+    @Column(name = "DESC_TIPO", nullable = false, length=100)
     @ApiModelProperty(notes = "Descripción de Tipo", required = true)
     private String descTipo;
 

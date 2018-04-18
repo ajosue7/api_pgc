@@ -17,11 +17,11 @@ public class TblGrupo {
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idGrupo;
 
-    @Column(name = "COD_GRUPO")
+    @Column(name = "COD_GRUPO", nullable = false, length=10)
     @ApiModelProperty(notes = "Codigo Grupo", required = true)
     private String codGrupo;
 
-    @Column(name = "DESC_GRUPO")
+    @Column(name = "DESC_GRUPO", nullable = false, length=100)
     @ApiModelProperty(notes = "Descripcion Grupo", required = true)
     private String descGrupo;
 

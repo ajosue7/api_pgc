@@ -15,35 +15,35 @@ public class TblUsuarios {
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idUsuario;
 
-    @Column(name = "COD_USUARIO")
+    @Column(name = "COD_USUARIO", nullable = false, length=20)
     @ApiModelProperty(notes = "Codigo Usuario", required = true)
     private String codUsuario;
 
-    @Column(name = "NOMBRE1_USUARIO")
+    @Column(name = "NOMBRE1_USUARIO", nullable = false, length=25)
     @ApiModelProperty(notes = "Primer Nombre", required = true)
     private String nombre1Usuario;
 
-    @Column(name = "NOMBRE2_USUARIO")
+    @Column(name = "NOMBRE2_USUARIO", length=25)
     @ApiModelProperty(notes = "Segundo Nombre")
     private String nombre2Usuario;
 
-    @Column(name = "APELLIDO1_USUARIO")
+    @Column(name = "APELLIDO1_USUARIO", nullable = false, length=25)
     @ApiModelProperty(notes = "Primer Apellido", required = true)
     private String apellido1Usuario;
 
-    @Column(name = "APELLIDO2_USUARIO")
+    @Column(name = "APELLIDO2_USUARIO", length=25)
     @ApiModelProperty(notes = "Segundo Apellido")
     private String apellido2Usuario;
 
-    @Column(name = "EMAIL_USUARIO")
+    @Column(name = "EMAIL_USUARIO", nullable = false, length=80)
     @ApiModelProperty(notes = "Email", required = true)
     private String emailUsuario;
 
-    @Column(name = "INICIALES_USUARIO")
+    @Column(name = "INICIALES_USUARIO", length=4)
     @ApiModelProperty(notes = "Iniciales")
     private String inicialesUsuario;
 
-    @Column(name = "PASSWORD_USUARIO")
+    @Column(name = "PASSWORD_USUARIO", nullable = false, length=200)
     @ApiModelProperty(notes = "Iniciales Usuario", required = true)
     private String passwordUsuario;
 

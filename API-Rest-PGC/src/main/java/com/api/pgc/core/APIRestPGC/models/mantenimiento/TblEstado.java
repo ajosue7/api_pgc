@@ -15,11 +15,11 @@ public class TblEstado {
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idEstado;
 
-    @Column(name = "COD_ESTADO")
+    @Column(name = "COD_ESTADO", nullable = false, length=10)
     @ApiModelProperty(notes = "Codigo Estado", required = true)
     private String codEstado;
 
-    @Column(name = "DESC_ESTADO")
+    @Column(name = "DESC_ESTADO", nullable = false, length=100)
     @ApiModelProperty(notes = "Descripcion Estado", required = true)
     private String descEstado;
 

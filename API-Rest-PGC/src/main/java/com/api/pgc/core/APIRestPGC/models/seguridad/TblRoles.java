@@ -14,11 +14,11 @@ public class TblRoles {
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idRol;
 
-    @Column(name = "COD_ROL")
+    @Column(name = "COD_ROL", nullable = false, length=10)
     @ApiModelProperty(notes = "Codigo Rol", required = true)
     private String codUsuario;
 
-    @Column(name = "DESC_ROL")
+    @Column(name = "DESC_ROL", nullable = false, length=100)
     @ApiModelProperty(notes = "Descripcion del Rol", required = true)
     private String nombre1Usuario;
 
