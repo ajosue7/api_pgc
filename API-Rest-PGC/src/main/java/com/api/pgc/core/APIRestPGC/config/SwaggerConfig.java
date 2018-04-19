@@ -20,6 +20,7 @@ public class SwaggerConfig {
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("api-pgc")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.api.pgc.core.APIRestPGC"))
                 .paths(regex("/rest.*"))
@@ -29,16 +30,16 @@ public class SwaggerConfig {
 
     private ApiInfo metaInfo() {
         ApiInfo ApiInfo = new ApiInfo(
-                "SRECI - API PGC | Swagger",
+                "API Rest PGC | SRECI",
                 "Documentación de la API Rest | API PGC",
                 "1.0",
                 "Terms of Service",
-                new Contact("SECRETARÍA DE RELACIONES EXTERIORES Y COOPERACIÓN INTERNACIONAL", "http://pgc.sre.gob.hn",
+                new Contact("| Nahúm Martinez - DCPD", "http://pgc.sre.gob.hn",
                         "nahum.sreci@gmail.com"),
                 "Apache License Version 2.0",
                 "https://www.apache.org/licesen.html"
         );
-
+        //Return de Api
         return ApiInfo;
     }
 }

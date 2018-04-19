@@ -1,6 +1,8 @@
 package com.api.pgc.core.APIRestPGC.models.seguridad;
 
 
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
@@ -48,12 +50,35 @@ public class TblUsuarios {
     private String passwordUsuario;
 
     @Column(name = "IMAGEN_USUARIO")
-    @ApiModelProperty(notes = "Imagen")
+    @ApiModelProperty(notes = "Imagen del Usuario")
     private String imagenUsuario;
 
+    //Relaciones de Tablas
+    //Mapeo de la Relacion de la Tabla de Usuarios con Tipos
+    //Muchos Usuario = 1 Tipo
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_TIPO_USUARIO", referencedColumnName = "ID_TIPO")
+    @ApiModelProperty(notes = "Entidad del Tipo, se envia desde un Json (\"idTipoUsuario\": { \"idTipo\": \"valor\" })", required = true)
+    private TblTipo idTipoUsuario;
+
+
+    /**
+     * Constructor de la Clase
+     */
     public TblUsuarios() {
     }
 
+
+    /**
+     * Metodos Getters y Setters
+     */
+    public TblTipo getIdTipoUsuario() {
+        return idTipoUsuario;
+    }
+
+    public void setIdTipoUsuario(TblTipo idTipoUsuario) {
+        this.idTipoUsuario = idTipoUsuario;
+    }
 
     public long getIdUsuario() {
         return idUsuario;

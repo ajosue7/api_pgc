@@ -26,9 +26,17 @@ public class TblRoles {
     @ApiModelProperty(notes = "Habilitado")
     private boolean habilitada;
 
+
+    /**
+     * Constructor de la Clase
+     */
     public TblRoles() {
     }
 
+
+    /**
+     * Metodos Getters y Setters
+     */
     public long getIdRol() {
         return idRol;
     }
