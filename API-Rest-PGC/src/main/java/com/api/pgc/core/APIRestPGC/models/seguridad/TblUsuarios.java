@@ -1,11 +1,13 @@
 package com.api.pgc.core.APIRestPGC.models.seguridad;
 
-
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "tbl_usuarios")
@@ -53,13 +55,43 @@ public class TblUsuarios {
     @ApiModelProperty(notes = "Imagen del Usuario")
     private String imagenUsuario;
 
+    @Column(name = "FECHA_CREACION", columnDefinition = "date DEFAULT '2999-12-31'")
+    @Temporal(TemporalType.DATE)
+    @ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss")
+    private Date fechaCreacion;
+
+    @Column(name = "HORA_CREACION")
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern = "hh:mm:ss")
+    @ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss")
+    private Date horaCreacion = new Date();
+
+    @Column(name = "FECHA_MODIFICACION", columnDefinition = "date DEFAULT '2999-12-31'")
+    @Temporal(TemporalType.DATE)
+    @ApiModelProperty(notes = "Fecha de Modificacion del Usuario")
+    private Date fechaModificacion;
+
+    @Column(name = "HORA_MODIFICACION")
+    @Temporal(TemporalType.TIME)
+    @ApiModelProperty(notes = "Hora de Modificacion del Usuario, formato hh:mm:ss")
+    private Date horaModificacion;
+
     //Relaciones de Tablas
     //Mapeo de la Relacion de la Tabla de Usuarios con Tipos
     //Muchos Usuario = 1 Tipo
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_TIPO_USUARIO", referencedColumnName = "ID_TIPO")
-    @ApiModelProperty(notes = "Entidad del Tipo, se envia desde un Json (\"idTipoUsuario\": { \"idTipo\": \"valor\" })", required = true)
+    @ApiModelProperty(notes = "Entidad del Tipo, se envia desde un Json (\"idTipoUsuario\": { \"idTipo\": \"valor\" })",
+            required = true)
     private TblTipo idTipoUsuario;
+
+    //Mapeo de la Relacion de la Tabla de Usuarios con Estados
+    //Muchos Usuario = 1 Estado
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_ESTADO_USUARIO", referencedColumnName = "ID_ESTADO")
+    @ApiModelProperty(notes = "Entidad del Estado, se envia desde un Json (\"idEstadoUsuario\": { \"idEstado\": \"valor\" })",
+            required = true)
+    private TblEstado idEstadoUsuario;
 
 
     /**
@@ -68,16 +100,56 @@ public class TblUsuarios {
     public TblUsuarios() {
     }
 
-
     /**
      * Metodos Getters y Setters
      */
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Date getHoraCreacion() {
+        return horaCreacion;
+    }
+
+    public void setHoraCreacion(Date horaCreacion) {
+        this.horaCreacion = horaCreacion;
+    }
+
+    public Date getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(Date fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
+    }
+
+    public Date getHoraModificacion() {
+        return horaModificacion;
+    }
+
+    public void setHoraModificacion(Date horaModificacion) {
+        this.horaModificacion = horaModificacion;
+    }
+
+
     public TblTipo getIdTipoUsuario() {
         return idTipoUsuario;
     }
 
     public void setIdTipoUsuario(TblTipo idTipoUsuario) {
         this.idTipoUsuario = idTipoUsuario;
+    }
+
+    public TblEstado getIdEstadoUsuario() {
+        return idEstadoUsuario;
+    }
+
+    public void setIdEstadoUsuario(TblEstado idEstadoUsuario) {
+        this.idEstadoUsuario = idEstadoUsuario;
     }
 
     public long getIdUsuario() {
