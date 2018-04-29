@@ -57,23 +57,22 @@ public class TblUsuarios {
 
     @Column(name = "FECHA_CREACION", columnDefinition = "date DEFAULT '2999-12-31'")
     @Temporal(TemporalType.DATE)
-    @ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss")
+    //@ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss")
     private Date fechaCreacion;
 
     @Column(name = "HORA_CREACION")
     @Temporal(TemporalType.TIME)
-    @DateTimeFormat(pattern = "hh:mm:ss")
-    @ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss")
+    //@ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss")
     private Date horaCreacion = new Date();
 
     @Column(name = "FECHA_MODIFICACION", columnDefinition = "date DEFAULT '2999-12-31'")
     @Temporal(TemporalType.DATE)
-    @ApiModelProperty(notes = "Fecha de Modificacion del Usuario")
+    //@ApiModelProperty(notes = "Fecha de Modificacion del Usuario")
     private Date fechaModificacion;
 
     @Column(name = "HORA_MODIFICACION")
     @Temporal(TemporalType.TIME)
-    @ApiModelProperty(notes = "Hora de Modificacion del Usuario, formato hh:mm:ss")
+    //@ApiModelProperty(notes = "Hora de Modificacion del Usuario, formato hh:mm:ss")
     private Date horaModificacion;
 
     //Relaciones de Tablas

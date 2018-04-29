@@ -3,18 +3,22 @@ package com.api.pgc.core.APIRestPGC.resourses.mantenimiento;
 
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
+import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/rest/estados")
 @Api(value = "estadosapi" , description = "Operaciones sobre el Modulo de Estados")
 public class EstadosResources {
+    //Propiedades de la Clase
+    String msgMethod = null;
 
     @Autowired
     EstadosRepository estadosRepository;
@@ -27,9 +31,21 @@ public class EstadosResources {
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Estados de la BD")
     @GetMapping(value = "/list", produces = "application/json" )
-    public List<TblEstado> getAllEst(){
-        return estadosRepository.findAll();
-    }
+    public HashMap<String, Object> getAllEst() throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        msgMethod = "Listado de todos los Estados registrados en la BD";
+
+        try{
+            //Sobreescirbe el Metodo de Mensajes
+            msgExeptions.map.put( "data", estadosRepository.findAll() );
+            //Retorno del json
+            return msgExeptions.msgJson( msgMethod, 200 );
+        }catch ( Exception ex ){
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }//FIN
 
 
     /**
@@ -41,9 +57,34 @@ public class EstadosResources {
      */
     @ApiOperation(value = "Retorna el Estado enviado a buscar de la BD")
     @GetMapping(value = "/show/{idEstado}", produces = "application/json")
-    public TblEstado getEstado( @ApiParam(value="Identificador del Estado a Buscar", required=true) @PathVariable ("idEstado") long idEstado  ){
-        return estadosRepository.findByIdEstado( idEstado );
-    }
+    public HashMap<String, Object> getEstado( @ApiParam(value="Identificador del Estado a Buscar", required=true)
+                                                  @PathVariable ("idEstado") long idEstado ) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        try{
+            if ( estadosRepository.findByIdEstado( idEstado ) == null ){
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "No se ha encontrado dato del Estado consultado";
+
+                msgExeptions.map.put("error", "No data found");
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 400);
+            }else {
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "Detalle del Grupo Consultado";
+                msgExeptions.map.put("data", estadosRepository.findByIdEstado( idEstado ));
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        }catch ( Exception ex ) {
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+
+        //return estadosRepository.findByIdEstado( idEstado );
+    }//FIN
 
 
     /**
@@ -55,9 +96,26 @@ public class EstadosResources {
      */
     @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Estado")
     @PostMapping(value = "/add", produces = "application/json")
-    public List<TblEstado> addEst( @ApiParam(value="Json del nuevo Estado a Ingresar", required=true) @RequestBody final TblEstado estadoJson){
-        estadosRepository.save(estadoJson);
-        return estadosRepository.findAll();
+    public HashMap<String, Object> addEst( @ApiParam(value="Json del nuevo Estado a Ingresar", required=true)
+                                               @RequestBody final TblEstado estadoJson) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        try{
+            //Realizamos la Persistencia de los Datos
+            estadosRepository.save(estadoJson);
+
+            //return tiposRepository.findAll();
+            msgMethod = "Se ha Ingresado de forma satisfactoria!!";
+
+            //Retorno del json
+            return msgExeptions.msgJson( msgMethod, 200 );
+        }catch ( Exception ex ) {
+            msgMethod = "No existe el Grupo que buscas, por favor verfica que el Estado ingresado es correcto.";
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+
+        //return estadosRepository.findAll();
     }
 
 }

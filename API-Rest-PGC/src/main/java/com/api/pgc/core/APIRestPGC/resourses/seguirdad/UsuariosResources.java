@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -114,11 +115,11 @@ public class UsuariosResources {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
+        Date dateActual = new Date();
+
         try {
             //Busca el Tipo, desde el Reporsitorio con el Parametro del Json enviado ( "idTipoUsuario": { "idTipo": valor })
             TblTipo tP = tiposRepository.findByIdTipo( userJson.getIdTipoUsuario().getIdTipo() );
-
-            //msgMethod = "No existe el Tipo que buscas, por favor verfica que el Tipo de Usuario ingresado es correcto.";
 
             //Busca el Estado, desde el Reporsitorio con el Parametro del Json enviado ( "idEstadoUsuario": { "idEstado": valor })
             TblEstado tE = estadosRepository.findByIdEstado( userJson.getIdEstadoUsuario().getIdEstado() );
@@ -129,6 +130,10 @@ public class UsuariosResources {
                 userJson.setIdTipoUsuario(tP);
                 userJson.setIdEstadoUsuario(tE);
 
+                //Seteo de las Fecha y Hora de Creacion
+                userJson.setFechaCreacion( dateActual );
+                userJson.setHoraCreacion( dateActual );
+
                 System.out.println( "Dato de Parametro de Tipo ******************  " + tP.getIdTipo() );
                 //Realizamos la Persistencia de los Datos
                 usuariosRepository.save(userJson);
@@ -138,7 +143,6 @@ public class UsuariosResources {
 
                 //Retorno del json
                 return msgExeptions.msgJson( msgMethod, 200 );
-
             }catch ( Exception ex ){
                 msgMethod = "Ha Ocurrido un error al Intentar Grabar el Usuario";
                 throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
