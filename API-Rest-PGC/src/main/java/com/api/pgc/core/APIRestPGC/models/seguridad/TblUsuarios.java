@@ -7,11 +7,12 @@ import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "tbl_usuarios")
-public class TblUsuarios {
+public class TblUsuarios implements Serializable {
     //Propiedades de la tabla
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -74,6 +75,15 @@ public class TblUsuarios {
     @Temporal(TemporalType.TIME)
     //@ApiModelProperty(notes = "Hora de Modificacion del Usuario, formato hh:mm:ss")
     private Date horaModificacion;
+
+    @Column(name="ROL")
+    @ApiModelProperty(notes = "Indica el Rol del Usuario dentro del Sistema")
+    private byte rol;
+
+    @Column(name = "ACTIVO")
+    @ApiModelProperty(notes = "Indica si el Usuario esta Activo dentro del Sistema")
+    private boolean activo;
+
 
     //Relaciones de Tablas
     //Mapeo de la Relacion de la Tabla de Usuarios con Tipos
@@ -229,5 +239,21 @@ public class TblUsuarios {
 
     public void setImagenUsuario(String imagenUsuario) {
         this.imagenUsuario = imagenUsuario;
+    }
+
+    public byte getRol() {
+        return rol;
+    }
+
+    public void setRol(byte rol) {
+        this.rol = rol;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

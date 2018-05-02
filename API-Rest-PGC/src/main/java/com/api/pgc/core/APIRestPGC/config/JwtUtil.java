@@ -23,7 +23,6 @@ public class JwtUtil {
 
         //agregamos al encabezado el token
         res.addHeader("Authorization", "Bearer " + token);
-        System.out.println( "**** En JwtUtil 1 *************************  " + username );
     }
 
     // Método para validar el token enviado por el cliente

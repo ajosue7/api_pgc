@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/rest/estados")
+@RequestMapping(value = "/rest")
 @Api(value = "estadosapi" , description = "Operaciones sobre el Modulo de Estados")
 public class EstadosResources {
     //Propiedades de la Clase
@@ -31,7 +31,7 @@ public class EstadosResources {
      * @return Lista de Estados de la BD
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Estados de la BD")
-    @GetMapping(value = "/list", produces = "application/json" )
+    @GetMapping(value = "/estados", produces = "application/json; charset=UTF-8" )
     public HashMap<String, Object> getAllEst() throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -57,8 +57,8 @@ public class EstadosResources {
      * @param idEstado Identificador del Estado a Buscar
      */
     @ApiOperation(value = "Retorna el Estado enviado a buscar de la BD")
-    @GetMapping(value = "/show/{idEstado}", produces = "application/json")
-    public HashMap<String, Object> getEstado( @ApiParam(value="Identificador del Estado a Buscar", required=true)
+    @GetMapping(value = "/estados/{idEstado}", produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getEstados( @ApiParam(value="Identificador del Estado a Buscar", required=true)
                                                   @PathVariable ("idEstado") long idEstado ) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -95,8 +95,8 @@ public class EstadosResources {
      * @return Mensaje de Confirmacion de Registro de estado
      * @param estadoJson Obtiene desde el request los datos del estado a ingresar
      */
-    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Estado")
-    @PostMapping(value = "/add", produces = "application/json")
+    //@ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Estado")
+    //@PostMapping(value = "/estados", produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> addEst( @ApiParam(value="Json del nuevo Estado a Ingresar", required=true)
                                                @RequestBody final TblEstado estadoJson) throws Exception {
         //Ejecuta el try Cacth

@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -32,12 +33,10 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
         Usuario user = new ObjectMapper().readValue(body, Usuario.class);
 
-        System.out.println( "**** En LoginFilter 2 *************************  " + user.getCodUsuario() );
-
         return getAuthenticationManager().authenticate(
-                new UsernamePasswordAuthenticationToken(
+                new UsernamePasswordAuthenticationToken (
                         user.getCodUsuario(),
-                        user.getPasswordUsuario(),
+                        user.getPasswordUsuario(), //Encoder PassWord
                         Collections.emptyList()
                 )
         );
@@ -48,7 +47,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
             HttpServletRequest req,
             HttpServletResponse res, FilterChain chain,
             Authentication auth) throws IOException, ServletException {
-        System.out.println( "**** En LoginFilter Ok *************************  " + auth.getName() );
+
         // Si la autenticacion fue exitosa, agregamos el token a la respuesta
         JwtUtil.addAuthentication(res, auth.getName());
     }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping(value = "/rest/grupos")
+@RequestMapping(value = "/rest")
 @Api(value = "gruposapi" , description = "Operaciones sobre el Modulo de Grupos")
 public class GruposResources {
 
@@ -30,7 +30,7 @@ public class GruposResources {
      * @return Lista de Grupos de la BD
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Grupos de la BD")
-    @GetMapping(value = "/list", produces = "application/json")
+    @GetMapping(value = "/grupos", produces = "application/json")
     public HashMap<String, Object> getAllGroup() throws Exception  {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -56,7 +56,7 @@ public class GruposResources {
      * @param idGrupo Identificador del Grupo a Buscar
      */
     @ApiOperation(value = "Retorna el Grupo enviado a buscar de la BD")
-    @GetMapping(value = "/show/{idGrupo}", produces = "application/json")
+    @GetMapping(value = "/grupos/{idGrupo}", produces = "application/json")
     public HashMap<String, Object> getGroup(@ApiParam(value="Identificador del Grupo a Buscar", required=true)
                                   @PathVariable ("idGrupo") long idGrupo  ) throws Exception  {
         //Ejecuta el try Cacth
@@ -92,8 +92,8 @@ public class GruposResources {
      * @return Mensaje de Confirmacion de Registro de grupo
      * @param grupoJson Obtiene desde el request los datos del grupo a ingresar
      */
-    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Grupo")
-    @PostMapping(value = "/add", produces = "application/json")
+    //@ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Grupo")
+    //@PostMapping(value = "/grupos", produces = "application/json")
     public HashMap<String, Object> addGroup( @ApiParam(value="Json del nuevo Grupo a Ingresar", required=true)
                                         @RequestBody final TblGrupo grupoJson) throws Exception  {
         //Ejecuta el try Cacth

@@ -1,6 +1,5 @@
 package com.api.pgc.core.APIRestPGC.repository.seguridad;
 
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import org.springframework.data.jpa.repository.JpaRepository;
 

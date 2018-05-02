@@ -1,11 +1,12 @@
 package com.api.pgc.core.APIRestPGC.config;
 
 
+import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -14,7 +15,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 
 @EnableSwagger2
 @Configuration
-public class SwaggerConfig {
+public class SwaggerConfig implements WebMvcConfigurer {
 
     //Inicializacion de Swagger
     @Bean
@@ -25,6 +26,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.api.pgc.core.APIRestPGC"))
                 .paths(regex("/rest.*"))
                 .build()
+                .securitySchemes(Lists.newArrayList(apiKey()))//Habilita la Inclucion de Autorization, para los EndPoint que lo Solicitan
                 .apiInfo(metaInfo());
     }
 
@@ -42,4 +44,9 @@ public class SwaggerConfig {
         //Return de Api
         return ApiInfo;
     }
+
+    private ApiKey apiKey() {
+        return new ApiKey("Authorization", "Authorization", "header");
+    }
+
 }

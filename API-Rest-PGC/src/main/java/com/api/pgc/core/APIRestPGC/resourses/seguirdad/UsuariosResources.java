@@ -10,9 +10,7 @@ import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.TiposRepository;
 import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "rest/usuarios")
+@RequestMapping(value = "rest")
 @Api(value = "userApi" , description = "Operaciones sobre el Modulo de Usuarios")
 public class UsuariosResources {
     //Propiedades de la Clase
@@ -47,7 +45,7 @@ public class UsuariosResources {
      * @return Lista de Usuarios de la BD
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Usuarios de la BD")
-    @GetMapping(value = "/list", produces = "application/json")
+    @GetMapping(value = "/usuarios", produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getAllUsers() throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -72,11 +70,59 @@ public class UsuariosResources {
      * @autor Nahum Martinez | NAM
      * @version  18/04/2018/v1.0
      * @return Usuario de la BD
+     * @param codUsuario Identificador del Tipo a Buscar
+     */
+    @ApiOperation(value = "Retorna el Usuario enviado a buscar de la BD")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Registro Encontrado"),
+            @ApiResponse(code = 401, message = "No estas Autenticado"),
+            @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
+            @ApiResponse(code = 404, message = "Recurso no encontrado"),
+            @ApiResponse(code = 500, message = "Error Interno del Servidor")})
+    @GetMapping( value = "/usuarios/user/{codUsuario}", produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getUserByCod( @ApiParam(value="Identificador del Usuario a Buscar, por Código Interno", required=true)
+                                            @PathVariable ("codUsuario") String codUsuario  ) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        try{
+            if( usuariosRepository.findByCodUsuario(codUsuario) == null ){
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "No se ha encontrado dato del Usuario consultado";
+                msgExeptions.map.put("error", "No data found");
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 400);
+            }else {
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "Detalle del Usuario Consultado";
+                msgExeptions.map.put("data", usuariosRepository.findByCodUsuario(codUsuario));
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        }catch ( Exception ex ){
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }//FIN
+
+
+    /**
+     * Metodo que despliega el Usuario de la BD
+     * @autor Nahum Martinez | NAM
+     * @version  18/04/2018/v1.0
+     * @return Usuario de la BD
      * @param idUsuario Identificador del Tipo a Buscar
      */
     @ApiOperation(value = "Retorna el Usuario enviado a buscar de la BD")
-    @GetMapping( value = "/show/{idUsuario}", produces = "application/json")
-    public HashMap<String, Object> getUser( @ApiParam(value="Identificador del Usuario a Buscar", required=true)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Registro Encontrado"),
+            @ApiResponse(code = 401, message = "No estas Autenticado"),
+            @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
+            @ApiResponse(code = 404, message = "Recurso no encontrado"),
+            @ApiResponse(code = 500, message = "Error Interno del Servidor")})
+    @GetMapping( value = "/usuarios/id/{idUsuario}", produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getUserById( @ApiParam(value="Identificador del Usuario a Buscar, por ID", required=true)
                                             @PathVariable ("idUsuario") long idUsuario  ) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -88,7 +134,7 @@ public class UsuariosResources {
                 msgExeptions.map.put("error", "No data found");
 
                 //Retorno del json
-                return msgExeptions.msgJson(msgMethod, 400);
+                return msgExeptions.msgJson(msgMethod, 404);
             }else {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle del Usuario Consultado";
@@ -110,9 +156,9 @@ public class UsuariosResources {
      * @return Mensaje de Confirmacion de Registro de Usuario
      * @param userJson Obtiene desde el request los datos del usuario a ingresar
      */
-    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Usuario",
-            notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Datos de Relacion")
-    @PostMapping(value = "/add", produces = "application/json")
+    //@ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Usuario",
+           // notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Datos de Relacion")
+    //@PostMapping(value = "/usuarios", produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> addUsuario(@ApiParam(value="Json del nuevo Usuario a Ingresar, con Relacion asociado", required=true)
                                             @RequestBody final TblUsuarios userJson) throws Exception {
         //Ejecuta el try Cacth

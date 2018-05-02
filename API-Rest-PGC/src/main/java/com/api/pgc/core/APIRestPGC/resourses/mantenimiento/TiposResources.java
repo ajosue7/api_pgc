@@ -6,16 +6,14 @@ import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.GruposRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.TiposRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
 @RestController
-@RequestMapping(value = "/rest/tipos")
+@RequestMapping(value = "/rest")
 @Api(value = "tiposapi" , description = "Operaciones sobre el Modulo de Tipos")
 public class TiposResources {
 
@@ -35,7 +33,7 @@ public class TiposResources {
      * @return Lista de Grupos de la BD
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Tipos de la BD")
-    @GetMapping(value = "/list", produces = "application/json")
+    @GetMapping(value = "/tipos", produces = "application/json")
     public HashMap<String, Object>  getAllTipo() throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -61,7 +59,12 @@ public class TiposResources {
      * @param idTipo Identificador del Tipo a Buscar
      */
     @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD")
-    @GetMapping( value = "/show/{idTipo}", produces = "application/json")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Registro Encontrado"),
+            @ApiResponse(code = 401, message = "No estas Autenticado"),
+            @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
+            @ApiResponse(code = 404, message = "Recurso no encontrado")})
+    @GetMapping( value = "/tipos/{idTipo}", produces = "application/json")
     public HashMap<String, Object> getTipo( @ApiParam(value="Identificador del Tipo a Buscar", required=true)
                                                 @PathVariable ("idTipo") long idTipo  ) throws Exception {
         //Ejecuta el try Cacth
@@ -96,9 +99,9 @@ public class TiposResources {
      * @return Mensaje de Confirmacion de Registro de tipo
      * @param tipoJson Obtiene desde el request los datos del tipo a ingresar
      */
-    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Tipo",
-            notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Grupo")
-    @PostMapping(value = "/add", produces = "application/json")
+    //@ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Tipo",
+            //notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Grupo")
+    //@PostMapping(value = "/tipos", produces = "application/json")
     public HashMap<String, Object> addGroup(@ApiParam(value="Json del nuevo Tipo a Ingresar, con Grupo asociado", required=true)
                                        @RequestBody final TblTipo tipoJson) throws Exception {
         //Ejecuta el try Cacth
