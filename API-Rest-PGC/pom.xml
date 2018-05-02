@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>API-Rest-PGC</name>
-	<description>Demo project for Spring Boot</description>
+	<description>API Rest de la PGC | Honduras</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -64,6 +64,21 @@
             <version>0.0.20131108.vaadin1</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.7.0</version>
+        </dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+		<!--</dependency>-->
 
     </dependencies>
 

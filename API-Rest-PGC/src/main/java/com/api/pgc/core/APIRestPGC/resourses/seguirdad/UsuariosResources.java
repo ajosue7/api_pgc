@@ -1,6 +1,7 @@
 package com.api.pgc.core.APIRestPGC.resourses.seguirdad;
 
 //Imports de la Clase
+import com.api.pgc.core.APIRestPGC.config.Usuario;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
@@ -13,6 +14,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -152,6 +155,5 @@ public class UsuariosResources {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     }//FIN
-
 
 }
