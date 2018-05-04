@@ -1,9 +1,7 @@
 package com.api.pgc.core.APIRestPGC.resourses.seguirdad;
 
 //Imports de la Clase
-import com.api.pgc.core.APIRestPGC.config.Usuario;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
@@ -12,13 +10,10 @@ import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "rest")
