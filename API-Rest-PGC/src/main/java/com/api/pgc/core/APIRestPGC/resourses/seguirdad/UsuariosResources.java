@@ -1,7 +1,9 @@
 package com.api.pgc.core.APIRestPGC.resourses.seguirdad;
 
 //Imports de la Clase
+import com.api.pgc.core.APIRestPGC.config.Usuario;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
@@ -10,11 +12,13 @@ import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "rest")
@@ -32,9 +36,6 @@ public class UsuariosResources {
     @Autowired
     EstadosRepository estadosRepository;
 
-    //Encoder el Password
-    @Autowired
-    private PasswordEncoder encoder;
 
     //Metodos Principales de la Clase
     /**
@@ -155,9 +156,9 @@ public class UsuariosResources {
      * @return Mensaje de Confirmacion de Registro de Usuario
      * @param userJson Obtiene desde el request los datos del usuario a ingresar
      */
-    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Usuario",
-           notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Datos de Relacion")
-    @PostMapping(value = "/registro", produces = "application/json; charset=UTF-8")
+    //@ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Usuario",
+           // notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Datos de Relacion")
+    //@PostMapping(value = "/usuarios", produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> addUsuario(@ApiParam(value="Json del nuevo Usuario a Ingresar, con Relacion asociado", required=true)
                                             @RequestBody final TblUsuarios userJson) throws Exception {
         //Ejecuta el try Cacth
@@ -182,12 +183,7 @@ public class UsuariosResources {
                 userJson.setFechaCreacion( dateActual );
                 userJson.setHoraCreacion( dateActual );
 
-                //Calculaos el Hash de la Contraseña
-                String password = encoder.encode( userJson.getPasswordUsuario() );
-                System.out.println( "Parametro de Password  **************  " + password );
-                userJson.setPasswordUsuario( password );
-
-                //System.out.println( "Dato de Hash de Contrasena ******************  " + password );
+                System.out.println( "Dato de Parametro de Tipo ******************  " + tP.getIdTipo() );
                 //Realizamos la Persistencia de los Datos
                 usuariosRepository.save(userJson);
 
