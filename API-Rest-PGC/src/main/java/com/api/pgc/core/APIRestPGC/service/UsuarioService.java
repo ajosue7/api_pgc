@@ -25,6 +25,9 @@ public class UsuarioService extends TblUsuarios implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername( String username ) throws UsernameNotFoundException {
         TblUsuarios tblUsuarios = usuariosRepository.findByCodUsuario( username );
+        System.out.println( "Datos del Login User:  " + tblUsuarios.getNombre1Usuario() + "  ********   "
+                + tblUsuarios.getApellido1Usuario() + "  *******  " + tblUsuarios.getIdEstadoUsuario().getDescEstado()
+                + "  *******  " + tblUsuarios.getIdTipoUsuario().getDescTipo() );
 
         return new User ( tblUsuarios.getCodUsuario(), tblUsuarios.getPasswordUsuario(),
                 tblUsuarios.isActivo(), tblUsuarios.isActivo(),tblUsuarios.isActivo(),tblUsuarios.isActivo(),
