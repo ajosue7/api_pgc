@@ -39,6 +39,8 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
         Usuario user = new ObjectMapper().readValue(body, Usuario.class);
 
+        System.out.println( encoder.encode( user.getPasswordUsuario() ) );
+
         //Retornamos los Parametros enviados por el JsonBean
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken (

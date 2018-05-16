@@ -156,9 +156,9 @@ public class UsuariosResources {
      * @return Mensaje de Confirmacion de Registro de Usuario
      * @param userJson Obtiene desde el request los datos del usuario a ingresar
      */
-    //@ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Usuario",
-           // notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Datos de Relacion")
-    //@PostMapping(value = "/usuarios", produces = "application/json; charset=UTF-8")
+    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Usuario",
+           notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Datos de Relacion")
+    @PostMapping(value = "/usuarios/new", produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> addUsuario(@ApiParam(value="Json del nuevo Usuario a Ingresar, con Relacion asociado", required=true)
                                             @RequestBody final TblUsuarios userJson) throws Exception {
         //Ejecuta el try Cacth
