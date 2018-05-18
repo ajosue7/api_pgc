@@ -14,6 +14,8 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -166,6 +168,8 @@ public class UsuariosResources {
 
         Date dateActual = new Date();
 
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+
         try {
             //Busca el Tipo, desde el Reporsitorio con el Parametro del Json enviado ( "idTipoUsuario": { "idTipo": valor })
             TblTipo tP = tiposRepository.findByIdTipo( userJson.getIdTipoUsuario().getIdTipo() );
@@ -182,6 +186,8 @@ public class UsuariosResources {
                 //Seteo de las Fecha y Hora de Creacion
                 userJson.setFechaCreacion( dateActual );
                 userJson.setHoraCreacion( dateActual );
+
+                userJson.setPasswordUsuario( encoder.encode( userJson.getPasswordUsuario() ) );
 
                 System.out.println( "Dato de Parametro de Tipo ******************  " + tP.getIdTipo() );
                 //Realizamos la Persistencia de los Datos
