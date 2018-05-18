@@ -34,6 +34,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
     private RememberMeServices rememberMeServices = new NullRememberMeServices();
 
+
     public LoginFilter(String url, AuthenticationManager authManager) {
         super(new AntPathRequestMatcher(url));
         System.out.println("Url de la Clase LoginFilter  ****************************  " + url);
@@ -79,13 +80,9 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
     }
 
     @Override
-    protected void successfulAuthentication(
-            HttpServletRequest req,
-            HttpServletResponse res, FilterChain chain,
-            Authentication auth) throws IOException, ServletException {
+    protected void successfulAuthentication( HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) throws IOException, ServletException {
             System.out.println("**************************** successfulAuthentication ***************************** ");
         // Si la autenticacion fue exitosa, agregamos el token a la respuesta
-        System.out.println("Dato d rs: ********* " + auth.getName());
         JwtUtil.addAuthentication(res, auth.getName());
     }
 
