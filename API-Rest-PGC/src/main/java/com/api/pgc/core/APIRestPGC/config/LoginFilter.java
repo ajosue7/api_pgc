@@ -30,33 +30,41 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
     @Autowired
     private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    private AuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
+    private CustomLoginFailureHandler failureHandler = new CustomLoginFailureHandler();
 
     private RememberMeServices rememberMeServices = new NullRememberMeServices();
 
 
     public LoginFilter(String url, AuthenticationManager authManager) {
         super(new AntPathRequestMatcher(url));
-        System.out.println("Url de la Clase LoginFilter  ****************************  " + url);
         setAuthenticationManager(authManager);
     }
 
     @Override
+    @ResponseBody
     public Authentication attemptAuthentication(
             HttpServletRequest req, HttpServletResponse res)
             throws AuthenticationException, IOException {
         //jecutamos el llamado al Login
+        System.out.println("Paso 1 - attemptAuthentication ******** ");
+        String header = req.getHeader("Authorization");
+
+        Authentication auth;
+
+        /*if ( header == null ) {
+            throw new RuntimeException("JWT Token is missing");
+        }*/
+
         InputStream body = req.getInputStream();
 
         Usuario user = new ObjectMapper().readValue(body, Usuario.class);
 
-        System.out.println("Paso 1 - attemptAuthentication ******** " + user.getPasswordUsuario());
 
-        try {
+        //try {
             //System.out.println( encoder.encode( user.getPasswordUsuario() ) );
 
             //Retornamos los Parametros enviados por el JsonBean
-            return getAuthenticationManager().authenticate(
+            auth = getAuthenticationManager().authenticate(
                     new UsernamePasswordAuthenticationToken(
                             user.getCodUsuario(),
                             //encoder.encode( user.getPasswordUsuario() ), //Encoder PassWord
@@ -64,13 +72,15 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
                             Collections.emptyList()
                     )
             );
-        } catch (BadCredentialsException  ex) {
-            System.out.println("Paso 2 - attemptAuthentication ******** ");
+            return auth;
+        /*} catch (Exception  ex) {
+            System.out.println("Paso 2 - attemptAuthentication ******** " + ex.getMessage());
             //throw new BadCredentialsException("Username / Password was not found");
-            //return getFailureHandler().onAuthenticationFailure(req, res, ex.getMessage().);
-            return null;
+            //return getFailureHandler().onAuthenticationFailure(req, res, new AuthenticationServiceException(ex.getMessage()) );
+            //return null;
             //return getFailureHandler().onAuthenticationFailure( req, res, failed );
-        } /*catch (IOException e) {
+        }*/
+        /*catch (IOException e) {
             System.out.println("Paso 3 - attemptAuthentication ******** ");
             //throw new IOException("Error sdsdsd");
 
@@ -99,6 +109,10 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
             logger.debug("Delegating to authentication failure handler " + failureHandler);
         }
 
+        System.out.println("Data de Funcion unsuccessfulAuthentication ******** " + failed.toString());
+        //Add more descriptive message
+        /*response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+               failed.toString());*/
         rememberMeServices.loginFail(request, response);
 
         failureHandler.onAuthenticationFailure(request, response, failed);

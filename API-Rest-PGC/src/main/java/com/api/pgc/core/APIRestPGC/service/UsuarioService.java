@@ -33,6 +33,7 @@ public class UsuarioService extends TblUsuarios implements UserDetailsService {
 
             //Validaion de la Busqueda del Usuario por l Codigo
             if( tblUsuarios == null ){
+                System.out.println("Usuario con email: " + username + " no encontrado.");
                 throw new UsernameNotFoundException("Usuario con email: " + username + " no encontrado.");
             }else {
                 System.out.println("Datos del Login User:  " + tblUsuarios.getNombre1Usuario() + "  ********   "
