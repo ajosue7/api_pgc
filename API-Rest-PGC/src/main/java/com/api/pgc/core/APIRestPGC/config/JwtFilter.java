@@ -32,13 +32,9 @@ public class JwtFilter extends GenericFilterBean {
 
         System.out.println("Dato de la Funcion doFilter 1 ***************************  " + authentication );
 
-        /*if( authentication == null ){
-            response1.setStatus(400);
-            System.out.println("Dato de la Funcion doFilter 1 ***************************  " + response1.getStatus() );
-        }*/
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request,response);
+
 
         return;
     }

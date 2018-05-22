@@ -1,5 +1,7 @@
 package com.api.pgc.core.APIRestPGC.config;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.catalina.servlet4preview.http.HttpServletRequestWrapper;
@@ -74,9 +76,11 @@ public class JwtUtil {
     static Authentication getAuthentication(HttpServletRequest request) {
 
         // Obtenemos el token que viene en el encabezado de la peticion
+        //HttpServletResponse response = (HttpServletResponse) response;
+
+        //response.getWriter().write("Hla Mundo");
         String token = request.getHeader("Authorization");
 
-        // si hay un token presente, entonces lo validamos
         if (token != null) {
             System.out.println("Funcion getAuthentication Paso 1 ***************  " + token);
             String user = Jwts.parser()
@@ -92,7 +96,7 @@ public class JwtUtil {
                     new UsernamePasswordAuthenticationToken(user, null, emptyList()) :
                     null;
         }
-            System.out.println("Funcion getAuthentication Paso 2 ***************  ");
+            System.out.println("Funcion getAuthentication Paso 3 ***************  ");
             //return new UsernamePasswordAuthenticationToken("nahum", null, emptyList());
             return null;
 
