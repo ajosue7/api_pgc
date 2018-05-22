@@ -18,6 +18,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static com.api.pgc.core.APIRestPGC.config.security.SecurityConstants.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +59,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //Crea los Querys de Autenticacion
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/rest/auth/login", "/rest/estados", "/rest/usuarios/{codUsuario}",
+                .antMatchers(LOGIN_URL, "/rest/estados", "/rest/usuarios/{codUsuario}",
                         "/rest/registro",
                         "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
                         "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
@@ -68,7 +70,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                 //path del login
                 .formLogin()
                     //.failureHandler(loginFailureHandler)
-                    .loginPage("/rest/auth/login")
+                    .loginPage(LOGIN_URL)
                 //.defaultSuccessUrl("/", true)
                 //.failureUrl("/login?error")
                 .permitAll()
@@ -76,7 +78,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
                 // Las peticiones /login pasaran previamente por este filtro
-                .addFilterBefore(new LoginFilter("/rest/auth/login", authenticationManager()),
+                .addFilterBefore(new LoginFilter(LOGIN_URL, authenticationManager()),
                         UsernamePasswordAuthenticationFilter.class)
 
                 // Las demás peticiones pasarán por este filtro para validar el token
