@@ -1,4 +1,4 @@
-package com.api.pgc.core.APIRestPGC.config;
+package com.api.pgc.core.APIRestPGC.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +11,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.*;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.method.annotation.JsonViewResponseBodyAdvice;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Response;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
-import java.util.concurrent.ExecutionException;
 
 
 public class LoginFilter extends AbstractAuthenticationProcessingFilter {

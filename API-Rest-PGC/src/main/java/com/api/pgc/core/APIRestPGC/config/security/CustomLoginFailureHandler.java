@@ -1,4 +1,4 @@
-package com.api.pgc.core.APIRestPGC.config;
+package com.api.pgc.core.APIRestPGC.config.security;
 
 import org.json.JSONException;
 import org.json.JSONObject;

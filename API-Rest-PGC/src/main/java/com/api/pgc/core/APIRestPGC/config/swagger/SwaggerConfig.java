@@ -1,4 +1,4 @@
-package com.api.pgc.core.APIRestPGC.config;
+package com.api.pgc.core.APIRestPGC.config.swagger;
 
 
 import com.google.common.collect.Lists;

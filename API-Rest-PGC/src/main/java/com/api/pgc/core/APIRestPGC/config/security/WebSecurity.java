@@ -1,4 +1,4 @@
-package com.api.pgc.core.APIRestPGC.config;
+package com.api.pgc.core.APIRestPGC.config.security;
 
 import com.api.pgc.core.APIRestPGC.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,17 +57,18 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //Crea los Querys de Autenticacion
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/auth/login", "/rest/estados", "/rest/usuarios/{codUsuario}",
+                .antMatchers("/rest/auth/login", "/rest/estados", "/rest/usuarios/{codUsuario}",
                         "/rest/registro",
                         "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
                         "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
-                        "/swagger-resources/configuration/security").permitAll() //permitimos el acceso a /login a cualquiera
-                .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion
+                        "/swagger-resources/configuration/security")
+                    .permitAll() //permitimos el acceso a /login a cualquiera
+                    .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion
                 .and()
                 //path del login
                 .formLogin()
                     //.failureHandler(loginFailureHandler)
-                    .loginPage("/auth/login")
+                    .loginPage("/rest/auth/login")
                 //.defaultSuccessUrl("/", true)
                 //.failureUrl("/login?error")
                 .permitAll()
@@ -75,7 +76,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
                 // Las peticiones /login pasaran previamente por este filtro
-                .addFilterBefore(new LoginFilter("/auth/login", authenticationManager()),
+                .addFilterBefore(new LoginFilter("/rest/auth/login", authenticationManager()),
                         UsernamePasswordAuthenticationFilter.class)
 
                 // Las demás peticiones pasarán por este filtro para validar el token

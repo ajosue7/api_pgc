@@ -1,8 +1,6 @@
-package com.api.pgc.core.APIRestPGC.config;
+package com.api.pgc.core.APIRestPGC.config.security;
 
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
-import org.json.JSONObject;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.security.core.Authentication;
@@ -34,7 +32,6 @@ public class JwtFilter extends GenericFilterBean {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request,response);
-
 
         return;
     }
