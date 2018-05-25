@@ -58,7 +58,8 @@ public class JwtUtil {
             //Seteo del Json a ver
             try {
                 jsonResponse.put("token", token);
-                jsonResponse.put("message", "Valor del Token de la Sesion, tienes 300 segundos para renovarlo");
+                jsonResponse.put("message", "Valor del Token de la Sesion, tienes 24 horas para usarlo, " +
+                        "despues tu session finalizara");
                 jsonResponse.put("status", HttpStatus.OK.value());
                 res.getWriter().write(jsonResponse.toString());
             } catch (JSONException e) {
