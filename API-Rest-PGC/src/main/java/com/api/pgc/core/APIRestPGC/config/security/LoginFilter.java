@@ -63,7 +63,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
             //Retornamos los Parametros enviados por el JsonBean
             auth = getAuthenticationManager().authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            user.getCodUsuario(),
+                            user.getEmailUsuario(),
                             //encoder.encode( user.getPasswordUsuario() ), //Encoder PassWord
                             user.getPasswordUsuario(), //Encoder PassWord
                             Collections.emptyList()

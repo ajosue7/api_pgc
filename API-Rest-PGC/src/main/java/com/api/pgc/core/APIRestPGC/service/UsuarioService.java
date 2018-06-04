@@ -29,7 +29,8 @@ public class UsuarioService extends TblUsuarios implements UserDetailsService {
 
         //Try - Catch
         try{
-            TblUsuarios tblUsuarios = usuariosRepository.findByCodUsuario( username );
+            //TblUsuarios tblUsuarios = usuariosRepository.findByCodUsuario( username );
+            TblUsuarios tblUsuarios = usuariosRepository.findByEmailUsuario( username );
 
             //Validaion de la Busqueda del Usuario por l Codigo
             if( tblUsuarios == null ){
@@ -40,7 +41,7 @@ public class UsuarioService extends TblUsuarios implements UserDetailsService {
                         + tblUsuarios.getApellido1Usuario() + "  *******  " + tblUsuarios.getIdEstadoUsuario().getDescEstado()
                         + "  *******  " + tblUsuarios.getIdTipoUsuario().getDescTipo() + "  *******  " + tblUsuarios.getRol() + "  *******  " + tblUsuarios.getPasswordUsuario());
 
-                return new User(tblUsuarios.getCodUsuario(), tblUsuarios.getPasswordUsuario(),
+                return new User(tblUsuarios.getEmailUsuario(), tblUsuarios.getPasswordUsuario(),
                         tblUsuarios.isActivo(), tblUsuarios.isActivo(), tblUsuarios.isActivo(), tblUsuarios.isActivo(),
                         buildgrante(tblUsuarios.getRol()));
             }

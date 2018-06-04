@@ -15,4 +15,6 @@ public interface UsuariosRepository extends JpaRepository<TblUsuarios, Integer> 
 
     TblUsuarios findByCodUsuario( String codUsuario );
 
+    TblUsuarios findByEmailUsuario( String emailUsuario );
+
 }

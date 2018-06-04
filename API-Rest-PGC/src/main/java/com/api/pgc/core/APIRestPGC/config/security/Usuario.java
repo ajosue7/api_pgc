@@ -5,6 +5,8 @@ public class Usuario {
 
     private String codUsuario;
 
+    private String emailUsuario;
+
     private String passwordUsuario;
 
     public String getCodUsuario() {
@@ -23,4 +25,11 @@ public class Usuario {
         this.passwordUsuario = passwordUsuario;
     }
 
+    public String getEmailUsuario() {
+        return emailUsuario;
+    }
+
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
 }

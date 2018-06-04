@@ -28,6 +28,8 @@ public class JwtUtil {
 
         //Parametros de Salida del Response
         res.setContentType("application/x-json;charset=UTF-8");
+        //res.setContentType("Access-Control-Allow-Origin: *");
+        res.setHeader("Access-Control-Allow-Origin", "*");
         res.setCharacterEncoding("UTF-8");
 
         JSONObject jsonResponse = new JSONObject();
@@ -58,6 +60,7 @@ public class JwtUtil {
             //Seteo del Json a ver
             try {
                 jsonResponse.put("token", token);
+                jsonResponse.put("userName",username);
                 jsonResponse.put("message", "Valor del Token de la Sesion, tienes 24 horas para usarlo, " +
                         "despues tu session finalizara");
                 jsonResponse.put("status", HttpStatus.OK.value());
