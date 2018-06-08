@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class CustomLoginFailureHandler implements  AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
@@ -25,6 +27,7 @@ public class CustomLoginFailureHandler implements  AuthenticationFailureHandler 
         //Parametros de Salida del Response
         response.setStatus( HttpStatus.BAD_REQUEST.value());
         response.setContentType("application/x-json;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setCharacterEncoding("UTF-8");
 
         System.out.println("Paso 1 onAuthenticationFailure +++++++++++++ ");

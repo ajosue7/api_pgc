@@ -4,6 +4,7 @@ import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("usuarioService")
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class UsuarioService extends TblUsuarios implements UserDetailsService {
 
     @Autowired

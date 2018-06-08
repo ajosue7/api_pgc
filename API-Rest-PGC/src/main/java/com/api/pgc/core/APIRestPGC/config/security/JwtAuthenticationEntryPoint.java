@@ -1,6 +1,7 @@
 package com.api.pgc.core.APIRestPGC.config.security;
 
 
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 @Component
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
