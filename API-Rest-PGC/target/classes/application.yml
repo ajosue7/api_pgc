@@ -11,7 +11,7 @@ spring:
     database: POSTGRESQL
     hibernate:
       # Hibernate ddl auto (create, create-drop, validate, update)
-      ddl-auto: create-drop # Comprueba si las Entities corresponden con las tablas, sino las genera en la BD
+      ddl-auto: update # Comprueba si las Entities corresponden con las tablas, sino las genera en la BD
     generate-ddl: true
     show-sql: true # Muestra SQL en pantalla
     properties:

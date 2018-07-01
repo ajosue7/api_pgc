@@ -25,7 +25,7 @@ public class CustomLoginFailureHandler implements  AuthenticationFailureHandler 
         System.out.println("Data de funcion onAuthenticationFailure ***************** ");
 
         //Parametros de Salida del Response
-        response.setStatus( HttpStatus.BAD_REQUEST.value());
+        response.setStatus( HttpStatus.BAD_REQUEST.value() );
         response.setContentType("application/x-json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setCharacterEncoding("UTF-8");
@@ -34,10 +34,10 @@ public class CustomLoginFailureHandler implements  AuthenticationFailureHandler 
         JSONObject jsonResponse;
         jsonResponse = new JSONObject();
         try {
-            jsonResponse.put("message", exception.getMessage().toString());
-            jsonResponse.put("status", HttpStatus.BAD_REQUEST.value());
-            jsonResponse.put("error", exception.getMessage().toString());
-            jsonResponse.put("path", request.getServletPath());
+            jsonResponse.put("message", exception.getMessage().toString() );
+            jsonResponse.put("status", HttpStatus.BAD_REQUEST.value() );
+            jsonResponse.put("error", exception.getMessage().toString() );
+            jsonResponse.put("path", request.getServletPath() );
 
             response.getWriter().write(jsonResponse.toString());
             //response.sendError(HttpServletResponse.SC_BAD_GATEWAY, "Usuario No Valido");

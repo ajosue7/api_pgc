@@ -48,17 +48,9 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
         Authentication auth;
 
-        /*if ( header == null ) {
-            throw new RuntimeException("JWT Token is missing");
-        }*/
-
         InputStream body = req.getInputStream();
 
         Usuario user = new ObjectMapper().readValue(body, Usuario.class);
-
-
-        //try {
-            //System.out.println( encoder.encode( user.getPasswordUsuario() ) );
 
             //Retornamos los Parametros enviados por el JsonBean
             auth = getAuthenticationManager().authenticate(
@@ -70,20 +62,6 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
                     )
             );
             return auth;
-        /*} catch (Exception  ex) {
-            System.out.println("Paso 2 - attemptAuthentication ******** " + ex.getMessage());
-            //throw new BadCredentialsException("Username / Password was not found");
-            //return getFailureHandler().onAuthenticationFailure(req, res, new AuthenticationServiceException(ex.getMessage()) );
-            //return null;
-            //return getFailureHandler().onAuthenticationFailure( req, res, failed );
-        }*/
-        /*catch (IOException e) {
-            System.out.println("Paso 3 - attemptAuthentication ******** ");
-            //throw new IOException("Error sdsdsd");
-
-            //return null;
-        }*/
-
     }
 
     @Override

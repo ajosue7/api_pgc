@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.HashMap;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = "rest")
 @Api(value = "userApi" , description = "Operaciones sobre el Modulo de Usuarios")
@@ -202,5 +203,48 @@ public class UsuariosResources {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     }//FIN
+
+
+    /**
+     * Metodo que despliega el Usuario de la BD
+     * @autor Nahum Martinez | NAM
+     * @version  18/04/2018/v1.0
+     * @return Usuario de la BD
+     * @param emailUsuario Emial del Usuario a buscar
+     */
+    @ApiOperation(value = "Retorna el Usuario enviado a buscar de la BD")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Registro Encontrado"),
+            @ApiResponse(code = 401, message = "No estas Autenticado"),
+            @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
+            @ApiResponse(code = 404, message = "Recurso no encontrado"),
+            @ApiResponse(code = 500, message = "Error Interno del Servidor")})
+    @GetMapping( value = "/usuarios/user/mail/{emailUsuario}", produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getUserByEmail( @ApiParam(value="Identificador del Usuario a Buscar, por Código Interno", required=true)
+                                                 @PathVariable ("emailUsuario") String emailUsuario ) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        try{
+            if( usuariosRepository.findByEmailUsuario(emailUsuario) == null ){
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "No se ha encontrado dato del Usuario consultado";
+                msgExeptions.map.put("error", "No data found");
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 400);
+            }else {
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "Detalle del Usuario Consultado";
+                msgExeptions.map.put("data", usuariosRepository.findByEmailUsuario(emailUsuario));
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        }catch ( Exception ex ){
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }//FIN
+
 
 }

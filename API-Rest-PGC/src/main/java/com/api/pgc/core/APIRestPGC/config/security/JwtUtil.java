@@ -1,9 +1,13 @@
 package com.api.pgc.core.APIRestPGC.config.security;
 
+import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
+import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +25,10 @@ import static com.api.pgc.core.APIRestPGC.config.security.SecurityConstants.*;
 
 public class JwtUtil {
 
+    @Autowired
+    @Qualifier("usuariosRepository")
+    private UsuariosRepository usuariosRepository;
+
     // Método para crear el JWT y enviarlo al cliente en el header de la respuesta
     static void addAuthentication(HttpServletResponse res, String username) throws IOException {
 
@@ -28,7 +36,6 @@ public class JwtUtil {
 
         //Parametros de Salida del Response
         res.setContentType("application/x-json;charset=UTF-8");
-        //res.setContentType("Access-Control-Allow-Origin: *");
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setCharacterEncoding("UTF-8");
 
@@ -59,6 +66,9 @@ public class JwtUtil {
 
             //Seteo del Json a ver
             try {
+                //TblUsuarios tblUsuarios = usuariosRepository.findByCodUsuario( username );
+                //TblUsuarios tblUsuarios = usuariosRepository.findByEmailUsuario( username );
+
                 jsonResponse.put("token", token);
                 jsonResponse.put("userName",username);
                 jsonResponse.put("message", "Valor del Token de la Sesion, tienes 24 horas para usarlo, " +
