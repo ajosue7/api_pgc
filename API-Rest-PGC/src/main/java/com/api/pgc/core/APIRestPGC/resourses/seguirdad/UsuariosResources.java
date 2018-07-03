@@ -2,9 +2,11 @@ package com.api.pgc.core.APIRestPGC.resourses.seguirdad;
 
 //Imports de la Clase
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblPais;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
+import com.api.pgc.core.APIRestPGC.repository.mantenimiento.PaisRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.TiposRepository;
 import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
@@ -33,6 +35,9 @@ public class UsuariosResources {
 
     @Autowired
     EstadosRepository estadosRepository;
+
+    @Autowired
+    PaisRepository paisRepository;
 
 
     //Metodos Principales de la Clase
@@ -168,16 +173,20 @@ public class UsuariosResources {
 
         try {
             //Busca el Tipo, desde el Reporsitorio con el Parametro del Json enviado ( "idTipoUsuario": { "idTipo": valor })
-            TblTipo tP = tiposRepository.findByIdTipo( userJson.getIdTipoUsuario().getIdTipo() );
+            TblTipo tTipos = tiposRepository.findByIdTipo( userJson.getIdTipoUsuario().getIdTipo() );
 
             //Busca el Estado, desde el Reporsitorio con el Parametro del Json enviado ( "idEstadoUsuario": { "idEstado": valor })
-            TblEstado tE = estadosRepository.findByIdEstado( userJson.getIdEstadoUsuario().getIdEstado() );
+            TblEstado tEstados = estadosRepository.findByIdEstado( userJson.getIdEstadoUsuario().getIdEstado() );
+
+            //Busca el Estado, desde el Reporsitorio con el Parametro del Json enviado ( "idEstadoUsuario": { "idEstado": valor })
+            TblPais tPais = paisRepository.findByIdPais( userJson.getIdPais().getIdPais() );
 
             //Graba los Datos de Tipos
             try {
                 //Setea el valor Buscando de la Entidad Tipos de Usuario
-                userJson.setIdTipoUsuario(tP);
-                userJson.setIdEstadoUsuario(tE);
+                userJson.setIdTipoUsuario( tTipos );
+                userJson.setIdEstadoUsuario( tEstados );
+                userJson.setIdPais( tPais );
 
                 //Seteo de las Fecha y Hora de Creacion
                 userJson.setFechaCreacion( dateActual );
@@ -185,7 +194,7 @@ public class UsuariosResources {
 
                 userJson.setPasswordUsuario( encoder.encode( userJson.getPasswordUsuario() ) );
 
-                System.out.println( "Dato de Parametro de Tipo ******************  " + tP.getIdTipo() );
+                System.out.println( "Dato de Parametro de Tipo ******************  " + tTipos.getIdTipo() );
                 //Realizamos la Persistencia de los Datos
                 usuariosRepository.save(userJson);
 

@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "tbl_grupos")
+@Table(name = "tbl_grupos",
+        indexes = {@Index(name = "idx_cod_grupo", columnList = "COD_GRUPO" )})
 public class TblGrupo {
 
     @Id

@@ -1,6 +1,7 @@
 package com.api.pgc.core.APIRestPGC.models.seguridad;
 
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblPais;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Type;
@@ -11,7 +12,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "tbl_usuarios")
+@Table(name = "tbl_usuarios",
+        indexes = {@Index(name = "idx_cod_usuario", columnList = "COD_USUARIO" )})
 public class TblUsuarios implements Serializable {
     //Propiedades de la tabla
     @Id
@@ -49,7 +51,7 @@ public class TblUsuarios implements Serializable {
     private String inicialesUsuario;
 
     @Column(name = "PASSWORD_USUARIO", nullable = false, length=200)
-    @ApiModelProperty(notes = "Iniciales Usuario", required = true)
+    @ApiModelProperty(notes = "Password Usuario", required = true)
     private String passwordUsuario;
 
     @Column(name = "IMAGEN_USUARIO")
@@ -101,6 +103,15 @@ public class TblUsuarios implements Serializable {
     @ApiModelProperty(notes = "Entidad del Estado, se envia desde un Json (\"idEstadoUsuario\": { \"idEstado\": \"valor\" })",
             required = true)
     private TblEstado idEstadoUsuario;
+
+
+    //Mapeo de la Relacion de la Tabla de Usuarios con Pais
+    //Muchos Usuario = 1 Pais
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_PAIS_USUARIO", referencedColumnName = "ID_PAIS")
+    @ApiModelProperty(notes = "Entidad del País, se envia desde un Json (\"idPaisUsuario\": { \"idPais\": \"valor\" })",
+            required = true)
+    private TblPais idPais;
 
 
     /**
@@ -255,5 +266,13 @@ public class TblUsuarios implements Serializable {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public TblPais getIdPais() {
+        return idPais;
+    }
+
+    public void setIdPais(TblPais idPais) {
+        this.idPais = idPais;
     }
 }

@@ -6,7 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_estados")
+@Table(name = "tbl_estados",
+        indexes = {@Index(name = "idx_cod_estado", columnList = "COD_ESTADO" )})
 public class TblEstado {
     //Propiedades de la tabla
     @Id

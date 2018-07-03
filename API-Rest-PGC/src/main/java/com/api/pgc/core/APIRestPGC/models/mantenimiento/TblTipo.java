@@ -6,7 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_tipos")
+@Table(name = "tbl_tipos",
+        indexes = {@Index(name = "idx_cod_tipo", columnList = "COD_TIPO" )})
 //@SequenceGenerator( name = "id_tipo_sequence", sequenceName = "id_tipo_sequence", initialValue = 1, allocationSize = 1)
 public class TblTipo {
     //Propiedades de la tabla
