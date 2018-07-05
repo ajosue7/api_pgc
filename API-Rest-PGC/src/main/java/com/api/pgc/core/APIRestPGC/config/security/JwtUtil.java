@@ -90,6 +90,10 @@ public class JwtUtil {
         // Obtenemos el token que viene en el encabezado de la peticion
         String token = request.getHeader("Authorization");
 
+        // String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5OGM0NzYzZGMyYWE0ZmNhYjhmYzM2MmI1ZjAzNjU1YSIsInN1YiI6Im5tYXJ0aW5lei5zYWxnYWRvQHlhaG9vLmNvbSIsImlhdCI6MTUzMDgyMTE5NiwibmJmIjoxNTMwODIxMTk2LCJleHAiOjE1MzA5MDc1OTZ9.I88-iojrqmjoO3gdz7hVuJ2oQVhyxWoPOW36ZKhfwYI";
+
+        System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
+
         request.setAttribute("expired", "Mensaje de NAM");
 
         if (token != null) {
