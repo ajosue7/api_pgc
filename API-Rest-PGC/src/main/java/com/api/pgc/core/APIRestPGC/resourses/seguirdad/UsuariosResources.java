@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "rest")
+@RequestMapping(value = "/rest")
 @Api(value = "userApi" , description = "Operaciones sobre el Modulo de Usuarios")
 public class UsuariosResources {
     //Propiedades de la Clase

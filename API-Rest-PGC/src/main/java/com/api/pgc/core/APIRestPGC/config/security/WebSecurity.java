@@ -75,7 +75,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //Crea los Querys de Autenticacion
         http.csrf().disable().authorizeRequests()
-                .antMatchers(LOGIN_URL, "/rest/estados", "/rest/usuarios/{codUsuario}",
+                .antMatchers(LOGIN_URL, "/rest/estados",
                         "/rest/registro",
                         "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
                         "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
