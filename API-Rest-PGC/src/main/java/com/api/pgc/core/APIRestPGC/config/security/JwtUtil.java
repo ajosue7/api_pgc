@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.UUID;
 
 import static java.util.Collections.emptyList;
@@ -90,14 +92,35 @@ public class JwtUtil {
         // Obtenemos el token que viene en el encabezado de la peticion
         String token = request.getHeader("Authorization");
 
-        // String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5OGM0NzYzZGMyYWE0ZmNhYjhmYzM2MmI1ZjAzNjU1YSIsInN1YiI6Im5tYXJ0aW5lei5zYWxnYWRvQHlhaG9vLmNvbSIsImlhdCI6MTUzMDgyMTE5NiwibmJmIjoxNTMwODIxMTk2LCJleHAiOjE1MzA5MDc1OTZ9.I88-iojrqmjoO3gdz7hVuJ2oQVhyxWoPOW36ZKhfwYI";
+        //System.out.println("Datos de las Cabezeras de la Clase ********** " + heads.getContentType() );
 
-        System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
+        System.out.println("Request Headers:");
+        Enumeration names = request.getHeaderNames();
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
+            Enumeration values = request.getHeaders(name); // support multiple values
+            if (values != null) {
+                while (values.hasMoreElements()) {
+                    String value = (String) values.nextElement();
+                    System.out.println(name + ": " + value);
+                }
+            }
+        }
+
+
+        if (token != null) {
+            System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
+        } else {
+            System.out.println("Funcion getAuthentication Paso 1.2 ************** ***************  " + request.getHeader("Access-Control-Request-Headers") );
+            token = new String( request.getHeader("Access-Control-Request-Headers") );
+            //token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5OGM0NzYzZGMyYWE0ZmNhYjhmYzM2MmI1ZjAzNjU1YSIsInN1YiI6Im5tYXJ0aW5lei5zYWxnYWRvQHlhaG9vLmNvbSIsImlhdCI6MTUzMDgyMTE5NiwibmJmIjoxNTMwODIxMTk2LCJleHAiOjE1MzA5MDc1OTZ9.I88-iojrqmjoO3gdz7hVuJ2oQVhyxWoPOW36ZKhfwYI";
+        }
+
 
         request.setAttribute("expired", "Mensaje de NAM");
 
         if (token != null) {
-            System.out.println("Funcion getAuthentication Paso 1 ***************  " + token);
+            // System.out.println("Funcion getAuthentication Paso 1 ***************  " + token);
             String user = Jwts.parser()
                     .setSigningKey(TOKEN_SECRET)
                     .parseClaimsJws(token.replace(HEADER_STRING, "")) //este metodo es el que valida
@@ -107,7 +130,7 @@ public class JwtUtil {
             // Recordamos que para las demás peticiones que no sean /login
             // no requerimos una autenticacion por username/password
             // por este motivo podemos devolver un UsernamePasswordAuthenticationToken sin password
-            System.out.println("Funcion getAuthentication Paso 2 ***************  " + user);
+            // System.out.println("Funcion getAuthentication Paso 2 ***************  " + user);
             if( user != null ){
                 return new UsernamePasswordAuthenticationToken(user, null, emptyList());
             }else{
@@ -115,7 +138,7 @@ public class JwtUtil {
             }
             return null;
         }
-        System.out.println("Funcion getAuthentication Paso 3 ***************  ");
+        // System.out.println("Funcion getAuthentication Paso 3 ***************  ");
             //return new UsernamePasswordAuthenticationToken("nahum", null, emptyList());
         return null;
     }// FIN | getAuthentication
