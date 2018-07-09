@@ -105,7 +105,7 @@ public class JwtUtil {
         }
 
         if (token != null) {
-            System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
+            // System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
         } else {
             //System.out.println("Funcion getAuthentication Paso 1.2 ************** ***************  " + request.getHeader("Access-Control-Request-Headers") );
             // token = new String( request.getHeader("Access-Control-Request-Headers") );

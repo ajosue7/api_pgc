@@ -29,14 +29,14 @@ public class JwtFilter extends GenericFilterBean {
         HttpServletResponse response1 = (HttpServletResponse) response;
 
         // TODO Auto-generated method stub
-        /*HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
         Enumeration<String> headerNames = httpRequest.getHeaderNames();
 
         if (headerNames != null) {
             while (headerNames.hasMoreElements()) {
                 System.out.println("Header iN DOfILTER *********** : " + httpRequest.getHeader(headerNames.nextElement()));
             }
-        }*/
+        }
 
 
         Authentication authentication = JwtUtil.getAuthentication((HttpServletRequest)request);
