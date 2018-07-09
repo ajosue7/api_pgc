@@ -32,6 +32,10 @@ public class JwtFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         Enumeration<String> headerNames = httpRequest.getHeaderNames();
 
+        response1.setHeader("Access-Control-Allow-Origin", "*");
+        response1.setHeader("Access-Control-Allow-Methods", "*");
+        response1.setHeader("Access-Control-Allow-Headers", "*");
+
         if (headerNames != null) {
             while (headerNames.hasMoreElements()) {
                 System.out.println("Header iN DOfILTER *********** : " + httpRequest.getHeader(headerNames.nextElement()));
