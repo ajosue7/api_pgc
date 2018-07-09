@@ -60,19 +60,20 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
     }
 
 
-    /*@Bean
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
+        System.out.println("Config CORS *****************************************");
         CorsConfiguration configuration = new CorsConfiguration();
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
         configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "OPTIONS", "PUT", "DELETE"));
-        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET","POST", "OPTIONS", "PUT", "DELETE", "PATCH"));
+        configuration.setAllowCredentials(false);
         configuration.setExposedHeaders(Arrays.asList("Content-type","Authorization"));
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }*/
+    }
 
 
     @Override
@@ -80,21 +81,26 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
         //Crea los Querys de Autenticacion
         http.csrf().disable().authorizeRequests()
                 .antMatchers(LOGIN_URL, "/rest/estados",
-                        "/rest/registro",
+                        // "/rest/registro", "/rest/usuarios/user/mail/{emailUsuario}",
+                         "/rest/registro",
                         "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
                         "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
                         "/swagger-resources/configuration/security")
                     .permitAll() //permitimos el acceso a /login a cualquiera
-                    .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion
-                .and()
+                    //.anyRequest().authenticated() //cualquier otra peticion requiere autenticacion ***************************************************
+                    .and()
                 //path del login
                 .formLogin()
                     //.failureHandler(loginFailureHandler)
                     .loginPage(LOGIN_URL)
-                //.defaultSuccessUrl("/", true)
-                //.failureUrl("/login?error")
-                .permitAll()
-                .and()
+                    //.defaultSuccessUrl("/", true)
+                    //.failureUrl("/login?error")
+                    .permitAll()
+                    .and()
+                .logout()
+                    .logoutSuccessUrl("/login?logout")
+                    .permitAll()
+                    .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
                 // Las peticiones /login pasaran previamente por este filtro
@@ -105,14 +111,16 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new JwtFilter(),
                         UsernamePasswordAuthenticationFilter.class);
 
+                // Configuracion de los Headers
                 /*.headers()
                 // the headers you want here. This solved all my CORS problems!
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "GET","POST"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age", "3600"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Credentials", "true"))
+
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization"));
-                */
+*/
     }
 
     private AuthenticationSuccessHandler successHandler() {

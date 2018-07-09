@@ -234,6 +234,8 @@ public class UsuariosResources {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
+        System.out.println("Pasa por Consulta de Usuarios con el Parametro del Email, ********************** Nahum Martinez *******************************");
+
         try{
             if( usuariosRepository.findByEmailUsuario(emailUsuario) == null ){
                 //Sobreescirbe el Metodo de Mensajes

@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,8 @@ import static java.util.Collections.emptyList;
 // Constantes del Modulo de Seguridad
 import static com.api.pgc.core.APIRestPGC.config.security.SecurityConstants.*;
 
+
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class JwtUtil {
 
     @Autowired
@@ -89,11 +92,11 @@ public class JwtUtil {
         // Obtenemos el token que viene en el encabezado de la peticion
         String token = request.getHeader("Authorization");
 
-        String token2 = request.getHeader("Access-Control-Request-Headers");
+        //String token2 = request.getHeader("Access-Control-Request-Headers");
 
         // System.out.println("Datos de las Cabezeras de la Clase ********** " + request.getHeader("Access-Control-Request-Headers").indexOf(0) );
 
-        System.out.println("Request Headers:");
+        /*System.out.println("Request Headers:");
         Map<String, String> map = new HashMap<String, String>();
 
         Enumeration headerNames = request.getHeaderNames();
@@ -102,15 +105,15 @@ public class JwtUtil {
             String value = request.getHeader(key);
             map.put(key, value);
             System.out.println(value);
-        }
+        }*/
 
-        if (token != null) {
-            // System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
+        /*if (token != null) {
+             System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
         } else {
-            //System.out.println("Funcion getAuthentication Paso 1.2 ************** ***************  " + request.getHeader("Access-Control-Request-Headers") );
+            System.out.println("Funcion getAuthentication Paso 1.2 ************** ***************  " + request.getHeader("Access-Control-Request-Headers") );
             // token = new String( request.getHeader("Access-Control-Request-Headers") );
             //token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5OGM0NzYzZGMyYWE0ZmNhYjhmYzM2MmI1ZjAzNjU1YSIsInN1YiI6Im5tYXJ0aW5lei5zYWxnYWRvQHlhaG9vLmNvbSIsImlhdCI6MTUzMDgyMTE5NiwibmJmIjoxNTMwODIxMTk2LCJleHAiOjE1MzA5MDc1OTZ9.I88-iojrqmjoO3gdz7hVuJ2oQVhyxWoPOW36ZKhfwYI";
-        }
+        }*/
 
 
         request.setAttribute("expired", "Mensaje de NAM");
