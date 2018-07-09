@@ -60,7 +60,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
+    /*@Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -72,7 +72,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
         configuration.setExposedHeaders(Arrays.asList("Content-type","Authorization"));
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
+    }*/
 
 
     @Override
@@ -103,16 +103,14 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
 
                 // Las demás peticiones pasarán por este filtro para validar el token
                 .addFilterBefore(new JwtFilter(),
-                        UsernamePasswordAuthenticationFilter.class);
-
-                /*.headers()
+                        UsernamePasswordAuthenticationFilter.class)
+                .headers()
                 // the headers you want here. This solved all my CORS problems!
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*"))
-                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "POST, GET"))
+                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "GET","POST", "OPTIONS", "PUT", "DELETE"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age", "3600"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Credentials", "true"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization"));
-                */
     }
 
     private AuthenticationSuccessHandler successHandler() {
