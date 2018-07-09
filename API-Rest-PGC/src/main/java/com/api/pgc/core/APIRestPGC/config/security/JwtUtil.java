@@ -17,9 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.UUID;
+import java.util.*;
 
 import static java.util.Collections.emptyList;
 // Constantes del Modulo de Seguridad
@@ -88,31 +86,29 @@ public class JwtUtil {
 
     // Método para validar el token enviado por el cliente
     static Authentication getAuthentication(HttpServletRequest request) {
-
         // Obtenemos el token que viene en el encabezado de la peticion
         String token = request.getHeader("Authorization");
 
-        //System.out.println("Datos de las Cabezeras de la Clase ********** " + heads.getContentType() );
+        String token2 = request.getHeader("Access-Control-Request-Headers");
 
-        System.out.println("Request Headers:");
-        Enumeration names = request.getHeaderNames();
-        while (names.hasMoreElements()) {
-            String name = (String) names.nextElement();
-            Enumeration values = request.getHeaders(name); // support multiple values
-            if (values != null) {
-                while (values.hasMoreElements()) {
-                    String value = (String) values.nextElement();
-                    System.out.println(name + ": " + value);
-                }
-            }
-        }
+        // System.out.println("Datos de las Cabezeras de la Clase ********** " + request.getHeader("Access-Control-Request-Headers").indexOf(0) );
 
+        /*System.out.println("Request Headers:");
+        Map<String, String> map = new HashMap<String, String>();
+
+        Enumeration headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String key = (String) headerNames.nextElement();
+            String value = request.getHeader(key);
+            map.put(key, value);
+            System.out.println(value);
+        }*/
 
         if (token != null) {
             System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
         } else {
-            System.out.println("Funcion getAuthentication Paso 1.2 ************** ***************  " + request.getHeader("Access-Control-Request-Headers") );
-            token = new String( request.getHeader("Access-Control-Request-Headers") );
+            // System.out.println("Funcion getAuthentication Paso 1.2 ************** ***************  " + request.getHeader("Access-Control-Request-Headers") );
+            // token = new String( request.getHeader("Access-Control-Request-Headers") );
             //token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5OGM0NzYzZGMyYWE0ZmNhYjhmYzM2MmI1ZjAzNjU1YSIsInN1YiI6Im5tYXJ0aW5lei5zYWxnYWRvQHlhaG9vLmNvbSIsImlhdCI6MTUzMDgyMTE5NiwibmJmIjoxNTMwODIxMTk2LCJleHAiOjE1MzA5MDc1OTZ9.I88-iojrqmjoO3gdz7hVuJ2oQVhyxWoPOW36ZKhfwYI";
         }
 
