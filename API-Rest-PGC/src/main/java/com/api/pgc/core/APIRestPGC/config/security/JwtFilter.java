@@ -32,9 +32,9 @@ public class JwtFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         Enumeration<String> headerNames = httpRequest.getHeaderNames();
 
-        response1.setHeader("Access-Control-Allow-Origin", "*");
-        response1.setHeader("Access-Control-Allow-Methods", "*");
-        response1.setHeader("Access-Control-Allow-Headers", "*");
+        //response1.setHeader("Access-Control-Allow-Origin", "*");
+        //response1.setHeader("Access-Control-Allow-Methods", "*");
+        //response1.setHeader("Access-Control-Request-Headers", "*");
 
         if (headerNames != null) {
             while (headerNames.hasMoreElements()) {
@@ -42,10 +42,11 @@ public class JwtFilter extends GenericFilterBean {
             }
         }
 
-
         Authentication authentication = JwtUtil.getAuthentication((HttpServletRequest)request);
 
-        System.out.println("Dato de la Funcion doFilter 1 ***************************  " + authentication );
+        if ( authentication != null ) {
+            System.out.println("Dato de la Funcion doFilter 1 ***************************  " + authentication );
+        }
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request,response);

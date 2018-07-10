@@ -92,44 +92,46 @@ public class JwtUtil {
         // Obtenemos el token que viene en el encabezado de la peticion
         String token = request.getHeader("Authorization");
 
-        //String token2 = request.getHeader("Access-Control-Request-Headers");
+        String token2 = request.getHeader("Access-Control-Request-Headers");
 
-        // System.out.println("Datos de las Cabezeras de la Clase ********** " + request.getHeader("Access-Control-Request-Headers").indexOf(0) );
+        String token3 = request.getParameter("tokenApi");
 
-        /*System.out.println("Request Headers:");
-        Map<String, String> map = new HashMap<String, String>();
-
-        Enumeration headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String key = (String) headerNames.nextElement();
-            String value = request.getHeader(key);
-            map.put(key, value);
-            System.out.println(value);
-        }*/
-
-        /*if (token != null) {
-             System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
-        } else {
-            System.out.println("Funcion getAuthentication Paso 1.2 ************** ***************  " + request.getHeader("Access-Control-Request-Headers") );
-            // token = new String( request.getHeader("Access-Control-Request-Headers") );
-            //token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5OGM0NzYzZGMyYWE0ZmNhYjhmYzM2MmI1ZjAzNjU1YSIsInN1YiI6Im5tYXJ0aW5lei5zYWxnYWRvQHlhaG9vLmNvbSIsImlhdCI6MTUzMDgyMTE5NiwibmJmIjoxNTMwODIxMTk2LCJleHAiOjE1MzA5MDc1OTZ9.I88-iojrqmjoO3gdz7hVuJ2oQVhyxWoPOW36ZKhfwYI";
-        }*/
-
-
-        request.setAttribute("expired", "Mensaje de NAM");
+        System.out.println("Parametros de la Peticion *********** " + request.getParameter("tokenApi") );
 
         if (token != null) {
-            // System.out.println("Funcion getAuthentication Paso 1 ***************  " + token);
+            System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
+
+            request.setAttribute("expired", "Mensaje de NAM");
+
+            if (token != null) {
+                System.out.println("Funcion getAuthentication Paso 1 - token con Datos ***************  " + token);
+                String user = Jwts.parser()
+                        .setSigningKey(TOKEN_SECRET)
+                        .parseClaimsJws(token.replace(HEADER_STRING, "")) //este metodo es el que valida
+                        .getBody()
+                        .getSubject();
+
+                // Recordamos que para las demás peticiones que no sean /login
+                // no requerimos una autenticacion por username/password
+                // por este motivo podemos devolver un UsernamePasswordAuthenticationToken sin password
+                if( user != null ){
+                    return new UsernamePasswordAuthenticationToken(user, null, emptyList());
+                }else{
+                    System.out.println("User null ++++++++++++ ");
+                }
+                return null;
+            }
+        } else {
+            System.out.println("Funcion getAuthentication Paso 2 - token3 con Datos ***************  " + token3);
             String user = Jwts.parser()
                     .setSigningKey(TOKEN_SECRET)
-                    .parseClaimsJws(token.replace(HEADER_STRING, "")) //este metodo es el que valida
+                    .parseClaimsJws(token3.replace(HEADER_STRING, "")) //este metodo es el que valida
                     .getBody()
                     .getSubject();
 
             // Recordamos que para las demás peticiones que no sean /login
             // no requerimos una autenticacion por username/password
             // por este motivo podemos devolver un UsernamePasswordAuthenticationToken sin password
-            // System.out.println("Funcion getAuthentication Paso 2 ***************  " + user);
             if( user != null ){
                 return new UsernamePasswordAuthenticationToken(user, null, emptyList());
             }else{
@@ -137,8 +139,8 @@ public class JwtUtil {
             }
             return null;
         }
-        // System.out.println("Funcion getAuthentication Paso 3 ***************  ");
-            //return new UsernamePasswordAuthenticationToken("nahum", null, emptyList());
+
+        // Retorno de Metodo
         return null;
     }// FIN | getAuthentication
 

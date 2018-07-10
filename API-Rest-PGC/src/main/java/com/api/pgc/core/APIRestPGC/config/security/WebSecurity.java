@@ -67,7 +67,8 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
         configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        configuration.setAllowedHeaders(Arrays.asList("X-API-KEY", "Origin", "X-Requested-With", "Content-Type",
+                "Accept", "Access-Control-Request-Method"));
         configuration.setAllowedMethods(Arrays.asList("HEAD", "GET","POST", "OPTIONS", "PUT", "DELETE", "PATCH"));
         configuration.setAllowCredentials(false);
         configuration.setExposedHeaders(Arrays.asList("Content-type","Authorization"));
@@ -87,7 +88,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
                         "/swagger-resources/configuration/security")
                     .permitAll() //permitimos el acceso a /login a cualquiera
-                    //.anyRequest().authenticated() //cualquier otra peticion requiere autenticacion ***************************************************
+                    .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion ***************************************************
                     .and()
                 //path del login
                 .formLogin()
