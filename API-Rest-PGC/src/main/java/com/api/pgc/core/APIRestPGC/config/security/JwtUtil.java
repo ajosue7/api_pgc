@@ -107,7 +107,7 @@ public class JwtUtil {
                 System.out.println("Funcion getAuthentication Paso 1 - token con Datos ***************  " + token);
                 String user = Jwts.parser()
                         .setSigningKey(TOKEN_SECRET)
-                        .parseClaimsJws(token.replace(HEADER_STRING, "")) //este metodo es el que valida
+                        .parseClaimsJws(token.replace(TOKEN_PREFIX, "")) //este metodo es el que valida
                         .getBody()
                         .getSubject();
 
