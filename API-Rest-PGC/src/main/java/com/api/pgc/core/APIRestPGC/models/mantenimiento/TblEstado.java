@@ -7,7 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tbl_estados",
-        indexes = {@Index(name = "idx_cod_estado", columnList = "COD_ESTADO" )})
+        indexes = {@Index(name = "idx_cod_estado", columnList = "COD_ESTADO" )},
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_ESTADO"})})
 public class TblEstado {
     //Propiedades de la tabla
     @Id

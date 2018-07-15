@@ -3,6 +3,7 @@ package com.api.pgc.core.APIRestPGC.resourses.mantenimiento;
 
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.GruposRepository;
+import com.api.pgc.core.APIRestPGC.utilities.configAPI;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,8 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.API_BASE_PATH;
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.GRUPOS_ENDPOINT;
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.GRUPOS_ENDPOINT_FIND_BY_ID;
+
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/rest")
+@RequestMapping(value = API_BASE_PATH )
 @Api(value = "gruposapi" , description = "Operaciones sobre el Modulo de Grupos")
 public class GruposResources {
 
@@ -23,6 +29,8 @@ public class GruposResources {
     @Autowired
     GruposRepository gruposRepository;
 
+    private configAPI configApi;
+
     /**
      * Metodo que despliega la Lista de todos los Grupos de la BD
      * @autor Nahum Martinez | NAM
@@ -30,7 +38,7 @@ public class GruposResources {
      * @return Lista de Grupos de la BD
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Grupos de la BD")
-    @GetMapping(value = "/grupos", produces = "application/json")
+    @GetMapping(value = GRUPOS_ENDPOINT, produces = "application/json")
     public HashMap<String, Object> getAllGroup() throws Exception  {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -56,7 +64,7 @@ public class GruposResources {
      * @param idGrupo Identificador del Grupo a Buscar
      */
     @ApiOperation(value = "Retorna el Grupo enviado a buscar de la BD")
-    @GetMapping(value = "/grupos/{idGrupo}", produces = "application/json")
+    @GetMapping(value = GRUPOS_ENDPOINT_FIND_BY_ID, produces = "application/json")
     public HashMap<String, Object> getGroup(@ApiParam(value="Identificador del Grupo a Buscar", required=true)
                                   @PathVariable ("idGrupo") long idGrupo  ) throws Exception  {
         //Ejecuta el try Cacth

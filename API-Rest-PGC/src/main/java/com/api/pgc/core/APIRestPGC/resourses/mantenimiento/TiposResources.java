@@ -12,8 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.API_BASE_PATH;
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.TIPOS_ENDPOINT;
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.TIPOS_ENDPOINT_FIND_BY_ID;
+
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/rest")
+@RequestMapping(value = API_BASE_PATH)
 @Api(value = "tiposapi" , description = "Operaciones sobre el Modulo de Tipos")
 public class TiposResources {
 
@@ -33,7 +38,7 @@ public class TiposResources {
      * @return Lista de Grupos de la BD
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Tipos de la BD")
-    @GetMapping(value = "/tipos", produces = "application/json")
+    @GetMapping(value = TIPOS_ENDPOINT, produces = "application/json")
     public HashMap<String, Object>  getAllTipo() throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -64,7 +69,7 @@ public class TiposResources {
             @ApiResponse(code = 401, message = "No estas Autenticado"),
             @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
             @ApiResponse(code = 404, message = "Recurso no encontrado")})
-    @GetMapping( value = "/tipos/{idTipo}", produces = "application/json")
+    @GetMapping( value = TIPOS_ENDPOINT_FIND_BY_ID, produces = "application/json")
     public HashMap<String, Object> getTipo( @ApiParam(value="Identificador del Tipo a Buscar", required=true)
                                                 @PathVariable ("idTipo") long idTipo  ) throws Exception {
         //Ejecuta el try Cacth

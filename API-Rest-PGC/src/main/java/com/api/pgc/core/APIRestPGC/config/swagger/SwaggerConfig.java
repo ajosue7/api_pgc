@@ -1,6 +1,7 @@
 package com.api.pgc.core.APIRestPGC.config.swagger;
 
 
+import com.api.pgc.core.APIRestPGC.utilities.configAPI;
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,20 +12,24 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.API_BASE_PATH;
 import static springfox.documentation.builders.PathSelectors.regex;
 
 @EnableSwagger2
 @Configuration
 public class SwaggerConfig implements WebMvcConfigurer {
 
+    // Constantes de la API
+    private configAPI configApi;
+
     //Inicializacion de Swagger
     @Bean
-    public Docket productApi() {
+    public Docket pgcApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("api-pgc")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.api.pgc.core.APIRestPGC"))
-                .paths(regex("/rest.*"))
+                .paths(regex( configAPI.API_BASE_PATH + ".*"))
                 .build()
                 .securitySchemes(Lists.newArrayList(apiKey()))//Habilita la Inclucion de Autorization, para los EndPoint que lo Solicitan
                 .apiInfo(metaInfo());
@@ -36,7 +41,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 "Documentación de la API Rest | API PGC",
                 "1.0",
                 "Terms of Service",
-                new Contact("| Nahúm Martinez - DCPD", "http://pgc.sre.gob.hn",
+                new Contact("| Nahúm Martinez ", "http://pgc.sre.gob.hn",
                         "nahum.sreci@gmail.com"),
                 "Apache License Version 2.0",
                 "https://www.apache.org/licesen.html"

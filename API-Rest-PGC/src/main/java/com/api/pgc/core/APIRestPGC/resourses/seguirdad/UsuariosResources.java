@@ -2,7 +2,7 @@ package com.api.pgc.core.APIRestPGC.resourses.seguirdad;
 
 //Imports de la Clase
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblPais;
+import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;

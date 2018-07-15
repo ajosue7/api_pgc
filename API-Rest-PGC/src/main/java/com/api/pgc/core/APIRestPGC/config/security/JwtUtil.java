@@ -112,16 +112,16 @@ public class JwtUtil {
                         .getSubject();
 
                 // Recordamos que para las demás peticiones que no sean /login
-                // no requerimos una autenticacion por username/password
+                // no requerimos una autenticacion por username/password con el Token que es del Headers
                 // por este motivo podemos devolver un UsernamePasswordAuthenticationToken sin password
                 if( user != null ){
                     return new UsernamePasswordAuthenticationToken(user, null, emptyList());
-                }else{
+                } else {
                     System.out.println("User null ++++++++++++ ");
                 }
                 return null;
             }
-        } else {
+        } else if( token3 != null ) {
             System.out.println("Funcion getAuthentication Paso 2 - token3 con Datos ***************  " + token3);
             String user = Jwts.parser()
                     .setSigningKey(TOKEN_SECRET)
@@ -130,13 +130,15 @@ public class JwtUtil {
                     .getSubject();
 
             // Recordamos que para las demás peticiones que no sean /login
-            // no requerimos una autenticacion por username/password
+            // no requerimos una autenticacion por username/password con el Token3 que es del Parametro
             // por este motivo podemos devolver un UsernamePasswordAuthenticationToken sin password
             if( user != null ){
                 return new UsernamePasswordAuthenticationToken(user, null, emptyList());
             }else{
                 System.out.println("User null ++++++++++++ ");
             }
+            return null;
+        } else {
             return null;
         }
 

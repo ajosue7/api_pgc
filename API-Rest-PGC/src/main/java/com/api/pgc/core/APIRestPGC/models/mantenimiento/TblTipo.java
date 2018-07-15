@@ -7,12 +7,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tbl_tipos",
-        indexes = {@Index(name = "idx_cod_tipo", columnList = "COD_TIPO" )})
+        indexes = {@Index(name = "idx_cod_tipo", columnList = "COD_TIPO" )},
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_TIPO"})})
 //@SequenceGenerator( name = "id_tipo_sequence", sequenceName = "id_tipo_sequence", initialValue = 1, allocationSize = 1)
 public class TblTipo {
     //Propiedades de la tabla
     @Id
-    //@GeneratedValue(strategy=GenerationType.AUTO, generator = "id_tipo_sequence")
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID_TIPO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")

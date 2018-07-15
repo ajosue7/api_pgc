@@ -14,8 +14,8 @@ public class SecurityConstants {
     public static final String HEADER_STRING = "Authorization";
 
     //Mapeo de las Rutas del Modulo de Seguridad
-    public static final String SIGN_UP_URL = "/rest/users/sign-up";
+    public static final String SIGN_UP_URL = "/api/v1/users/sign-up";
 
-    public static final String LOGIN_URL = "/rest/auth/login";
+    public static final String LOGIN_URL = "/api/v1/auth/login";
 
 }

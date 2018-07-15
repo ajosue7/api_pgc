@@ -5,7 +5,9 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_roles")
+@Table(name = "tbl_roles",
+        indexes = {@Index(name = "idx_cod_rol", columnList = "COD_ROL" )},
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_ROL"})})
 public class TblRoles {
     //Propiedades de la tabla
     @Id

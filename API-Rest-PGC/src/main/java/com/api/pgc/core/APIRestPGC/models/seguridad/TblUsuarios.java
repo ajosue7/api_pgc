@@ -1,11 +1,9 @@
 package com.api.pgc.core.APIRestPGC.models.seguridad;
 
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblPais;
+import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.Type;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +11,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "tbl_usuarios",
-        indexes = {@Index(name = "idx_cod_usuario", columnList = "COD_USUARIO" )})
+        indexes = {@Index(name = "idx_cod_usuario", columnList = "COD_USUARIO" )},
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_USUARIO", "EMAIL_USUARIO" })})
 public class TblUsuarios implements Serializable {
     //Propiedades de la tabla
     @Id
@@ -42,7 +41,7 @@ public class TblUsuarios implements Serializable {
     @ApiModelProperty(notes = "Segundo Apellido")
     private String apellido2Usuario;
 
-    @Column(name = "EMAIL_USUARIO", nullable = false, length=80)
+    @Column(name = "EMAIL_USUARIO", nullable = false, length=150)
     @ApiModelProperty(notes = "Email", required = true)
     private String emailUsuario;
 
@@ -50,11 +49,11 @@ public class TblUsuarios implements Serializable {
     @ApiModelProperty(notes = "Iniciales")
     private String inicialesUsuario;
 
-    @Column(name = "PASSWORD_USUARIO", nullable = false, length=200)
+    @Column(name = "PASSWORD_USUARIO", nullable = false, length=300)
     @ApiModelProperty(notes = "Password Usuario", required = true)
     private String passwordUsuario;
 
-    @Column(name = "IMAGEN_USUARIO")
+    @Column(name = "IMAGEN_USUARIO", length=300)
     @ApiModelProperty(notes = "Imagen del Usuario")
     private String imagenUsuario;
 

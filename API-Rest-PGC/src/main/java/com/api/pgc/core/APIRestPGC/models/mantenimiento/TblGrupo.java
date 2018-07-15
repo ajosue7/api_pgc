@@ -9,7 +9,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tbl_grupos",
-        indexes = {@Index(name = "idx_cod_grupo", columnList = "COD_GRUPO" )})
+        indexes = {@Index(name = "idx_cod_grupo", columnList = "COD_GRUPO" )},
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_GRUPO"})})
 public class TblGrupo {
 
     @Id
@@ -22,7 +23,7 @@ public class TblGrupo {
     @ApiModelProperty(notes = "Codigo Grupo", required = true)
     private String codGrupo;
 
-    @Column(name = "DESC_GRUPO", nullable = false, length=100)
+    @Column(name = "DESC_GRUPO", nullable = false, length=150)
     @ApiModelProperty(notes = "Descripcion Grupo", required = true)
     private String descGrupo;
 

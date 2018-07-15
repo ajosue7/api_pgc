@@ -1,6 +1,7 @@
 package com.api.pgc.core.APIRestPGC.config.security;
 
 import com.api.pgc.core.APIRestPGC.service.UsuarioService;
+import com.api.pgc.core.APIRestPGC.utilities.configAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -17,12 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.header.writers.StaticHeadersWriter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import static com.api.pgc.core.APIRestPGC.config.security.SecurityConstants.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +32,10 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 public class WebSecurity  extends WebSecurityConfigurerAdapter {
+
+    // Constantes de la API
+    private configAPI configApi;
+    private SecurityConstants secutityConfig;
 
     @Autowired
     @Qualifier("usuarioService")
@@ -81,7 +83,8 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //Crea los Querys de Autenticacion
         http.csrf().disable().authorizeRequests()
-                .antMatchers(LOGIN_URL, "/rest/estados",
+                .antMatchers(secutityConfig.LOGIN_URL, secutityConfig.SIGN_UP_URL,
+                        configApi.API_BASE_PATH + configApi.ESTADOS_ENDPOINT, configApi.ESTADOS_ENDPOINT_LIST1,
                         // "/rest/registro", "/rest/usuarios/user/mail/{emailUsuario}",
                          "/rest/registro",
                         "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
@@ -90,22 +93,24 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                     .permitAll() //permitimos el acceso a /login a cualquiera
                     .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion ***************************************************
                     .and()
-                //path del login
+                // path del login
                 .formLogin()
                     //.failureHandler(loginFailureHandler)
-                    .loginPage(LOGIN_URL)
+                    .loginPage(secutityConfig.LOGIN_URL)
                     //.defaultSuccessUrl("/", true)
                     //.failureUrl("/login?error")
                     .permitAll()
                     .and()
+                // path del logout
                 .logout()
+                    // .logoutUrl(SIGN_UP_URL)
                     .logoutSuccessUrl("/login?logout")
                     .permitAll()
                     .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
                 // Las peticiones /login pasaran previamente por este filtro
-                .addFilterBefore(new LoginFilter(LOGIN_URL, authenticationManager()),
+                .addFilterBefore(new LoginFilter(secutityConfig.LOGIN_URL, authenticationManager()),
                         UsernamePasswordAuthenticationFilter.class)
 
                 // Las demás peticiones pasarán por este filtro para validar el token

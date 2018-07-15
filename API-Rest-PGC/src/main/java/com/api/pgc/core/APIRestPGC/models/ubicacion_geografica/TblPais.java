@@ -1,4 +1,4 @@
-package com.api.pgc.core.APIRestPGC.models.mantenimiento;
+package com.api.pgc.core.APIRestPGC.models.ubicacion_geografica;
 
 
 import io.swagger.annotations.ApiModelProperty;
@@ -7,7 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tbl_pais",
-        indexes = {@Index(name = "idx_cod_pais", columnList = "COD_PAIS" )})
+        indexes = {@Index(name = "idx_cod_pais", columnList = "COD_PAIS" )},
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_PAIS"})})
 public class TblPais {
     //Propiedades de la tabla
     @Id

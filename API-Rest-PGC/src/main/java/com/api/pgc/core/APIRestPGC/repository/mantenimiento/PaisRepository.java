@@ -1,6 +1,6 @@
 package com.api.pgc.core.APIRestPGC.repository.mantenimiento;
 
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblPais;
+import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PaisRepository  extends JpaRepository<TblPais, Integer> {

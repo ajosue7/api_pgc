@@ -8,15 +8,15 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
+
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/rest")
+@RequestMapping(value = API_BASE_PATH)
 @Api(value = "estadosapi" , description = "Operaciones sobre el Modulo de Estados")
 public class EstadosResources {
     //Propiedades de la Clase
@@ -32,7 +32,7 @@ public class EstadosResources {
      * @return Lista de Estados de la BD
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Estados de la BD")
-    @GetMapping(value = "/estados", produces = "application/json; charset=UTF-8" )
+    @GetMapping(value = ESTADOS_ENDPOINT, produces = "application/json; charset=UTF-8" )
     public HashMap<String, Object> getAllEst() throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -58,7 +58,7 @@ public class EstadosResources {
      * @param idEstado Identificador del Estado a Buscar
      */
     @ApiOperation(value = "Retorna el Estado enviado a buscar de la BD")
-    @GetMapping(value = "/estados/{idEstado}", produces = "application/json; charset=UTF-8")
+    @GetMapping(value =  ESTADOS_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getEstados( @ApiParam(value="Identificador del Estado a Buscar", required=true)
                                                   @PathVariable ("idEstado") long idEstado ) throws Exception {
         //Ejecuta el try Cacth
@@ -75,7 +75,7 @@ public class EstadosResources {
                 return msgExeptions.msgJson(msgMethod, 400);
             }else {
                 //Sobreescirbe el Metodo de Mensajes
-                msgMethod = "Detalle del Grupo Consultado";
+                msgMethod = "Detalle del Estado Consultado";
                 msgExeptions.map.put("data", estadosRepository.findByIdEstado( idEstado ));
 
                 //Retorno del json
