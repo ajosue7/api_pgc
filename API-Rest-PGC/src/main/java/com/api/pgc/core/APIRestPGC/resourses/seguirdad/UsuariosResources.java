@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.HashMap;
 
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/rest")
+@RequestMapping(value = API_BASE_PATH)
 @Api(value = "userApi" , description = "Operaciones sobre el Modulo de Usuarios")
 public class UsuariosResources {
     //Propiedades de la Clase
@@ -48,7 +50,7 @@ public class UsuariosResources {
      * @return Lista de Usuarios de la BD
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Usuarios de la BD")
-    @GetMapping(value = "/usuarios", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = USUARIOS_ENDPOINT, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getAllUsers() throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -82,7 +84,7 @@ public class UsuariosResources {
             @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
             @ApiResponse(code = 404, message = "Recurso no encontrado"),
             @ApiResponse(code = 500, message = "Error Interno del Servidor")})
-    @GetMapping( value = "/usuarios/user/{codUsuario}", produces = "application/json; charset=UTF-8")
+    @GetMapping( value = USUARIOS_ENDPOINT_FIND_BY_COD, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getUserByCod( @ApiParam(value="Identificador del Usuario a Buscar, por Código Interno", required=true)
                                             @PathVariable ("codUsuario") String codUsuario  ) throws Exception {
         //Ejecuta el try Cacth
@@ -124,7 +126,7 @@ public class UsuariosResources {
             @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
             @ApiResponse(code = 404, message = "Recurso no encontrado"),
             @ApiResponse(code = 500, message = "Error Interno del Servidor")})
-    @GetMapping( value = "/usuarios/id/{idUsuario}", produces = "application/json; charset=UTF-8")
+    @GetMapping( value = USUARIOS_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getUserById( @ApiParam(value="Identificador del Usuario a Buscar, por ID", required=true)
                                             @PathVariable ("idUsuario") long idUsuario  ) throws Exception {
         //Ejecuta el try Cacth
@@ -161,7 +163,7 @@ public class UsuariosResources {
      */
     @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Usuario",
            notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Datos de Relacion")
-    @PostMapping(value = "/usuarios/new", produces = "application/json; charset=UTF-8")
+    @PostMapping(value = USUARIOS_ENDPOINT_NEW, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> addUsuario(@ApiParam(value="Json del nuevo Usuario a Ingresar, con Relacion asociado", required=true)
                                             @RequestBody final TblUsuarios userJson) throws Exception {
         //Ejecuta el try Cacth
@@ -228,7 +230,7 @@ public class UsuariosResources {
             @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
             @ApiResponse(code = 404, message = "Recurso no encontrado"),
             @ApiResponse(code = 500, message = "Error Interno del Servidor")})
-    @GetMapping( value = "/usuarios/user/mail/{emailUsuario}", produces = "application/json; charset=UTF-8")
+    @GetMapping( value = USUARIOS_ENDPOINT_FIND_BY_MAIL, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getUserByEmail( @ApiParam(value="Identificador del Usuario a Buscar, por Código Interno", required=true)
                                                  @PathVariable ("emailUsuario") String emailUsuario ) throws Exception {
         //Ejecuta el try Cacth
