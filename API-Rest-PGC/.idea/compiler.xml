@@ -9,8 +9,5 @@
         <module name="API-Rest-PGC" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="API-Rest-PGC" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
