@@ -1,6 +1,5 @@
 package com.api.pgc.core.APIRestPGC.config.security;
 
-import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,7 +7,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
