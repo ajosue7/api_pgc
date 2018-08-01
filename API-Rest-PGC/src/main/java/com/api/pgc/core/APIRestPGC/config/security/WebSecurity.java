@@ -91,7 +91,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
                         "/swagger-resources/configuration/security")
                     .permitAll() //permitimos el acceso a /login a cualquiera
-                    .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion ***************************************************
+                    .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion *********************
                     .and()
                 // path del login
                 .formLogin()
