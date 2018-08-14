@@ -85,6 +85,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(secutityConfig.LOGIN_URL, secutityConfig.SIGN_UP_URL,
                         configApi.API_BASE_PATH + configApi.ESTADOS_ENDPOINT, configApi.ESTADOS_ENDPOINT_LIST1,
+                        configApi.API_BASE_PATH + configApi.USUARIOS_ENDPOINT_NEW,
                         // "/rest/registro", "/rest/usuarios/user/mail/{emailUsuario}",
                          "/rest/registro",
                         "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
