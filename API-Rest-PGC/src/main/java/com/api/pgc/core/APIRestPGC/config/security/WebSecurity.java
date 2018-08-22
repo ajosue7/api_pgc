@@ -87,7 +87,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                         configApi.API_BASE_PATH + configApi.ESTADOS_ENDPOINT, configApi.ESTADOS_ENDPOINT_LIST1,
                         configApi.API_BASE_PATH + configApi.USUARIOS_ENDPOINT_NEW,
                         // "/rest/registro", "/rest/usuarios/user/mail/{emailUsuario}",
-                         "/rest/registro",
+                         "/rest/registro", configApi.API_BASE_PATH + configApi.SECTOR_EJECUTOR_ENDPOINT,
                         "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
                         "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
                         "/swagger-resources/configuration/security")
