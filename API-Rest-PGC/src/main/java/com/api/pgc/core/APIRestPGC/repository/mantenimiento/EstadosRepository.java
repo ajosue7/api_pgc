@@ -2,6 +2,9 @@ package com.api.pgc.core.APIRestPGC.repository.mantenimiento;
 
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface EstadosRepository extends JpaRepository<TblEstado, Integer> {
 
@@ -13,5 +16,8 @@ public interface EstadosRepository extends JpaRepository<TblEstado, Integer> {
      * @param idEstado
      */
     TblEstado findByIdEstado(long idEstado);
+
+    //@Query("select e.idEstado from TblEstado e")
+    //List<TblEstado> findByIdEstado (long idEstado);
 
 }
