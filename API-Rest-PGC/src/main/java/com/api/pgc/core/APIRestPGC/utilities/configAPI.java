@@ -23,6 +23,16 @@ public class configAPI {
         public static final String TIPOS_ENDPOINT = "/tipos";
         public static final String TIPOS_ENDPOINT_FIND_BY_ID = "/tipos/findById/{idTipo}";
 
+
+    /*==================================================================================================================
+     *================================================================================================================ */
+
+    // Espacios de Trabajos de la API ******************************************************************************
+        //Mapeo de las Rutas del Modulo de Estados
+        public static final String ESPACIOS_TRABAJO_ENDPOINT = "/espacios-trabajo";
+        public static final String ESPACIOS_TRABAJO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo/findById/{idEspacioTrabajo}";
+        public static final String ESPACIOS_TRABAJO_ENDPOINT_NEW = "/espacios-trabajo/new";
+
     /*==================================================================================================================
      *================================================================================================================ */
 
