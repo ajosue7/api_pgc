@@ -2,7 +2,6 @@ package com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo;
 
 
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import io.swagger.annotations.ApiModelProperty;
