@@ -1,6 +1,5 @@
 package com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo;
 
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -9,18 +8,18 @@ import java.util.Date;
 
 @Entity
 @Table(name = "tbl_espacios_trabajo_usuarios",
-        indexes = {@Index(name = "idx_cod_espacio_trabajo_user", columnList = "COD_ESPACIO_TRABAJO_USUARIO" )},
+        indexes = {@Index(name = "idx_cod_espacio_trabajo_user", columnList = "COD_ESPACIO_TRABAJO_USUARIO")},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_ESPACIO_TRABAJO_USUARIO"})})
 public class TblEspaciosTrabajoUsuarios {
     // Nueva Clase para los Espacios de Trabajo Usuarios
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_ESPACIOS_TRABAJO_USUARIOS", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idEspacioTrabajoUsuario;
 
-    @Column(name = "COD_ESPACIO_TRABAJO_USUARIO", nullable = false, length=50)
+    @Column(name = "COD_ESPACIO_TRABAJO_USUARIO", nullable = false, length = 50)
     @ApiModelProperty(notes = "Codigo Espacio de Trabajo de Usuario", required = true)
     private String codEspacioTrabajoUsuario;
 

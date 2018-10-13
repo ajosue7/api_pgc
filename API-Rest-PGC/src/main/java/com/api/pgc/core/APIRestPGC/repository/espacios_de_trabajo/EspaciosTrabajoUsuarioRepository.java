@@ -7,10 +7,11 @@ public interface EspaciosTrabajoUsuarioRepository extends JpaRepository<TblEspac
 
     /**
      * Metodo que despliega el Espacio de Trabajo de la BD
-     * @autor Nahum Martinez | NAM
-     * @version  11/10/2018/v1.0
-     * @return Espacios de Trabajo de la BD, por paramtro de ID
+     *
      * @param idEspacioTrabajoUsuario
+     * @return Espacios de Trabajo de la BD, por paramtro de ID
+     * @autor Nahum Martinez | NAM
+     * @version 11/10/2018/v1.0
      */
     TblEspaciosTrabajoUsuarios findByIdUsuarioEspacioTrabajo(long idEspacioTrabajoUsuario);
 
