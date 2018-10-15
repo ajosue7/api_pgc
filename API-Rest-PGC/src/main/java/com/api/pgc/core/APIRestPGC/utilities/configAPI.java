@@ -13,6 +13,7 @@ public class configAPI {
     //Mapeo de las Rutas del Modulo de Estados
     public static final String ESTADOS_ENDPOINT = "/estados";
     public static final String ESTADOS_ENDPOINT_FIND_BY_ID = "/estados/findById/{idEstado}";
+    public static final String ESTADOS_ENDPOINT_FIND_BY_IDGRUPO = "/estados/findByIdGrupo/{idGrupo}";
     public static final String ESTADOS_ENDPOINT_LIST1 = API_BASE_PATH + "/estados/findById/{idEstado}";
 
     //Mapeo de las Rutas del Modulo de Grupos
@@ -22,6 +23,20 @@ public class configAPI {
     //Mapeo de las Rutas del Modulo de Tipos
     public static final String TIPOS_ENDPOINT = "/tipos";
     public static final String TIPOS_ENDPOINT_FIND_BY_ID = "/tipos/findById/{idTipo}";
+
+    //Mapeo de las Rutas del Modulo de Ubicaciones | Pais
+    public static final String PAIS_ENDPOINT = "/ubicacion-geografica/pais";
+    public static final String PAIS_ENDPOINT_FIND_BY_ID = "/ubicacion-geografica/pais/findByIdPais/{idPais}";
+
+
+    /*==================================================================================================================
+     *================================================================================================================ */
+
+    // Organizaciones de la API ******************************************************************************
+    // Mapeo de las Rutas del Modulo de Organizaciones
+    public static final String ORGANIZACIONES_ENDPOINT = "/tipos-organizaciones";
+    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/tipos-organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
+    // public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_IDGRUPO = "/tipos-organizaciones/findByIdGrupo/{idGrupo}";
 
 
     /*==================================================================================================================

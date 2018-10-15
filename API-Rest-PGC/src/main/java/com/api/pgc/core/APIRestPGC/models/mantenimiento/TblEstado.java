@@ -28,6 +28,13 @@ public class TblEstado {
     @Column(name = "HABILITADA")
     private boolean habilitada;
 
+    //Mapeo de la Relacion de la Tabla de Estados con Grupos
+    // Muchos Estados = 1 Grupo
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_GRUPO", referencedColumnName = "ID_GRUPO")
+    @ApiModelProperty(notes = "Entidad del Grupo, se envia desde un Json (\"idGrupo\": { \"idGrupo\": \"valor\" })", required = true)
+    private TblGrupo idGrupo;
+
 
     public TblEstado() {
         //Sin Parametros
@@ -63,5 +70,13 @@ public class TblEstado {
 
     public void setHabilitada(boolean habilitada) {
         this.habilitada = habilitada;
+    }
+
+    public TblGrupo getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(TblGrupo idGrupo) {
+        this.idGrupo = idGrupo;
     }
 }

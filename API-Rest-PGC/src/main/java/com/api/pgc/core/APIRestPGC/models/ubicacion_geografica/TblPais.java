@@ -7,43 +7,47 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tbl_pais",
-        indexes = {@Index(name = "idx_cod_pais", columnList = "COD_PAIS" )},
+        indexes = {@Index(name = "idx_cod_pais", columnList = "COD_PAIS")},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_PAIS"})})
 public class TblPais {
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_PAIS", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idPais;
 
-    @Column(name = "COD_PAIS", nullable = false, length=5)
+    @Column(name = "COD_PAIS", nullable = false, length = 5)
     @ApiModelProperty(notes = "Codigo Estado", required = true)
     private String codEstado;
 
-    @Column(name = "DESC_PAIS", nullable = false, length=150)
+    @Column(name = "DESC_PAIS", nullable = false, length = 150)
     @ApiModelProperty(notes = "Descripcion Estado", required = true)
     private String descPais;
 
-    @Column(name = "INICIALES_PAIS",nullable = false, length=5)
+    @Column(name = "INICIALES_PAIS", nullable = false, length = 5)
     private String inicialesPais;
 
-    @Column(name = "CODIGO_POSTAL",nullable = true, length=5)
+    @Column(name = "CODIGO_POSTAL", nullable = true, length = 5)
     private String codigoPostal;
 
-    @Column(name = "COD_CONTINENTE",nullable = true, length=5)
+    @Column(name = "COD_CONTINENTE", nullable = true, length = 5)
     private String codContinente;
 
-    @Column(name = "LATITUD_PAIS",nullable = true, length=5)
+    @Column(name = "LATITUD_PAIS", nullable = true, length = 150)
     private String latitudPais;
 
-    @Column(name = "LONGITUD_PAIS",nullable = true, length=5)
+    @Column(name = "LONGITUD_PAIS", nullable = true, length = 150)
     private String longitudPais;
 
 
+    /*
+     * Constructor de la Clase
+     */
+    public TblPais() {
+    }
+
     // Meotod Getters y Setters
-
-
     public long getIdPais() {
         return idPais;
     }

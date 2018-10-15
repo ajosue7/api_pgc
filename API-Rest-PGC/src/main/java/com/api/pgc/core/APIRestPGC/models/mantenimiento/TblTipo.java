@@ -2,27 +2,26 @@ package com.api.pgc.core.APIRestPGC.models.mantenimiento;
 
 
 import io.swagger.annotations.ApiModelProperty;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tbl_tipos",
-        indexes = {@Index(name = "idx_cod_tipo", columnList = "COD_TIPO" )},
+        indexes = {@Index(name = "idx_cod_tipo", columnList = "COD_TIPO")},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_TIPO"})})
 //@SequenceGenerator( name = "id_tipo_sequence", sequenceName = "id_tipo_sequence", initialValue = 1, allocationSize = 1)
 public class TblTipo {
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_TIPO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idTipo;
 
-    @Column(name = "COD_TIPO", nullable = false, length=10)
+    @Column(name = "COD_TIPO", nullable = false, length = 10)
     @ApiModelProperty(notes = "Codigo Tipo", required = true)
     private String codTipo;
 
-    @Column(name = "DESC_TIPO", nullable = false, length=100)
+    @Column(name = "DESC_TIPO", nullable = false, length = 100)
     @ApiModelProperty(notes = "Descripción de Tipo", required = true)
     private String descTipo;
 

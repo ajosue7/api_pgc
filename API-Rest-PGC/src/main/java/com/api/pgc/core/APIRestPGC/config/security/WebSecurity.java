@@ -28,6 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.ESTADOS_ENDPOINT_FIND_BY_IDGRUPO;
+
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 @EnableWebSecurity
@@ -84,10 +86,12 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
         //Crea los Querys de Autenticacion
         http.csrf().disable().authorizeRequests()
                 .antMatchers(secutityConfig.LOGIN_URL, secutityConfig.SIGN_UP_URL,
-                        configApi.API_BASE_PATH + configApi.ESTADOS_ENDPOINT, configApi.ESTADOS_ENDPOINT_LIST1,
+                        // configApi.API_BASE_PATH + configApi.ESTADOS_ENDPOINT,
+                        // configApi.API_BASE_PATH + ESTADOS_ENDPOINT_FIND_BY_IDGRUPO,
+                        // configApi.ESTADOS_ENDPOINT_LIST1,
                         configApi.API_BASE_PATH + configApi.USUARIOS_ENDPOINT_NEW,
                         // "/rest/registro", "/rest/usuarios/user/mail/{emailUsuario}",
-                         "/rest/registro", configApi.API_BASE_PATH + configApi.SECTOR_EJECUTOR_ENDPOINT,
+                         // "/rest/registro", configApi.API_BASE_PATH + configApi.SECTOR_EJECUTOR_ENDPOINT,
                         "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
                         "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
                         "/swagger-resources/configuration/security")

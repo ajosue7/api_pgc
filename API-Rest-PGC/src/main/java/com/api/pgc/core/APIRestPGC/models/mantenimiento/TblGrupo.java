@@ -9,21 +9,21 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tbl_grupos",
-        indexes = {@Index(name = "idx_cod_grupo", columnList = "COD_GRUPO" )},
+        indexes = {@Index(name = "idx_cod_grupo", columnList = "COD_GRUPO")},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_GRUPO"})})
 public class TblGrupo {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_GRUPO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idGrupo;
 
-    @Column(name = "COD_GRUPO", nullable = false, length=10)
+    @Column(name = "COD_GRUPO", nullable = false, length = 10)
     @ApiModelProperty(notes = "Codigo Grupo", required = true)
     private String codGrupo;
 
-    @Column(name = "DESC_GRUPO", nullable = false, length=150)
+    @Column(name = "DESC_GRUPO", nullable = false, length = 150)
     @ApiModelProperty(notes = "Descripcion Grupo", required = true)
     private String descGrupo;
 

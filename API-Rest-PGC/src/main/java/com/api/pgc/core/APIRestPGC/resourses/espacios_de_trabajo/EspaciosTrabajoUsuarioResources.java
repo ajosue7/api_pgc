@@ -8,7 +8,7 @@ import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.repository.espacios_de_trabajo.EspaciosTrabajoUsuarioRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
-import com.api.pgc.core.APIRestPGC.repository.mantenimiento.PaisRepository;
+import com.api.pgc.core.APIRestPGC.repository.ubicacion_geografica.PaisRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.TiposRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.*;

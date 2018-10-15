@@ -1,4 +1,4 @@
-package com.api.pgc.core.APIRestPGC.repository.mantenimiento;
+package com.api.pgc.core.APIRestPGC.repository.ubicacion_geografica;
 
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import org.springframework.data.jpa.repository.JpaRepository;
