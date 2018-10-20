@@ -34,9 +34,15 @@ public class configAPI {
 
     // Organizaciones de la API ******************************************************************************
     // Mapeo de las Rutas del Modulo de Organizaciones
-    public static final String ORGANIZACIONES_ENDPOINT = "/tipos-organizaciones";
-    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/tipos-organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
-    // public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_IDGRUPO = "/tipos-organizaciones/findByIdGrupo/{idGrupo}";
+    public static final String ORGANIZACIONES_ENDPOINT = "/organizaciones";
+    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/organizaciones/findByIdOrganizacion/{idOrganizacion}";
+    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO = "/organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
+    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_PAIS = "/organizaciones/findByIdTipoPaisOrganizacion/{idTipoOrganizacion}/{idPaisOrganizacion}";
+    public static final String ORGANIZACIONES_USUARIO_ENDPOINT_NEW = "/organizaciones/new";
+
+    public static final String TIPO_ORGANIZACIONES_ENDPOINT = "/tipos-organizaciones";
+    public static final String TIPO_ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/tipos-organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
+    // public static final String TIPO_ORGANIZACIONES_ENDPOINT_FIND_BY_IDGRUPO = "/tipos-organizaciones/findByIdGrupo/{idGrupo}";
 
 
     /*==================================================================================================================

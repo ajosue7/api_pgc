@@ -38,7 +38,7 @@ public class TipoOrganizacionesResources {
      * @version 13/10/2018/v1.0
      */
     @ApiOperation(value = "Retorna el Listado de Todos los Tipos de Organizaciones de la BD")
-    @GetMapping(value = ORGANIZACIONES_ENDPOINT, produces = "application/json; charset=UTF-8")
+    @GetMapping(value = TIPO_ORGANIZACIONES_ENDPOINT, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getAllTipoOrganizaciones() throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -66,7 +66,7 @@ public class TipoOrganizacionesResources {
      * @version 13/10/2018/v1.0
      */
     @ApiOperation(value = "Retorna el Tipo de Organizacion enviado a buscar de la BD")
-    @GetMapping(value = ORGANIZACIONES_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
+    @GetMapping(value = TIPO_ORGANIZACIONES_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getTipoOrganizacion(@ApiParam(value = "Identificador del Tipo de Organizacion a Buscar", required = true)
                                                        @PathVariable("idTipoOrganizacion") long idTipoOrganizacion) throws Exception {
         //Ejecuta el try Cacth
