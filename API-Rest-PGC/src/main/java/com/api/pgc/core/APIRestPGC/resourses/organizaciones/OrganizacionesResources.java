@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 
 import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
@@ -59,13 +60,15 @@ public class OrganizacionesResources {
 
         try {
             //Sobreescirbe el Metodo de Mensajes
-            if ( organizacionRepository.findAll().isEmpty() || organizacionRepository.findAll() == null ) {
+            if (organizacionRepository.findAll().isEmpty() || organizacionRepository.findAll() == null) {
                 msgMethod = "No Existen, Organizaciones resgitradas en la Base de Daros, Contacta al Administrador";
 
-                msgExeptions.map.put("error", "No data found" );
-                msgExeptions.map.put("data", organizacionRepository.findAll() );
-            }else {
-                msgExeptions.map.put("data", organizacionRepository.findAll() );
+                msgExeptions.map.put("error", "No data found");
+                msgExeptions.map.put("data", organizacionRepository.findAll());
+                msgExeptions.map.put("totalRecors", organizacionRepository.count());
+            } else {
+                msgExeptions.map.put("data", organizacionRepository.findAll());
+                msgExeptions.map.put("totalRecors", organizacionRepository.count());
             }
 
             //Retorno del JSON
@@ -87,12 +90,12 @@ public class OrganizacionesResources {
     @ApiOperation(value = "Retorna el Tipo de Organizacion enviado a buscar de la BD")
     @GetMapping(value = ORGANIZACIONES_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getOrganizacion(@ApiParam(value = "Identificador de Organizacion a Buscar", required = true)
-                                                       @PathVariable("idOrganizacion") long idOrganizacion) throws Exception {
+                                                   @PathVariable("idOrganizacion") long idOrganizacion) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
-            if (organizacionRepository.findByIdOrganizacion(idOrganizacion) == null ) {
+            if (organizacionRepository.findByIdOrganizacion(idOrganizacion) == null) {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se ha encontrado dato de Organizacion consultado";
 
@@ -125,36 +128,36 @@ public class OrganizacionesResources {
     @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean de la nueva Organizacion")
     @PostMapping(value = ORGANIZACIONES_USUARIO_ENDPOINT_NEW, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> addOrganizacion(@ApiParam(value = "Json de la nueva Organizacion a Ingresar", required = true)
-                                                       @RequestBody final TblOrganizacion organizacionJson) throws Exception {
+                                                   @RequestBody final TblOrganizacion organizacionJson) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
             // Buscar el Tipo de Organizacion
-            TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion( organizacionJson.getIdTipoOrganizacionT().getIdTipoOrganizacion() );
+            TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion(organizacionJson.getIdTipoOrganizacionT().getIdTipoOrganizacion());
 
             // Buscar el Grupo de Organizacion
-            TblGrupoOrganizacion tblGrupoOrganizacion = grupoOrganizacionRepository.findByIdGrupoOrganizacion( organizacionJson.getIdGrupoOrganizazion().getIdGrupoOrganizacion() );
+            TblGrupoOrganizacion tblGrupoOrganizacion = grupoOrganizacionRepository.findByIdGrupoOrganizacion(organizacionJson.getIdGrupoOrganizazion().getIdGrupoOrganizacion());
 
-            if ( tblTipoOrganizacion.isActivo() == true ) {
+            if (tblTipoOrganizacion.isActivo() == true) {
                 // Buscar el el Pais de Organizacion
-                TblPais tblPais = paisRepository.findByIdPais( organizacionJson.getIdPaisOrganizacion().getIdPais() );
+                TblPais tblPais = paisRepository.findByIdPais(organizacionJson.getIdPaisOrganizacion().getIdPais());
 
-                if ( tblPais.getInicialesPais() != null ) {
+                if (tblPais.getInicialesPais() != null) {
                     //Setea el valor Buscando de la Entidad Tipos de Usuario
-                    organizacionJson.setIdTipoOrganizacionT( tblTipoOrganizacion );
-                    organizacionJson.setIdPaisOrganizacion( tblPais );
-                    organizacionJson.setIdGrupoOrganizazion( tblGrupoOrganizacion );
+                    organizacionJson.setIdTipoOrganizacionT(tblTipoOrganizacion);
+                    organizacionJson.setIdPaisOrganizacion(tblPais);
+                    organizacionJson.setIdGrupoOrganizazion(tblGrupoOrganizacion);
 
                     //Realizamos la Persistencia de los Datos
-                    organizacionRepository.save( organizacionJson );
+                    organizacionRepository.save(organizacionJson);
 
                     //return organizacionRepository.findAll();
                     msgMethod = "Se ha Ingresado de forma satisfactoria!!";
-                }else {
+                } else {
                     msgMethod = "No existe el Pais de Organizacion que buscas, por favor verfica que el Identificador correcto ingresado es correcto.";
                 }
-            }else {
+            } else {
                 msgMethod = "No existe el Tipo de Organizacion que buscas, por favor verfica que el Identificador correcto ingresado es correcto.";
             }
 
@@ -177,28 +180,28 @@ public class OrganizacionesResources {
     @ApiOperation(value = "Retorna las Organizaciones enviado a buscar de la BD, por el Tipo Indicado")
     @GetMapping(value = ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getTipoOrganizacion(@ApiParam(value = "Identificador del Tipo de Organizacion a Buscar", required = true)
-                                                   @PathVariable("idTipoOrganizacion") long idTipoOrganizacion) throws Exception {
+                                                       @PathVariable("idTipoOrganizacion") long idTipoOrganizacion) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
             // Buscamos el Tipo de Organizacion
-            TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion( idTipoOrganizacion );
+            TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion(idTipoOrganizacion);
 
-            if (organizacionRepository.getTipoOrganizacion( tblTipoOrganizacion ) == null ||
-                    organizacionRepository.getTipoOrganizacion( tblTipoOrganizacion ).isEmpty()) {
+            if (organizacionRepository.getTipoOrganizacion(tblTipoOrganizacion) == null ||
+                    organizacionRepository.getTipoOrganizacion(tblTipoOrganizacion).isEmpty()) {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se has encontrado dato de las Organizaciones consultadas, con el Tipo solicitado, porfavor ingresa un Tipo de Organizacion valido";
 
                 msgExeptions.map.put("error", "No data found");
-                msgExeptions.map.put("data", organizacionRepository.getTipoOrganizacion( tblTipoOrganizacion ));
+                msgExeptions.map.put("data", organizacionRepository.getTipoOrganizacion(tblTipoOrganizacion));
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 400);
             } else {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle de las Organizaciones Consultadas";
-                msgExeptions.map.put("data", organizacionRepository.getTipoOrganizacion( tblTipoOrganizacion ));
+                msgExeptions.map.put("data", organizacionRepository.getTipoOrganizacion(tblTipoOrganizacion));
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
@@ -221,29 +224,72 @@ public class OrganizacionesResources {
     @ApiOperation(value = "Retorna las Organizaciones enviado a buscar de la BD, por el Tipo y Pais Indicado")
     @GetMapping(value = ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_PAIS, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getTipoPaisOrganizacion(@ApiParam(value = "Identificador del Tipo y Pais de Organizacion a Buscar", required = true)
-                                                       @PathVariable("idTipoOrganizacion") long idTipoOrganizacion,
-                                                           @PathVariable("idPaisOrganizacion") long idPaisOrganizacion ) throws Exception {
+                                                           @PathVariable("idTipoOrganizacion") long idTipoOrganizacion,
+                                                           @PathVariable("idPaisOrganizacion") long idPaisOrganizacion) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
             // Buscamos el Tipo de Organizacion
-            TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion( idTipoOrganizacion );
-            TblPais tblPais = paisRepository.findByIdPais( idPaisOrganizacion );
+            TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion(idTipoOrganizacion);
+            TblPais tblPais = paisRepository.findByIdPais(idPaisOrganizacion);
 
-            if ( organizacionRepository.getTipoPaisOrganizacion( tblTipoOrganizacion, tblPais ).isEmpty()) {
+            if (organizacionRepository.getTipoPaisOrganizacion(tblTipoOrganizacion, tblPais).isEmpty()) {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se has encontrado dato de las Organizaciones consultadas, con el Tipo y Pais solicitado, porfavor ingresa un Tipo y Pais de Organizacion valido";
 
                 msgExeptions.map.put("error", "No data found");
-                msgExeptions.map.put("data", organizacionRepository.getTipoPaisOrganizacion( tblTipoOrganizacion, tblPais ));
+                msgExeptions.map.put("data", organizacionRepository.getTipoPaisOrganizacion(tblTipoOrganizacion, tblPais));
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 400);
             } else {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle de las Organizaciones Consultadas";
-                msgExeptions.map.put("data", organizacionRepository.getTipoPaisOrganizacion( tblTipoOrganizacion, tblPais ));
+                msgExeptions.map.put("data", organizacionRepository.getTipoPaisOrganizacion(tblTipoOrganizacion, tblPais));
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }//FIN
+
+
+    /**
+     * Metodo que despliega la Organizacion de la BD, enviando el Pais de Organizacion
+     *
+     * @param idPaisOrganizacion Identificador del Estado a Buscar
+     * @return Organizaciones de la BD
+     * @autor Nahum Martinez | NAM
+     * @version 20/10/2018/v1.0
+     */
+    @ApiOperation(value = "Retorna las Organizaciones enviado a buscar de la BD, por el Pais Indicado")
+    @GetMapping(value = ORGANIZACIONES_ENDPOINT_FIND_BY_ID_PAIS, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getPaisOrganizacion(@ApiParam(value = "Identificador del Pais de Organizacion a Buscar", required = true)
+                                                       @PathVariable("idPaisOrganizacion") long idPaisOrganizacion) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        try {
+            // Buscamos el Pais de Organizacion
+            TblPais tblPaisOrganizacion = paisRepository.findByIdPais(idPaisOrganizacion);
+
+            if (organizacionRepository.getPaisOrganizacion(tblPaisOrganizacion) == null ||
+                    organizacionRepository.getPaisOrganizacion(tblPaisOrganizacion).isEmpty()) {
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "No se has encontrado dato de las Organizaciones consultadas, con el Pais solicitado, porfavor ingresa un pais de Organizacion valido";
+
+                msgExeptions.map.put("error", "No data found");
+                msgExeptions.map.put("data", organizacionRepository.getPaisOrganizacion(tblPaisOrganizacion));
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 400);
+            } else {
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "Detalle de las Organizaciones Consultadas, con el Pais como parametro";
+                msgExeptions.map.put("data", organizacionRepository.getPaisOrganizacion(tblPaisOrganizacion));
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);

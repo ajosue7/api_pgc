@@ -37,6 +37,7 @@ public class configAPI {
     public static final String ORGANIZACIONES_ENDPOINT = "/organizaciones";
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/organizaciones/findByIdOrganizacion/{idOrganizacion}";
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO = "/organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
+    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_PAIS = "/organizaciones/findByIdPaisOrganizacion/{idPaisOrganizacion}";
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_PAIS = "/organizaciones/findByIdTipoPaisOrganizacion/{idTipoOrganizacion}/{idPaisOrganizacion}";
     public static final String ORGANIZACIONES_USUARIO_ENDPOINT_NEW = "/organizaciones/new";
 

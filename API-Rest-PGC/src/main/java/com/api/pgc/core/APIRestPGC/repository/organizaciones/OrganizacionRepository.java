@@ -1,7 +1,5 @@
 package com.api.pgc.core.APIRestPGC.repository.organizaciones;
 
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
@@ -32,7 +30,7 @@ public interface OrganizacionRepository extends JpaRepository<TblOrganizacion, I
      * @autor Nahum Martinez | NAM
      * @version 15/10/2018/v1.0
      */
-     @Query("SELECT e FROM TblOrganizacion e WHERE e.idTipoOrganizacionT = :idTipoOrganizacion ")
+    @Query("SELECT e FROM TblOrganizacion e WHERE e.idTipoOrganizacionT = :idTipoOrganizacion ")
     List<TblOrganizacion> getTipoOrganizacion(@Param("idTipoOrganizacion") TblTipoOrganizacion tblTipoOrganizacion);
 
 
@@ -48,4 +46,15 @@ public interface OrganizacionRepository extends JpaRepository<TblOrganizacion, I
     @Query("SELECT e FROM TblOrganizacion e WHERE e.idTipoOrganizacionT = :idTipoOrganizacion AND e.idPaisOrganizacion = :idPaisOrganizacion ")
     List<TblOrganizacion> getTipoPaisOrganizacion(@Param("idTipoOrganizacion") TblTipoOrganizacion tblTipoOrganizacion, @Param("idPaisOrganizacion") TblPais tblPaisOrganizacion);
 
+
+    /**
+     * Metodo que despliega la Organizacion de la BD con el Pais como parametro
+     *
+     * @param tblPais
+     * @return Organizacion de la BD, por paramtro de ID Pais
+     * @autor Nahum Martinez | NAM
+     * @version 20/10/2018/v1.0
+     */
+    @Query("SELECT e FROM TblOrganizacion e WHERE e.idPaisOrganizacion = :idPaisOrganizacion ")
+    List<TblOrganizacion> getPaisOrganizacion(@Param("idPaisOrganizacion") TblPais tblPais);
 }
