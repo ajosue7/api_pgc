@@ -15,7 +15,7 @@ public class TblOrganizacion {
     //Propiedades de la tabla
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID_TIPO_ORGANIZACION", columnDefinition = "serial")
+    @Column(name = "ID_ORGANIZACION", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idOrganizacion;
 

@@ -2,7 +2,6 @@ package com.api.pgc.core.APIRestPGC.resourses.mantenimiento.actividades;
 
 
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.actividades.EstrategiasRepository;
-import com.api.pgc.core.APIRestPGC.repository.mantenimiento.actividades.SectorEjecutorRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

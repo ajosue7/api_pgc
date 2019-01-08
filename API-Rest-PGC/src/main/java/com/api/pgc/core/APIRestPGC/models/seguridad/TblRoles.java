@@ -9,7 +9,7 @@ import javax.persistence.*;
         indexes = {@Index(name = "idx_cod_rol", columnList = "COD_ROL" )},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_ROL"})})
 public class TblRoles {
-    //Propiedades de la tabla
+    // Propiedades de la tabla
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID_ROL", columnDefinition = "serial")

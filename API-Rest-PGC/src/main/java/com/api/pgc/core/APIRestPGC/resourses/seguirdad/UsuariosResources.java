@@ -26,7 +26,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @RequestMapping(value = API_BASE_PATH)
 @Api(value = "userApi" , description = "Operaciones sobre el Modulo de Usuarios")
 public class UsuariosResources {
-    //Propiedades de la Clase
+    // Propiedades de la Clase
     String msgMethod = null;
 
     @Autowired

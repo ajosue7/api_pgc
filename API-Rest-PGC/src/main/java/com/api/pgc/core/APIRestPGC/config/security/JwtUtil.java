@@ -3,6 +3,7 @@ package com.api.pgc.core.APIRestPGC.config.security;
 import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.joda.time.DateTime;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.*;
 
 import static java.util.Collections.emptyList;
@@ -26,14 +28,14 @@ import static com.api.pgc.core.APIRestPGC.config.security.SecurityConstants.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class JwtUtil {
 
-    @Autowired
-    @Qualifier("usuariosRepository")
-    private UsuariosRepository usuariosRepository;
 
-    // Método para crear el JWT y enviarlo al cliente en el header de la respuesta
+    /*******************************************************************************************************************
+     * @autor Nahum Martinez
+     * @date 2018-07-01
+     * Método para crear el JWT y enviarlo al cliente en el header de la respuesta
+     ******************************************************************************************************************/
     static void addAuthentication(HttpServletResponse res, String username) throws IOException {
-
-        System.out.println("Datos en: JwtUtil de la Funcion addAuthentication() - username **********  " +  username);
+        // System.out.println("Datos en: JwtUtil de la Funcion addAuthentication() - username **********  " +  username);
 
         //Parametros de Salida del Response
         res.setContentType("application/x-json;charset=UTF-8");
@@ -43,19 +45,16 @@ public class JwtUtil {
         JSONObject jsonResponse = new JSONObject();
 
         // Parametros para crear el Token
-        // Usuario Ramdon
         String id = UUID.randomUUID().toString().replace("-", "");
-
-        System.out.println("Datos en: JwtUtil de la Funcion addAuthentication() - id **********  " +  id);
 
         // Generacion del Token
         String token;
             token = Jwts.builder()
                     .setId(id)
                     .setSubject(username)
-                    .setIssuedAt(NOW_TIME)
-                    .setNotBefore(NOW_TIME)
-                    .setExpiration(EXPIRATION_TIME)
+                    // .setIssuedAt(NOW_TIME)
+                    // .setNotBefore(NOW_TIME)
+                    .setExpiration(new Date( System.currentTimeMillis() + (1000*BASE_TIME)))
                     .signWith(SignatureAlgorithm.HS256, TOKEN_SECRET)
                     .compact();
 
@@ -67,9 +66,7 @@ public class JwtUtil {
 
             //Seteo del Json a ver
             try {
-                //TblUsuarios tblUsuarios = usuariosRepository.findByCodUsuario( username );
-                //TblUsuarios tblUsuarios = usuariosRepository.findByEmailUsuario( username );
-
+                // Jsonresponse send
                 jsonResponse.put("token", token);
                 jsonResponse.put("userName",username);
                 jsonResponse.put("message", "Valor del Token de la Sesion, tienes 24 horas para usarlo, " +
@@ -84,17 +81,16 @@ public class JwtUtil {
     }//FIN | addAuthentication
 
 
-
-    // Método para validar el token enviado por el cliente
+    /*******************************************************************************************************************
+     * @autor Nahum Martinez
+     * @date 2018-07-01
+     * Método para validar el token enviado por el cliente
+     ******************************************************************************************************************/
     static Authentication getAuthentication(HttpServletRequest request) {
         // Obtenemos el token que viene en el encabezado de la peticion
         String token = request.getHeader("Authorization");
-
-        String token2 = request.getHeader("Access-Control-Request-Headers");
-
+        // String token2 = request.getHeader("Access-Control-Request-Headers");
         String token3 = request.getParameter("tokenApi");
-
-        System.out.println("Parametros de la Peticion *********** " + request.getParameter("tokenApi") );
 
         if (token != null) {
             System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
@@ -109,7 +105,7 @@ public class JwtUtil {
                         .getBody()
                         .getSubject();
 
-                // Recordamos que para las demás peticiones que no sean /login
+                // Recordamos que para las demás peticiones que no sean /auth/login
                 // no requerimos una autenticacion por username/password con el Token que es del Headers
                 // por este motivo podemos devolver un UsernamePasswordAuthenticationToken sin password
                 if( user != null ){
@@ -127,7 +123,7 @@ public class JwtUtil {
                     .getBody()
                     .getSubject();
 
-            // Recordamos que para las demás peticiones que no sean /login
+            // Recordamos que para las demás peticiones que no sean /auth/login
             // no requerimos una autenticacion por username/password con el Token3 que es del Parametro
             // por este motivo podemos devolver un UsernamePasswordAuthenticationToken sin password
             if( user != null ){

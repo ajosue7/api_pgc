@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,6 +30,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import static com.api.pgc.core.APIRestPGC.utilities.configAPI.ESTADOS_ENDPOINT_FIND_BY_IDGRUPO;
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.PAIS_ENDPOINT;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
@@ -82,12 +84,23 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
 
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
         //Crea los Querys de Autenticacion
-        http.csrf().disable().authorizeRequests()
-                .antMatchers(secutityConfig.LOGIN_URL, secutityConfig.SIGN_UP_URL,
+        /*
+         * 1. Se desactiva el uso de cookies
+         * 2. Se activa la configuración CORS con los valores por defecto
+         * 3. Se desactiva el filtro CSRF
+         * 4. Se indica que el login no requiere autenticación
+         * 5. Se indica que el resto de URLs esten securizadas
+         */
+        httpSecurity
+                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                //.cors().and()
+                .csrf().disable()
+                .authorizeRequests().antMatchers(secutityConfig.LOGIN_URL, secutityConfig.SIGN_UP_URL,
                         // configApi.API_BASE_PATH + configApi.ESTADOS_ENDPOINT,
-                        // configApi.API_BASE_PATH + ESTADOS_ENDPOINT_FIND_BY_IDGRUPO,
+                        configApi.API_BASE_PATH + ESTADOS_ENDPOINT_FIND_BY_IDGRUPO,
+                         // configApi.API_BASE_PATH + PAIS_ENDPOINT,
                         // configApi.ESTADOS_ENDPOINT_LIST1,
                         configApi.API_BASE_PATH + configApi.USUARIOS_ENDPOINT_NEW,
                         // "/rest/registro", "/rest/usuarios/user/mail/{emailUsuario}",
