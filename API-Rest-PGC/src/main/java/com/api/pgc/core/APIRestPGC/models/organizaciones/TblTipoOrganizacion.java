@@ -13,7 +13,7 @@ import java.util.Date;
 public class TblTipoOrganizacion {
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TIPO_ORGANIZACION", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idTipoOrganizacion;
@@ -26,9 +26,9 @@ public class TblTipoOrganizacion {
     @ApiModelProperty(notes = "Descripción de Tipo de Organizacion")
     private String descTipoOrganizacion;
 
-    @Column(name = "NOMBRE_TIPO_ORGANIZACION", nullable = false, length = 300)
+    @Column(name = "ACRONIMO_TIPO_ORGANIZACION", nullable = false, length = 10)
     @ApiModelProperty(notes = "Nombre de Tipo de Organizacion")
-    private String nombreTipoOrganizacion;
+    private String acronimoTipoOrganizacion;
 
     @Column(name = "ACTIVO")
     private boolean activo;
@@ -78,12 +78,12 @@ public class TblTipoOrganizacion {
         this.descTipoOrganizacion = descTipoOrganizacion;
     }
 
-    public String getNombreTipoOrganizacion() {
-        return nombreTipoOrganizacion;
+    public String getAcronimoTipoOrganizacion() {
+        return acronimoTipoOrganizacion;
     }
 
-    public void setNombreTipoOrganizacion(String nombreTipoOrganizacion) {
-        this.nombreTipoOrganizacion = nombreTipoOrganizacion;
+    public void setAcronimoTipoOrganizacion(String acronimoTipoOrganizacion) {
+        this.acronimoTipoOrganizacion = acronimoTipoOrganizacion;
     }
 
     public boolean isActivo() {

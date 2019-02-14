@@ -58,7 +58,7 @@ public class JwtUtil {
                     .signWith(SignatureAlgorithm.HS256, TOKEN_SECRET)
                     .compact();
 
-            System.out.println("Datos en: JwtUtil de la Funcion addAuthentication() - token **********  " +  token);
+            // System.out.println("Datos en: JwtUtil de la Funcion addAuthentication() - token **********  " +  token);
 
         if( token != null ){
             //agregamos al encabezado el token
@@ -93,12 +93,12 @@ public class JwtUtil {
         String token3 = request.getParameter("tokenApi");
 
         if (token != null) {
-            System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
+            // System.out.println("Funcion getAuthentication Paso 1.1 ************** ***************  " + request.getHeader("Authorization") );
 
             request.setAttribute("expired", "Mensaje de NAM");
 
             if (token != null) {
-                System.out.println("Funcion getAuthentication Paso 1 - token con Datos ***************  " + token);
+               // System.out.println("Funcion getAuthentication Paso 1 - token con Datos ***************  " + token);
                 String user = Jwts.parser()
                         .setSigningKey(TOKEN_SECRET)
                         .parseClaimsJws(token.replace(TOKEN_PREFIX, "")) //este metodo es el que valida

@@ -5,9 +5,11 @@ package com.api.pgc.core.APIRestPGC.resourses.espacios_de_trabajo;
 import com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo.TblEspaciosTrabajo;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
+import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.repository.espacios_de_trabajo.EspaciosTrabajoUsuarioRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
+import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
 import com.api.pgc.core.APIRestPGC.repository.ubicacion_geografica.PaisRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.TiposRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
@@ -22,7 +24,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "espaciotrabajouserapi", description = "Operaciones sobre el Modulo de Espacios de Trabajo que tiene cada Usuario Asignado")
+@Api(value = "espaciotrabajouserapi", description = "Operaciones sobre el Modulo de Espacios de Trabajo que tiene cada Usuario Asignado", tags = "Espacios de Trabajo - Usuarios")
 public class EspaciosTrabajoUsuarioResources {
 
     //Propiedades de la Clase
@@ -39,6 +41,9 @@ public class EspaciosTrabajoUsuarioResources {
 
     @Autowired
     PaisRepository paisRepository;
+
+    @Autowired
+    UsuariosRepository _usuariosRepository;
 
     /**
      * Metodo que despliega la Lista de todos los Espacios de Trabajo Asignados al Usuario de la BD
@@ -58,6 +63,7 @@ public class EspaciosTrabajoUsuarioResources {
         try {
             //Sobreescirbe el Metodo de Mensajes
             msgExeptions.map.put("data", espaciosTrabajoUsuarioRepository.findAll());
+            msgExeptions.map.put("totalRecords", espaciosTrabajoUsuarioRepository.count());
             //Retorno del json
             return msgExeptions.msgJson(msgMethod, 200);
         } catch (Exception ex) {
@@ -74,7 +80,7 @@ public class EspaciosTrabajoUsuarioResources {
      * @autor Nahum Martinez | NAM
      * @version 12/10/2018/v1.0
      */
-    @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD")
+    @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Registro Encontrado"),
             @ApiResponse(code = 401, message = "No estas Autenticado"),
@@ -87,22 +93,31 @@ public class EspaciosTrabajoUsuarioResources {
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
-            if (espaciosTrabajoUsuarioRepository.findByIdUsuarioEspacioTrabajo(idUsuarioEspacioTrabajo) == null) {
-                //Sobreescirbe el Metodo de Mensajes
-                msgMethod = "No se ha encontrado dato del Usuario con Espacios de Trabajo, asignados";
-                msgExeptions.map.put("error", "No data found");
+            // Buscamos el dato del Usuario que desamos saber sus Asignacion de Espacios de Trabajo
+            TblUsuarios _tblUsuarios = _usuariosRepository.findByIdUsuario(idUsuarioEspacioTrabajo);
 
-                //Retorno del json
-                return msgExeptions.msgJson(msgMethod, 400);
-            } else {
-                //Sobreescirbe el Metodo de Mensajes
-                msgMethod = "Detalle del Espacio de Trabajo Consultado";
-                msgExeptions.map.put("data", espaciosTrabajoUsuarioRepository.findByIdUsuarioEspacioTrabajo(idUsuarioEspacioTrabajo));
+            try {
+                if (espaciosTrabajoUsuarioRepository.findByIdUsuarioEspacioTrabajo(_tblUsuarios) == null) {
+                    //Sobreescirbe el Metodo de Mensajes
+                    msgMethod = "No se ha encontrado dato del Usuario con Espacios de Trabajo, asignados";
+                    msgExeptions.map.put("error", "No data found");
 
-                //Retorno del json
-                return msgExeptions.msgJson(msgMethod, 200);
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 400);
+                } else {
+                    //Sobreescirbe el Metodo de Mensajes
+                    msgMethod = "Detalle de los Espacios de Trabajo del Usuario, que tiene asignados";
+                    msgExeptions.map.put("data", espaciosTrabajoUsuarioRepository.findByIdUsuarioEspacioTrabajo(_tblUsuarios));
+                    msgExeptions.map.put("totalRecords", espaciosTrabajoUsuarioRepository.countByIdUsuarioEspacioTrabajo(_tblUsuarios));
+
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 200);
+                }
+            } catch (Exception ex) {
+                throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
             }
         } catch (Exception ex) {
+            msgMethod = "No se ha encontrado un Usuario con el Parametro Enviado";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     }//FIN
@@ -117,7 +132,7 @@ public class EspaciosTrabajoUsuarioResources {
      * @version 11/10/2018/v1.0
      */
     @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Espacio de Trabajo",
-            notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Espacio de Trabajo")
+            notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Espacio de Trabajo", authorizations = {@Authorization(value = "Token-PGC")})
     @PostMapping(value = ESPACIOS_TRABAJO_USUARIO_ENDPOINT_NEW, produces = "application/json")
     public HashMap<String, Object> addEspacioTrabajoUsuario(@ApiParam(value = "Json del nuevo Tipo a Ingresar, con Grupo asociado", required = true)
                                                             @RequestBody final TblEspaciosTrabajo espacioTrabajoJson) throws Exception {

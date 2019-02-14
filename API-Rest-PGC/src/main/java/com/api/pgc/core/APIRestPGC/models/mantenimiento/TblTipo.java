@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class TblTipo {
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TIPO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idTipo;

@@ -1,6 +1,9 @@
 package com.api.pgc.core.APIRestPGC.models.seguridad;
 
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblCategoriaOrganizacion;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,7 +19,7 @@ import java.util.Date;
 public class TblUsuarios implements Serializable {
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_USUARIO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idUsuario;
@@ -86,17 +89,17 @@ public class TblUsuarios implements Serializable {
     private boolean activo;
 
 
-    //Relaciones de Tablas
-    //Mapeo de la Relacion de la Tabla de Usuarios con Tipos
-    //Muchos Usuario = 1 Tipo
+    // Relaciones de Tablas
+    // Mapeo de la Relacion de la Tabla de Usuarios con Tipos
+    // Muchos Usuario = 1 Tipo
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_TIPO_USUARIO", referencedColumnName = "ID_TIPO")
     @ApiModelProperty(notes = "Entidad del Tipo, se envia desde un Json (\"idTipoUsuario\": { \"idTipo\": \"valor\" })",
             required = true)
     private TblTipo idTipoUsuario;
 
-    //Mapeo de la Relacion de la Tabla de Usuarios con Estados
-    //Muchos Usuario = 1 Estado
+    // Mapeo de la Relacion de la Tabla de Usuarios con Estados
+    // Muchos Usuario = 1 Estado
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ESTADO_USUARIO", referencedColumnName = "ID_ESTADO")
     @ApiModelProperty(notes = "Entidad del Estado, se envia desde un Json (\"idEstadoUsuario\": { \"idEstado\": \"valor\" })",
@@ -104,14 +107,44 @@ public class TblUsuarios implements Serializable {
     private TblEstado idEstadoUsuario;
 
 
-    //Mapeo de la Relacion de la Tabla de Usuarios con Pais
-    //Muchos Usuario = 1 Pais
+    // Mapeo de la Relacion de la Tabla de Usuarios con Pais
+    // Muchos Usuario = 1 Pais
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_PAIS_USUARIO", referencedColumnName = "ID_PAIS")
     @ApiModelProperty(notes = "Entidad del País, se envia desde un Json (\"idPaisUsuario\": { \"idPais\": \"valor\" })",
             required = true)
-    private TblPais idPais;
+    private TblPais idPaisUsuario;
 
+
+    // Mapeo de la Relacion de la Tabla de Usuarios con Tipo de Organizacion
+    // Muchos Usuario = 1 Tipo de Organizacion
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_TIPO_ORGANIZACION_USUARIO", referencedColumnName = "ID_TIPO_ORGANIZACION")
+    @ApiModelProperty(notes = "Entidad del Tipo de Organizacion, se envia desde un Json (\"idTipoOrganizacionUsuario\": { \"idTipoOrganizacion\": \"valor\" })",
+            required = true)
+    private TblTipoOrganizacion idTipoOrganizacionUsuario;
+
+    // Mapeo de la Relacion de la Tabla de Usuarios con Categoria de Organizacion
+    // Muchos Usuario = 1 Categoria de Organizacion
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_CATEGORIA_ORGANIZACION_USUARIO", referencedColumnName = "ID_CAT_ORGANIZACION")
+    @ApiModelProperty(notes = "Entidad de la Categoria de Organizacion, se envia desde un Json (\"idCatOrganizacionUsuario\": { \"idCatOrganizacion\": \"valor\" })",
+            required = true)
+    private TblCategoriaOrganizacion idCatOrganizacionUsuario;
+
+
+    // Mapeo de la Relacion de la Tabla de Usuarios con Organizacion
+    // Muchos Usuario = 1 Organizacion
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_ORGANIZACION_USUARIO", referencedColumnName = "ID_ORGANIZACION")
+    @ApiModelProperty(notes = "Entidad de la Organizacion, se envia desde un Json (\"idOrganizacionUsuario\": { \"idOrganizacion\": \"valor\" })",
+            required = true)
+    private TblOrganizacion idOrganizacionUsuario;
+
+
+    @Column(name = "DIRECCION", length=250)
+    @ApiModelProperty(notes = "Direccion del Usuario")
+    private String direccion;
 
     /**
      * Constructor de la Clase
@@ -267,11 +300,43 @@ public class TblUsuarios implements Serializable {
         this.activo = activo;
     }
 
-    public TblPais getIdPais() {
-        return idPais;
+    public TblPais getIdPaisUsuario() {
+        return idPaisUsuario;
     }
 
-    public void setIdPais(TblPais idPais) {
-        this.idPais = idPais;
+    public void setIdPaisUsuario(TblPais idPaisUsuario) {
+        this.idPaisUsuario = idPaisUsuario;
+    }
+
+    public TblTipoOrganizacion getIdTipoOrganizacionUsuario() {
+        return idTipoOrganizacionUsuario;
+    }
+
+    public void setIdTipoOrganizacionUsuario(TblTipoOrganizacion idTipoOrganizacionUsuario) {
+        this.idTipoOrganizacionUsuario = idTipoOrganizacionUsuario;
+    }
+
+    public TblCategoriaOrganizacion getIdCatOrganizacionUsuario() {
+        return idCatOrganizacionUsuario;
+    }
+
+    public void setIdCatOrganizacionUsuario(TblCategoriaOrganizacion idCatOrganizacionUsuario) {
+        this.idCatOrganizacionUsuario = idCatOrganizacionUsuario;
+    }
+
+    public TblOrganizacion getIdOrganizacionUsuario() {
+        return idOrganizacionUsuario;
+    }
+
+    public void setIdOrganizacionUsuario(TblOrganizacion idOrganizacionUsuario) {
+        this.idOrganizacionUsuario = idOrganizacionUsuario;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }

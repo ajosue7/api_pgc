@@ -8,6 +8,7 @@ import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.GRUPOS_ENDPOINT_FI
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH )
-@Api(value = "gruposapi" , description = "Operaciones sobre el Modulo de Grupos")
+@Api(value = "gruposapi" , description = "Operaciones sobre el Modulo de Grupos", tags = "Grupos")
 public class GruposResources {
 
     //Propiedades de la Clase
@@ -37,7 +38,7 @@ public class GruposResources {
      * @version  10/04/2018/v1.0
      * @return Lista de Grupos de la BD
      */
-    @ApiOperation(value = "Retorna el Listado de Todos los Grupos de la BD")
+    @ApiOperation(value = "Retorna el Listado de Todos los Grupos de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = GRUPOS_ENDPOINT, produces = "application/json")
     public HashMap<String, Object> getAllGroup() throws Exception  {
         //Ejecuta el try Cacth
@@ -63,7 +64,7 @@ public class GruposResources {
      * @return Grupo de la BD
      * @param idGrupo Identificador del Grupo a Buscar
      */
-    @ApiOperation(value = "Retorna el Grupo enviado a buscar de la BD")
+    @ApiOperation(value = "Retorna el Grupo enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = GRUPOS_ENDPOINT_FIND_BY_ID, produces = "application/json")
     public HashMap<String, Object> getGroup(@ApiParam(value="Identificador del Grupo a Buscar", required=true)
                                   @PathVariable ("idGrupo") long idGrupo  ) throws Exception  {

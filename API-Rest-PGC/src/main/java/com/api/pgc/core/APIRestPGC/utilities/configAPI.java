@@ -31,6 +31,7 @@ public class configAPI {
     // Mapeo de las Rutas del Modulo de Tipos
     public static final String TIPOS_ENDPOINT = "/tipos";
     public static final String TIPOS_ENDPOINT_FIND_BY_ID = "/tipos/findById/{idTipo}";
+    public static final String TIPOS_ENDPOINT_FIND_BY_IDGRUPO = "/tipos/findByIdGrupo/{idGrupo}";
 
     // Mapeo de las Rutas del Modulo de Ubicaciones | Pais
     public static final String PAIS_ENDPOINT = "/ubicacion-geografica/pais";
@@ -44,14 +45,27 @@ public class configAPI {
     // Mapeo de las Rutas del Modulo de Organizaciones
     public static final String ORGANIZACIONES_ENDPOINT = "/organizaciones";
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/organizaciones/findByIdOrganizacion/{idOrganizacion}";
+    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_CODIGO = "/organizaciones/findByCodOrganizacion/{codOrganizacion}";
+    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_CODIGO_COUNT = "/organizaciones/countByCodOrganizacion/{codOrganizacion}";
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO = "/organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_PAIS = "/organizaciones/findByIdPaisOrganizacion/{idPaisOrganizacion}";
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_PAIS = "/organizaciones/findByIdTipoPaisOrganizacion/{idTipoOrganizacion}/{idPaisOrganizacion}";
-    public static final String ORGANIZACIONES_USUARIO_ENDPOINT_NEW = "/organizaciones/new";
+    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_PAIS_CATEGORIA = "/organizaciones/findByIdTipoPaisCategoriaOrganizacion/{idTipoOrganizacion}/{idPaisOrganizacion}/{idCategoriaOrganizacion}";
+    public static final String ORGANIZACIONES_ENDPOINT_NEW = "/organizaciones/new";
 
     public static final String TIPO_ORGANIZACIONES_ENDPOINT = "/tipos-organizaciones";
     public static final String TIPO_ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/tipos-organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
     // public static final String TIPO_ORGANIZACIONES_ENDPOINT_FIND_BY_IDGRUPO = "/tipos-organizaciones/findByIdGrupo/{idGrupo}";
+    public static final String TIPO_ORGANIZACIONES_ENDPOINT_NEW = "/tipos-organizaciones/new";
+    public static final String TIPO_ORGANIZACIONES_ENDPOINT_EDIT = "/tipos-organizaciones/update/{idTipoOrganizacion}";
+    public static final String TIPO_ORGANIZACIONES_ENDPOINT_DELETE = "/tipos-organizaciones/delete/{idTipoOrganizacion}";
+
+    public static final String CATEGORIA_ORGANIZACIONES_ENDPOINT = "/categorias-organizaciones";
+    public static final String CATEGORIA_ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/categorias-organizaciones/findByIdCatOrganizacion/{idCatOrganizacion}";
+    public static final String CATEGORIA_ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_ORGANIZACION = "/categorias-organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
+    public static final String CATEGORIA_ORGANIZACIONES_ENDPOINT_NEW = "/categorias-organizaciones/new";
+    public static final String CATEGORIA_ORGANIZACIONES_ENDPOINT_EDIT = "/categorias-organizaciones/update/{idCatOrganizacion}";
+    public static final String CATEGORIA_ORGANIZACIONES_ENDPOINT_DELETE = "/categorias-organizaciones/delete/{idCatOrganizacion}";
 
 
     /*==================================================================================================================
@@ -64,16 +78,28 @@ public class configAPI {
     public static final String ESPACIOS_TRABAJO_ENDPOINT_NEW = "/espacios-trabajo/new";
 
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT = "/espacios-trabajo-usuario";
-    public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findByIdUsuario/{idUsuario}";
+    public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findByIdUsuario/{idUsuarioEspacioTrabajo}";
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_NEW = "/espacios-trabajo-usuario/new";
 
     /*==================================================================================================================
      *================================================================================================================ */
 
     // Mantenimientos funcionales de la Informacion de las Actividades *************************************************
+    // Mapeo de las Rutas del Modulo de Actividades
+    public static final String ACTIVITY_ENDPOINT_NEW = "/activities/new-activity";
+    public static final String ACTIVITY_ENDPOINT_EDIT = "/activities/edit-activity/{idActivity}";
+    public static final String ACTIVITY_ENDPOINT_DELETE = "/activities/delete-activity/{idActivity}";
+    public static final String ACTIVITY_ENDPOINT = "/activities";
+    public static final String ACTIVITY_ENDPOINT_FIND_BY_ID = "/activities/findByIdActivity/{idActivity}";
+    public static final String ACTIVITY_ENDPOINT_FIND_BY_COD = "/activities/findByIdCodActivity/{codActivity}";
+
     // Mapeo de las Rutas del Sub Modulo de Sector de Ejecucion
     public static final String SECTOR_EJECUTOR_ENDPOINT = "/mant-actividades/sector-ejecutor";
     public static final String SECTOR_EJECUTOR_ENDPOINT_FIND_BY_ID = "/mant-actividades/sector-ejecutor/findById/{idSectorEjecutor}";
+
+    // Mapeo de las Rutas del Sub Modulo de Sector de Ejecucion
+    public static final String TIPO_INICIATIVA_ENDPOINT = "/mant-actividades/tipo-iniciativa";
+    public static final String TIPO_INICIATIVA_ENDPOINT_FIND_BY_ID = "/mant-actividades/tipo-iniciativa/findById/{idTipoIniciativa}";
 
     // Mapeo de las Rutas del Sub Modulo de Estrategias
     public static final String ESTRATEGIAS_ENDPOINT = "/mant-actividades/estrategia";
@@ -86,6 +112,17 @@ public class configAPI {
     // Mapeo de las Rutas del Sub Modulo de Id Internas
     public static final String ID_INTERNA_ENDPOINT = "/mant-actividades/id-interna";
     public static final String ID_INTERNA_ENDPOINT_FIND_BY_CODIGO = "/mant-actividades/id-interna/findByCodInterna/{codIdInterna}";
+    public static final String ID_INTERNA_ENDPOINT_FIND_BY_CODIGO_COUNT = "/mant-actividades/id-interna/countByCodInterna/{codIdInterna}";
+    public static final String ID_INTERNA_ENDPOINT_NEW = "/mant-actividades/id-interna/new";
+    public static final String ID_INTERNA_ENDPOINT_EDIT = "/mant-actividades/id-interna/edit/{idInterna}";
+    public static final String ID_INTERNA_ENDPOINT_DELETE = "/mant-actividades/id-interna/delete/{codIdInterna}";
+
+    // Mapeo de las Rutas del Sub Modulo de Planificacion
+    public static final String ID_PLANIFICACION_ENDPOINT = "/mant-actividades/planificacion";
+    public static final String ID_PLANIFICACION_ENDPOINT_FIND_BY_ID_ACTIVIDAD_PLAN = "/mant-actividades/planificacion/findByIdActividadPlan/{idActividadPlan}";
+    // public static final String ID_PLANIFICACION_ENDPOINT_FIND_BY_CODIGO_COUNT = "/mant-actividades/id-interna/countByCodInterna/{codIdInterna}";
+    public static final String ID_PLANIFICACION_ENDPOINT_NEW = "/mant-actividades/planificacion/new";
+    public static final String ID_PLANIFICACION_ENDPOINT_EDIT = "/mant-actividades/planificacion/edit/{idActividadPlan}";
 
     /*==================================================================================================================
      *================================================================================================================ */
@@ -96,6 +133,9 @@ public class configAPI {
     public static final String USUARIOS_ENDPOINT_FIND_BY_ID = "/usuarios/findById/{idUsuario}";
     public static final String USUARIOS_ENDPOINT_FIND_BY_MAIL = "/usuarios/findByMail/{emailUsuario}";
     public static final String USUARIOS_ENDPOINT_NEW = "/usuarios/new";
+    public static final String USUARIOS_ENDPOINT_UPDATE = "/usuarios/update/{idUsuario}";
+    public static final String USUARIOS_ENDPOINT_DELETE = "/usuarios/delete/{idUsuario}";
+    public static final String USUARIOS_ENDPOINT_TIPO = "/usuarios/kind";
 
     /*==================================================================================================================
      *================================================================================================================ */
@@ -103,6 +143,17 @@ public class configAPI {
     // Mapeo de las Rutas del Modulo de Perfiles de Usuario
     public static final String PERFILES_ENDPOINT = "/profiles";
     public static final String PERFILES_ENDPOINT_NEW = "/profiles/new";
+    public static final String PERFILES_ENDPOINT_EDIT = "/profiles/edit/{idPerfil}";
+    public static final String PERFILES_ENDPOINT_DELETE = "/profiles/delete/{idPerfil}";
     public static final String PERFILES_ENDPOINT_TIPOS = "/profiles/kind";
+
+    /*==================================================================================================================
+     *================================================================================================================ */
+
+    // Mapeo de las Rutas del Modulo de Secuencias
+    public static final String SECUENCIAS_ENDPOINT = "/secuencias";
+    public static final String SECUENCIAS_ENDPOINT_FIND_BY_ID = "/secuencias/findByIdSecuencia/{idSecuencia}";
+    public static final String SECUENCIAS_ENDPOINT_FIND_BY_COD = "/secuencias/findByCodSecuencia/{codSecuencia}";
+    public static final String SECUENCIAS_ENDPOINT_UPDATE = "/secuencias/update/{idSecuencia}";
 
 }

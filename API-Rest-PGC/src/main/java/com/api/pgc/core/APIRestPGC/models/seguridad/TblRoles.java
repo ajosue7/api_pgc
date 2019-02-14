@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class TblRoles {
     // Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_ROL", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idRol;
@@ -27,6 +27,22 @@ public class TblRoles {
     @Column(name = "HABILITADA")
     @ApiModelProperty(notes = "Habilitado")
     private boolean habilitada;
+
+    @Column(name = "PERMISO_LECTURA")
+    @ApiModelProperty(notes = "Habilitado")
+    private boolean permisoLectura;
+
+    @Column(name = "PERMISO_ESCRITURA")
+    @ApiModelProperty(notes = "Habilitado")
+    private boolean permisoEscritura;
+
+    @Column(name = "PERMISO_BORRAR")
+    @ApiModelProperty(notes = "Habilitado")
+    private boolean permisoBorrar;
+
+    @Column(name = "PERMISO_APROBAR")
+    @ApiModelProperty(notes = "Habilitado")
+    private boolean permisoAprobar;
 
 
     /**
@@ -69,5 +85,37 @@ public class TblRoles {
 
     public void setHabilitada(boolean habilitada) {
         this.habilitada = habilitada;
+    }
+
+    public boolean isPermisoLectura() {
+        return permisoLectura;
+    }
+
+    public void setPermisoLectura(boolean permisoLectura) {
+        this.permisoLectura = permisoLectura;
+    }
+
+    public boolean isPermisoEscritura() {
+        return permisoEscritura;
+    }
+
+    public void setPermisoEscritura(boolean permisoEscritura) {
+        this.permisoEscritura = permisoEscritura;
+    }
+
+    public boolean isPermisoBorrar() {
+        return permisoBorrar;
+    }
+
+    public void setPermisoBorrar(boolean permisoBorrar) {
+        this.permisoBorrar = permisoBorrar;
+    }
+
+    public boolean isPermisoAprobar() {
+        return permisoAprobar;
+    }
+
+    public void setPermisoAprobar(boolean permisoAprobar) {
+        this.permisoAprobar = permisoAprobar;
     }
 }

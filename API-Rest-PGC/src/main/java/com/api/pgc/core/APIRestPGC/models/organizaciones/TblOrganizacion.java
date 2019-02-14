@@ -14,7 +14,7 @@ import java.util.Date;
 public class TblOrganizacion {
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ORGANIZACION", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idOrganizacion;
@@ -85,30 +85,36 @@ public class TblOrganizacion {
     //@ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss")
     private Date horaCreacion = new Date();
 
-    //Relaciones con otras Tablas
-    //Relaciones de Tablas
-    //Mapeo de la Relacion de la Tabla de Organizacones con Pais
-    //Muchas Organizaciones = 1 Pais
+    // Relaciones con otras Tablas
+    // Mapeo de la Relacion de la Tabla de Organizacones con Pais
+    // Muchas Organizaciones = 1 Pais
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_PAIS_ORGANIZACION", referencedColumnName = "ID_PAIS")
     @ApiModelProperty(notes = "Entidad del Pais, se envia desde un Json (\"idPaisOrganizacion\": { \"idPais\": \"valor\" })",
             required = true)
     private TblPais idPaisOrganizacion;
 
-    //Mapeo de la Relacion de la Tabla de Organizacones con Tipo de Organizacion
-    //Muchas Organizaciones = 1 Tipo de Organizacion
+    // Mapeo de la Relacion de la Tabla de Organizacones con Tipo de Organizacion
+    // Muchas Organizaciones = 1 Tipo de Organizacion
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_TIPO_ORGANIZACION_T", referencedColumnName = "ID_TIPO_ORGANIZACION")
-    @ApiModelProperty(notes = "Entidad del Tipo de Organizacion, se envia desde un Json (\"idTipoOrganizacionT\": { \"idTipoOrganizacion\": \"valor\" })",
+    @JoinColumn(name = "ID_TIPO_ORGANIZACION", referencedColumnName = "ID_TIPO_ORGANIZACION")
+    @ApiModelProperty(notes = "Entidad del Tipo de Organizacion, se envia desde un Json (\"idTipoOrganizacion\": { \"idTipoOrganizacion\": \"valor\" })",
             required = true)
-    private TblTipoOrganizacion idTipoOrganizacionT;
+    private TblTipoOrganizacion idTipoOrganizacion;
 
-    //Mapeo de la Relacion de la Tabla de Organizacones con Grupo de Organizacion
-    //Muchas Organizaciones = 1 Grupo de Organizacion
+    // Mapeo de la Relacion de la Tabla de Organizacones con Grupo de Organizacion
+    // Muchas Grupo Organizaciones = 1 Grupo de Organizacion
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_GRUPO_ORGANIZACION", referencedColumnName = "ID_GRUPO_ORGANIZACION")
     @ApiModelProperty(notes = "Entidad del Grupo de Organizacion, se envia desde un Json (\"idGrupoOrganizazion\": { \"idGrupoOrganizazion\": \"valor\" })")
     private TblGrupoOrganizacion idGrupoOrganizazion;
+
+    // Mapeo de la Relacion de la Tabla de Organizacones con Categorias de Organizacion
+    // Muchas Organizaciones = 1 Categoria de Organizacion
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_CAT_ORGANIZACION", referencedColumnName = "ID_CAT_ORGANIZACION")
+    @ApiModelProperty(notes = "Entidad de la Categoria de Organizacion, se envia desde un Json (\"idCatOrganizacion\": { \"idCatOrganizacion\": \"valor\" })")
+    private TblCategoriaOrganizacion idCatOrganizacion;
 
     /**
      * Constructor de la Clase
@@ -272,19 +278,19 @@ public class TblOrganizacion {
         this.idPaisOrganizacion = idPaisOrganizacion;
     }
 
-    public TblTipoOrganizacion getIdTipoOrganizacionT() {
-        return idTipoOrganizacionT;
+    public TblTipoOrganizacion getIdTipoOrganizacion() {
+        return idTipoOrganizacion;
     }
 
-    public void setIdTipoOrganizacionT(TblTipoOrganizacion idTipoOrganizacionT) {
-        this.idTipoOrganizacionT = idTipoOrganizacionT;
+    public void setIdTipoOrganizacion(TblTipoOrganizacion idTipoOrganizacion) {
+        this.idTipoOrganizacion = idTipoOrganizacion;
     }
 
-    public TblGrupoOrganizacion getIdGrupoOrganizazion() {
-        return idGrupoOrganizazion;
+    public TblCategoriaOrganizacion getIdCatOrganizacion() {
+        return idCatOrganizacion;
     }
 
-    public void setIdGrupoOrganizazion(TblGrupoOrganizacion idGrupoOrganizazion) {
-        this.idGrupoOrganizazion = idGrupoOrganizazion;
+    public void setIdCatOrganizacion(TblCategoriaOrganizacion idCatOrganizacion) {
+        this.idCatOrganizacion = idCatOrganizacion;
     }
 }

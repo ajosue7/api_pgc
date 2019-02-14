@@ -13,7 +13,7 @@ import java.util.Date;
 public class TblGrupoOrganizacion {
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_GRUPO_ORGANIZACION", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idGrupoOrganizacion;
