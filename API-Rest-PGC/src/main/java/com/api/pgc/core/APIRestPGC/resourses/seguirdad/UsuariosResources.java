@@ -328,16 +328,30 @@ public class UsuariosResources {
                 // Buscamos el Usuario a Actualizar
                 TblPais _tblPais = paisRepository.findByIdPais( _usuarioJsonBean.getIdPaisUsuario().getIdPais() );
 
+                // Busca el Tipo de Organizacion, desde el Reporsitorio con el Parametro del Json enviado ( "idTipoOrganizacionUsuario": { "idTipoOrganizacion": valor })
+                TblTipoOrganizacion _tipoOrganizacion = _tipoOrganizacionRepository.findByIdTipoOrganizacion( _usuarioJsonBean.getIdTipoOrganizacionUsuario().getIdTipoOrganizacion() );
+
+                // Busca el Categoria de Organizacion, desde el Reporsitorio con el Parametro del Json enviado ( "idCatOrganizacionUsuario": { "idCatOrganizacion": valor })
+                TblCategoriaOrganizacion _tblCategoriaOrganizacion = _categoriaOrganizacionRepository.findByIdCatOrganizacion( _usuarioJsonBean.getIdCatOrganizacionUsuario().getIdCatOrganizacion() );
+
+                // Busca el Organizacion, desde el Reporsitorio con el Parametro del Json enviado ( "idOrganizacionUsuarioUsuario": { "idOrganizacion": valor })
+                TblOrganizacion _tblOrganizacion = _organizacionRepository.findByIdOrganizacion( _usuarioJsonBean.getIdOrganizacionUsuario().getIdOrganizacion());
+
                 // Seteo de los Campos a Modificar
                 _tblUsuarios.setInicialesUsuario( _usuarioJsonBean.getInicialesUsuario());
                 _tblUsuarios.setNombre1Usuario( _usuarioJsonBean.getNombre1Usuario());
                 _tblUsuarios.setNombre2Usuario( _usuarioJsonBean.getNombre2Usuario());
                 _tblUsuarios.setApellido1Usuario( _usuarioJsonBean.getApellido1Usuario());
                 _tblUsuarios.setApellido2Usuario( _usuarioJsonBean.getApellido2Usuario());
+                _tblUsuarios.setDireccion( _usuarioJsonBean.getDireccion());
+                _tblUsuarios.setCodUsuario( _usuarioJsonBean.getCodUsuario());
 
                 _tblUsuarios.setIdTipoUsuario( _tblTipo );
                 _tblUsuarios.setIdEstadoUsuario( _tblEstado );
                 _tblUsuarios.setIdPaisUsuario( _tblPais );
+                _tblUsuarios.setIdTipoOrganizacionUsuario( _tipoOrganizacion );
+                _tblUsuarios.setIdCatOrganizacionUsuario( _tblCategoriaOrganizacion );
+                _tblUsuarios.setIdOrganizacionUsuario( _tblOrganizacion );
 
                 _tblUsuarios.setFechaModificacion( dateActual );
                 _tblUsuarios.setHoraModificacion( dateActual);

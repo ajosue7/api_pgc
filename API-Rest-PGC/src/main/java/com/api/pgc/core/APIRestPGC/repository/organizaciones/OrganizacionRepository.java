@@ -46,6 +46,17 @@ public interface OrganizacionRepository extends JpaRepository<TblOrganizacion, I
 
 
     /**
+     * Metodo que despliega la Organizacion de la BD
+     *
+     * @param idOrganizacion
+     * @return Organizacion de la BD, por paramtro de ID
+     * @autor Nahum Martinez | NAM
+     * @version 14/02/2019/v1.0
+     */
+    long countByIdOrganizacion(long idOrganizacion);
+
+
+    /**
      * Metodo que despliega la Organizacion de la BD con el Tipo como parametro
      *
      * @param tblTipoOrganizacion

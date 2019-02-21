@@ -33,10 +33,22 @@ public class configAPI {
     public static final String TIPOS_ENDPOINT_FIND_BY_ID = "/tipos/findById/{idTipo}";
     public static final String TIPOS_ENDPOINT_FIND_BY_IDGRUPO = "/tipos/findByIdGrupo/{idGrupo}";
 
-    // Mapeo de las Rutas del Modulo de Ubicaciones | Pais
+    // Mapeo de las Rutas del Modulo de Ubicaciones | Pais | Departamentos | Municipios
     public static final String PAIS_ENDPOINT = "/ubicacion-geografica/pais";
     public static final String PAIS_ENDPOINT_FIND_BY_ID = "/ubicacion-geografica/pais/findByIdPais/{idPais}";
+    public static final String DEPTO_ENDPOINT = "/ubicacion-geografica/departamento";
+    public static final String DEPTO_ENDPOINT_FIND_BY_ID = "/ubicacion-geografica/pais/findByIdDepartamento/{idDepartamento}";
+    public static final String MUNIC_ENDPOINT = "/ubicacion-geografica/municipio";
+    public static final String MUNIC_ENDPOINT_FIND_BY_ID = "/ubicacion-geografica/pais/findByIdMunicipio/{idMunicipio}";
 
+    // Mapeo de las Rutas del Modulo de Ubicaciones | Nivel de Implementacion | Nivel Ubicacion Implentacion | Ubicacion Implementacion
+    public static final String NIVEL_IMPLEMENTACION_ENDPOINT = "/ubicacion-geografica/nivel-implementacion";
+    public static final String NIVEL_IMPLEMENTACION_FIND_BY_ID = "/ubicacion-geografica/nivel-implementacion/findByIdNivel/{idNivel}";
+    public static final String NIVEL_UBICACION_IMPLEMENTACION_ENDPOINT = "/ubicacion-geografica/nivel-ubicacion-implementacion";
+    public static final String NIVEL_UBICACION_IMPLEMENTACION_FIND_BY_ID = "/ubicacion-geografica/nivel-ubicacion-implementacion/findByIdNivelUbicacion/{idNivelUbicacion}";
+    public static final String NIVEL_UBICACION_IMPLEMENTACION_FIND_BY_ID_NIVEL_IMPL = "/ubicacion-geografica/nivel-ubicacion-implementacion/findByIdNivelImplementacion/{idNivelImplementacion}";
+    public static final String UBICACION_IMPLEMENTACION_ENDPOINT = "/ubicacion-geografica/ubicacion-implementacion";
+    public static final String UBICACION_IMPLEMENTACION_ENDPOINT_FIND_BY_ID = "/ubicacion-geografica/ubicacion-implementacion";
 
     /*==================================================================================================================
      *================================================================================================================ */
@@ -52,6 +64,7 @@ public class configAPI {
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_PAIS = "/organizaciones/findByIdTipoPaisOrganizacion/{idTipoOrganizacion}/{idPaisOrganizacion}";
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_PAIS_CATEGORIA = "/organizaciones/findByIdTipoPaisCategoriaOrganizacion/{idTipoOrganizacion}/{idPaisOrganizacion}/{idCategoriaOrganizacion}";
     public static final String ORGANIZACIONES_ENDPOINT_NEW = "/organizaciones/new";
+    public static final String ORGANIZACIONES_ENDPOINT_EDIT = "/organizaciones/edit/{idOrganizacion}";
 
     public static final String TIPO_ORGANIZACIONES_ENDPOINT = "/tipos-organizaciones";
     public static final String TIPO_ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/tipos-organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
@@ -123,6 +136,9 @@ public class configAPI {
     // public static final String ID_PLANIFICACION_ENDPOINT_FIND_BY_CODIGO_COUNT = "/mant-actividades/id-interna/countByCodInterna/{codIdInterna}";
     public static final String ID_PLANIFICACION_ENDPOINT_NEW = "/mant-actividades/planificacion/new";
     public static final String ID_PLANIFICACION_ENDPOINT_EDIT = "/mant-actividades/planificacion/edit/{idActividadPlan}";
+
+    // Mapeo de las Rutas del Sub Modulo de Ubicaciones
+
 
     /*==================================================================================================================
      *================================================================================================================ */

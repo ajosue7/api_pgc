@@ -1,5 +1,6 @@
 com\api\pgc\core\APIRestPGC\models\seguridad\TblUsuarios.class
 com\api\pgc\core\APIRestPGC\models\ubicacion_geografica\TblDepartamentos.class
+com\api\pgc\core\APIRestPGC\repository\ubicacion_geografica\MunicRepository.class
 com\api\pgc\core\APIRestPGC\config\security\WebSecurity$2.class
 com\api\pgc\core\APIRestPGC\repository\organizaciones\OrganizacionRepository.class
 com\api\pgc\core\APIRestPGC\ApiRestPgcApplication.class
@@ -28,6 +29,8 @@ com\api\pgc\core\APIRestPGC\resourses\espacios_de_trabajo\EspaciosTrabajoResourc
 com\api\pgc\core\APIRestPGC\repository\seguridad\PerfilesRepository.class
 com\api\pgc\core\APIRestPGC\config\security\WebSecurity$1.class
 com\api\pgc\core\APIRestPGC\models\seguridad\JwtUser.class
+com\api\pgc\core\APIRestPGC\repository\ubicacion_geografica\DeptoRepository.class
+com\api\pgc\core\APIRestPGC\resourses\ubicacion_geografica\MunicResources.class
 com\api\pgc\core\APIRestPGC\repository\actividades\ActividadPlanificacionRepository.class
 com\api\pgc\core\APIRestPGC\resourses\seguirdad\UsuariosResources.class
 com\api\pgc\core\APIRestPGC\config\security\WebSecurity.class
@@ -78,6 +81,7 @@ com\api\pgc\core\APIRestPGC\models\mantenimiento\TblEstado.class
 com\api\pgc\core\APIRestPGC\models\mantenimiento\TblGrupo.class
 com\api\pgc\core\APIRestPGC\models\organizaciones\TblGrupoOrganizacion.class
 com\api\pgc\core\APIRestPGC\resourses\actividades\ActividadPlanificacionResourses.class
+com\api\pgc\core\APIRestPGC\resourses\ubicacion_geografica\DeptoResources.class
 com\api\pgc\core\APIRestPGC\models\mantenimiento\TblTipo.class
 com\api\pgc\core\APIRestPGC\models\mantenimiento\actividades\TblSectorEjecutor.class
 com\api\pgc\core\APIRestPGC\models\actividades\TblActividadIdInterna.class

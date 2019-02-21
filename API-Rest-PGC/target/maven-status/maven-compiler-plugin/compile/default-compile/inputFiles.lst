@@ -4,6 +4,7 @@ C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\c
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\models\organizaciones\TblDocumentosOrganizacion.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\resourses\organizaciones\OrganizacionesResources.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\models\seguridad\TblVisitasUsuarios.java
+C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\resourses\ubicacion_geografica\MunicResources.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\resourses\espacios_de_trabajo\EspaciosTrabajoUsuarioResources.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\resourses\mantenimiento\actividades\SectorEjecutorResourses.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\resourses\actividades\ActividadResources.java
@@ -43,6 +44,7 @@ C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\c
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\config\security\JwtFilter.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\models\seguridad\JwtAuthenticationToken.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\utilities\configAPI.java
+C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\repository\ubicacion_geografica\MunicRepository.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\config\security\WebSecurity.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\models\organizaciones\TblGrupoOrganizacion.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\models\actividades\TblActividadIdInterna.java
@@ -64,6 +66,7 @@ C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\c
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\ApiRestPgcApplication.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\config\security\Usuario.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\repository\actividades\ActividadRepository.java
+C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\repository\ubicacion_geografica\DeptoRepository.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\repository\mantenimiento\actividades\TipoIniciativaCssRepository.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\resourses\organizaciones\TipoOrganizacionesResources.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\models\mantenimiento\actividades\TblPresupuestoActividad.java
@@ -78,6 +81,7 @@ C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\c
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\models\organizaciones\TblOrganizacion.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\models\seguridad\TblSecuencia.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\repository\organizaciones\OrganizacionRepository.java
+C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\resourses\ubicacion_geografica\DeptoResources.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\repository\organizaciones\GrupoOrganizacionRepository.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\models\espacios_de_trabajo\TblEspaciosTrabajo.java
 C:\Users\nahum.martinez\Desktop\api_pgc\API-Rest-PGC\src\main\java\com\api\pgc\core\APIRestPGC\repository\mantenimiento\actividades\PresupuestoRepository.java

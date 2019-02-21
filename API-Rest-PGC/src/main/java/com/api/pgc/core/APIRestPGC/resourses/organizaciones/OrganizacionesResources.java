@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
@@ -223,6 +224,87 @@ public class OrganizacionesResources {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     }
+
+
+    /**
+     * Metodo que Solcita un json con los datos de la Entidad de Organizacion
+     *
+     * @param _organizacionJson Obtiene desde el request los datos de la Organizacion a ingresar
+     * @param idOrganizacion Identificador de la tabla
+     * @return Mensaje de Confirmacion de Registro de la Organizacion
+     * @autor Nahum Martinez | NAM
+     * @version 14/02/2019/v1.0
+     */
+    @ApiOperation(value = "Actualiza a la BD, la Información enviada por el Bean de la Organizacion", authorizations = {@Authorization(value = "Token-PGC")})
+    @PutMapping(value = ORGANIZACIONES_ENDPOINT_EDIT, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> editOrganizacion(@ApiParam(value = "Json de la Organizacion a Ingresar", required = true)
+                                                       @PathVariable("idOrganizacion") long idOrganizacion,
+                                                       @RequestBody final TblOrganizacion _organizacionJson) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Fecha de Ingreso
+        Date dateActual = new Date();
+
+        // Buscamos la Organizacion solicitada para la Modificacion
+        try {
+            // Buacamos la Organizacion segun el Parametro enviado
+            TblOrganizacion _tblOrganizacion = organizacionRepository.findByIdOrganizacion(idOrganizacion);
+
+            if ( organizacionRepository.countByIdOrganizacion ( idOrganizacion ) > 0 ) {
+                // Buacamos el Tipo Organizacion segun el Parametro enviado
+                TblTipoOrganizacion _tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion( _organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion() );
+
+                // Buacamos el Cat Organizacion segun el Parametro enviado
+                TblCategoriaOrganizacion _tblCategoriaOrganizacion = _categoriaOrganizacionRepository.findByIdCatOrganizacion( _organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion() );
+
+                // Buacamos el Pais segun el Parametro enviado
+                TblPais _tblPais = paisRepository.findByIdPais( _organizacionJson.getIdPaisOrganizacion().getIdPais() );
+
+                try {
+                    // Realizamos la Persistencia de los Datos
+                    _tblOrganizacion.setAdministradorFinanciero( _organizacionJson.isAdministradorFinanciero() );
+                    _tblOrganizacion.setSocioDesarrollo(_organizacionJson.isSocioDesarrollo());
+                    _tblOrganizacion.setUnidadEjecutora(_organizacionJson.isUnidadEjecutora());
+                    _tblOrganizacion.setAgenciaBeneficiaria(_organizacionJson.isAgenciaBeneficiaria());
+
+                    _tblOrganizacion.setInicalesOrganizacion(_organizacionJson.getInicalesOrganizacion());
+                    _tblOrganizacion.setNombreOrganizacion(_organizacionJson.getNombreOrganizacion());
+                    _tblOrganizacion.setDescOrganizacion(_organizacionJson.getDescOrganizacion());
+                    _tblOrganizacion.setDireccionFisicaOrganizacion(_organizacionJson.getDireccionFisicaOrganizacion());
+                    _tblOrganizacion.setTelefonoOrganizacion(_organizacionJson.getTelefonoOrganizacion());
+                    _tblOrganizacion.setEmailOrganizacion(_organizacionJson.getEmailOrganizacion());
+                    _tblOrganizacion.setContactoReferencia(_organizacionJson.getContactoReferencia());
+                    _tblOrganizacion.setWebOrganizacion(_organizacionJson.getWebOrganizacion());
+
+                    _tblOrganizacion.setIdCatOrganizacion(_tblCategoriaOrganizacion);
+                    _tblOrganizacion.setIdPaisOrganizacion(_tblPais);
+                    _tblOrganizacion.setIdTipoOrganizacion(_tblTipoOrganizacion);
+
+                    organizacionRepository.save( _tblOrganizacion );
+                    organizacionRepository.flush();
+
+                    // return Repository
+                    msgMethod = "Se ha Actualizado de forma satisfactoria!!";
+
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } catch (Exception ex) {
+                    msgMethod = "Hay problemas al momento de Actualizar la Organizacion.";
+                    throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+                }
+            } else {
+                //Retorno del json
+                msgMethod = "No se encuentra una Organizacion con el parametro enviado !!";
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        } catch (Exception ex) {
+            msgMethod = "Hay problemas al momento de Actualizar la Organizacion.";
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    } // FIN | editOrganizacion
+
+
 
     /**
      * Metodo que despliega la Organizacion de la BD, enviando el Tipo de Organizacion
