@@ -4,11 +4,8 @@
 
 package com.api.pgc.core.APIRestPGC.repository.ubicacion_geografica;
 
-import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
-import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblNivelImplementacion;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblNivelUbicacionImplementacion;
-import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
