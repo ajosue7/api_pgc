@@ -237,7 +237,8 @@ public class UsuariosResources {
                 usuariosRepository.flush();
 
                 //return tiposRepository.findAll();
-                msgMethod = "Se ha Ingresado de forma satisfactoria!!";
+                msgMethod = "El Usuario se ha Ingresado de forma satisfactoria!!";
+                msgExeptions.map.put("data", usuariosRepository.findByCodUsuario( userJson.getCodUsuario() ));
 
                 //Retorno del json
                 return msgExeptions.msgJson( msgMethod, 200 );

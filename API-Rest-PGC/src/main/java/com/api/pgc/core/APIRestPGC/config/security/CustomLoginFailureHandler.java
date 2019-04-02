@@ -34,7 +34,8 @@ public class CustomLoginFailureHandler implements  AuthenticationFailureHandler 
         JSONObject jsonResponse;
         jsonResponse = new JSONObject();
         try {
-            jsonResponse.put("message", exception.getMessage().toString() );
+            // jsonResponse.put("message", exception.getMessage().toString() );
+            jsonResponse.put("message", "Usuario o Contraseña, no se encuentran, verifica que se han ingresado correctamente" );
             jsonResponse.put("status", HttpStatus.BAD_REQUEST.value() );
             jsonResponse.put("error", exception.getMessage().toString() );
             jsonResponse.put("path", request.getServletPath() );

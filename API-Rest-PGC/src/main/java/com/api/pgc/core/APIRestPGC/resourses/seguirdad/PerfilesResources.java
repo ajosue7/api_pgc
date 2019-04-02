@@ -31,7 +31,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "perfilApi" , description = "Operaciones sobre el Modulo de Perfiles", tags = "Perfiles")
+@Api(value = "perfilApi" , description = "Operaciones sobre el Modulo de Perfiles", tags = "Seguridad")
 public class PerfilesResources {
     // Propiedades de la Clase
     String msgMethod = null;

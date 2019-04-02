@@ -1,5 +1,6 @@
 package com.api.pgc.core.APIRestPGC.repository.espacios_de_trabajo;
 
+import com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo.TblEspaciosTrabajo;
 import com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo.TblEspaciosTrabajoUsuarios;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,5 +34,19 @@ public interface EspaciosTrabajoUsuarioRepository extends JpaRepository<TblEspac
      */
     // @Query("SELECT e FROM TblOrganizacion e WHERE e.idTipoOrganizacionT = :idTipoOrganizacion ")
     long countByIdUsuarioEspacioTrabajo(TblUsuarios tblUsuarios);
+
+
+    /**
+     * Metodo que despliega el Espacio de Trabajo asignado al Usuario de la BD
+     *
+     * @param tblUsuarios
+     * @param tblEspaciosTrabajo
+     * @return Espacios de Trabajo de la BD, por paramtro de ID
+     * @autor Nahum Martinez | NAM
+     * @version 01/03/2019/v1.0
+     */
+    @Query("SELECT COUNT(*) FROM TblEspaciosTrabajoUsuarios e WHERE e.idUsuarioEspacioTrabajo = :idUsuarioEspacioTrabajo AND e.idEspacioTrabajo = :idEspacioTrabajo ")
+    long countIdUsuarioEspacioTrabajoAndIdEspacioTrabajo(@Param("idUsuarioEspacioTrabajo")  TblUsuarios tblUsuarios,
+                                                         @Param("idEspacioTrabajo")TblEspaciosTrabajo tblEspaciosTrabajo);
 
 }

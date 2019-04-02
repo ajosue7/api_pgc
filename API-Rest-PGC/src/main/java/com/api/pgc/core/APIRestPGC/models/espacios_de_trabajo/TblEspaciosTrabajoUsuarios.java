@@ -26,12 +26,12 @@ public class TblEspaciosTrabajoUsuarios {
 
     @Column(name = "FECHA_CREACION", columnDefinition = "date DEFAULT '2999-12-31'")
     @Temporal(TemporalType.DATE)
-    // @ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss")
-    private Date fechaCreacion;
+    @ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss", readOnly = true)
+    private Date fechaCreacion= new Date();
 
     @Column(name = "HORA_CREACION")
     @Temporal(TemporalType.TIME)
-    // @ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss")
+    @ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss", readOnly = true)
     private Date horaCreacion = new Date();
 
     @Column(name = "ACTIVO")

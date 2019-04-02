@@ -27,7 +27,7 @@ public class TblActividad {
     private long idActividad;
 
     // Datos Generales de la Actividad
-    @Column(name = "CODIGO_ACTIVIDAD", nullable = false, length = 10)
+    @Column(name = "CODIGO_ACTIVIDAD", nullable = false, length = 50)
     @ApiModelProperty(notes = "Codigo de la Actividad", required = true)
     private String codigoActividad;
 

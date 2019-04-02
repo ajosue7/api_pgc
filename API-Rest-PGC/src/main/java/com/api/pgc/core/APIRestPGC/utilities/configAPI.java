@@ -48,7 +48,10 @@ public class configAPI {
     public static final String NIVEL_UBICACION_IMPLEMENTACION_FIND_BY_ID = "/ubicacion-geografica/nivel-ubicacion-implementacion/findByIdNivelUbicacion/{idNivelUbicacion}";
     public static final String NIVEL_UBICACION_IMPLEMENTACION_FIND_BY_ID_NIVEL_IMPL = "/ubicacion-geografica/nivel-ubicacion-implementacion/findByIdNivelImplementacion/{idNivelImplementacion}";
     public static final String UBICACION_IMPLEMENTACION_ENDPOINT = "/ubicacion-geografica/ubicacion-implementacion";
-    public static final String UBICACION_IMPLEMENTACION_ENDPOINT_FIND_BY_ID = "/ubicacion-geografica/ubicacion-implementacion";
+    public static final String UBICACION_IMPLEMENTACION_ENDPOINT_FIND_BY_ID = "/ubicacion-geografica/ubicacion-implementacion/findByIdUbicacion/{idUbicacion}";
+    public static final String UBICACION_IMPLEMENTACION_ENDPOINT_FIND_BY_ID_NIVEL_IMPL = "/ubicacion-geografica/ubicacion-implementacion/findByIdNivelImplementacion/{idNivelImplementacion}";
+    public static final String UBICACION_IMPLEMENTACION_ENDPOINT_FIND_BY_ID_UBIC_NIVEL_IMPL = "/ubicacion-geografica/ubicacion-implementacion/findByIdNivelUbicacion/{idNivelUbicacion}";
+    public static final String UBICACION_IMPLEMENTACION_ENDPOINT_FIND_BY_ID_UBIC_NIVEL_IMPL_2 = "/ubicacion-geografica/ubicacion-implementacion/findByIdNivelImplementacionAndIdNivelUbicacion/{idNivelUbicacion}/{idNivelImplementacion}";
 
     /*==================================================================================================================
      *================================================================================================================ */
@@ -65,6 +68,7 @@ public class configAPI {
     public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_PAIS_CATEGORIA = "/organizaciones/findByIdTipoPaisCategoriaOrganizacion/{idTipoOrganizacion}/{idPaisOrganizacion}/{idCategoriaOrganizacion}";
     public static final String ORGANIZACIONES_ENDPOINT_NEW = "/organizaciones/new";
     public static final String ORGANIZACIONES_ENDPOINT_EDIT = "/organizaciones/edit/{idOrganizacion}";
+    public static final String ORGANIZACIONES_ENDPOINT_DELETE = "/organizaciones/delete/{idOrganizacion}";
 
     public static final String TIPO_ORGANIZACIONES_ENDPOINT = "/tipos-organizaciones";
     public static final String TIPO_ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/tipos-organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";
@@ -138,7 +142,19 @@ public class configAPI {
     public static final String ID_PLANIFICACION_ENDPOINT_EDIT = "/mant-actividades/planificacion/edit/{idActividadPlan}";
 
     // Mapeo de las Rutas del Sub Modulo de Ubicaciones
+    public static final String UBICACIONES_ACT_ENDPOINT = "/mant-actividades/ubicaciones";
+    public static final String UBICACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/ubicaciones/findByIdActividad/{idActividad}";
+    public static final String UBICACIONES_ACT_ENDPOINT_NEW = "/mant-actividades/ubicaciones/new";
+    public static final String UBICACIONES_ACT_ENDPOINT_DELETE = "/mant-actividades/ubicaciones/delete/{idUbicacionImpl}/{idActividad}";
 
+    /*==================================================================================================================
+     *================================================================================================================ */
+
+    // Mapeo de las Rutas de Sectores y Programas
+    public static final String SECTORES_OCDE_ENDPOINT = "/sectores/ocde-cad";
+    public static final String SECTORES_OCDE_ENDPOINT_FIND_BY_ID_SECTOR = "/sectores/ocde-cad/findByIdSector/{idSector}";
+    public static final String SECTORES_OCDE_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE = "/sectores/ocde-cad/findByIdNivelSector/{idNivelSector}/findBySectorPadreId/{sectorPadreId}";
+    public static final String SECTORES_OCDE_ENDPOINT_FIND_BY_ID_NIVEL_SECTOR = "/sectores/ocde-cad/findByIdNivelSector/{idNivelSector}";
 
     /*==================================================================================================================
      *================================================================================================================ */
@@ -171,5 +187,9 @@ public class configAPI {
     public static final String SECUENCIAS_ENDPOINT_FIND_BY_ID = "/secuencias/findByIdSecuencia/{idSecuencia}";
     public static final String SECUENCIAS_ENDPOINT_FIND_BY_COD = "/secuencias/findByCodSecuencia/{codSecuencia}";
     public static final String SECUENCIAS_ENDPOINT_UPDATE = "/secuencias/update/{idSecuencia}";
+
+    // Mapeo de las Rutas del Modulo de Roles
+    public static final String ROLES_ENDPOINT = "/roles";
+    public static final String ROLES_FIND_BY_ID_GRUPO = "/roles/findByIdGrupo/{idGrupo}";
 
 }

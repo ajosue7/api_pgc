@@ -1,5 +1,6 @@
 package com.api.pgc.core.APIRestPGC.models.seguridad;
 
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
@@ -43,6 +44,14 @@ public class TblRoles {
     @Column(name = "PERMISO_APROBAR")
     @ApiModelProperty(notes = "Habilitado")
     private boolean permisoAprobar;
+
+
+    // Mapeo de la Relacion de la Tabla de Roles con Grupos
+    // Muchos Rol = 1 Grupo
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_GRUPO", referencedColumnName = "ID_GRUPO")
+    @ApiModelProperty(notes = "Entidad del Grupo de Rol, se envia desde un Json (\"idGrupo\": { \"idGrupo\": \"valor\" })", required = true)
+    private TblGrupo idGrupo;
 
 
     /**
@@ -117,5 +126,13 @@ public class TblRoles {
 
     public void setPermisoAprobar(boolean permisoAprobar) {
         this.permisoAprobar = permisoAprobar;
+    }
+
+    public TblGrupo getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(TblGrupo idGrupo) {
+        this.idGrupo = idGrupo;
     }
 }
