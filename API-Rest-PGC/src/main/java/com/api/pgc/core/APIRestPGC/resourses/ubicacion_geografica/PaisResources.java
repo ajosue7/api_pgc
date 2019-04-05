@@ -7,6 +7,7 @@ import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "paisapi", description = "Operaciones sobre el Modulo de Ubicaciones")
+@Api(value = "paisapi", description = "Operaciones sobre el Modulo de Ubicaciones | Datos Geográficos", tags = "Datos Geográficos")
 public class PaisResources {
     //Propiedades de la Clase
     String msgMethod = null;
@@ -33,7 +34,7 @@ public class PaisResources {
      * @autor Nahum Martinez | NAM
      * @version 13/10/2018/v1.0
      */
-    @ApiOperation(value = "Retorna el Listado de Todos los Paises de la BD")
+    @ApiOperation(value = "Retorna el Listado de Todos los Paises de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = PAIS_ENDPOINT, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getAllPaises() throws Exception {
         //Ejecuta el try Cacth
@@ -61,7 +62,7 @@ public class PaisResources {
      * @autor Nahum Martinez | NAM
      * @version 13/10/2018/v1.0
      */
-    @ApiOperation(value = "Retorna el Pais enviado a buscar de la BD")
+    @ApiOperation(value = "Retorna el Pais enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = PAIS_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getEstados(@ApiParam(value = "Identificador del Pais a Buscar", required = true)
                                               @PathVariable("idPais") long idPais) throws Exception {

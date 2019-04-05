@@ -43,7 +43,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
             HttpServletRequest req, HttpServletResponse res)
             throws AuthenticationException, IOException {
         //jecutamos el llamado al Login
-        System.out.println("Paso 1 - attemptAuthentication ******** ");
+        // System.out.println("Paso 1 - attemptAuthentication ******** ");
         String header = req.getHeader("Authorization");
 
         Authentication auth;
@@ -66,7 +66,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
     @Override
     protected void successfulAuthentication( HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) throws IOException, ServletException {
-            System.out.println("**************************** successfulAuthentication ***************************** ");
+           // System.out.println("**************************** successfulAuthentication ***************************** ");
         // Si la autenticacion fue exitosa, agregamos el token a la respuesta
         JwtUtil.addAuthentication(res, auth.getName());
     }
@@ -84,7 +84,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
             logger.debug("Delegating to authentication failure handler " + failureHandler);
         }
 
-        System.out.println("Data de Funcion unsuccessfulAuthentication ******** " + failed.toString());
+        // System.out.println("Data de Funcion unsuccessfulAuthentication ******** " + failed.toString());
         //Add more descriptive message
         /*response.sendError(HttpServletResponse.SC_BAD_REQUEST,
                failed.toString());*/

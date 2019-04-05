@@ -9,6 +9,7 @@ import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "estadosapi", description = "Operaciones sobre el Modulo de Estados")
+@Api(value = "estadosapi", description = "Operaciones sobre el Modulo de Estados", tags = "Estados")
 public class EstadosResources {
     //Propiedades de la Clase
     String msgMethod = null;
@@ -38,7 +39,7 @@ public class EstadosResources {
      * @autor Nahum Martinez | NAM
      * @version 10/04/2018/v1.0
      */
-    @ApiOperation(value = "Retorna el Listado de Todos los Estados de la BD")
+    @ApiOperation(value = "Retorna el Listado de Todos los Estados de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = ESTADOS_ENDPOINT, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getAllEst() throws Exception {
         //Ejecuta el try Cacth
@@ -67,7 +68,7 @@ public class EstadosResources {
      * @autor Nahum Martinez | NAM
      * @version 11/04/2018/v1.0
      */
-    @ApiOperation(value = "Retorna el Estado enviado a buscar de la BD")
+    @ApiOperation(value = "Retorna el Estado enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = ESTADOS_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getEstados(@ApiParam(value = "Identificador del Estado a Buscar", required = true)
                                               @PathVariable("idEstado") long idEstado) throws Exception {
@@ -140,7 +141,7 @@ public class EstadosResources {
      * @autor Nahum Martinez | NAM
      * @version 11/04/2018/v1.0
      */
-    @ApiOperation(value = "Retorna el Estado enviado a buscar de la BD")
+    @ApiOperation(value = "Retorna el Estado enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = ESTADOS_ENDPOINT_FIND_BY_IDGRUPO, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getEstadosGrupo(@ApiParam(value = "Identificador del Grupo a Buscar", required = true)
                                                    @PathVariable("idGrupo") long idGrupo) throws Exception {

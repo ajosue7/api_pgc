@@ -6,6 +6,7 @@ spring:
   datasource: # Config conexion a una BD
     platform: postgresql
     driverClassName: org.postgresql.Driver
+    ## url: jdbc:postgresql://localhost:5432/PGC_HONDURAS
     url: jdbc:postgresql://localhost:5432/PGC_HONDURAS
     username: postgres
     password: postgres

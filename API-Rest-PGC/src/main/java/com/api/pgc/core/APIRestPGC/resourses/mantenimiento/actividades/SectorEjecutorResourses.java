@@ -6,6 +6,7 @@ import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "sectorejecutorapi" , description = "Operaciones sobre el Modulo de Mantenimiento de Actividades")
+@Api(value = "sectorejecutorapi" , description = "Operaciones sobre el Modulo de Mantenimiento de Actividades", tags = "Sectores Ejecutores")
 public class SectorEjecutorResourses {
     //Propiedades de la Clase
     String msgMethod = null;
@@ -31,7 +32,7 @@ public class SectorEjecutorResourses {
      * @version  22/08/2018/v1.0
      * @return Lista de Sectores de Ejecucion de una Actividad de la BD
      */
-    @ApiOperation(value = "Retorna el Listado de Todos los Sectores de Ejecucion de la BD")
+    @ApiOperation(value = "Retorna el Listado de Todos los Sectores de Ejecucion de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = SECTOR_EJECUTOR_ENDPOINT, produces = "application/json; charset=UTF-8" )
     public HashMap<String, Object> getAllSectorEjecutor() throws Exception {
         //Ejecuta el try Cacth
@@ -57,7 +58,7 @@ public class SectorEjecutorResourses {
      * @return Estado de la BD
      * @param idSectorEjecutor Identificador del Sector Ejecutor a Buscar
      */
-    @ApiOperation(value = "Retorna el Sector Ejecutor enviado a buscar de la BD")
+    @ApiOperation(value = "Retorna el Sector Ejecutor enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = SECTOR_EJECUTOR_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getSectorEjecutor( @ApiParam(value="Identificador del Sector Ejecutor a Buscar", required=true)
                                                @PathVariable("idSectorEjecutor") long idSectorEjecutor ) throws Exception {

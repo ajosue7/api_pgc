@@ -22,7 +22,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "espaciotrabajoapi" , description = "Operaciones sobre el Modulo de Espacios de Trabajo")
+@Api(value = "espaciotrabajoapi" , description = "Operaciones sobre el Modulo de Espacios de Trabajo", tags = "Espacios de Trabajo")
 public class EspaciosTrabajoResources {
 
     //Propiedades de la Clase
@@ -46,7 +46,7 @@ public class EspaciosTrabajoResources {
      * @version  11/10/2018/v1.0
      * @return Lista de Espacios de Trabajo de la BD
      */
-    @ApiOperation(value = "Retorna el Listado de Todos los Espacios de Trabajo de la BD")
+    @ApiOperation(value = "Retorna el Listado de Todos los Espacios de Trabajo de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = ESPACIOS_TRABAJO_ENDPOINT, produces = "application/json")
     public HashMap<String, Object>  getAllEspaciosTrabajo() throws Exception {
         //Ejecuta el try Cacth
@@ -72,7 +72,7 @@ public class EspaciosTrabajoResources {
      * @return Espacio de Trabajo de la BD
      * @param idEspacioTrabajo Identificador del Tipo a Buscar
      */
-    @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD")
+    @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Registro Encontrado"),
             @ApiResponse(code = 401, message = "No estas Autenticado"),
@@ -114,7 +114,7 @@ public class EspaciosTrabajoResources {
      * @param espacioTrabajoJson Obtiene desde el request los datos del Espacio de Trabajo a ingresar
      */
     @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Espacio de Trabajo",
-            notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Espacio de Trabajo")
+            notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Espacio de Trabajo", authorizations = {@Authorization(value = "Token-PGC")})
     @PostMapping(value = ESPACIOS_TRABAJO_ENDPOINT_NEW, produces = "application/json")
     public HashMap<String, Object> addEspacioTrabajo(@ApiParam(value="Json del nuevo Tipo a Ingresar, con Grupo asociado", required=true)
                                        @RequestBody final TblEspaciosTrabajo espacioTrabajoJson) throws Exception {

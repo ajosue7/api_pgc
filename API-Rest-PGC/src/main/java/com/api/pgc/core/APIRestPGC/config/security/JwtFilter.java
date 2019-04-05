@@ -36,17 +36,17 @@ public class JwtFilter extends GenericFilterBean {
         //response1.setHeader("Access-Control-Allow-Methods", "*");
         //response1.setHeader("Access-Control-Request-Headers", "*");
 
-        if (headerNames != null) {
+        /*if (headerNames != null) {
             while (headerNames.hasMoreElements()) {
                 System.out.println("Header iN DOfILTER *********** : " + httpRequest.getHeader(headerNames.nextElement()));
             }
-        }
+        }*/
 
         Authentication authentication = JwtUtil.getAuthentication((HttpServletRequest)request);
 
-        if ( authentication != null ) {
+        /*if ( authentication != null ) {
             System.out.println("Dato de la Funcion doFilter 1 ***************************  " + authentication );
-        }
+        }*/
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request,response);

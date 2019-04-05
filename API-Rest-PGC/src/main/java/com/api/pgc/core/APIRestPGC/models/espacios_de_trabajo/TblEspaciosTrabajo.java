@@ -17,7 +17,7 @@ public class TblEspaciosTrabajo {
     // Nueva Clase para los Espacios de Trabajo NAM 2
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_ESPACIO_TRABAJO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idEspacioTrabajo;

@@ -1,5 +1,6 @@
 package com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo;
 
+import com.api.pgc.core.APIRestPGC.models.seguridad.TblRoles;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -12,9 +13,9 @@ import java.util.Date;
         uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_ESPACIO_TRABAJO_USUARIO"})})
 public class TblEspaciosTrabajoUsuarios {
     // Nueva Clase para los Espacios de Trabajo Usuarios
-    //Propiedades de la tabla
+    // Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ESPACIOS_TRABAJO_USUARIOS", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idEspacioTrabajoUsuario;
@@ -25,18 +26,18 @@ public class TblEspaciosTrabajoUsuarios {
 
     @Column(name = "FECHA_CREACION", columnDefinition = "date DEFAULT '2999-12-31'")
     @Temporal(TemporalType.DATE)
-    //@ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss")
-    private Date fechaCreacion;
+    @ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss", readOnly = true)
+    private Date fechaCreacion= new Date();
 
     @Column(name = "HORA_CREACION")
     @Temporal(TemporalType.TIME)
-    //@ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss")
+    @ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss", readOnly = true)
     private Date horaCreacion = new Date();
 
     @Column(name = "ACTIVO")
     private boolean activo;
 
-    //Mapeo de la Relacion de la Tabla de Espacio de Trabajo con Espacios de Trabajo
+    // Mapeo de la Relacion de la Tabla de Espacio de Trabajo con Espacios de Trabajo
     // Muchos Espacio de Trabajo Usuario = 1 Espacio de Trabajo
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ESPACIO_TRABAJO", referencedColumnName = "ID_ESPACIO_TRABAJO")
@@ -44,12 +45,19 @@ public class TblEspaciosTrabajoUsuarios {
     private TblEspaciosTrabajo idEspacioTrabajo;
 
 
-    //Mapeo de la Relacion de la Tabla de Espacio de Trabajo con Espacios de Trabajo
+    // Mapeo de la Relacion de la Tabla de Espacio de Trabajo con Espacios de Trabajo
     // Muchos Espacio de Trabajo Usuario = 1 Espacio de Trabajo
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_USUARIO_ESPACIO_TRABAJO", referencedColumnName = "ID_USUARIO")
     @ApiModelProperty(notes = "Entidad de usuario quye tendra el espacio de trabajo asignado, se envia desde un Json (\"idUsuarioEspacioTrabajo\": { \"idUsuario\": \"valor\" })", required = true)
     private TblUsuarios idUsuarioEspacioTrabajo;
+
+    // Mapeo de la Relacion de la Tabla de usuarios con Espacios de Trabajo
+    // Muchos Espacio de Rol = 1 Espacio de Trabajo Usuario
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_ROL_ESPACIO_TRABAJO", referencedColumnName = "ID_ROL")
+    @ApiModelProperty(notes = "Entidad de Roles que tendra el espacio de trabajo asignado, se envia desde un Json (\"idRolEspacioTrabajo\": { \"idRol\": \"valor\" })", required = true)
+    private TblRoles idRolEspacioTrabajo;
 
 
     /**
@@ -116,5 +124,13 @@ public class TblEspaciosTrabajoUsuarios {
 
     public void setIdUsuarioEspacioTrabajo(TblUsuarios idUsuarioEspacioTrabajo) {
         this.idUsuarioEspacioTrabajo = idUsuarioEspacioTrabajo;
+    }
+
+    public TblRoles getIdRolEspacioTrabajo() {
+        return idRolEspacioTrabajo;
+    }
+
+    public void setIdRolEspacioTrabajo(TblRoles idRolEspacioTrabajo) {
+        this.idRolEspacioTrabajo = idRolEspacioTrabajo;
     }
 }

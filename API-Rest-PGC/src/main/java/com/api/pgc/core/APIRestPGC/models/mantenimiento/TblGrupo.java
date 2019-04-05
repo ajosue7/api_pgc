@@ -14,7 +14,7 @@ import java.util.Set;
 public class TblGrupo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_GRUPO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idGrupo;

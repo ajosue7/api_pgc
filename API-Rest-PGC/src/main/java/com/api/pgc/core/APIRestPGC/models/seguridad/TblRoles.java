@@ -1,5 +1,6 @@
 package com.api.pgc.core.APIRestPGC.models.seguridad;
 
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
@@ -9,9 +10,9 @@ import javax.persistence.*;
         indexes = {@Index(name = "idx_cod_rol", columnList = "COD_ROL" )},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_ROL"})})
 public class TblRoles {
-    //Propiedades de la tabla
+    // Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_ROL", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idRol;
@@ -27,6 +28,30 @@ public class TblRoles {
     @Column(name = "HABILITADA")
     @ApiModelProperty(notes = "Habilitado")
     private boolean habilitada;
+
+    @Column(name = "PERMISO_LECTURA")
+    @ApiModelProperty(notes = "Habilitado")
+    private boolean permisoLectura;
+
+    @Column(name = "PERMISO_ESCRITURA")
+    @ApiModelProperty(notes = "Habilitado")
+    private boolean permisoEscritura;
+
+    @Column(name = "PERMISO_BORRAR")
+    @ApiModelProperty(notes = "Habilitado")
+    private boolean permisoBorrar;
+
+    @Column(name = "PERMISO_APROBAR")
+    @ApiModelProperty(notes = "Habilitado")
+    private boolean permisoAprobar;
+
+
+    // Mapeo de la Relacion de la Tabla de Roles con Grupos
+    // Muchos Rol = 1 Grupo
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_GRUPO", referencedColumnName = "ID_GRUPO")
+    @ApiModelProperty(notes = "Entidad del Grupo de Rol, se envia desde un Json (\"idGrupo\": { \"idGrupo\": \"valor\" })", required = true)
+    private TblGrupo idGrupo;
 
 
     /**
@@ -69,5 +94,45 @@ public class TblRoles {
 
     public void setHabilitada(boolean habilitada) {
         this.habilitada = habilitada;
+    }
+
+    public boolean isPermisoLectura() {
+        return permisoLectura;
+    }
+
+    public void setPermisoLectura(boolean permisoLectura) {
+        this.permisoLectura = permisoLectura;
+    }
+
+    public boolean isPermisoEscritura() {
+        return permisoEscritura;
+    }
+
+    public void setPermisoEscritura(boolean permisoEscritura) {
+        this.permisoEscritura = permisoEscritura;
+    }
+
+    public boolean isPermisoBorrar() {
+        return permisoBorrar;
+    }
+
+    public void setPermisoBorrar(boolean permisoBorrar) {
+        this.permisoBorrar = permisoBorrar;
+    }
+
+    public boolean isPermisoAprobar() {
+        return permisoAprobar;
+    }
+
+    public void setPermisoAprobar(boolean permisoAprobar) {
+        this.permisoAprobar = permisoAprobar;
+    }
+
+    public TblGrupo getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(TblGrupo idGrupo) {
+        this.idGrupo = idGrupo;
     }
 }

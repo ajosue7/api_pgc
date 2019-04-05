@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
-import static com.api.pgc.core.APIRestPGC.utilities.configAPI.API_BASE_PATH;
-import static com.api.pgc.core.APIRestPGC.utilities.configAPI.TIPOS_ENDPOINT;
-import static com.api.pgc.core.APIRestPGC.utilities.configAPI.TIPOS_ENDPOINT_FIND_BY_ID;
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "tiposapi" , description = "Operaciones sobre el Modulo de Tipos")
+@Api(value = "tiposapi" , description = "Operaciones sobre el Modulo de Tipos", tags = "Tipos")
 public class TiposResources {
 
     //Propiedades de la Clase
@@ -37,7 +35,7 @@ public class TiposResources {
      * @version  10/04/2018/v1.0
      * @return Lista de Grupos de la BD
      */
-    @ApiOperation(value = "Retorna el Listado de Todos los Tipos de la BD")
+    @ApiOperation(value = "Retorna el Listado de Todos los Tipos de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = TIPOS_ENDPOINT, produces = "application/json")
     public HashMap<String, Object>  getAllTipo() throws Exception {
         //Ejecuta el try Cacth
@@ -63,7 +61,7 @@ public class TiposResources {
      * @return Grupo de la BD
      * @param idTipo Identificador del Tipo a Buscar
      */
-    @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD")
+    @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Registro Encontrado"),
             @ApiResponse(code = 401, message = "No estas Autenticado"),
@@ -98,6 +96,45 @@ public class TiposResources {
 
 
     /**
+     * Metodo que despliega el Tipo segun el Grupo de la BD
+     * @autor Nahum Martinez | NAM
+     * @version  21/01/2019/v1.0
+     * @return Tipo de la BD
+     * @param idGrupo Identificador del Grupo a Buscar
+     */
+    @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD, segun el Grupo que pertenece", authorizations = {@Authorization(value = "Token-PGC")})
+    @GetMapping( value = TIPOS_ENDPOINT_FIND_BY_IDGRUPO, produces = "application/json")
+    public HashMap<String, Object> getTipoByGrupo( @ApiParam(value="Identificador del Tipo a Buscar, segun el Grupo Solicitado", required=true)
+                                            @PathVariable ("idGrupo") long idGrupo  ) throws Exception {
+        // Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        try{
+            // Busca el Grupo, desde el Reporsitorio con el Parametro del Json enviado ( "idGrupo": valor )
+            TblGrupo _tblGrupo = gruposRepository.findByIdGrupo( idGrupo );
+
+            if( tiposRepository.findByIdGrupo(_tblGrupo) == null ){
+                // Sobreescirbe el Metodo de Mensajes
+                msgMethod = "No se ha encontrado dato del Tipo consultado";
+                msgExeptions.map.put("error", "No data found");
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 400);
+            }else {
+                // Sobreescirbe el Metodo de Mensajes
+                msgMethod = "Detalle del Tipo Consultado";
+                msgExeptions.map.put("data", tiposRepository.findByIdGrupo(_tblGrupo));
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        }catch ( Exception ex ){
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }//FIN
+
+
+    /**
      * Metodo que Solcita un json con los datos de la Entidad Tipos
      * @autor Nahum Martinez | NAM
      * @version  10/04/2018/v1.0
@@ -107,13 +144,13 @@ public class TiposResources {
     //@ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Tipo",
             //notes = "Se debe incluir en la Estructura del JsonBean el Identificador de Grupo")
     //@PostMapping(value = "/tipos", produces = "application/json")
-    public HashMap<String, Object> addGroup(@ApiParam(value="Json del nuevo Tipo a Ingresar, con Grupo asociado", required=true)
+    public HashMap<String, Object> addTipo(@ApiParam(value="Json del nuevo Tipo a Ingresar, con Grupo asociado", required=true)
                                        @RequestBody final TblTipo tipoJson) throws Exception {
-        //Ejecuta el try Cacth
+        // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
-            //Busca el Grupo, desde el Reporsitorio con el Parametro del Json enviado ( "idGrupo": { "idGrupo": valor })
+            // Busca el Grupo, desde el Reporsitorio con el Parametro del Json enviado ( "idGrupo": { "idGrupo": valor })
             TblGrupo tG = gruposRepository.findByIdGrupo( tipoJson.getIdGrupo().getIdGrupo() );
 
             //Graba los Datos de Tipos
