@@ -148,8 +148,8 @@ public class configAPI {
     public static final String UBICACIONES_ACT_ENDPOINT_DELETE = "/mant-actividades/ubicaciones/delete/{idUbicacionImpl}/{idActividad}";
 
     // Mapeo de las Rutas del Sub Modulo Recursos del Proyecto
-    public static final String RECURSOS_DOC_ENDPOINT = "/mant-actividades/recursos-proyecto/documentos";
-    public static final String RECURSOS_DOC_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/recursos-proyecto/findByCodActividadDocumento/{codActividadDocumento}";
+    public static final String RECURSOS_DOC_ENDPOINT = "/mant-actividades/recursos-proyecto";
+    public static final String RECURSOS_DOC_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/recursos-proyecto/findByCodActividadRecurso/{codActividadRecurso}";
     public static final String RECURSOS_DOC_ENDPOINT_NEW = "/mant-actividades/recursos-proyecto/new";
     public static final String RECURSOS_DOC_ENDPOINT_DELETE = "/mant-actividades/recursos-proyecto/delete/{idActividadDocumento}";
     public static final String RECURSOS_DOC_UPLOAD_FILE = "/mant-actividades/recursos-proyecto/uploadFile";

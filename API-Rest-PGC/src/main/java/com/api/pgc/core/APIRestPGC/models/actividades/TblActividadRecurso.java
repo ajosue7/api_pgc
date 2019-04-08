@@ -12,24 +12,24 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "tbl_actividades_documento",
-        indexes = {@Index(name = "idx_codigo_actividad_documento", columnList = "CODIGO_ACTIVIDAD_DOCUMENTO" )},
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"CODIGO_ACTIVIDAD_DOCUMENTO"})})
-public class TblActividadDocumento {
+@Table(name = "tbl_actividades_recursos",
+        indexes = {@Index(name = "idx_codigo_actividad_recurso", columnList = "CODIGO_ACTIVIDAD_RECURSO" )},
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"CODIGO_ACTIVIDAD_RECURSO"})})
+public class TblActividadRecurso {
     //Propiedades de la tabla
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "ID_ACTIVIDAD_DOCUMENTO", columnDefinition = "serial")
+    @Column(name = "ID_ACTIVIDAD_RECURSO", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
-    private long idActividadDocumento;
+    private long idActividadrecurso;
 
-    @Column(name = "CODIGO_ACTIVIDAD_DOCUMENTO", nullable = false, length=50)
-    @ApiModelProperty(notes = "Codigo del Documento de la Actividad", required = true)
-    private String codActividadDocumento;
+    @Column(name = "CODIGO_ACTIVIDAD_RECURSO", nullable = false, length=50)
+    @ApiModelProperty(notes = "Codigo del Recurso de la Actividad", required = true)
+    private String codActividadRecurso;
 
-    @Column(name = "URL_ACTIVIDAD_DOCUMENTO", nullable = false, length=300)
-    @ApiModelProperty(notes = "Url del Documento de la Actividad")
-    private String urlActividadDocumento;
+    @Column(name = "URL_ACTIVIDAD_RECURSO", nullable = false, length=300)
+    @ApiModelProperty(notes = "Url del Recurso de la Actividad")
+    private String urlActividadRecurso;
 
     // Mapeo de la Relacion de la Tabla de Actividades con Actividades Documentos
     // Muchos Actividad = 1 Actividades Documento
@@ -69,33 +69,33 @@ public class TblActividadDocumento {
 
 
     // Constructor vacio de la Clase, solo para Jpa
-    public TblActividadDocumento() {
+    public TblActividadRecurso() {
         // Este lo usa Jpa para realizar los Mapping
     }
 
     // Metodos Getters y Setters
-    public long getIdActividadDocumento() {
-        return idActividadDocumento;
+    public long getIdActividadrecurso() {
+        return idActividadrecurso;
     }
 
-    public void setIdActividadDocumento(long idActividadDocumento) {
-        this.idActividadDocumento = idActividadDocumento;
+    public void setIdActividadrecurso(long idActividadrecurso) {
+        this.idActividadrecurso = idActividadrecurso;
     }
 
-    public String getCodActividadDocumento() {
-        return codActividadDocumento;
+    public String getCodigoActividadRecurso() {
+        return codActividadRecurso;
     }
 
-    public void setCodActividadDocumento(String codActividadDocumento) {
-        this.codActividadDocumento = codActividadDocumento;
+    public void setCodigoActividadRecurso(String codigoActividadRecurso) {
+        this.codActividadRecurso = codigoActividadRecurso;
     }
 
-    public String getUrlActividadDocumento() {
-        return urlActividadDocumento;
+    public String getUrlActividadRecurso() {
+        return urlActividadRecurso;
     }
 
-    public void setUrlActividadDocumento(String urlActividadDocumento) {
-        this.urlActividadDocumento = urlActividadDocumento;
+    public void setUrlActividadRecurso(String urlActividadRecurso) {
+        this.urlActividadRecurso = urlActividadRecurso;
     }
 
     public TblActividad getIdActividad() {
