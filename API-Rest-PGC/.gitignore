@@ -55,4 +55,4 @@ fabric.properties
 # modules.xml
 
 # Carpeta de Uploads
-/uploads
+uploads/
