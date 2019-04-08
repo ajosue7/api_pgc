@@ -28,6 +28,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -133,10 +134,9 @@ public class ActividadDocumentoResourses {
      * @version 07/04/2019/v1.0
      */
     @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean de los Nuevos Documentos del proyecto", authorizations = {@Authorization(value = "Token-PGC")})
-    @PostMapping(value = RECURSOS_DOC_ENDPOINT_NEW, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,  produces = "application/json; charset=UTF-8")
+    @PostMapping(value = RECURSOS_DOC_ENDPOINT_NEW, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> newAtividadDocumento(@ApiParam(value = "Json de los Documentos del Proyecto a Ingresar", required = true)
-                                                             @RequestBody @Valid final TblActividadDocumento _idActividadDocumentoJson,
-                                                        @RequestParam("file") MultipartFile file) throws Exception {
+                                                             @RequestBody @Valid final TblActividadDocumento _idActividadDocumentoJson) throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -168,9 +168,6 @@ public class ActividadDocumentoResourses {
                     _idActividadDocumentoJson.setIdActividad(_tblActividad);
                     _idActividadDocumentoJson.setIdTipoDocumento(_tblTipo);
                     _idActividadDocumentoJson.setIdUsuario(_tblUsuarios);
-
-                    // Guardar la Imagen en HD
-                    // _fileController.uploadFile();
 
                     // Realizamos la Persistencia de los Datos
                     _actividadDocumentoRepository.save( _idActividadDocumentoJson );

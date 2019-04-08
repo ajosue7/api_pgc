@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.api.pgc.core.APIRestPGC.utilities.configAPI.API_BASE_PATH;
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -47,19 +47,19 @@ public class FileController {
      * @version  06/04/2019/v1.0
      * @return URI del Documento ingresado
      */
-    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean de los Nuevos Documentos del proyecto", authorizations = {@Authorization(value = "Token-PGC")})
-    @PostMapping("/uploadFile")
+    @ApiOperation(value = "Ingresa en Disco Duro local, la Información enviada por el archivo y grabarla en la BD", authorizations = {@Authorization(value = "Token-PGC")})
+    @PostMapping(value = RECURSOS_DOC_UPLOAD_FILE)
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/api/v1/downloadFile/")
+                .path("/api/v1/mant-actividades/recursos-proyecto/downloadFile/")
                 .path(fileName)
                 .toUriString();
 
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
-    }
+    } // FIN | uploadFile
 
     /**
      * Metodo que sirve para ingresar varios Documentos a la ves en la BD
@@ -67,13 +67,14 @@ public class FileController {
      * @version  06/04/2019/v1.0
      * @return Listado de los Documentos ingresados en la BD
      */
-    @PostMapping("/uploadMultipleFiles")
+    @ApiOperation(value = "Ingresa en Disco Duro local, la Información enviada por los archivos y grabarlas en la BD", authorizations = {@Authorization(value = "Token-PGC")})
+    @PostMapping(value = RECURSOS_DOC_UPLOAD_FILE_ARRAY)
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file))
                 .collect(Collectors.toList());
-    }
+    } // FIN | uploadMultipleFiles
 
 
     /**
@@ -82,7 +83,8 @@ public class FileController {
      * @version  06/04/2019/v1.0
      * @return Dowload Documento
      */
-    @GetMapping("/downloadFile/{fileName:.+}")
+    @ApiOperation(value = "Descarga el Documento solicitado", authorizations = {@Authorization(value = "Token-PGC")})
+    @GetMapping(value = RECURSOS_DOC_UPLOAD_FILE_DOWLOAD)
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
         // Load file as Resource
         Resource resource = fileStorageService.loadFileAsResource(fileName);
@@ -104,5 +106,5 @@ public class FileController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
-    }
+    } // FIN | downloadFile
 }
