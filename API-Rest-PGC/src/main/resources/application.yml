@@ -1,4 +1,11 @@
+# Propiedades Spring Boot
 spring:
+  servlet: # Enable multipart uploads
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB # Threshold after which files are written to disk.
+      max-file-size: 200MB # Max file size.
+      max-request-size: 215MB # Max Request Size
   thymeleaf:
     cache: false # Ingnorar el cache para las plantillas thymeleaf
   profiles:
@@ -23,6 +30,10 @@ spring:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
+# Propiedades para Files Uploads
+file:
+  upload-dir: src/main/uploads
+# Propiedades del Server
 server:
     port: 8090
 name: dev-PGC
