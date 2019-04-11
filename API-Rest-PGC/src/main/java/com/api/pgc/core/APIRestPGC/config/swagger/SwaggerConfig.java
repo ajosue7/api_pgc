@@ -104,7 +104,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
         return new RelativePathProvider(servletContext) {
             @Override
            protected String applicationPath() {
-                //return "/API-Rest-PGC";
+                // return "/API-Rest-PGC";
                 return "/";
             }
         };

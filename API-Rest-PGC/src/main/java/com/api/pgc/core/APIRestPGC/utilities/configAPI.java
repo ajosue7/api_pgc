@@ -155,6 +155,8 @@ public class configAPI {
     public static final String RECURSOS_DOC_UPLOAD_FILE = "/mant-actividades/recursos-proyecto/uploadFile";
     public static final String RECURSOS_DOC_UPLOAD_FILE_ARRAY = "/mant-actividades/recursos-proyecto/uploadMultipleFiles";
     public static final String RECURSOS_DOC_UPLOAD_FILE_DOWLOAD = "/mant-actividades/recursos-proyecto/downloadFile/{fileName:.+}";
+    public static final String RECURSOS_TIPO_ENDPOINT = "/mant-actividades/recursos-proyecto/tipos";
+    public static final String RECURSOS_TIPO_ENDPOINT_FIND_BY_ID = "/mant-actividades/recursos-proyecto/tipos/{idTipoRecurso}";
 
     /*==================================================================================================================
      *================================================================================================================ */
