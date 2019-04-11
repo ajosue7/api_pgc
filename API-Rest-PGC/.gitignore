@@ -56,3 +56,6 @@ fabric.properties
 
 # Carpeta de Uploads
 uploads/
+
+# Carpeta de Target
+target/
