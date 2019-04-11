@@ -19,7 +19,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "tipoRecursoApi", description = "Operaciones sobre el Modulo de Recursos Tipos de Recursos", tags = "Recursos del Proyecto")
+@Api(value = "tipoRecursoApi", description = "Operaciones sobre el Modulo de Tipos de Recursos", tags = "Recursos del Proyecto")
 public class TiposRecursosResources {
 
     //Propiedades de la Clase
