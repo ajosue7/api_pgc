@@ -27,10 +27,10 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "ActividadRecursoAPI", description = "Operaciones sobre el Modulo de Recursos del Proyectos", tags = "Recursos del Proyecto")
+@Api(value = "ActividadRecursoAPI", description = "Operaciones sobre el Modulo de Recursos de Proyectos", tags = "Recursos del Proyecto")
 public class ActividadRecusoResourses {
     //Propiedades de la Clase
-    String msgMethod = null;
+    private String msgMethod = null;
 
     @Autowired
     ActividadRecursoRepository _actividadRecursoRepository;
