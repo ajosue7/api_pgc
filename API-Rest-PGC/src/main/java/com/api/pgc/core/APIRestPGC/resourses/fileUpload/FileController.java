@@ -81,7 +81,7 @@ public class FileController {
      * Metodo que sirve para descagar un Documento a la ves en la BD
      * @autor Nahum Martinez | NAM
      * @version  06/04/2019/v1.0
-     * @return Dowload Documento
+     * @return Dowload Documentos
      */
     @ApiOperation(value = "Descarga el Documento solicitado", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = RECURSOS_DOC_UPLOAD_FILE_DOWLOAD)
