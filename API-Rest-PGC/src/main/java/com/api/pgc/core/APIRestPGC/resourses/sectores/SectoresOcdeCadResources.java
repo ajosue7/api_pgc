@@ -16,6 +16,8 @@ import com.api.pgc.core.APIRestPGC.models.sectores.TblSectorOcdeCad;
 import com.api.pgc.core.APIRestPGC.repository.sectores.NivelSectorRepository;
 import com.api.pgc.core.APIRestPGC.repository.sectores.SectorOcdeCadRepository;
 import com.api.pgc.core.APIRestPGC.repository.sectores.TipoSectorRepository;
+import com.api.pgc.core.APIRestPGC.repository.sectores.VistaSectorOcdeCadRepository;
+import com.api.pgc.core.APIRestPGC.service.TreeNodes.MyTreeNode;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,6 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
 import java.util.HashMap;
 
 import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
@@ -32,7 +36,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "SectoresApi", description = "Operaciones sobre el Modulo de Sectores", tags = "Sectores")
+@Api(value = "SectoresOcdeApi", description = "Operaciones sobre el Modulo de Sectores", tags = "Sectores")
 public class SectoresOcdeCadResources {
     //Propiedades de la Clase
     String msgMethod = null;
@@ -45,6 +49,67 @@ public class SectoresOcdeCadResources {
 
     @Autowired
     NivelSectorRepository _nivelSectorRepository;
+
+    @Autowired
+    VistaSectorOcdeCadRepository _vistaSectorOcdeCadRepository;
+
+
+    @ApiOperation(value = "Retorna el Listado de Todos los Sectores OCDE/CAD de la BD, vista", authorizations = {@Authorization(value = "Token-PGC")})
+    @GetMapping(value = "/sectores/ocde-cad/vista", produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getAllVSectoresOcdeCad() throws Exception {
+
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        msgMethod = "Listado de todos los Sectores OCDE/CAD registrados en la BD, en vista";
+
+        try {
+            //Sobreescirbe el Metodo de Mensajes
+            msgExeptions.map.put("data", _vistaSectorOcdeCadRepository.getVistaSectorOcde());
+
+            // Retorno del JSON
+            return msgExeptions.msgJson(msgMethod, 200);
+        } catch (Exception ex) {
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }// FIN | getAllVSectoresOcdeCad
+
+
+
+
+    @ApiOperation(value = "Prueba del Tree Node", authorizations = {@Authorization(value = "Token-PGC")})
+    @GetMapping(value = "/sectores/ocde-cad/treenode", produces = "application/json; charset=UTF-8")
+    public  HashMap<String, Object> returnAllNodes(){
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        msgMethod = "Listado de todos los Sectores OCDE/CAD registrados en la BD, en vista";
+
+
+//        MyTreeNode<String> root = new MyTreeNode<>("root");
+//
+//        MyTreeNode<String> node1 = new MyTreeNode<>("Otro");
+//
+//        root.addChild(node1);
+
+//        MyTreeNode<String> node11 = node1.addChild(new MyTreeNode<String>("node 11"));
+//        MyTreeNode<String> node111 = node11.addChild(new MyTreeNode<String>("node 111"));
+//        MyTreeNode<String> node112 = node11.addChild(new MyTreeNode<String>("node 112"));
+//
+//        MyTreeNode<String> node12 = node1.addChild(new MyTreeNode<String>("node 12"));
+//
+//        MyTreeNode<String> node2 = root.addChild(new MyTreeNode<String>("node 2"));
+//
+//        MyTreeNode<String> node21 = node2.addChild(new MyTreeNode<String>("node 21"));
+//        MyTreeNode<String> node211 = node2.addChild(new MyTreeNode<String>("node 22"));
+//        return root;
+        // Retorno del JSON
+        msgExeptions.map.put("data", "");
+        return msgExeptions.msgJson(msgMethod, 200);
+
+    }// FIN | getTreeNode
+
+
 
 
     /**
@@ -64,13 +129,15 @@ public class SectoresOcdeCadResources {
 
         try {
             //Sobreescirbe el Metodo de Mensajes
-            if ( _sectorOcdeCadRepository.findAll().isEmpty() || _sectorOcdeCadRepository.findAll() == null ) {
+            if (_sectorOcdeCadRepository.findAll().isEmpty() || _sectorOcdeCadRepository.findAll() == null) {
                 msgMethod = "No Existen, Sectores OCDE/CAD resgitrados en la Base de Datos, Contacta al Administrador";
 
                 msgExeptions.map.put("error", "No data found");
-                msgExeptions.map.put("data", _sectorOcdeCadRepository.findAll( new Sort(Sort.Direction.DESC, "<idSector>" )));
+                msgExeptions.map.put("find", false);
+                msgExeptions.map.put("data", _sectorOcdeCadRepository.findAll(new Sort(Sort.Direction.DESC, "<idSector>")));
                 msgExeptions.map.put("totalRecors", _sectorOcdeCadRepository.count());
             } else {
+                msgExeptions.map.put("find", true);
                 msgExeptions.map.put("data", _sectorOcdeCadRepository.findAll());
                 msgExeptions.map.put("totalRecors", _sectorOcdeCadRepository.count());
             }
@@ -93,21 +160,23 @@ public class SectoresOcdeCadResources {
     @ApiOperation(value = "Retorna el Sector OCDE/CAD enviado a buscar de la BD, con el ID como parametro", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = SECTORES_OCDE_ENDPOINT_FIND_BY_ID_SECTOR, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getSectorOcdeCadById(@ApiParam(value = "Identificador del Sector OCDE/CAD a Buscar", required = true)
-                                                       @PathVariable("idSector") long idSector) throws Exception {
+                                                        @PathVariable("idSector") long idSector) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
-            if ( _sectorOcdeCadRepository.findByIdSector(idSector) == null) {
+            if (_sectorOcdeCadRepository.findByIdSector(idSector) == null) {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se ha encontrado dato de Sector OCDE/CAD consultado";
 
                 msgExeptions.map.put("error", "No data found");
+                msgExeptions.map.put("find", false);
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
             } else {
-                //Sobreescirbe el Metodo de Mensajes
+                // Sobreescirbe el Metodo de Mensajes
+                msgExeptions.map.put("find", true);
                 msgMethod = "Detalle de Sector OCDE/CAD Consultado";
                 msgExeptions.map.put("data", _sectorOcdeCadRepository.findByIdSector(idSector));
 
@@ -122,7 +191,6 @@ public class SectoresOcdeCadResources {
     }// FIN | getSectorOcdeCadById
 
 
-
     /**
      * Metodo que despliega el Sector OCDE/CAD de la BD
      *
@@ -134,7 +202,7 @@ public class SectoresOcdeCadResources {
     @ApiOperation(value = "Retorna el Sector OCDE/CAD enviado a buscar de la BD, con el ID de Nivel como parametro", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = SECTORES_OCDE_ENDPOINT_FIND_BY_ID_NIVEL_SECTOR, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getSectorOcdeCadByIdNivelSector(@ApiParam(value = "Identificador de Nivel del Sector OCDE/CAD a Buscar", required = true)
-                                                        @PathVariable("idNivelSector") long idNivelSector) throws Exception {
+                                                                   @PathVariable("idNivelSector") long idNivelSector) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -143,16 +211,18 @@ public class SectoresOcdeCadResources {
             TblNivelSector tblNivelSector = _nivelSectorRepository.findByIdNivelSector(idNivelSector);
 
             try {
-                if (_sectorOcdeCadRepository.countSectorOCByIdNivelSector(tblNivelSector) == 0 ) {
+                if (_sectorOcdeCadRepository.countSectorOCByIdNivelSector(tblNivelSector) == 0) {
                     // Sobreescirbe el Metodo de Mensajes
                     msgMethod = "No se ha encontrado datos de Sector OCDE/CAD consultado, con el Nivel indicado";
 
                     msgExeptions.map.put("error", "No data found");
+                    msgExeptions.map.put("find", false);
 
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
                     //Sobreescirbe el Metodo de Mensajes
+                    msgExeptions.map.put("find", true);
                     msgMethod = "Detalle de Sector OCDE/CAD Consultado";
                     msgExeptions.map.put("data", _sectorOcdeCadRepository.getSectorOCByIdNivelSector(tblNivelSector));
                     msgExeptions.map.put("totalRecords", _sectorOcdeCadRepository.countSectorOCByIdNivelSector(tblNivelSector));
@@ -185,7 +255,7 @@ public class SectoresOcdeCadResources {
     @ApiOperation(value = "Retorna el Sector OCDE/CAD enviado a buscar de la BD, con el ID de Nivel y Sector Padre como parametro", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = SECTORES_OCDE_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getSectorOcdeCadByIdNivelSectorAndSectorPadreId(@ApiParam(value = "Identificador de Nivel del Sector y Sector Padre OCDE/CAD a Buscar", required = true)
-                                                                   @PathVariable("idNivelSector") long idNivelSector,  @PathVariable("sectorPadreId") long sectorPadreId) throws Exception {
+                                                                                   @PathVariable("idNivelSector") long idNivelSector, @PathVariable("sectorPadreId") long sectorPadreId) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -195,17 +265,19 @@ public class SectoresOcdeCadResources {
             TblSectorOcdeCad _tblSectorOcdeCad = _sectorOcdeCadRepository.findByIdSector(sectorPadreId);
 
             try {
-                if (_sectorOcdeCadRepository.countSectorOCByIdNivelSectorAndSectorPadreId(_tblNivelSector, _tblSectorOcdeCad) == 0 ) {
+                if (_sectorOcdeCadRepository.countSectorOCByIdNivelSectorAndSectorPadreId(_tblNivelSector, _tblSectorOcdeCad) == 0) {
                     // Sobreescirbe el Metodo de Mensajes
                     msgMethod = "No se ha encontrado datos de Sector OCDE/CAD consultado, con el Sector Padre y Nivel indicado";
 
                     msgExeptions.map.put("error", "No data found");
+                    msgExeptions.map.put("find", false);
 
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
                     //Sobreescirbe el Metodo de Mensajes
                     msgMethod = "Detalle de Sector OCDE/CAD Consultado";
+                    msgExeptions.map.put("find", true);
                     msgExeptions.map.put("data", _sectorOcdeCadRepository.getSectorOCByIdNivelSectorAndSectorPadreId(_tblNivelSector, _tblSectorOcdeCad));
                     msgExeptions.map.put("totalRecords", _sectorOcdeCadRepository.countSectorOCByIdNivelSectorAndSectorPadreId(_tblNivelSector, _tblSectorOcdeCad));
 

@@ -162,10 +162,80 @@ public class configAPI {
      *================================================================================================================ */
 
     // Mapeo de las Rutas de Sectores y Programas
+    // Sectores de Proyectos ===========================================================================================
+    // Sectores OCDE/CAD
     public static final String SECTORES_OCDE_ENDPOINT = "/sectores/ocde-cad";
+    public static final String SECTORES_OCDE_ACT_ENDPOINT = "/mant-actividades/sectores/ocde-cad-proyecto";
+    public static final String SECTORES_OCDE_ENDPOINT_FIND_BY_COD_SECTOR = "/mant-actividades/sectores/ocde-cad-proyecto/findByCodigoActividad/{codigoActividad}";
+    public static final String SECTORES_OCDE_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/sectores/ocde-cad-proyecto/findByIdActividad/{idActividad}";
     public static final String SECTORES_OCDE_ENDPOINT_FIND_BY_ID_SECTOR = "/sectores/ocde-cad/findByIdSector/{idSector}";
     public static final String SECTORES_OCDE_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE = "/sectores/ocde-cad/findByIdNivelSector/{idNivelSector}/findBySectorPadreId/{sectorPadreId}";
     public static final String SECTORES_OCDE_ENDPOINT_FIND_BY_ID_NIVEL_SECTOR = "/sectores/ocde-cad/findByIdNivelSector/{idNivelSector}";
+    public static final String SECTORES_OCDE_ENDPOINT_NEW = "/mant-actividades/sectores/ocde-cad-proyecto/new";
+    public static final String SECTORES_OCDE_ENDPOINT_EDIT = "/mant-actividades/sectores/ocde-cad-proyecto/edit";
+    public static final String SECTORES_OCDE_ENDPOINT_DELETE = "/mant-actividades/sectores/ocde-cad-proyecto/delete/{codigoActividad}";
+
+    // Sectores Gobierno
+    public static final String SECTORES_GOBIERNO_ENDPOINT = "/sectores/gobierno";
+    public static final String SECTORES_GOBIERNO_ACT_ENDPOINT = "/mant-actividades/sectores/gobierno-proyecto";
+    public static final String SECTORES_GOBIERNO_ENDPOINT_FIND_BY_COD_SECTOR = "/mant-actividades/sectores/gobierno-proyecto/findByCodigoActividad/{codigoActividad}";
+    public static final String SECTORES_GOBIERNO_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/sectores/gobierno-proyecto/findByIdActividad/{idActividad}";
+    public static final String SECTORES_GOBIERNO_ENDPOINT_FIND_BY_ID_SECTOR = "/sectores/gobierno/findByIdSector/{idSector}";
+    public static final String SECTORES_GOBIERNO_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE = "/sectores/gobierno/findByIdNivelSector/{idNivelSector}/findBySectorPadreId/{sectorPadreId}";
+    public static final String SECTORES_GOBIERNO_ENDPOINT_FIND_BY_ID_NIVEL_SECTOR = "/sectores/gobierno/findByIdNivelSector/{idNivelSector}";
+    public static final String SECTORES_GOBIERNO_ENDPOINT_NEW = "/mant-actividades/sectores/gobierno-proyecto/new";
+    public static final String SECTORES_GOBIERNO_ENDPOINT_EDIT = "/mant-actividades/sectores/gobierno-proyecto/edit";
+    public static final String SECTORES_GOBIERNO_ENDPOINT_DELETE = "/mant-actividades/sectores/gobierno-proyecto/delete/{codigoActividad}";
+
+    // Sectores Campos Transversales
+    public static final String SECTORES_CAMPOS_ENDPOINT = "/sectores/campos-transversales";
+    public static final String SECTORES_CAMPOS_ACT_ENDPOINT = "/mant-actividades/sectores/campos-transversales-proyecto";
+    public static final String SECTORES_CAMPOS_ENDPOINT_FIND_BY_COD_SECTOR = "/mant-actividades/sectores/campos-transversales-proyecto/findByCodigoActividad/{codigoActividad}";
+    public static final String SECTORES_CAMPOS_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/sectores/campos-transversales-proyecto/findByIdActividad/{idActividad}";
+    public static final String SECTORES_CAMPOS_ENDPOINT_FIND_BY_ID_SECTOR = "/sectores/campos-transversales/findByIdSector/{idSector}";
+    public static final String SECTORES_CAMPOS_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE = "/sectores/campos-transversales/findByIdNivelSector/{idNivelSector}/findBySectorPadreId/{sectorPadreId}";
+    public static final String SECTORES_CAMPOS_ENDPOINT_FIND_BY_ID_NIVEL_SECTOR = "/sectores/campos-transversales/findByIdNivelSector/{idNivelSector}";
+    public static final String SECTORES_CAMPOS_ENDPOINT_NEW = "/mant-actividades/sectores/campos-transversales-proyecto/new";
+    public static final String SECTORES_CAMPOS_ENDPOINT_EDIT = "/mant-actividades/sectores/campos-transversales-proyecto/edit";
+    public static final String SECTORES_CAMPOS_ENDPOINT_DELETE = "/mant-actividades/sectores/campos-transversales-proyecto/delete/{codigoActividad}";
+
+    // Programas ODS
+    public static final String SECTORES_ODS_ENDPOINT = "/sectores/ods";
+    public static final String SECTORES_ODS_ACT_ENDPOINT = "/mant-actividades/sectores/ods-proyecto";
+    public static final String SECTORES_ODS_ENDPOINT_FIND_BY_COD_SECTOR = "/mant-actividades/sectores/ods-proyecto/findByCodigoActividad/{codigoActividad}";
+    public static final String SECTORES_ODS_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/sectores/ods-proyecto/findByIdActividad/{idActividad}";
+    public static final String SECTORES_ODS_ENDPOINT_FIND_BY_ID_SECTOR = "/sectores/ods/findByIdSector/{idSector}";
+    public static final String SECTORES_ODS_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE = "/sectores/ods/findByIdNivelSector/{idNivelSector}/findBySectorPadreId/{sectorPadreId}";
+    public static final String SECTORES_ODS_ENDPOINT_FIND_BY_ID_NIVEL_SECTOR = "/sectores/ods/findByIdNivelSector/{idNivelSector}";
+    public static final String SECTORES_ODS_ENDPOINT_NEW = "/mant-actividades/sectores/ods-proyecto/new";
+    public static final String SECTORES_ODS_ENDPOINT_EDIT = "/mant-actividades/sectores/ods-proyecto/edit";
+    public static final String SECTORES_ODS_ENDPOINT_DELETE = "/mant-actividades/sectores/ods-proyecto/delete/{codigoActividad}";
+
+    // Programas e Nacion ==============================================================================================
+    // Programas Plan de Nacion
+    public static final String PROGRAMAS_PLAN_NACION_ENDPOINT = "/programas/plan-nacion";
+    public static final String PROGRAMAS_PLAN_NACION_ACT_ENDPOINT = "/mant-actividades/programas/plan-nacion-proyecto";
+    public static final String PROGRAMAS_PLAN_NACION_ENDPOINT_FIND_BY_COD_PROGRAMA = "/mant-actividades/programas/plan-nacion-proyecto/findByCodigoActividad/{codigoActividad}";
+    public static final String PROGRAMAS_PLAN_NACION_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/programas/plan-nacion-proyecto/findByIdActividad/{idActividad}";
+    public static final String PROGRAMAS_PLAN_NACION_ENDPOINT_FIND_BY_ID_PROGRAMA = "/programas/plan-nacion/findByIdPrograma/{idPrograma}";
+    public static final String PROGRAMAS_PLAN_NACION_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE = "/programas/plan-nacion/findByIdNivelPrograma/{idNivelPrograma}/findByProgramaPadreId/{sectorPadreId}";
+    public static final String PROGRAMAS_PLAN_NACION_ENDPOINT_FIND_BY_ID_NIVEL_PROGRAMA = "/programas/plan-nacion/findByIdNivelPrograma/{idNivelPrograma}";
+    public static final String PROGRAMAS_PLAN_NACION_ENDPOINT_NEW = "/mant-actividades/programas/plan-nacion-proyecto/new";
+    public static final String PROGRAMAS_PLAN_NACION_ENDPOINT_EDIT = "/mant-actividades/programas/plan-nacion-proyecto/edit";
+    public static final String PROGRAMAS_PLAN_NACION_ENDPOINT_DELETE = "/mant-actividades/programas/plan-nacion-proyecto/delete/{codigoActividad}";
+
+    // Programas Vida Mejor
+    public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT = "/programas/vida-mejor";
+    public static final String PROGRAMAS_VIDA_MEJOR_ACT_ENDPOINT = "/mant-actividades/programas/vida-mejor-proyecto";
+    public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_FIND_BY_COD_PROGRAMA = "/mant-actividades/programas/vida-mejor-proyecto/findByCodigoActividad/{codigoActividad}";
+    public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/programas/vida-mejor-proyecto/findByIdActividad/{idActividad}";
+    public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_FIND_BY_ID_PROGRAMA = "/programas/vida-mejor/findByIdPrograma/{idPrograma}";
+    public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE = "/programas/vida-mejor/findByIdNivelPrograma/{idNivelPrograma}/findByProgramaPadreId/{sectorPadreId}";
+    public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_FIND_BY_ID_NIVEL_PROGRAMA = "/programas/vida-mejor/findByIdNivelPrograma/{idNivelPrograma}";
+    public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_NEW = "/mant-actividades/programas/vida-mejor-proyecto/new";
+    public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_EDIT = "/mant-actividades/programas/vida-mejor-proyecto/edit";
+    public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_DELETE = "/mant-actividades/programas/vida-mejor-proyecto/delete/{codigoActividad}";
+
 
     /*==================================================================================================================
      *================================================================================================================ */

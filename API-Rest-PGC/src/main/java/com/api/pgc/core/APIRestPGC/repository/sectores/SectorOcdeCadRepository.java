@@ -81,15 +81,15 @@ public interface SectorOcdeCadRepository extends JpaRepository<TblSectorOcdeCad,
     /**
      * Metodo que despliega el Sector OCDE/CAD de la BD con el Nivel de Sector y Sector Padre como parametro
      *
-     * @param tblNivelSector Nivel del Sector
+     * @param tblNivelSector   Nivel del Sector
      * @param tblSectorOcdeCad Sector Padre
      * @return SECTOR OCDE/CAD de la BD, por parametro de ID Nivel de Sector y Sector Padre Id
      * @autor Nahum Martinez | NAM
      * @version 25/03/2019/v1.0
      */
-    @Query("SELECT e FROM TblSectorOcdeCad e WHERE e.idNivelSector = :idNivelSector AND e.sectorPadreId = :sectorPadreId")
+    @Query("SELECT e.idSector as idSector, e.nombreSector as nombreSector FROM TblSectorOcdeCad e WHERE e.idNivelSector = :idNivelSector AND e.sectorPadreId = :sectorPadreId")
     List<TblSectorOcdeCad> getSectorOCByIdNivelSectorAndSectorPadreId(@Param("idNivelSector") TblNivelSector tblNivelSector,
-                                                                      @Param("sectorPadreId") TblSectorOcdeCad tblSectorOcdeCad );
+                                                                      @Param("sectorPadreId") TblSectorOcdeCad tblSectorOcdeCad);
 
 
     /**
@@ -103,5 +103,6 @@ public interface SectorOcdeCadRepository extends JpaRepository<TblSectorOcdeCad,
      */
     @Query("SELECT COUNT(*) FROM TblSectorOcdeCad e WHERE e.idNivelSector = :idNivelSector AND e.sectorPadreId = :sectorPadreId")
     long countSectorOCByIdNivelSectorAndSectorPadreId(@Param("idNivelSector") TblNivelSector tblNivelSector,
-                                                      @Param("sectorPadreId") TblSectorOcdeCad tblSectorOcdeCad );
+                                                      @Param("sectorPadreId") TblSectorOcdeCad tblSectorOcdeCad);
+
 }
