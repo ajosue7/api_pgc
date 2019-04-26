@@ -236,6 +236,30 @@ public class configAPI {
     public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_EDIT = "/mant-actividades/programas/vida-mejor-proyecto/edit";
     public static final String PROGRAMAS_VIDA_MEJOR_ENDPOINT_DELETE = "/mant-actividades/programas/vida-mejor-proyecto/delete/{codigoActividad}";
 
+    // Programas Vision de Pais
+    public static final String PROGRAMAS_VISION_PAIS_ENDPOINT = "/programas/vision-pais";
+    public static final String PROGRAMAS_VISION_PAIS_ACT_ENDPOINT = "/mant-actividades/programas/vision-pais-proyecto";
+    public static final String PROGRAMAS_VISION_PAIS_ENDPOINT_FIND_BY_COD_PROGRAMA = "/mant-actividades/programas/vision-pais-proyecto/findByCodigoActividad/{codigoActividad}";
+    public static final String PROGRAMAS_VISION_PAIS_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/programas/vision-pais-proyecto/findByIdActividad/{idActividad}";
+    public static final String PROGRAMAS_VISION_PAIS_ENDPOINT_FIND_BY_ID_PROGRAMA = "/programas/vision-pais/findByIdPrograma/{idPrograma}";
+    public static final String PROGRAMAS_VISION_PAIS_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE = "/programas/vision-pais/findByIdNivelPrograma/{idNivelPrograma}/findByProgramaPadreId/{sectorPadreId}";
+    public static final String PROGRAMAS_VISION_PAIS_ENDPOINT_FIND_BY_ID_NIVEL_PROGRAMA = "/programas/vision-pais/findByIdNivelPrograma/{idNivelPrograma}";
+    public static final String PROGRAMAS_VISION_PAIS_ENDPOINT_NEW = "/mant-actividades/programas/vision-pais-proyecto/new";
+    public static final String PROGRAMAS_VISION_PAIS_ENDPOINT_EDIT = "/mant-actividades/programas/vision-pais-proyecto/edit";
+    public static final String PROGRAMAS_VISION_PAIS_ENDPOINT_DELETE = "/mant-actividades/programas/vision-pais-proyecto/delete/{codigoActividad}";
+
+    // Programas Politicas Publicas
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ENDPOINT = "/programas/politica-publica";
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ACT_ENDPOINT = "/mant-actividades/programas/politica-publica-proyecto";
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ENDPOINT_FIND_BY_COD_PROGRAMA = "/mant-actividades/programas/politica-publica-proyecto/findByCodigoActividad/{codigoActividad}";
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/programas/politica-publica-proyecto/findByIdActividad/{idActividad}";
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ENDPOINT_FIND_BY_ID_PROGRAMA = "/programas/politica-publica/findByIdPrograma/{idPrograma}";
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE = "/programas/politica-publica/findByIdNivelPrograma/{idNivelPrograma}/findByProgramaPadreId/{sectorPadreId}";
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ENDPOINT_FIND_BY_ID_NIVEL_PROGRAMA = "/programas/politica-publica/findByIdNivelPrograma/{idNivelPrograma}";
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ENDPOINT_NEW = "/mant-actividades/programas/politica-publica-proyecto/new";
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ENDPOINT_EDIT = "/mant-actividades/programas/politica-publica-proyecto/edit";
+    public static final String PROGRAMAS_POLITICA_PUBLICA_ENDPOINT_DELETE = "/mant-actividades/programas/politica-publica-proyecto/delete/{codigoActividad}";
+
 
     /*==================================================================================================================
      *================================================================================================================ */

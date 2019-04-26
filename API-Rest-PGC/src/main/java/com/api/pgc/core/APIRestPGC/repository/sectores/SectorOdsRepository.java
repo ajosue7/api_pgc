@@ -88,6 +88,7 @@ public interface SectorOdsRepository extends JpaRepository<TblSectorOds, Integer
      * @version 19/04/2019/v1.0
      */
     @Query("SELECT e.idSector as idSector, e.nombreSector as nombreSector FROM TblSectorOds e WHERE e.idNivelSector = :idNivelSector AND e.sectorPadreId = :sectorPadreId")
+    // @Query("SELECT e FROM TblSectorOds e WHERE e.idNivelSector = :idNivelSector AND e.sectorPadreId = :sectorPadreId")
     List<TblSectorOds> getSectorODSByIdNivelSectorAndSectorPadreId(@Param("idNivelSector") TblNivelSector tblNivelSector,
                                                                   @Param("sectorPadreId") TblSectorOds TblSectorOds);
 

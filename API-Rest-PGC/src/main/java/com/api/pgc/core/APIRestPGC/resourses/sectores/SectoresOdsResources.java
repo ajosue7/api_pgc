@@ -185,7 +185,7 @@ public class SectoresOdsResources {
     @GetMapping(value = SECTORES_ODS_ENDPOINT_FIND_BY_ID_TIPO_NIVEL_PADRE, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getSectorOdsByIdNivelSectorAndSectorPadreId(@ApiParam(value = "Identificador de Nivel del Sector y Sector Padre ODS a Buscar", required = true)
                                                                                @PathVariable("idNivelSector") long idNivelSector, @PathVariable("sectorPadreId") long sectorPadreId) throws Exception {
-        //Ejecuta el try Cacth
+        // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         // Buscamos el Nivel Indicado y el Sector Padre
@@ -199,14 +199,16 @@ public class SectoresOdsResources {
                     msgMethod = "No se ha encontrado datos de Sector ODS consultado, con el Sector Padre y Nivel indicado";
 
                     msgExeptions.map.put("error", "No data found");
+                    msgExeptions.map.put("find", false);
 
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
-                    //Sobreescirbe el Metodo de Mensajes
+                    // Sobreescirbe el Metodo de Mensajes
                     msgMethod = "Detalle de Sector ODS Consultado";
                     msgExeptions.map.put("data", _sectorOdsRepository.getSectorODSByIdNivelSectorAndSectorPadreId(_tblNivelSector, _tblSectorOds));
                     msgExeptions.map.put("totalRecords", _sectorOdsRepository.countSectorODSByIdNivelSectorAndSectorPadreId(_tblNivelSector, _tblSectorOds));
+                    msgExeptions.map.put("find", true);
 
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
