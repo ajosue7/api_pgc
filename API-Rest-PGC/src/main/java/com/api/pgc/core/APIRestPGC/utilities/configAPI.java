@@ -69,6 +69,7 @@ public class configAPI {
     public static final String ORGANIZACIONES_ENDPOINT_NEW = "/organizaciones/new";
     public static final String ORGANIZACIONES_ENDPOINT_EDIT = "/organizaciones/edit/{idOrganizacion}";
     public static final String ORGANIZACIONES_ENDPOINT_DELETE = "/organizaciones/delete/{idOrganizacion}";
+    public static final String ORGANIZACIONES_ENDPOINT_FIND_BY_BOOLEAN = "/organizaciones/findByBoolean/{caseBoolean}";
 
     public static final String TIPO_ORGANIZACIONES_ENDPOINT = "/tipos-organizaciones";
     public static final String TIPO_ORGANIZACIONES_ENDPOINT_FIND_BY_ID = "/tipos-organizaciones/findByIdTipoOrganizacion/{idTipoOrganizacion}";

@@ -109,4 +109,25 @@ public interface OrganizacionRepository extends JpaRepository<TblOrganizacion, I
      */
     @Query("SELECT e FROM TblOrganizacion e WHERE e.idPaisOrganizacion = :idPaisOrganizacion ")
     List<TblOrganizacion> getPaisOrganizacion(@Param("idPaisOrganizacion") TblPais tblPais);
+
+
+    /**
+     * Metodo que despliega la Organizacion de la BD con el caso de Organizacion como parametro
+     *
+     * @param
+     * @return Organizacion de la BD, por paramtro de caseBoolean
+     * @autor Nahum Martinez | NAM
+     * @version 02/05/2019/v1.0
+     */
+    @Query("SELECT e FROM TblOrganizacion e WHERE e.socioDesarrollo = true AND e.activo = true")
+    List<TblOrganizacion> getOrganizacionByCaseSocioDesarrollo();
+
+    @Query("SELECT e FROM TblOrganizacion e WHERE e.agenciaBeneficiaria = true AND e.activo = true")
+    List<TblOrganizacion> getOrganizacionByCaseAgenciaBeneficiaria();
+
+    @Query("SELECT e FROM TblOrganizacion e WHERE e.unidadEjecutora = true AND e.activo = true")
+    List<TblOrganizacion> getOrganizacionByCaseUnidadEjecutora();
+
+    @Query("SELECT e FROM TblOrganizacion e WHERE e.administradorFinanciero = true AND e.activo = true")
+    List<TblOrganizacion> getOrganizacionByCaseAdministradorFinanciero();
 }

@@ -52,7 +52,6 @@ public class OrganizacionesResources {
     ActividadIdInternaRepository _actividadIdInternaRepository;
 
 
-
     /**
      * Metodo que despliega la Lista de todos las Organizaciones de la BD
      *
@@ -74,7 +73,7 @@ public class OrganizacionesResources {
                 msgMethod = "No Existen, Organizaciones resgitradas en la Base de Daros, Contacta al Administrador";
 
                 msgExeptions.map.put("error", "No data found");
-                msgExeptions.map.put("data", organizacionRepository.findAll( new Sort(Sort.Direction.DESC, "<idOrganizacion>" )));
+                msgExeptions.map.put("data", organizacionRepository.findAll(new Sort(Sort.Direction.DESC, "<idOrganizacion>")));
                 msgExeptions.map.put("totalRecors", organizacionRepository.count());
             } else {
                 msgExeptions.map.put("data", organizacionRepository.findAll());
@@ -100,7 +99,7 @@ public class OrganizacionesResources {
     @ApiOperation(value = "Retorna la Organizacion enviada a buscar de la BD, con el ID como parametro", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = ORGANIZACIONES_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getOrganizacionById(@ApiParam(value = "Identificador de Organizacion a Buscar", required = true)
-                                                   @PathVariable("idOrganizacion") long idOrganizacion) throws Exception {
+                                                       @PathVariable("idOrganizacion") long idOrganizacion) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -125,7 +124,6 @@ public class OrganizacionesResources {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     }//FIN
-
 
 
     /**
@@ -191,7 +189,7 @@ public class OrganizacionesResources {
             // TblGrupoOrganizacion tblGrupoOrganizacion = grupoOrganizacionRepository.findByIdGrupoOrganizacion(organizacionJson.getIdGrupoOrganizazion().getIdGrupoOrganizacion());
 
             // Buscar el Categoria de Organizacion
-            TblCategoriaOrganizacion _tblCategoriaOrganizacion= _categoriaOrganizacionRepository.findByIdCatOrganizacion( organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion() );
+            TblCategoriaOrganizacion _tblCategoriaOrganizacion = _categoriaOrganizacionRepository.findByIdCatOrganizacion(organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion());
 
             if (tblTipoOrganizacion.isActivo() == true) {
                 // Buscar el el Pais de Organizacion
@@ -229,7 +227,7 @@ public class OrganizacionesResources {
      * Metodo que Solcita un json con los datos de la Entidad de Organizacion
      *
      * @param _organizacionJson Obtiene desde el request los datos de la Organizacion a ingresar
-     * @param idOrganizacion Identificador de la tabla
+     * @param idOrganizacion    Identificador de la tabla
      * @return Mensaje de Confirmacion de Registro de la Organizacion
      * @autor Nahum Martinez | NAM
      * @version 14/02/2019/v1.0
@@ -237,8 +235,8 @@ public class OrganizacionesResources {
     @ApiOperation(value = "Actualiza a la BD, la Información enviada por el Bean de la Organizacion", authorizations = {@Authorization(value = "Token-PGC")})
     @PutMapping(value = ORGANIZACIONES_ENDPOINT_EDIT, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> editOrganizacion(@ApiParam(value = "Json de la Organizacion a Ingresar", required = true)
-                                                       @PathVariable("idOrganizacion") long idOrganizacion,
-                                                       @RequestBody final TblOrganizacion _organizacionJson) throws Exception {
+                                                    @PathVariable("idOrganizacion") long idOrganizacion,
+                                                    @RequestBody final TblOrganizacion _organizacionJson) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -250,20 +248,20 @@ public class OrganizacionesResources {
             // Buacamos la Organizacion segun el Parametro enviado
             TblOrganizacion _tblOrganizacion = organizacionRepository.findByIdOrganizacion(idOrganizacion);
 
-            if ( organizacionRepository.countByIdOrganizacion ( idOrganizacion ) > 0 ) {
+            if (organizacionRepository.countByIdOrganizacion(idOrganizacion) > 0) {
                 // Buacamos el Tipo Organizacion segun el Parametro enviado
-                TblTipoOrganizacion _tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion( _organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion() );
+                TblTipoOrganizacion _tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion(_organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion());
 
                 // Buacamos el Cat Organizacion segun el Parametro enviado
-                TblCategoriaOrganizacion _tblCategoriaOrganizacion = _categoriaOrganizacionRepository.findByIdCatOrganizacion( _organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion() );
+                TblCategoriaOrganizacion _tblCategoriaOrganizacion = _categoriaOrganizacionRepository.findByIdCatOrganizacion(_organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion());
 
                 // Buacamos el Pais segun el Parametro enviado
-                TblPais _tblPais = paisRepository.findByIdPais( _organizacionJson.getIdPaisOrganizacion().getIdPais() );
+                TblPais _tblPais = paisRepository.findByIdPais(_organizacionJson.getIdPaisOrganizacion().getIdPais());
 
                 try {
                     // Realizamos la Persistencia de los Datos
-                    _tblOrganizacion.setActivo( _organizacionJson.isActivo() );
-                    _tblOrganizacion.setAdministradorFinanciero( _organizacionJson.isAdministradorFinanciero() );
+                    _tblOrganizacion.setActivo(_organizacionJson.isActivo());
+                    _tblOrganizacion.setAdministradorFinanciero(_organizacionJson.isAdministradorFinanciero());
                     _tblOrganizacion.setSocioDesarrollo(_organizacionJson.isSocioDesarrollo());
                     _tblOrganizacion.setUnidadEjecutora(_organizacionJson.isUnidadEjecutora());
                     _tblOrganizacion.setAgenciaBeneficiaria(_organizacionJson.isAgenciaBeneficiaria());
@@ -281,7 +279,7 @@ public class OrganizacionesResources {
                     _tblOrganizacion.setIdPaisOrganizacion(_tblPais);
                     _tblOrganizacion.setIdTipoOrganizacion(_tblTipoOrganizacion);
 
-                    organizacionRepository.save( _tblOrganizacion );
+                    organizacionRepository.save(_tblOrganizacion);
                     organizacionRepository.flush();
 
                     // return Repository
@@ -303,7 +301,6 @@ public class OrganizacionesResources {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     } // FIN | editOrganizacion
-
 
 
     /**
@@ -394,12 +391,12 @@ public class OrganizacionesResources {
     }//FIN
 
 
-
     /**
      * Metodo que despliega la Organizacion de la BD, enviando el Tipo de Organizacion, Pais
      * y Categoria
-     * @param idTipoOrganizacion Identificador del Tipo y Pais de Organizacion a Buscar
-     * @param idPaisOrganizacion Identificador del Pais de Organizacion a Buscar
+     *
+     * @param idTipoOrganizacion      Identificador del Tipo y Pais de Organizacion a Buscar
+     * @param idPaisOrganizacion      Identificador del Pais de Organizacion a Buscar
      * @param idCategoriaOrganizacion Identificador de la Categoria de Organizacion a Buscar
      * @return Organizaciones de la BD
      * @autor Nahum Martinez | NAM
@@ -408,9 +405,9 @@ public class OrganizacionesResources {
     @ApiOperation(value = "Retorna las Organizaciones enviado a buscar de la BD, por el Tipo, Pais y Categoria Indicado", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = ORGANIZACIONES_ENDPOINT_FIND_BY_ID_TIPO_PAIS_CATEGORIA, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getTipoPaisCategoriaOrganizacion(@ApiParam(value = "Identificador del Tipo, Pais y Categoria de Organizacion a Buscar", required = true)
-                                                           @PathVariable("idTipoOrganizacion") long idTipoOrganizacion,
-                                                           @PathVariable("idPaisOrganizacion") long idPaisOrganizacion,
-                                                           @PathVariable("idCategoriaOrganizacion") long idCategoriaOrganizacion) throws Exception {
+                                                                    @PathVariable("idTipoOrganizacion") long idTipoOrganizacion,
+                                                                    @PathVariable("idPaisOrganizacion") long idPaisOrganizacion,
+                                                                    @PathVariable("idCategoriaOrganizacion") long idCategoriaOrganizacion) throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -486,7 +483,6 @@ public class OrganizacionesResources {
     }//FIN
 
 
-
     /**
      * Metodo que Solcita un json con los datos de la Entidad de Organizacion
      *
@@ -498,7 +494,7 @@ public class OrganizacionesResources {
     @ApiOperation(value = "Inhabilita a la BD, la Información enviada por el Bean de la Organizacion", authorizations = {@Authorization(value = "Token-PGC")})
     @DeleteMapping(value = ORGANIZACIONES_ENDPOINT_DELETE, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> deleteOrganizacion(@ApiParam(value = "Id de la Organizacion a Inhabilitar", required = true)
-                                                    @PathVariable("idOrganizacion") long idOrganizacion) throws Exception {
+                                                      @PathVariable("idOrganizacion") long idOrganizacion) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -510,12 +506,12 @@ public class OrganizacionesResources {
             // Buacamos la Organizacion segun el Parametro enviado
             TblOrganizacion _tblOrganizacion = organizacionRepository.findByIdOrganizacion(idOrganizacion);
 
-            if ( organizacionRepository.countByIdOrganizacion ( idOrganizacion ) > 0 ) {
+            if (organizacionRepository.countByIdOrganizacion(idOrganizacion) > 0) {
                 try {
                     // Realizamos la Persistencia de los Datos
                     _tblOrganizacion.setActivo(false);
 
-                    organizacionRepository.save( _tblOrganizacion );
+                    organizacionRepository.save(_tblOrganizacion);
                     organizacionRepository.flush();
 
                     // return Repository
@@ -537,4 +533,86 @@ public class OrganizacionesResources {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     } // FIN | editOrganizacion
+
+
+    /**
+     * Metodo que despliega la Organizacion de la BD, enviando el Case del boolean
+     * 1 = Socio al Desarrollo | 2 = Agencia Beneficiaria | 3 = Unidad Ejecutora | 4 = Admon. Financiero
+     *
+     * @param caseBoolean Identificador de la Organizacion a Buscar a Buscar
+     * @return Organizaciones de la BD
+     * @autor Nahum Martinez | NAM
+     * @version 02/05/2019/v1.0
+     */
+    @ApiOperation(value = "Retorna las Organizaciones enviado a buscar de la BD, por el Pais Indicado", authorizations = {@Authorization(value = "Token-PGC")})
+    @GetMapping(value = ORGANIZACIONES_ENDPOINT_FIND_BY_BOOLEAN, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getOrganizacionByCaseBoolean(@ApiParam(value = "Identificador del caso de Organizacion a Buscar", required = true)
+                                                                @PathVariable("caseBoolean") long caseBoolean) throws Exception {
+        // Ejecuta el try Cacth
+        boolean findCase = false;
+        String textCase = null;
+
+        msgExceptions msgExeptions = new msgExceptions();
+        msgMethod = "La Organizacion que buscas no esta parametrizada";
+        msgExeptions.map.put("find", false);
+
+        try {
+            // Evaluacion del caso enviado
+            switch ((int) caseBoolean) {
+                case 1: // Socio al Desarrollo
+                    // Sobreescribe el Metodo de Mensajes
+                    if (organizacionRepository.getOrganizacionByCaseSocioDesarrollo().isEmpty()) {
+                        findCase = false;
+                        msgExeptions.map.put("data", organizacionRepository.getOrganizacionByCaseSocioDesarrollo());
+                    } else {
+                        findCase = true;
+                        textCase = "Socios al Desarrollo";
+                        msgExeptions.map.put("data", organizacionRepository.getOrganizacionByCaseSocioDesarrollo());
+                    }
+                    break;
+                case 2: // Agencia Beneficiaria
+                    // Sobreescribe el Metodo de Mensajes
+                    if (organizacionRepository.getOrganizacionByCaseAgenciaBeneficiaria().isEmpty()) {
+                        findCase = false;
+                        msgExeptions.map.put("data", organizacionRepository.getOrganizacionByCaseAgenciaBeneficiaria());
+                    } else {
+                        findCase = true;
+                        textCase = "Agenciaa Beneficiarias";
+                        msgExeptions.map.put("data", organizacionRepository.getOrganizacionByCaseAgenciaBeneficiaria());
+                    }
+                    break;
+                case 3: // Unidad Ejecutora
+                    // Sobreescribe el Metodo de Mensajes
+                    if (organizacionRepository.getOrganizacionByCaseUnidadEjecutora().isEmpty()) {
+                        findCase = false;
+                        msgExeptions.map.put("data", organizacionRepository.getOrganizacionByCaseUnidadEjecutora());
+                    } else {
+                        findCase = true;
+                        textCase = "Unidad Ejecutora";
+                        msgExeptions.map.put("data", organizacionRepository.getOrganizacionByCaseUnidadEjecutora());
+                    }
+                    break;
+                case 4: // Admon. Financiero
+                    // Sobreescribe el Metodo de Mensajes
+                    if (organizacionRepository.getOrganizacionByCaseAdministradorFinanciero().isEmpty()) {
+                        findCase = false;
+                        msgExeptions.map.put("data", organizacionRepository.getOrganizacionByCaseAdministradorFinanciero());
+                    } else {
+                        findCase = true;
+                        textCase = "Administrador Financiero";
+                        msgExeptions.map.put("data", organizacionRepository.getOrganizacionByCaseAdministradorFinanciero());
+                    }
+                    break;
+            }
+            // Condicion de los resultados
+            if (findCase == true) {
+                msgMethod = "Informacion de " + textCase + " consultados.";
+                msgExeptions.map.put("find", true);
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+        // Retorno del json
+        return msgExeptions.msgJson(msgMethod, 200);
+    }//FIN
 }

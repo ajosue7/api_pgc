@@ -33,7 +33,7 @@ public class TblProgramaVisionPais {
     @ApiModelProperty(notes = "Descripcion del Plan de Nacion")
     private String descripcionPrograma;
 
-    @Column(name = "IMAGEN_PROGRAMA", nullable = false, length = 300)
+    @Column(name = "IMAGEN_PROGRAMA", length = 300)
     @ApiModelProperty(notes = "Imagen del Plan de Nacion")
     private String imagenPrograma;
 
