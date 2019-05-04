@@ -117,7 +117,7 @@ public interface OrganizacionRepository extends JpaRepository<TblOrganizacion, I
      * @param
      * @return Organizacion de la BD, por paramtro de caseBoolean
      * @autor Nahum Martinez | NAM
-     * @version 02/05/2019/v1.0
+     * @version 03/05/2019/v1.0
      */
     @Query("SELECT e FROM TblOrganizacion e WHERE e.socioDesarrollo = true AND e.activo = true")
     List<TblOrganizacion> getOrganizacionByCaseSocioDesarrollo();
