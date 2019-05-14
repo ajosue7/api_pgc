@@ -159,6 +159,12 @@ public class configAPI {
     public static final String RECURSOS_TIPO_ENDPOINT = "/mant-actividades/recursos-proyecto/tipos";
     public static final String RECURSOS_TIPO_ENDPOINT_FIND_BY_ID = "/mant-actividades/recursos-proyecto/tipos/{idTipoRecurso}";
 
+    // Mapeo de las Rutas del Sub Modulo de Organizaciones
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora";
+
     /*==================================================================================================================
      *================================================================================================================ */
 
