@@ -162,6 +162,11 @@ public class configAPI {
     // Mapeo de las Rutas del Sub Modulo de Organizaciones
     // Socio al Desarrollo | Admon. Financiero | Unidad Ejecutora | Agencia Beneficiaria
     public static final String ORGANIZACIONES_ACT_ENDPOINT_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo/findByIdActividad/{idActividad}";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo/findByCodigoActividad/{codigoActividad}";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_NEW_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo/new";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_DELETE_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo/delete/{codigoActividad}";
+
     public static final String ORGANIZACIONES_ACT_ENDPOINT_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora";
