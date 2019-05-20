@@ -17,7 +17,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "sectorejecutorapi" , description = "Operaciones sobre el Modulo de Mantenimiento de Actividades", tags = "Sectores Ejecutores")
+@Api(value = "sectorejecutorapi" , description = "Operaciones sobre el Modulo de Mantenimiento de Actividades", tags = "Mantenimiento de Actividades")
 public class SectorEjecutorResourses {
     //Propiedades de la Clase
     String msgMethod = null;

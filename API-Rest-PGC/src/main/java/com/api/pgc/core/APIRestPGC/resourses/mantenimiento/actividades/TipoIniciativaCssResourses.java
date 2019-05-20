@@ -22,7 +22,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = API_BASE_PATH)
-@Api(value = "tipoIniciativaApi" , description = "Operaciones sobre el Modulo de Mantenimiento de Actividades", tags = "Tipo de Iniciativa CSS")
+@Api(value = "tipoIniciativaApi" , description = "Operaciones sobre el Modulo de Mantenimiento de Actividades", tags = "Mantenimiento de Actividades")
 public class TipoIniciativaCssResourses {
     //Propiedades de la Clase
     String msgMethod = null;

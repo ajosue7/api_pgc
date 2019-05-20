@@ -125,7 +125,11 @@ public class configAPI {
 
     // Mapeo de las Rutas del Sub Modulo de Presupuesto
     public static final String PRESUPUESTO_ENDPOINT = "/mant-actividades/presupuesto";
-    public static final String PRESUPUESTO_ENDPOINT_FIND_BY_ID = "/mant-actividades/presupuesto/findById/{idEstrategia}";
+    public static final String PRESUPUESTO_ENDPOINT_FIND_BY_ID = "/mant-actividades/presupuesto/findById/{idPresupuesto}";
+
+    // Mapeo de las Rutas del Sub Modulo de Presupuesto | NAM 2019-05-20
+    public static final String MONENDA_ACT_ENDPOINT = "/mant-actividades/moneda-actividad";
+    public static final String MONENDA_ACT_ENDPOINT_FIND_BY_ID = "/mant-actividades/moneda-actividad/findById/{idMoneda}";
 
     // Mapeo de las Rutas del Sub Modulo de Id Internas
     public static final String ID_INTERNA_ENDPOINT = "/mant-actividades/id-interna";

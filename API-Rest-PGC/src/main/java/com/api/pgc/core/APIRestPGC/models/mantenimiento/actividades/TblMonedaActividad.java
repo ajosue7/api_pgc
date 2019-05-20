@@ -10,21 +10,21 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tbl_moneda_actividad",
-        indexes = {@Index(name = "idx_codigo_moneda", columnList = "CODIGO_MONEDA" )},
+        indexes = {@Index(name = "idx_codigo_moneda", columnList = "CODIGO_MONEDA")},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"CODIGO_MONEDA"})})
 public class TblMonedaActividad {
     //Propiedades de la tabla
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_MONEDA_ACTIVIDAD", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
     private long idMonedaActividad;
 
-    @Column(name = "CODIGO_MONEDA", nullable = false, length=10)
+    @Column(name = "CODIGO_MONEDA", nullable = false, length = 10)
     @ApiModelProperty(notes = "Codigo de la Moneda de la Actividad", required = true)
     private String codigoMoneda;
 
-    @Column(name = "NOMBRE_MONEDA", nullable = false, length=100)
+    @Column(name = "NOMBRE_MONEDA", nullable = false, length = 100)
     @ApiModelProperty(notes = "Nombre de la Moneda de la Actividad", required = true)
     private String nombreMoneda;
 
@@ -32,7 +32,7 @@ public class TblMonedaActividad {
     @ApiModelProperty(notes = "Tasa Cambiaria de la Moneda de la Actividad", required = true)
     private String tasaCambiaria;
 
-    @Column(name = "HABILITADA" )
+    @Column(name = "HABILITADA")
     private boolean habilitada = true;
 
 
