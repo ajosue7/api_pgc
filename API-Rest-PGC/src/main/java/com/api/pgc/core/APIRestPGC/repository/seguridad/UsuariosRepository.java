@@ -9,7 +9,7 @@ public interface UsuariosRepository extends JpaRepository<TblUsuarios, Integer> 
      * @autor Nahum Martinez | NAM
      * @version  18/04/2018/v1.0
      * @return usuario de la BD, por paramtro de ID
-     * prueba 2 para sincronizacion
+     * prueba 3 para sincronizacion
      * @param idUsuario
      */
     TblUsuarios findByIdUsuario( long idUsuario );
