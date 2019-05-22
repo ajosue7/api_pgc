@@ -1,7 +1,6 @@
 package com.api.pgc.core.APIRestPGC;
 
 import com.api.pgc.core.APIRestPGC.config.fileUpload.FileStorageProperties;
-import javafx.application.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
