@@ -177,6 +177,7 @@ public class ActividadOrgSocioDesarrolloResourses {
 
         // Fecha de Ingrso
         Date dateActual = new Date();
+        System.out.println( "************************"  +_actividadSocioDesarrolloJson.getPorcentajePart());
 
         try {
             // Busca la Actividad, desde el Reporsitorio con el Parametro del Json enviado ( "idActividad": {"idActividad": valor })
@@ -192,12 +193,13 @@ public class ActividadOrgSocioDesarrolloResourses {
                 if (_actividadOrganizacionSocioDesarrolloRepository.countByCodigoActividad(_actividadSocioDesarrolloJson.getCodigoActividad()) > 0) {
                     msgMethod = "Ya Existe un registro con el Código de Socio Desarrollo para este Proyecto !! " + _actividadSocioDesarrolloJson.getCodigoActividad();
 
-                    msgExeptions.map.put("findRecord", false);
+                    msgExeptions.map.put("findRecord", true);
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
                     // Seteo de las Fecha y Hora de Creacion
                     _actividadSocioDesarrolloJson.setFechaCreacion(dateActual);
                     _actividadSocioDesarrolloJson.setHoraCreacion(dateActual);
+                    _actividadSocioDesarrolloJson.setPorcentajePart(_actividadSocioDesarrolloJson.getPorcentajePart());
 
                     // Seteamos la Actividad de Actividad y Socio Desarrollo
                     _actividadSocioDesarrolloJson.setIdActividad(_tblActividad);
@@ -208,9 +210,10 @@ public class ActividadOrgSocioDesarrolloResourses {
                     _actividadOrganizacionSocioDesarrolloRepository.flush();
 
                     // Retorno de la Funcion
-                    msgMethod = "El Socio Desarrollo para este Proyecto, se ha Ingresado de forma satisfactoria!!";
+                    msgMethod = "El Socio Desarrollo para este Proyecto, " + _actividadSocioDesarrolloJson.getCodigoActividad() + " se ha Ingresado de forma satisfactoria!!";
 
                     //Retorno del json
+                    msgExeptions.map.put("findRecord", false);
                     return msgExeptions.msgJson(msgMethod, 200);
                 }
             } catch (Exception ex) {
