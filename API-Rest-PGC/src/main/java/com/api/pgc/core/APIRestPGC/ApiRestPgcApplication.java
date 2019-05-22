@@ -16,7 +16,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 @SpringBootApplication
 public class ApiRestPgcApplication extends SpringBootServletInitializer {
 
-	/**
+	 /**
 	 * Used when run as JAR
 	 */
 	public static void main(String[] args) {
