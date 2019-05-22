@@ -166,7 +166,7 @@ public class ActividadProgramaPoliticaPublicaResourses {
      * @param _actividadPoliticaPublicaJson Obtiene desde el request los datos del Politicas Publicasa ingresar
      * @return Mensaje de Confirmacion de Registro de Programa Politica Publica
      * @autor Nahum Martinez | NAM
-     * @version 25/04/2019/v1.0
+     * @version 22/05/2019/v1.0
      */
     @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del Politicas Publicas proyecto", authorizations = {@Authorization(value = "Token-PGC")})
     @PostMapping(value = PROGRAMAS_POLITICA_PUBLICA_ENDPOINT_NEW, produces = "application/json; charset=UTF-8")
