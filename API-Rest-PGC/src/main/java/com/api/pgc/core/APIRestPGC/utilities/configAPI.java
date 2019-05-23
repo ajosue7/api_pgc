@@ -175,6 +175,19 @@ public class configAPI {
     public static final String ORGANIZACIONES_ACT_ENDPOINT_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora";
 
+
+    // Mapeo de las Rutas del Sub Modulo de Financiamiento
+    // Encabezado | Detalle | Compromisos | Desembolsos
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FINANC_ENC = "/mant-actividades/financiamiento/encabezado";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_ENC = "/mant-actividades/financiamiento/encabezado/findByIdActividad/{idActividad}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_ENC = "/mant-actividades/financiamiento/encabezado/findByCodigoFinancEnc/{codigoFinancEnc}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_ENC = "/mant-actividades/financiamiento/encabezado/new";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_ENC = "/mant-actividades/financiamiento/encabezado/delete/{codigoFinancEnc}";
+
+    /*public static final String ORGANIZACIONES_ACT_ENDPOINT_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora";*/
+
     /*==================================================================================================================
      *================================================================================================================ */
 

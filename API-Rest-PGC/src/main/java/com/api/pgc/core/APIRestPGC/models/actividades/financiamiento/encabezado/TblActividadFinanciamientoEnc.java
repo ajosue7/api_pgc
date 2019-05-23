@@ -47,7 +47,7 @@ public class TblActividadFinanciamientoEnc {
 
     @Column(name = "FECHA_TRANSACCION")
     @Temporal(TemporalType.DATE)
-    @ApiModelProperty(notes = "Fecha de Transacción", readOnly = true)
+    @ApiModelProperty(notes = "Fecha de Transacción")
     private Date fechaTransaccion;
 
     // Auditoria
