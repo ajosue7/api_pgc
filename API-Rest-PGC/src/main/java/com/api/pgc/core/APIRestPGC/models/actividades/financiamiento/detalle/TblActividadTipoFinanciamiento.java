@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name = "tbl_tipo_financiamiento",
         indexes = {@Index(name = "idx_cod_tipo_financiamiento", columnList = "COD_TIPO_FINANCIAMIENTO")},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"COD_TIPO_FINANCIAMIENTO"})})
-public class TblTipoFinanciamiento {
+public class TblActividadTipoFinanciamiento {
     //Propiedades de la tabla
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,7 +52,7 @@ public class TblTipoFinanciamiento {
     /*
      * Constructor vacio de la Clase, solo para Jpa
      */
-    public TblTipoFinanciamiento() {
+    public TblActividadTipoFinanciamiento() {
         //Este lo usa Jpa para realizar los Mapping
     }
 

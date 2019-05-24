@@ -127,9 +127,15 @@ public class configAPI {
     public static final String PRESUPUESTO_ENDPOINT = "/mant-actividades/presupuesto";
     public static final String PRESUPUESTO_ENDPOINT_FIND_BY_ID = "/mant-actividades/presupuesto/findById/{idPresupuesto}";
 
-    // Mapeo de las Rutas del Sub Modulo de Presupuesto | NAM 2019-05-20
+    // Mapeo de las Rutas del Sub Modulo de Actividades Financ | NAM 2019-05-20
     public static final String MONENDA_ACT_ENDPOINT = "/mant-actividades/moneda-actividad";
     public static final String MONENDA_ACT_ENDPOINT_FIND_BY_ID = "/mant-actividades/moneda-actividad/findById/{idMoneda}";
+
+    public static final String MOD_AYUDA_ACT_ENDPOINT = "/mant-actividades/modalidad-ayuda";
+    public static final String MOD_AYUDA_ACT_ENDPOINT_FIND_BY_ID = "/mant-actividades/modalidad-ayuda/findById/{idModalidadAyuda}";
+
+    public static final String TIPO_FINANC_ACT_ENDPOINT = "/mant-actividades/tipo-financiamiento";
+    public static final String TIPO_FINANC_ACT_ENDPOINT_FIND_BY_ID = "/mant-actividades/tipo-financiamiento/findById/{idTipoFinanciamiento}";
 
     // Mapeo de las Rutas del Sub Modulo de Id Internas
     public static final String ID_INTERNA_ENDPOINT = "/mant-actividades/id-interna";
@@ -177,16 +183,19 @@ public class configAPI {
 
 
     // Mapeo de las Rutas del Sub Modulo de Financiamiento
-    // Encabezado | Detalle | Compromisos | Desembolsos
+    // Encabezado de Financiamiento ====================================================================================
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FINANC_ENC = "/mant-actividades/financiamiento/encabezado";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_ENC = "/mant-actividades/financiamiento/encabezado/findByIdActividad/{idActividad}";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_ENC = "/mant-actividades/financiamiento/encabezado/findByCodigoFinancEnc/{codigoFinancEnc}";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_ENC = "/mant-actividades/financiamiento/encabezado/new";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_ENC = "/mant-actividades/financiamiento/encabezado/delete/{codigoFinancEnc}";
 
-    /*public static final String ORGANIZACIONES_ACT_ENDPOINT_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero";
-    public static final String ORGANIZACIONES_ACT_ENDPOINT_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria";
-    public static final String ORGANIZACIONES_ACT_ENDPOINT_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora";*/
+    // Detalle de Financiamiento =======================================================================================
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FINANC_DET = "/mant-actividades/financiamiento/detalle";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET = "/mant-actividades/financiamiento/detalle/findByIdActividad/{idActividad}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET = "/mant-actividades/financiamiento/detalle/findByCodigoFinancEnc/{codigoFinancEnc}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_DET = "/mant-actividades/financiamiento/detalle/new";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET = "/mant-actividades/financiamiento/detalle/delete/{codigoFinancEnc}";
 
     /*==================================================================================================================
      *================================================================================================================ */

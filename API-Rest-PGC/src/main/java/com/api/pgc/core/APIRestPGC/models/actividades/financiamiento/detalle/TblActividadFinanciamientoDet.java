@@ -4,9 +4,8 @@
 
 package com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.detalle;
 
-import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
 import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.encabezado.TblActividadFinanciamientoEnc;
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.actividades.TblMonedaActividad;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
@@ -40,7 +39,25 @@ public class TblActividadFinanciamientoDet {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "ID_TIPO_FINANCIAMIENTO", referencedColumnName = "ID_TIPO_FINANCIAMIENTO")
     @ApiModelProperty(notes = "Entidad del tipo de financiamiento de Proyecto, se envia desde un Json (\"idTipoFinanciamiento\": { \"idTipoFinanciamiento\": \"valor\" })", required = true)
-    private TblTipoFinanciamiento idTipoFinanciamiento;
+    private TblActividadTipoFinanciamiento idTipoFinanciamiento;
+
+    // Mapeo de la Relacion de la Tabla de Modalidad de Ayuda con Actividades
+    // Muchos Modalidad e Ayuda = 1 Actividad
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name = "ID_MODALIDAD_AYUDA", referencedColumnName = "ID_MODALIDAD_AYUDA")
+    @ApiModelProperty(notes = "Entidad del Modalidad de Ayuda de Proyecto, se envia desde un Json (\"idModalidadAyuda\": { \"idModalidadAyuda\": \"valor\" })", required = true)
+    private TblActividadModalidadAyuda idModalidadAyuda;
+
+    @Column(name = "ID_ORGANIZACION_FINANCIERA", nullable = false, length = 30)
+    @ApiModelProperty(notes = "Id organizacion financiera", required = true)
+    private String idOrganizacionFinanciera;
+
+    // Mapeo de la Relacion de la Tabla de Socio al Desarrollo con Actividades
+    // Muchos Socio al Desarrollo = 1 Actividad
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name = "ID_SOCIO_DESARROLLO", referencedColumnName = "ID_ORGANIZACION")
+    @ApiModelProperty(notes = "Entidad del Modalidad de Socio al Desarrollo de Proyecto, se envia desde un Json (\"idSocioDesarrollo\": { \"idSocioDesarrollo\": \"valor\" })", required = true)
+    private TblOrganizacion idSocioDesarrollo;
 
 
     // Auditoria
@@ -69,5 +86,83 @@ public class TblActividadFinanciamientoDet {
     /**
      * Metodos Getters y Setter
      */
+    public long getIdActividadFinancDet() {
+        return idActividadFinancDet;
+    }
 
+    public void setIdActividadFinancDet(long idActividadFinancDet) {
+        this.idActividadFinancDet = idActividadFinancDet;
+    }
+
+    public String getCodigoFinancDet() {
+        return codigoFinancDet;
+    }
+
+    public void setCodigoFinancDet(String codigoFinancDet) {
+        this.codigoFinancDet = codigoFinancDet;
+    }
+
+    public TblActividadFinanciamientoEnc getIdActividadFinancEnc() {
+        return idActividadFinancEnc;
+    }
+
+    public void setIdActividadFinancEnc(TblActividadFinanciamientoEnc idActividadFinancEnc) {
+        this.idActividadFinancEnc = idActividadFinancEnc;
+    }
+
+    public TblActividadTipoFinanciamiento getIdTipoFinanciamiento() {
+        return idTipoFinanciamiento;
+    }
+
+    public void setIdTipoFinanciamiento(TblActividadTipoFinanciamiento idTipoFinanciamiento) {
+        this.idTipoFinanciamiento = idTipoFinanciamiento;
+    }
+
+    public TblActividadModalidadAyuda getIdModalidadAyuda() {
+        return idModalidadAyuda;
+    }
+
+    public void setIdModalidadAyuda(TblActividadModalidadAyuda idModalidadAyuda) {
+        this.idModalidadAyuda = idModalidadAyuda;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Date getHoraCreacion() {
+        return horaCreacion;
+    }
+
+    public void setHoraCreacion(Date horaCreacion) {
+        this.horaCreacion = horaCreacion;
+    }
+
+    public String getIdOrganizacionFinanciera() {
+        return idOrganizacionFinanciera;
+    }
+
+    public void setIdOrganizacionFinanciera(String idOrganizacionFinanciera) {
+        this.idOrganizacionFinanciera = idOrganizacionFinanciera;
+    }
+
+    public TblOrganizacion getIdSocioDesarrollo() {
+        return idSocioDesarrollo;
+    }
+
+    public void setIdSocioDesarrollo(TblOrganizacion idSocioDesarrollo) {
+        this.idSocioDesarrollo = idSocioDesarrollo;
+    }
 }
