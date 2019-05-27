@@ -176,8 +176,14 @@ public class configAPI {
     public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo/findByCodigoActividad/{codigoActividad}";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_NEW_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo/new";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_DELETE_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo/delete/{codigoActividad}";
-
+    // mapeo financiera
     public static final String ORGANIZACIONES_ACT_ENDPOINT_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_ADMON_FINANCIERO= "/mant-actividades/organizaciones/admon-financiero/findByIdActividad/{idActividad}";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero/findByCodigoActividad/{codigoActividad}";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_NEW_ADMON_FINANCIERO= "/mant-actividades/organizaciones/admon-financiero/new";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_DELETE_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero/delete/{codigoActividad}";
+
+
     public static final String ORGANIZACIONES_ACT_ENDPOINT_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria";
 
     // | Unidad Ejecutora |
