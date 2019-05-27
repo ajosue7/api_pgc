@@ -60,3 +60,4 @@ uploads/
 
 # Carpeta de Target
 target/
+/.idea/misc.xml
