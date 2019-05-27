@@ -56,6 +56,10 @@ public class TblActividadOrganizacionUnidadEjecutora {
     @ApiModelProperty(notes = "Hora de Creacion de la Actividad, formato hh:mm:ss", readOnly = true)
     private Date horaCreacion = new Date();
 
+    @Column(name = "PORCENTAJE_PART")
+    @ApiModelProperty(notes = "Porcentaje participacion")
+    private double porcentajePart;
+
 
     /**
      * Constructor vacio de la Clase, solo para Jpa
@@ -122,5 +126,13 @@ public class TblActividadOrganizacionUnidadEjecutora {
 
     public void setHoraCreacion(Date horaCreacion) {
         this.horaCreacion = horaCreacion;
+    }
+
+    public double getPorcentajePart() {
+        return porcentajePart;
+    }
+
+    public void setPorcentajePart(double porcentajePart) {
+        this.porcentajePart = porcentajePart;
     }
 }

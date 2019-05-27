@@ -170,7 +170,7 @@ public class configAPI {
     public static final String RECURSOS_TIPO_ENDPOINT_FIND_BY_ID = "/mant-actividades/recursos-proyecto/tipos/{idTipoRecurso}";
 
     // Mapeo de las Rutas del Sub Modulo de Organizaciones
-    // Socio al Desarrollo | Admon. Financiero | Unidad Ejecutora | Agencia Beneficiarias
+    // | Socio al Desarrollo |
     public static final String ORGANIZACIONES_ACT_ENDPOINT_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo/findByIdActividad/{idActividad}";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_SOCIO_DESARROLLO = "/mant-actividades/organizaciones/socio-desarrollo/findByCodigoActividad/{codigoActividad}";
@@ -179,7 +179,13 @@ public class configAPI {
 
     public static final String ORGANIZACIONES_ACT_ENDPOINT_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria";
+
+    // | Unidad Ejecutora |
     public static final String ORGANIZACIONES_ACT_ENDPOINT_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora/findByIdActividad/{idActividad}";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora/findByCodigoActividad/{codigoActividad}";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_NEW_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora/new";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_DELETE_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora/delete/{codigoActividad}";
 
 
     // Mapeo de las Rutas del Sub Modulo de Financiamiento
