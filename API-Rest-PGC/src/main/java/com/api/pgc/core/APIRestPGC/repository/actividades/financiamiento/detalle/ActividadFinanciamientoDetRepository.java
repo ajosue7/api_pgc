@@ -27,6 +27,16 @@ public interface ActividadFinanciamientoDetRepository extends JpaRepository<TblA
      */
     TblActividadFinanciamientoDet findByIdActividadFinancDet(long idActividadFinancDet);
 
+    /**
+     * Metodo que despliega las Financiamiento Detalle de la BD
+     *
+     * @param idActividadFinancDet
+     * @return Financiamiento Detalle de la BD, por paramtro de Id Programa Plan de Nacion
+     * @autor Nahum Martinez | NAM
+     * @version 22/05/2019/v1.0
+     */
+    long countByIdActividadFinancDet(long idActividadFinancDet);
+
 
     /**
      * Metodo que despliega el Detalle del Financiamiento de la BD
@@ -60,6 +70,7 @@ public interface ActividadFinanciamientoDetRepository extends JpaRepository<TblA
     @Query("SELECT e FROM TblActividadFinanciamientoDet e WHERE e.idActividadFinancEnc = :idActividadFinancEnc")
     List<TblActividadFinanciamientoDet> getByIdFinancEnc(@Param("idActividadFinancEnc") TblActividadFinanciamientoEnc tblActividadFinanciamientoEnc);
 
+
     /**
      * Metodo que despliega las Financiamiento Detalle de la BD
      *
@@ -68,7 +79,7 @@ public interface ActividadFinanciamientoDetRepository extends JpaRepository<TblA
      * @autor Nahum Martinez | NAM
      * @version 22/05/2019/v1.0
      */
-    long countByIdFinancEnc(TblActividadFinanciamientoEnc tblActividadFinanciamientoEnc);
+    long countByIdActividadFinancEnc(TblActividadFinanciamientoEnc tblActividadFinanciamientoEnc);
 
 
     /**

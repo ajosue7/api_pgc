@@ -102,7 +102,7 @@ public class ActividadFinanciamientoDetResourses {
             // Busca la Actividad para verificar si existe
             TblActividadFinanciamientoEnc _tblActividadFinanciamientoEnc = _actividadFinanciamientoEncRepository.findByIdActividadFinancEnc(idActividadFinancEnc);
 
-            if (_actividadFinanciamientoDetRepository.countByIdFinancEnc(_tblActividadFinanciamientoEnc) == 0) {
+            if (_actividadFinanciamientoDetRepository.countByIdActividadFinancEnc(_tblActividadFinanciamientoEnc) == 0) {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se ha encontrado dato de los Detalles de Financiamiento del Proyecto consultado";
 
@@ -138,7 +138,7 @@ public class ActividadFinanciamientoDetResourses {
      * @version 24/05/2019/v1.0
      */
     @ApiOperation(value = "Retorna el Financiamiento Detalle a buscar el codigo a la BD", authorizations = {@Authorization(value = "Token-PGC")})
-    @GetMapping(value = FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_ENC, produces = "application/json; charset=UTF-8")
+    @GetMapping(value = FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getActvidadFinancDetByCodigoFinancDet(@ApiParam(value = "Código de transacción de financiamiento Detalle asociado a un Proyecto a Buscar", required = true)
                                                                          @PathVariable("codigoFinancDet") String codigoFinancDet) throws Exception {
         //Ejecuta el try Cacth
@@ -201,7 +201,7 @@ public class ActividadFinanciamientoDetResourses {
 
                 try {
                     // Busca la Modalidad de Ayuda, desde el Reporsitorio con el Parametro del Json enviado ( "idModalidadAyuda": {"idModalidadAyuda": valor })
-                    //TblActividadModalidadAyuda tblActividadModalidadAyuda = _actividadModalidadAyudaRepository.findByIdModalidadAyuda(_actividadFinancDetJson.getIdModalidadAyuda(),getActvidadFinancDetByCodigoFinancDet());
+                    TblActividadModalidadAyuda tblActividadModalidadAyuda = _actividadModalidadAyudaRepository.findByIdModalidadAyuda(_actividadFinancDetJson.getIdModalidadAyuda().getIdModalidadAyuda());
 
                     // Busca el Proyecto con el Proposito de validar que no se meta otro Item mas,
                     // desde el Reporsitorio de Financiamiento Detalle con el Parametro del Json enviado ( "idActividad": _tblActividad )
@@ -224,8 +224,8 @@ public class ActividadFinanciamientoDetResourses {
                         _actividadFinancDetJson.setIdMonedaActividad(_tblMonedaActividad);*/
 
                         // Realizamos la Persistencia de los Datos
-                        _actividadFinanciamientoDetRepository.save(_actividadFinancDetJson);
-                        _actividadFinanciamientoDetRepository.flush();
+                        //_actividadFinanciamientoDetRepository.save(_actividadFinancDetJson);
+                        //_actividadFinanciamientoDetRepository.flush();
 
                         // Retorno de la Funcion
                         msgMethod = "El Financiamiento Detalle para este Proyecto, " + _actividadFinancDetJson.getCodigoFinancDet() + " se ha Ingresado de forma satisfactoria!!";
@@ -259,7 +259,7 @@ public class ActividadFinanciamientoDetResourses {
      * @version 24/05/2019/v1.0
      */
     @ApiOperation(value = "Elimina de la BD, la Información enviada por el codigo de Financiamiento Detalle", authorizations = {@Authorization(value = "Token-PGC")})
-    @DeleteMapping(value = FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_ENC, produces = "application/json; charset=UTF-8")
+    @DeleteMapping(value = FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> deletedActividadActvidadFinancDet(@ApiParam(value = "Codigo de Financiamiento Detalle del Proyecto a Eliminar", required = true)
                                                                      @PathVariable("codigoFinancDet") String codigoFinancDet) throws Exception {
         // Ejecuta el try Cacth

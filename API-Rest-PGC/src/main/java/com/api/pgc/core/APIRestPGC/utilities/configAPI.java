@@ -193,9 +193,9 @@ public class configAPI {
     // Detalle de Financiamiento =======================================================================================
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FINANC_DET = "/mant-actividades/financiamiento/detalle";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET = "/mant-actividades/financiamiento/detalle/findByIdActividad/{idActividad}";
-    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET = "/mant-actividades/financiamiento/detalle/findByCodigoFinancEnc/{codigoFinancEnc}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET = "/mant-actividades/financiamiento/detalle/findByCodigoFinancEnc/{codigoFinancDet}";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_DET = "/mant-actividades/financiamiento/detalle/new";
-    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET = "/mant-actividades/financiamiento/detalle/delete/{codigoFinancEnc}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET = "/mant-actividades/financiamiento/detalle/delete/{codigoFinancDet}";
 
     /*==================================================================================================================
      *================================================================================================================ */
