@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "tbl_actividades_admon_financiero",
         indexes = {@Index(name = "idx_codigo_actividad_org_admon_financiero", columnList = "CODIGO_ACTIVIDAD")},
