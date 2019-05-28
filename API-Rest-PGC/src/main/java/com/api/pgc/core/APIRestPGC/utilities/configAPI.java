@@ -183,8 +183,13 @@ public class configAPI {
     public static final String ORGANIZACIONES_ACT_ENDPOINT_NEW_ADMON_FINANCIERO= "/mant-actividades/organizaciones/admon-financiero/new";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_DELETE_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero/delete/{codigoActividad}";
 
-
+    //mapeo agencia beneficiaria
     public static final String ORGANIZACIONES_ACT_ENDPOINT_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria/findByIdActividad/{idActividad}";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria/findByCodigoActividad/{codigoActividad}";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_NEW_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria/new";
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_DELETE_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria/delete/{codigoActividad}";
+
 
     // | Unidad Ejecutora |
     public static final String ORGANIZACIONES_ACT_ENDPOINT_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora";

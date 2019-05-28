@@ -11,11 +11,9 @@ package com.api.pgc.core.APIRestPGC.resourses.actividades.organizaciones;
 
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
 import com.api.pgc.core.APIRestPGC.models.actividades.organizaciones.TblActividadOrganizacionAdmonFinanciero;
-import com.api.pgc.core.APIRestPGC.models.actividades.organizaciones.TblActividadOrganizacionSocioDesarrollo;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadRepository;
 import com.api.pgc.core.APIRestPGC.repository.actividades.organizaciones.ActividadOrganizacionAdmonFinancieroRepository;
-import com.api.pgc.core.APIRestPGC.repository.actividades.organizaciones.ActividadOrganizacionSocioDesarrolloRepository;
 import com.api.pgc.core.APIRestPGC.repository.organizaciones.OrganizacionRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
@@ -106,7 +104,7 @@ public class ActividadOrgAdmonFinancieroResourses {
                 return msgExeptions.msgJson(msgMethod, 400);
             } else {
                 // Sobreescirbe el Metodo de Mensajes
-                msgMethod = "Detalle de los Socios al Desarrollo del Proyecto";
+                msgMethod = "Detalle de los Admon financiero del Proyecto";
                 msgExeptions.map.put("data", _actividadOrganizacionAdmonFinancieroRepository.getCodigoActividadOrganizacion(_tblActividad));
 
                 // Retorno del json
@@ -180,7 +178,7 @@ public class ActividadOrgAdmonFinancieroResourses {
 
         // Fecha de Ingreso
         Date dateActual = new Date();
-        System.out.println( "************************"  +_actividadAdmonFinancieroJson.getPorcentajePart());
+        System.out.println("************************" + _actividadAdmonFinancieroJson.getPorcentajePart());
 
         try {
             // Busca la Actividad, desde el Reporsitorio con el Parametro del Json enviado ( "idActividad": {"idActividad": valor })
@@ -242,7 +240,7 @@ public class ActividadOrgAdmonFinancieroResourses {
     @ApiOperation(value = "Elimina de la BD, la Información enviada por el codigo de Admon Financiero", authorizations = {@Authorization(value = "Token-PGC")})
     @DeleteMapping(value = ORGANIZACIONES_ACT_ENDPOINT_DELETE_ADMON_FINANCIERO, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> deletedActividadAmonFinanciero(@ApiParam(value = "Codigo de Admon Financiero del Proyecto a Eliminar", required = true)
-                                                                   @PathVariable("codigoActividad") String codigoActividad) throws Exception {
+                                                                  @PathVariable("codigoActividad") String codigoActividad) throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
