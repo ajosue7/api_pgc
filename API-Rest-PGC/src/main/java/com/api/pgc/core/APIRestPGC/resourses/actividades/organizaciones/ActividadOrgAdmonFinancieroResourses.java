@@ -10,9 +10,11 @@ package com.api.pgc.core.APIRestPGC.resourses.actividades.organizaciones;
  */
 
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
+import com.api.pgc.core.APIRestPGC.models.actividades.organizaciones.TblActividadOrganizacionAdmonFinanciero;
 import com.api.pgc.core.APIRestPGC.models.actividades.organizaciones.TblActividadOrganizacionSocioDesarrollo;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadRepository;
+import com.api.pgc.core.APIRestPGC.repository.actividades.organizaciones.ActividadOrganizacionAdmonFinancieroRepository;
 import com.api.pgc.core.APIRestPGC.repository.actividades.organizaciones.ActividadOrganizacionSocioDesarrolloRepository;
 import com.api.pgc.core.APIRestPGC.repository.organizaciones.OrganizacionRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
@@ -34,13 +36,13 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @RestController
 @RequestMapping(value = API_BASE_PATH)
 @Api(value = "ActividadOrganizacionesAPI", description = "Operaciones sobre el Modulo de Proyectos Organizaciones", tags = "Organizaciones de Proyecto")
-public class ActividadOrgSocioDesarrolloResourses {
+public class ActividadOrgAdmonFinancieroResourses {
+
     //Propiedades de la Clase
     String msgMethod = null;
 
     @Autowired
-    ActividadOrganizacionSocioDesarrolloRepository _actividadOrganizacionSocioDesarrolloRepository;
-
+    ActividadOrganizacionAdmonFinancieroRepository _actividadOrganizacionAdmonFinancieroRepository;
 
     @Autowired
     ActividadRepository _actividadRepository;
@@ -56,8 +58,8 @@ public class ActividadOrgSocioDesarrolloResourses {
      * @version 14/05/2019/v1.0
      */
     @ApiOperation(value = "Retorna el Listado de Todas los Socios al Desarrollo los Proyectos de la BD", authorizations = {@Authorization(value = "Token-PGC")})
-    @GetMapping(value = ORGANIZACIONES_ACT_ENDPOINT_SOCIO_DESARROLLO, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> getAllActvidadesSocioDesarrollo() throws Exception {
+    @GetMapping(value = ORGANIZACIONES_ACT_ENDPOINT_ADMON_FINANCIERO, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getAllActvidadesAdmonFinanciero() throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -65,14 +67,14 @@ public class ActividadOrgSocioDesarrolloResourses {
 
         try {
             // Sobreescirbe el Metodo de Mensajes
-            msgExeptions.map.put("data", _actividadOrganizacionSocioDesarrolloRepository.findAll());
-            msgExeptions.map.put("countRecords", _actividadOrganizacionSocioDesarrolloRepository.count());
+            msgExeptions.map.put("data", _actividadOrganizacionAdmonFinancieroRepository.findAll());
+            msgExeptions.map.put("countRecords", _actividadOrganizacionAdmonFinancieroRepository.count());
             //Retorno del json
             return msgExeptions.msgJson(msgMethod, 200);
         } catch (Exception ex) {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
-    } // FIN | getAllActvidadesSocioDesarrollo
+    } // FIN | getAllActvidadesSocio
 
 
     /**
@@ -84,8 +86,8 @@ public class ActividadOrgSocioDesarrolloResourses {
      * @version 14/05/2019/v1.0
      */
     @ApiOperation(value = "Retorna los Socios al Desarrollo de la Actividad enviada a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
-    @GetMapping(value = ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_SOCIO_DESARROLLO, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> getSocioDesarrolloByIdActividad(@ApiParam(value = "Identificador de la Actividad a Buscar", required = true)
+    @GetMapping(value = ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_ADMON_FINANCIERO, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getAdmonFinancieroByIdActividad(@ApiParam(value = "Identificador de la Actividad a Buscar", required = true)
                                                                    @PathVariable("idActividad") long idActividad) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -94,9 +96,9 @@ public class ActividadOrgSocioDesarrolloResourses {
             // Busca la Actividad para verificar si existe
             TblActividad _tblActividad = _actividadRepository.findByIdActividad(idActividad);
 
-            if (_actividadOrganizacionSocioDesarrolloRepository.countByIdActividad(_tblActividad) == 0) {
+            if (_actividadOrganizacionAdmonFinancieroRepository.countByIdActividad(_tblActividad) == 0) {
                 // Sobreescirbe el Metodo de Mensajes
-                msgMethod = "No se ha encontrado dato de los Socios al Desarrollo del Proyecto consultado";
+                msgMethod = "No se ha encontrado dato de la Admon Financiero  del Proyecto consultado";
 
                 msgExeptions.map.put("error", "No data found");
 
@@ -105,7 +107,7 @@ public class ActividadOrgSocioDesarrolloResourses {
             } else {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle de los Socios al Desarrollo del Proyecto";
-                msgExeptions.map.put("data", _actividadOrganizacionSocioDesarrolloRepository.getCodigoActividadOrganizacion(_tblActividad));
+                msgExeptions.map.put("data", _actividadOrganizacionAdmonFinancieroRepository.getCodigoActividadOrganizacion(_tblActividad));
 
                 // Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
@@ -115,29 +117,29 @@ public class ActividadOrgSocioDesarrolloResourses {
             msgMethod = "No se ha encontrado el Proyecto solicitado";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
-    } // FIN | getSocioDesarrolloByIdActividad
+    } // FIN | getAdmonFinancieroByIdActividad
 
     /**
-     * Metodo que despliega el Socio Desarrollo asociado a Proyecto de la BD
+     * Metodo que despliega el Admon Financiero asociado a Proyecto de la BD
      *
-     * @param codigoActividad Codigo de Socio Desarrollo asociado a Proyecto a Buscar
-     * @return Socio Desarrollo de la BD
+     * @param codigoActividad Codigo de Admon Financiero asociado a Proyecto a Buscar
+     * @return Admon Financiero de la BD
      * @autor Nahum Martinez | NAM
      * @version 14/05/2019/v1.0
      */
-    @ApiOperation(value = "Retorna el Socio Desarrollo a buscar el codigo a la BD", authorizations = {@Authorization(value = "Token-PGC")})
-    @GetMapping(value = ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_SOCIO_DESARROLLO, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> getSocioDesarrolloByCodigoActividad(@ApiParam(value = "Código de Socio Desarrollo asociado a un Proyecto a Buscar", required = true)
+    @ApiOperation(value = "Retorna el Admon Financiera a buscar el codigo a la BD", authorizations = {@Authorization(value = "Token-PGC")})
+    @GetMapping(value = ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_ADMON_FINANCIERO, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getAdmonFinancieroByCodigoActividad(@ApiParam(value = "Código de Admon Financiero asociado a un Proyecto a Buscar", required = true)
                                                                        @PathVariable("codigoActividad") String codigoActividad) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
-            if (_actividadOrganizacionSocioDesarrolloRepository.countByCodigoActividad(codigoActividad) == 0) {
+            if (_actividadOrganizacionAdmonFinancieroRepository.countByCodigoActividad(codigoActividad) == 0) {
                 // Sobreescirbe el Metodo de Mensajes
-                msgMethod = "No se ha encontrado dato de Socio Desarrollo asociados a Proyecto consultado";
+                msgMethod = "No se ha encontrado dato de Admon Financiero asociados a Proyecto consultado";
 
-                msgExeptions.map.put("data", _actividadOrganizacionSocioDesarrolloRepository.findByCodigoActividad(codigoActividad));
+                msgExeptions.map.put("data", _actividadOrganizacionAdmonFinancieroRepository.findByCodigoActividad(codigoActividad));
                 msgExeptions.map.put("error", "No data found");
                 msgExeptions.map.put("find", false);
 
@@ -145,8 +147,8 @@ public class ActividadOrgSocioDesarrolloResourses {
                 return msgExeptions.msgJson(msgMethod, 200);
             } else {
                 // Sobreescirbe el Metodo de Mensajes
-                msgMethod = "Se ha encontrado dato de Socio Desarrollo asociados a Proyecto consultado";
-                msgExeptions.map.put("data", _actividadOrganizacionSocioDesarrolloRepository.findByCodigoActividad(codigoActividad));
+                msgMethod = "Se ha encontrado dato de Admon Financiero asociados a Proyecto consultado";
+                msgExeptions.map.put("data", _actividadOrganizacionAdmonFinancieroRepository.findByCodigoActividad(codigoActividad));
                 msgExeptions.map.put("find", true);
 
                 //Retorno del json
@@ -154,71 +156,71 @@ public class ActividadOrgSocioDesarrolloResourses {
             }
         } catch (Exception ex) {
             // Sobreescirbe el Metodo de Mensajes
-            msgMethod = "Se ha encontraddo datos de Socio Desarrollo asociado a un Proyecto Consultada";
+            msgMethod = "Se ha encontraddo datos de Admon Financiero asociado a un Proyecto Consultada";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
-    } // FIN | getSocioDesarrolloByCodigoActividad
+    } // FIN | getAdmonFinancieroByCodigoActividad
 
 
     /**
-     * Metodo que Solicita un json con los datos de la Entidad Socio Desarrollo con Relacion
+     * Metodo que Solicita un json con los datos de la Entidad Admon Financiero con Relacion
      * a Actividades
      *
-     * @param _actividadSocioDesarrolloJson Obtiene desde el request los datos del Socio Desarrollo a ingresar
-     * @return Mensaje de Confirmacion de Registro de Socio Desarrollo
+     * @param _actividadAdmonFinancieroJson Obtiene desde el request los datos del Socio Desarrollo a ingresar
+     * @return Mensaje de Confirmacion de Registro de Admon Financiero
      * @autor Nahum Martinez | NAM
      * @version 14/05/2019/v1.0
      */
-    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del Socio Desarrollo de proyecto", authorizations = {@Authorization(value = "Token-PGC")})
-    @PostMapping(value = ORGANIZACIONES_ACT_ENDPOINT_NEW_SOCIO_DESARROLLO, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> addActividadSocioDesarrollo(@ApiParam(value = "Json de Socio Desarrollo del Proyecto a Ingresar", required = true)
-                                                               @RequestBody @Valid final TblActividadOrganizacionSocioDesarrollo _actividadSocioDesarrolloJson) throws Exception {
+    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del Admon Financiero de proyecto", authorizations = {@Authorization(value = "Token-PGC")})
+    @PostMapping(value = ORGANIZACIONES_ACT_ENDPOINT_NEW_ADMON_FINANCIERO, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> addActividadAdmonFinanciero(@ApiParam(value = "Json de Admon Financiero del Proyecto a Ingresar", required = true)
+                                                               @RequestBody @Valid final TblActividadOrganizacionAdmonFinanciero _actividadAdmonFinancieroJson) throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
-        // Fecha de Ingrso
+        // Fecha de Ingreso
         Date dateActual = new Date();
-        System.out.println( "************************"  +_actividadSocioDesarrolloJson.getPorcentajePart());
+        System.out.println( "************************"  +_actividadAdmonFinancieroJson.getPorcentajePart());
 
         try {
             // Busca la Actividad, desde el Reporsitorio con el Parametro del Json enviado ( "idActividad": {"idActividad": valor })
-            TblActividad _tblActividad = _actividadRepository.findByIdActividad(_actividadSocioDesarrolloJson.getIdActividad().getIdActividad());
+            TblActividad _tblActividad = _actividadRepository.findByIdActividad(_actividadAdmonFinancieroJson.getIdActividad().getIdActividad());
 
             try {
-                // Busca la Socio Desarrollo, desde el Reporsitorio con el Parametro del Json enviado ( "idOrganizacion": {"idOrganizacion": valor })
-                TblOrganizacion _tblOrganizacion = _organizacionRepository.findByIdOrganizacion(_actividadSocioDesarrolloJson.getIdOrganizacion().getIdOrganizacion());
+                // Busca la Admon Financiero, desde el Reporsitorio con el Parametro del Json enviado ( "idOrganizacion": {"idOrganizacion": valor })
+                TblOrganizacion _tblOrganizacion = _organizacionRepository.findByIdOrganizacion(_actividadAdmonFinancieroJson.getIdOrganizacion().getIdOrganizacion());
 
                 // Busca el Proyecto con el Proposito de validar que no se meta otro Item mas,
-                // desde el Reporsitorio de Socio Desarrollo con el Parametro del Json enviado ( "idActividad": _tblActividad )
+                // desde el Reporsitorio de Admon Financiero con el Parametro del Json enviado ( "idActividad": _tblActividad )
 
-                if (_actividadOrganizacionSocioDesarrolloRepository.countByCodigoActividad(_actividadSocioDesarrolloJson.getCodigoActividad()) > 0) {
-                    msgMethod = "Ya Existe un registro con el Código de Socio Desarrollo para este Proyecto !! " + _actividadSocioDesarrolloJson.getCodigoActividad();
+                if (_actividadOrganizacionAdmonFinancieroRepository.countByCodigoActividad(_actividadAdmonFinancieroJson.getCodigoActividad()) > 0) {
+                    msgMethod = "Ya Existe un registro con el Código de Admon Financiero para este Proyecto !! " + _actividadAdmonFinancieroJson.getCodigoActividad();
 
                     msgExeptions.map.put("findRecord", true);
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
                     // Seteo de las Fecha y Hora de Creacion
-                    _actividadSocioDesarrolloJson.setFechaCreacion(dateActual);
-                    _actividadSocioDesarrolloJson.setHoraCreacion(dateActual);
-                    _actividadSocioDesarrolloJson.setPorcentajePart(_actividadSocioDesarrolloJson.getPorcentajePart());
+                    _actividadAdmonFinancieroJson.setFechaCreacion(dateActual);
+                    _actividadAdmonFinancieroJson.setHoraCreacion(dateActual);
+                    _actividadAdmonFinancieroJson.setPorcentajePart(_actividadAdmonFinancieroJson.getPorcentajePart());
 
                     // Seteamos la Actividad de Actividad y Socio Desarrollo
-                    _actividadSocioDesarrolloJson.setIdActividad(_tblActividad);
-                    _actividadSocioDesarrolloJson.setIdOrganizacion(_tblOrganizacion);
+                    _actividadAdmonFinancieroJson.setIdActividad(_tblActividad);
+                    _actividadAdmonFinancieroJson.setIdOrganizacion(_tblOrganizacion);
 
                     // Realizamos la Persistencia de los Datos
-                    _actividadOrganizacionSocioDesarrolloRepository.save(_actividadSocioDesarrolloJson);
-                    _actividadOrganizacionSocioDesarrolloRepository.flush();
+                    _actividadOrganizacionAdmonFinancieroRepository.save(_actividadAdmonFinancieroJson);
+                    _actividadOrganizacionAdmonFinancieroRepository.flush();
 
                     // Retorno de la Funcion
-                    msgMethod = "El Socio Desarrollo para este Proyecto, " + _actividadSocioDesarrolloJson.getCodigoActividad() + " se ha Ingresado de forma satisfactoria!!";
+                    msgMethod = "El Admon Financiero para este Proyecto, " + _actividadAdmonFinancieroJson.getCodigoActividad() + " se ha Ingresado de forma satisfactoria!!";
 
                     //Retorno del json
                     msgExeptions.map.put("findRecord", false);
                     return msgExeptions.msgJson(msgMethod, 200);
                 }
             } catch (Exception ex) {
-                msgMethod = "Ha Ocurrido un error al Intentar Grabar el Socio Desarrollo del Proyecto, con la informacion indicada !!";
+                msgMethod = "Ha Ocurrido un error al Intentar Grabar el Admon Financierodel Proyecto, con la informacion indicada !!";
                 throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
             }
         } catch (Exception ex) {
@@ -229,49 +231,49 @@ public class ActividadOrgSocioDesarrolloResourses {
 
 
     /**
-     * Metodo que Solicita un json con los datos de la Entidad Socio Desarrollo con Relacion
+     * Metodo que Solicita un json con los datos de la Entidad Admon Financierocon Relacion
      * a Actividades
      *
      * @param codigoActividad Identificador de la Socio Desarrollo con Proyecto a Eliminar
-     * @return Mensaje de Confirmacion de Eliminacion de Socio Desarrollo
+     * @return Mensaje de Confirmacion de Eliminacion de Admon Financiero
      * @autor Nahum Martinez | NAM
      * @version 14/05/2019/v1.0
      */
-    @ApiOperation(value = "Elimina de la BD, la Información enviada por el codigo de Socio Desarrollo", authorizations = {@Authorization(value = "Token-PGC")})
-    @DeleteMapping(value = ORGANIZACIONES_ACT_ENDPOINT_DELETE_SOCIO_DESARROLLO, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> deletedActividadSocioDesarrollo(@ApiParam(value = "Codigo de Socio Desarrollo del Proyecto a Eliminar", required = true)
+    @ApiOperation(value = "Elimina de la BD, la Información enviada por el codigo de Admon Financiero", authorizations = {@Authorization(value = "Token-PGC")})
+    @DeleteMapping(value = ORGANIZACIONES_ACT_ENDPOINT_DELETE_ADMON_FINANCIERO, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> deletedActividadAmonFinanciero(@ApiParam(value = "Codigo de Admon Financiero del Proyecto a Eliminar", required = true)
                                                                    @PathVariable("codigoActividad") String codigoActividad) throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
             // Busca la Actividad, desde el Reporsitorio con el Parametro del Codigo enviado ( codigoActividad )
-            TblActividadOrganizacionSocioDesarrollo _tblActividadOrganizacionSocioDesarrollo = _actividadOrganizacionSocioDesarrolloRepository.findByCodigoActividad(codigoActividad);
+            TblActividadOrganizacionAdmonFinanciero _tblActividadAdmonFinaciero = _actividadOrganizacionAdmonFinancieroRepository.findByCodigoActividad(codigoActividad);
 
             try {
-                if (_actividadOrganizacionSocioDesarrolloRepository.countByCodigoActividad(codigoActividad) > 0) {
+                if (_actividadOrganizacionAdmonFinancieroRepository.countByCodigoActividad(codigoActividad) > 0) {
                     // Realizamos la Persistencia de los Datos
 
-                    _actividadOrganizacionSocioDesarrolloRepository.deleletedCodigoActividad(codigoActividad);
-                    _actividadOrganizacionSocioDesarrolloRepository.flush();
+                    _actividadOrganizacionAdmonFinancieroRepository.deleletedCodigoActividad(codigoActividad);
+                    _actividadOrganizacionAdmonFinancieroRepository.flush();
 
                     // Retorno de la Funcion
-                    msgMethod = "El Socio Desarrollo para este Proyecto, se ha Eliminado de forma satisfactoria!!";
+                    msgMethod = "El Admon Financiero para este Proyecto, se ha Eliminado de forma satisfactoria!!";
 
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
-                    msgMethod = "No Existe un registro de Socio al Desarrollo para este Proyecto !!";
+                    msgMethod = "No Existe un registro de Admon Financiero para este Proyecto !!";
                     throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod);
                 }
             } catch (Exception ex) {
-                msgMethod = "Ha Ocurrido un error al Eliminar el Socio Desarrollo del Proyecto !!";
+                msgMethod = "Ha Ocurrido un error al Eliminar el Admon Financiero del Proyecto !!";
                 throw new SQLException("Se ha producido una excepción con el mensaje: " + msgMethod, ex);
             }
         } catch (Exception ex) {
-            msgMethod = "No Existe un registro de Socio Desarrollo para este Proyecto , por favor verfica que lo has ingresado correctamente o que existe.";
+            msgMethod = "No Existe un registro de Admon Financieropara este Proyecto , por favor verfica que lo has ingresado correctamente o que existe.";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
-    } // FIN | deletedActividadSocioDesarrollo
+    } // FIN | deletedActividadAdmonFinanciero
 
 }
