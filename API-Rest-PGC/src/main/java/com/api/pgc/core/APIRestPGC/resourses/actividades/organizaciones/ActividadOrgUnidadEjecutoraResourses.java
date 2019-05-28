@@ -73,7 +73,7 @@ public class ActividadOrgUnidadEjecutoraResourses {
         } catch (Exception ex) {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
-    } // FIN | getAllActvidadesUnidadEjecutora
+    } // FIN | getAllActividadesUnidadEjecutora
 
 
     /**
