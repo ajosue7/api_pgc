@@ -11,10 +11,12 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "tbl_actividades_agencia_beneficiaria",
         indexes = {@Index(name = "idx_codigo_actividad_org_agencia_beneficiaria", columnList = "CODIGO_ACTIVIDAD")},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"CODIGO_ACTIVIDAD"})})
+
 public class TblActividadOrganizacionAgenciaBeneficiaria {
     // Propiedades de la tabla
     @Id
@@ -56,6 +58,9 @@ public class TblActividadOrganizacionAgenciaBeneficiaria {
     @ApiModelProperty(notes = "Hora de Creacion de la Actividad, formato hh:mm:ss", readOnly = true)
     private Date horaCreacion = new Date();
 
+    @Column(name = "PORCENTAJE_PART")
+    @ApiModelProperty(notes = "Porcentaje participacion")
+    private double porcentajePart;
 
     /**
      * Constructor vacio de la Clase, solo para Jpa
@@ -121,5 +126,13 @@ public class TblActividadOrganizacionAgenciaBeneficiaria {
 
     public void setHoraCreacion(Date horaCreacion) {
         this.horaCreacion = horaCreacion;
+    }
+
+    public double getPorcentajePart() {
+        return porcentajePart;
+    }
+
+    public void setPorcentajePart(double porcentajePart) {
+        this.porcentajePart = porcentajePart;
     }
 }
