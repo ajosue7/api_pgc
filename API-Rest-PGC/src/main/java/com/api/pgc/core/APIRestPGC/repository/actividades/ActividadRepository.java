@@ -63,4 +63,6 @@ public interface ActividadRepository extends JpaRepository<TblActividad, Integer
      */
     long countByIdActividad(long idProyecto);
 
+
+
 }
