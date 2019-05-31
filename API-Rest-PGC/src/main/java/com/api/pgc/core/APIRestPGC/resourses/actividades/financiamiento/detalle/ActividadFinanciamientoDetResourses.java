@@ -13,11 +13,13 @@ import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.detalle.Tbl
 import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.detalle.TblActividadModalidadAyuda;
 import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.detalle.TblActividadTipoFinanciamiento;
 import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.encabezado.TblActividadFinanciamientoEnc;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadRepository;
 import com.api.pgc.core.APIRestPGC.repository.actividades.financiamiento.detalle.ActividadFinanciamientoDetRepository;
 import com.api.pgc.core.APIRestPGC.repository.actividades.financiamiento.detalle.ActividadModalidadAyudaRepository;
 import com.api.pgc.core.APIRestPGC.repository.actividades.financiamiento.detalle.ActividadTipoFinanciamientoRepository;
 import com.api.pgc.core.APIRestPGC.repository.actividades.financiamiento.encabezado.ActividadFinanciamientoEncRepository;
+import com.api.pgc.core.APIRestPGC.repository.organizaciones.OrganizacionRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -55,6 +57,9 @@ public class ActividadFinanciamientoDetResourses {
 
     @Autowired
     ActividadModalidadAyudaRepository _actividadModalidadAyudaRepository;
+
+    @Autowired
+    OrganizacionRepository _organizacionRepository;
 
     /**
      * Metodo que despliega la Lista de todos los Detalles de Financiamiento de una Actividad de la BD
@@ -201,49 +206,60 @@ public class ActividadFinanciamientoDetResourses {
 
                 try {
                     // Busca la Modalidad de Ayuda, desde el Reporsitorio con el Parametro del Json enviado ( "idModalidadAyuda": {"idModalidadAyuda": valor })
-                    TblActividadModalidadAyuda tblActividadModalidadAyuda = _actividadModalidadAyudaRepository.findByIdModalidadAyuda(_actividadFinancDetJson.getIdModalidadAyuda().getIdModalidadAyuda());
+                    TblActividadModalidadAyuda _tblActividadModalidadAyuda = _actividadModalidadAyudaRepository.findByIdModalidadAyuda(_actividadFinancDetJson.getIdModalidadAyuda().getIdModalidadAyuda());
 
-                    // Busca el Proyecto con el Proposito de validar que no se meta otro Item mas,
-                    // desde el Reporsitorio de Financiamiento Detalle con el Parametro del Json enviado ( "idActividad": _tblActividad )
 
-                    if (_actividadFinanciamientoDetRepository.countByCodigoFinancDet(_actividadFinancDetJson.getCodigoFinancDet()) > 0) {
-                        msgMethod = "Ya Existe un registro con el código de transacción Financiamiento Detalle para este Proyecto !! " + _actividadFinancDetJson.getCodigoFinancDet();
+                    try {
+                        // Busca la Organizacion Socio al Desarrollo, desde el Reporsitorio con el Parametro del Json enviado ( "idSocioDesarrollo": {"idOrganizacion": valor })
+                        TblOrganizacion _tblOrganizacionSocioDesarrollo = _organizacionRepository.findByIdOrganizacion(_actividadFinancDetJson.getIdSocioDesarrollo().getIdOrganizacion());
 
-                        msgExeptions.map.put("findRecord", true);
-                        return msgExeptions.msgJson(msgMethod, 200);
-                    } else {
-                        // Seteo de las Fecha y Hora de Creacion
-                        _actividadFinancDetJson.setFechaCreacion(dateActual);
-                        _actividadFinancDetJson.setHoraCreacion(dateActual);
 
-                        /*_actividadFinancDetJson.setMontoActividad(_actividadFinancDetJson.getMontoActividad());
-                        _actividadFinancDetJson.setFechaTransaccion(_actividadFinancDetJson.getFechaTransaccion());
+                        if (_actividadFinanciamientoDetRepository.countByCodigoFinancDet(_actividadFinancDetJson.getCodigoFinancDet()) > 0) {
+                            msgMethod = "Ya Existe un registro con el código de transacción Financiamiento Detalle para este Proyecto !! " + _actividadFinancDetJson.getCodigoFinancDet();
 
-                        // Seteamos la Actividad de Actividad y Financiamiento Detalle
-                        _actividadFinancDetJson.setIdActividad(_tblActividad);
-                        _actividadFinancDetJson.setIdMonedaActividad(_tblMonedaActividad);*/
+                            msgExeptions.map.put("findRecord", true);
+                            return msgExeptions.msgJson(msgMethod, 200);
+                        } else {
+                            // Seteo de las Fecha y Hora de Creacion
+                            _actividadFinancDetJson.setFechaCreacion(dateActual);
+                            _actividadFinancDetJson.setHoraCreacion(dateActual);
 
-                        // Realizamos la Persistencia de los Datos
-                        //_actividadFinanciamientoDetRepository.save(_actividadFinancDetJson);
-                        //_actividadFinanciamientoDetRepository.flush();
+                            _actividadFinancDetJson.setCodigoFinancDet(_actividadFinancDetJson.getCodigoFinancDet());
+                            _actividadFinancDetJson.setIdOrganizacionFinanciera(_actividadFinancDetJson.getIdOrganizacionFinanciera());
 
-                        // Retorno de la Funcion
-                        msgMethod = "El Financiamiento Detalle para este Proyecto, " + _actividadFinancDetJson.getCodigoFinancDet() + " se ha Ingresado de forma satisfactoria!!";
+                            // Seteamos la Actividad de Actividad y Financiamiento Detalle
+                            _actividadFinancDetJson.setIdActividadFinancEnc(_tblActividadFinanciamientoEnc);
+                            _actividadFinancDetJson.setIdTipoFinanciamiento(_tblActividadTipoFinanciamiento);
+                            _actividadFinancDetJson.setIdModalidadAyuda(_tblActividadModalidadAyuda);
+                            _actividadFinancDetJson.setIdSocioDesarrollo(_tblOrganizacionSocioDesarrollo);
 
-                        //Retorno del json
-                        msgExeptions.map.put("findRecord", false);
-                        return msgExeptions.msgJson(msgMethod, 200);
+                            // Realizamos la Persistencia de los Datos
+                            _actividadFinanciamientoDetRepository.save(_actividadFinancDetJson);
+                            _actividadFinanciamientoDetRepository.flush();
+
+                            // Retorno de la Funcion
+                            msgMethod = "El Financiamiento Detalle para este Proyecto, " + _actividadFinancDetJson.getCodigoFinancDet() + " se ha Ingresado de forma satisfactoria!!";
+
+                            //Retorno del json
+                            msgExeptions.map.put("data", _actividadFinanciamientoEncRepository.findByIdActividadFinancEnc(_actividadFinancDetJson.getIdActividadFinancEnc().getIdActividadFinancEnc()));
+                            msgExeptions.map.put("findRecord", false);
+
+                            return msgExeptions.msgJson(msgMethod, 200);
+                        }
+                    } catch (Exception ex) {
+                        msgMethod = "Ha Ocurrido un error al Intentar Grabar el Financiamiento Detalle del Proyecto, con la informacion de Socio al Desarrollo erronea!!";
+                        throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
                     }
                 } catch (Exception ex) {
-                    msgMethod = "Ha Ocurrido un error al Intentar Grabar el Financiamiento Detalle del Proyecto, con la informacion indicada !!";
+                    msgMethod = "Ha Ocurrido un error al Intentar Grabar el Financiamiento Detalle del Proyecto, con la informacion de Modalidad de Ayuda erronea!!";
                     throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
                 }
             } catch (Exception ex) {
-                msgMethod = "Ha Ocurrido un error al Intentar Grabar el Financiamiento Detalle del Proyecto, con la informacion indicada !!";
+                msgMethod = "Ha Ocurrido un error al Intentar Grabar el Financiamiento Detalle del Proyecto, con la informacion de Tipo de Financiamiento erronea !!";
                 throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
             }
         } catch (Exception ex) {
-            msgMethod = "No existe el Proyecto que buscas, por favor verfica que lo has ingresado correctamente.";
+            msgMethod = "No existe el Financiamiento Encabezado que buscas, por favor verfica que lo has ingresado correctamente.";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     } // FIN | addActividadActvidadFinancDet
@@ -267,7 +283,7 @@ public class ActividadFinanciamientoDetResourses {
 
         try {
             // Busca la Actividad, desde el Reporsitorio con el Parametro del Codigo enviado ( codigoFinancDet )
-           // TblActividadFinanciamientoEnc _tblActividadFinanciamientoEnc = _actividadFinanciamientoDetRepository.findByCodigoFinancDet(codigoFinancDet);
+            // TblActividadFinanciamientoEnc _tblActividadFinanciamientoEnc = _actividadFinanciamientoDetRepository.findByCodigoFinancDet(codigoFinancDet);
 
             try {
                 if (_actividadFinanciamientoDetRepository.countByCodigoFinancDet(codigoFinancDet) > 0) {
