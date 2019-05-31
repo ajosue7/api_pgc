@@ -192,7 +192,7 @@ public class configAPI {
     public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora/findByCodigoActividad/{codigoActividad}";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_NEW_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora/new";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_DELETE_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora/delete/{codigoActividad}";
-
+    public static final String ORGANIZACIONES_ACT_ENDPOINT_EDIT_UNIDAD_EJECUTORA = "/mant-actividades/organizaciones/unidad-ejecutora/edit/{idActividadUnidadEjecutora}";
 
     // Mapeo de las Rutas del Sub Modulo de Financiamiento
     // Encabezado de Financiamiento ====================================================================================
