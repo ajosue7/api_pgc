@@ -56,7 +56,7 @@ public class TblActividadFinanciamientoDet {
     // Muchos Socio al Desarrollo = 1 Actividad
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "ID_SOCIO_DESARROLLO", referencedColumnName = "ID_ORGANIZACION")
-    @ApiModelProperty(notes = "Entidad del Modalidad de Socio al Desarrollo de Proyecto, se envia desde un Json (\"idSocioDesarrollo\": { \"idSocioDesarrollo\": \"valor\" })", required = true)
+    @ApiModelProperty(notes = "Entidad del Modalidad de Socio al Desarrollo de Proyecto, se envia desde un Json (\"idSocioDesarrollo\": { \"idOrganizacion\": \"valor\" })", required = true)
     private TblOrganizacion idSocioDesarrollo;
 
 
