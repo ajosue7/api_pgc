@@ -24,6 +24,24 @@ public interface ActividadOrganizacionUnidadEjecutoraRepository extends JpaRepos
      * @version 02/05/2019/v1.0
      */
     TblActividadOrganizacionUnidadEjecutora findByCodigoActividad(String codigoActividad);
+    /**
+     * Metodo que despliega los Unidad Ejecutora de la BD
+     *
+     * @param idActividadUnidadEjecutora
+     * @return Unidad Ejecutora Proyecto de la BD, por parametro de Codigo
+     * @autor Nahum Martinez | NAM
+     * @version 02/05/2019/v1.0
+     */
+    TblActividadOrganizacionUnidadEjecutora findByIdActividadUnidadEjecutora(long idActividadUnidadEjecutora );
+    /**
+     * Metodo que despliega los Unidad Ejecutora de la BD
+     *
+     * @param idActividadUnidadEjecutora
+     * @return Unidad Ejecutora Proyecto de la BD, por parametro de Codigo
+     * @autor Nahum Martinez | NAM
+     * @version 02/05/2019/v1.0
+     */
+    long  countByIdActividadUnidadEjecutora(long idActividadUnidadEjecutora );
 
     /**
      * Metodo que despliega las Unidad Ejecutora de la BD
@@ -34,6 +52,19 @@ public interface ActividadOrganizacionUnidadEjecutoraRepository extends JpaRepos
      * @version 02/05/2019/v1.0
      */
     long countByCodigoActividad(String codigoActividad);
+
+
+
+
+    /**
+     * Metodo que despliega los Unidad Ejecutora de la BD
+     *
+     * @param codigoActividad
+     * @return Unidad Ejecutora Proyecto de la BD, por parametro de Codigo
+     * @autor Nahum Martinez | NAM
+     * @version 02/05/2019/v1.0
+     */
+    TblActividadOrganizacionUnidadEjecutora findByCodigoActividad(long  codigoActividad);
 
 
     /**

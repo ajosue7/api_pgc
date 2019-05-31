@@ -128,7 +128,7 @@ public class ActividadOrgUnidadEjecutoraResourses {
      */
     @ApiOperation(value = "Retorna el Socio Desarrollo a buscar el codigo a la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_UNIDAD_EJECUTORA, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> getSocioDesarrolloByCodigoActividad(@ApiParam(value = "Código de Unidad Ejecutora asociado a un Proyecto a Buscar", required = true)
+    public HashMap<String, Object> getUnidadEjecutoraByCodigoActividad(@ApiParam(value = "Código de Unidad Ejecutora asociado a un Proyecto a Buscar", required = true)
                                                                        @PathVariable("codigoActividad") String codigoActividad) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
@@ -203,6 +203,7 @@ public class ActividadOrgUnidadEjecutoraResourses {
                     _actividadUnidadEjecutoraJson.setHoraCreacion(dateActual);
                     _actividadUnidadEjecutoraJson.setPorcentajePart(_actividadUnidadEjecutoraJson.getPorcentajePart());
 
+
                     // Seteamos la Actividad de Actividad y Unidad Ejecutora
                     _actividadUnidadEjecutoraJson.setIdActividad(_tblActividad);
                     _actividadUnidadEjecutoraJson.setIdOrganizacion(_tblOrganizacion);
@@ -274,5 +275,72 @@ public class ActividadOrgUnidadEjecutoraResourses {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     } // FIN | deletedActividadUnidadEjecutora
+
+    /**
+     * Metodo que Solicita un json con los datos de la Entidad Unidad Ejecutora con Relacion
+     * a Actividades
+     *
+     * @param _actividadUnidadEjecutoraJson Obtiene desde el request los datos de Unidad Ejecutora a Modificar
+     * @return Mensaje de Confirmacion de Registro de Unidad Ejecutora
+     * @autor Allan Madrid| AMA
+     * @version 27/05/2019/v1.0
+     */
+    @ApiOperation(value = "Actualiza a la BD, la Información enviada por el Bean de la Unidad Ejecutora de proyecto", authorizations = {@Authorization(value = "Token-PGC")})
+    @PutMapping (value = ORGANIZACIONES_ACT_ENDPOINT_EDIT_UNIDAD_EJECUTORA, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> editActividadUnidadEjecutora(@ApiParam(value = "Json de Unidad Ejecutora del Proyecto a Ingresar", required = true)
+                                                                    @PathVariable("idActividadUnidadEjecutora") long idActividadUnidadEjecutora,
+                                                                    @RequestBody  final TblActividadOrganizacionUnidadEjecutora _actividadUnidadEjecutoraJson) throws Exception {
+        // Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Fecha de Ingreso
+        Date dateActual = new Date();
+        //System.out.println( "************************"  +_actividadUnidadEjecutoraJson.getPorcentajePart());
+
+        try {
+            // Busca la Actividad, desde el Repositorio con el Parametro del Json enviado ( "idActividad": {"idActividad": valor })
+            TblActividadOrganizacionUnidadEjecutora _tblActividadOrganizacionUnidadEjecutora = _actividadOrganizacionUnidadEjecutoraRepository.findByIdActividadUnidadEjecutora(idActividadUnidadEjecutora);
+
+
+            if(_actividadOrganizacionUnidadEjecutoraRepository.countByIdActividadUnidadEjecutora(idActividadUnidadEjecutora) >0){
+
+                //Buscamos el Tipo de ACT.Ejecutora segun el parametro enviado
+
+            // Busca el Proyecto con el Proposito de validar que no se meta otro Item mas,
+                // desde el Repositorio de Unidad Ejecutora con el Parametro del Json enviado ( "idActividad": _tblActividad )
+                try  {
+                    // Seteo de las Fecha y Hora de Creacion
+                    _tblActividadOrganizacionUnidadEjecutora.setFechaCreacion(dateActual);
+                    _tblActividadOrganizacionUnidadEjecutora.setHoraCreacion(dateActual);
+                    _tblActividadOrganizacionUnidadEjecutora.setPorcentajePart(_actividadUnidadEjecutoraJson.getPorcentajePart());
+;
+
+
+                    // Realizamos la Persistencia de los Datos
+
+                    _actividadOrganizacionUnidadEjecutoraRepository.save(_tblActividadOrganizacionUnidadEjecutora);
+                    _actividadOrganizacionUnidadEjecutoraRepository.flush();
+
+                    // return Repository
+                    msgMethod = "La Unidad Ejecutora para este Proyecto, " + _actividadUnidadEjecutoraJson.getCodigoActividad() + " se ha actualizado de forma satisfactoria!!";
+
+                    //Retorno del json
+                    msgExeptions.map.put("findRecord", false);
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } catch (Exception ex) {
+                    msgMethod = "Hay problemas al momento de Actualizar la Organizacion.";
+                    throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+                }
+        } else {
+            //Retorno del json
+            msgMethod = "No se encuentra una Organizacion con el parametro enviado !!";
+            return msgExeptions.msgJson(msgMethod, 200);
+        }
+    } catch (Exception ex) {
+        msgMethod = "Hay problemas al momento de Actualizar la Organizacion.";
+        throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+    }
+} // FIN | editActividadEjecutora
+
 
 }
