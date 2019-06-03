@@ -216,6 +216,7 @@ public class ActividadFinanciamientoEncResourses {
 
                     // Retorno de la Funcion
                     msgMethod = "El Financiamiento Encabezado para este Proyecto, " + _actividadFinancEncJson.getCodigoFinancEnc() + " se ha Ingresado de forma satisfactoria!!";
+                    msgExeptions.map.put("data",  _actividadFinanciamientoEncRepository.findByCodigoFinancEnc(_actividadFinancEncJson.getCodigoFinancEnc()));
 
                     //Retorno del json
                     msgExeptions.map.put("findRecord", false);
