@@ -181,6 +181,7 @@ public class configAPI {
     public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_ADMON_FINANCIERO= "/mant-actividades/organizaciones/admon-financiero/findByIdActividad/{idActividad}";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero/findByCodigoActividad/{codigoActividad}";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_NEW_ADMON_FINANCIERO= "/mant-actividades/organizaciones/admon-financiero/new";
+    public static final String ORGANIZACIONES_ENDPOINT_EDIT_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero/findByIdActividad/{idActividad}";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_DELETE_ADMON_FINANCIERO = "/mant-actividades/organizaciones/admon-financiero/delete/{codigoActividad}";
 
     //mapeo agencia beneficiaria
@@ -188,6 +189,7 @@ public class configAPI {
     public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria/findByIdActividad/{idActividad}";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_FIND_BY_COD_PROGRAMA_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria/findByCodigoActividad/{codigoActividad}";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_NEW_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria/new";
+    public static final String ORGANIZACIONES_ENDPOINT_EDIT_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria/edit/{idActividadAgenciaBeneficiaria}";
     public static final String ORGANIZACIONES_ACT_ENDPOINT_DELETE_AGENCIA_BENEFICIARIA = "/mant-actividades/organizaciones/agencia-beneficiaria/delete/{codigoActividad}";
 
 

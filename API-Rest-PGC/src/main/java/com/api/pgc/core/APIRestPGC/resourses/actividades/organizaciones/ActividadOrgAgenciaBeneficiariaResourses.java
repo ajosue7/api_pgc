@@ -12,7 +12,10 @@ package com.api.pgc.core.APIRestPGC.resourses.actividades.organizaciones;
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
 import com.api.pgc.core.APIRestPGC.models.actividades.organizaciones.TblActividadOrganizacionAgenciaBeneficiaria;
 import com.api.pgc.core.APIRestPGC.models.actividades.organizaciones.TblActividadOrganizacionSocioDesarrollo;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblCategoriaOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
+import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadRepository;
 import com.api.pgc.core.APIRestPGC.repository.actividades.organizaciones.ActividadOrganizacionAgenciaBeneficiariaRepository;
 import com.api.pgc.core.APIRestPGC.repository.actividades.organizaciones.ActividadOrganizacionSocioDesarrolloRepository;
@@ -227,6 +230,73 @@ public class ActividadOrgAgenciaBeneficiariaResourses {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     } // FIN | addActividadAgenciaBeneficiaria
+
+
+    /**
+     * Metodo que Solicita un json con los datos de la Entidad Unidad Ejecutora con Relacion
+     * a Actividades
+     *
+     * @param _actividadAgenciaBeneficiariaJson Obtiene desde el request los datos de Unidad Ejecutora a Modificar
+     * @return Mensaje de Confirmacion de Registro de Unidad Ejecutora
+     * @autor Allan Madrid| AMA
+     * @version 27/05/2019/v1.0
+     */
+    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean de la Unidad Ejecutora de proyecto", authorizations = {@Authorization(value = "Token-PGC")})
+    @PutMapping (value = ORGANIZACIONES_ENDPOINT_EDIT_AGENCIA_BENEFICIARIA, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> editActividadAgenciaBeneficiaria(@ApiParam(value = "Json de Unidad Ejecutora del Proyecto a Ingresar", required = true)
+                                                                @PathVariable("idActividadAgenciaBeneficiaria") long idActividadAgenciaBeneficiaria,
+                                                                @RequestBody @Valid final TblActividadOrganizacionAgenciaBeneficiaria _actividadAgenciaBeneficiariaJson) throws Exception {
+        // Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Fecha de Ingreso
+        Date dateActual = new Date();
+        //System.out.println( "************************"  +_actividadUnidadEjecutoraJson.getPorcentajePart());
+
+        try {
+            // Busca la Actividad, desde el Repositorio con el Parametro del Json enviado ( "idActividad": {"idActividad": valor })
+            TblActividadOrganizacionAgenciaBeneficiaria _tblActividadOrganizacionAgenciaBeneficiaria = _actividadOrganizacionAgenciaBeneficiariaRepository.findByIdActividadAgenciaBeneficiaria(idActividadAgenciaBeneficiaria);
+            // TblActividad _tblActividad = _actividadRepository.findByIdActividad(idActividad);
+
+            if(_actividadOrganizacionAgenciaBeneficiariaRepository.countByIdActividadAgenciaBeneficiaria(idActividadAgenciaBeneficiaria) >0){
+                //Buscamos el Tipo de ACT.Ejecutora segun el parametro enviado.
+
+
+
+                // Busca el Proyecto con el Proposito de validar que no se meta otro Item mas,
+                // desde el Repositorio de Unidad Ejecutora con el Parametro del Json enviado ( "idActividad": _tblActividad )
+                try  {
+                    // Seteo de las Fecha y Hora de Creacion
+                    _tblActividadOrganizacionAgenciaBeneficiaria.setFechaCreacion(dateActual);
+                    _tblActividadOrganizacionAgenciaBeneficiaria.setHoraCreacion(dateActual);
+                    _tblActividadOrganizacionAgenciaBeneficiaria.setPorcentajePart(_actividadAgenciaBeneficiariaJson.getPorcentajePart());
+                    ;
+
+
+                    // Realizamos la Persistencia de los Datos
+
+                    _actividadOrganizacionAgenciaBeneficiariaRepository.save(_tblActividadOrganizacionAgenciaBeneficiaria);
+                    _actividadOrganizacionAgenciaBeneficiariaRepository.flush();
+
+                    // return Repository
+                    msgMethod = "Se ha Actualizado de forma satisfactoria!!";
+
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } catch (Exception ex) {
+                    msgMethod = "Hay problemas al momento de Actualizar la Organizacion.";
+                    throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+                }
+            } else {
+                //Retorno del json
+                msgMethod = "No se encuentra una Organizacion con el parametro enviado !!";
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        } catch (Exception ex) {
+            msgMethod = "Hay problemas al momento de Actualizar la Organizacion.";
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    } // FIN | editActividadEjecutora
 
 
     /**
