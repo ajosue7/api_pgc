@@ -25,6 +25,9 @@ public interface ActividadOrganizacionUnidadEjecutoraRepository extends JpaRepos
      */
     TblActividadOrganizacionUnidadEjecutora findByCodigoActividad(String codigoActividad);
 
+
+
+
     /**
      * Metodo que despliega las Unidad Ejecutora de la BD
      *
