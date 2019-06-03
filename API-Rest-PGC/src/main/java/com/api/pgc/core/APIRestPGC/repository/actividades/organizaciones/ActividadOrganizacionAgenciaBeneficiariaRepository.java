@@ -25,6 +25,28 @@ public interface ActividadOrganizacionAgenciaBeneficiariaRepository extends JpaR
      */
     TblActividadOrganizacionAgenciaBeneficiaria findByCodigoActividad(String codigoActividad);
 
+
+    /**
+     * Metodo que despliega los Agencia Beneficiaria de la BD
+     *
+     * @param idActividadAgenciaBeneficiaria
+     * @return Agencia Beneficiaria Proyecto de la BD, por parametro de Codigo
+     * @autor Nahum Martinez | NAM
+     * @version 02/05/2019/v1.0
+     */
+    TblActividadOrganizacionAgenciaBeneficiaria findByIdActividadAgenciaBeneficiaria(long idActividadAgenciaBeneficiaria);
+
+    /**
+     * Metodo que despliega los Agencia Beneficiaria de la BD
+     *
+     * @param idActividadAgenciaBeneficiaria
+     * @return Agencia Beneficiaria Proyecto de la BD, por parametro de Codigo
+     * @autor Nahum Martinez | NAM
+     * @version 02/05/2019/v1.0
+     */
+    long  countByIdActividadAgenciaBeneficiaria(long idActividadAgenciaBeneficiaria);
+
+
     /**
      * Metodo que despliega las Agencia Beneficiaria de la BD
      *

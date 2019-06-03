@@ -21,9 +21,9 @@ public class TblActividadOrganizacionAgenciaBeneficiaria {
     // Propiedades de la tabla
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ACTIVIDAD_AGENCIA_EJECUTORA", columnDefinition = "serial")
+    @Column(name = "ID_ACTIVIDAD_AGENCIA_BENEFICIARIA", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
-    private long idActividadAgenciaEjecutora;
+    private long idActividadAgenciaBeneficiaria;
 
     @Column(name = "CODIGO_ACTIVIDAD", nullable = false, length = 50)
     @ApiModelProperty(notes = "Codigo de la Actividad", required = true)
@@ -69,15 +69,16 @@ public class TblActividadOrganizacionAgenciaBeneficiaria {
         // Este lo usa Jpa para realizar los Mapping
     }
 
+
     /**
      * Metodos Getters y Setter
      */
-    public long getIdActividadAgenciaEjecutora() {
-        return idActividadAgenciaEjecutora;
+    public long getIdActividadAgenciaBeneficiaria() {
+        return idActividadAgenciaBeneficiaria;
     }
 
-    public void setIdActividadAgenciaEjecutora(long idActividadAgenciaEjecutora) {
-        this.idActividadAgenciaEjecutora = idActividadAgenciaEjecutora;
+    public void setIdActividadAgenciaBeneficiaria(long idActividadAgenciaBeneficiaria) {
+        this.idActividadAgenciaBeneficiaria = idActividadAgenciaBeneficiaria;
     }
 
     public String getCodigoActividad() {
@@ -135,4 +136,8 @@ public class TblActividadOrganizacionAgenciaBeneficiaria {
     public void setPorcentajePart(double porcentajePart) {
         this.porcentajePart = porcentajePart;
     }
+
+
+
+
 }

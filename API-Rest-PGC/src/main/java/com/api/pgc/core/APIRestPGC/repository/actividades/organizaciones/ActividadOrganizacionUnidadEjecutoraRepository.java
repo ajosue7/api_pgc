@@ -43,6 +43,9 @@ public interface ActividadOrganizacionUnidadEjecutoraRepository extends JpaRepos
      */
     long  countByIdActividadUnidadEjecutora(long idActividadUnidadEjecutora );
 
+
+
+
     /**
      * Metodo que despliega las Unidad Ejecutora de la BD
      *
