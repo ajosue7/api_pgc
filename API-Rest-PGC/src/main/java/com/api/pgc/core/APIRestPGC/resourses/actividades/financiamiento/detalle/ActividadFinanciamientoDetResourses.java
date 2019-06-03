@@ -240,8 +240,8 @@ public class ActividadFinanciamientoDetResourses {
                             // Retorno de la Funcion
                             msgMethod = "El Financiamiento Detalle para este Proyecto, " + _actividadFinancDetJson.getCodigoFinancDet() + " se ha Ingresado de forma satisfactoria!!";
 
-                            //Retorno del json
-                            msgExeptions.map.put("data", _actividadFinanciamientoEncRepository.findByIdActividadFinancEnc(_actividadFinancDetJson.getIdActividadFinancEnc().getIdActividadFinancEnc()));
+                            // Retorno del json
+                            msgExeptions.map.put("data", _actividadFinanciamientoDetRepository.findByCodigoFinancDet(_actividadFinancDetJson.getCodigoFinancDet()));
                             msgExeptions.map.put("findRecord", false);
 
                             return msgExeptions.msgJson(msgMethod, 200);
