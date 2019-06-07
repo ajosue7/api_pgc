@@ -1,7 +1,9 @@
 package com.api.pgc.core.APIRestPGC.resourses.organizaciones;
 
 
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblCategoriaOrganizacion;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblGrupoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
@@ -182,12 +184,15 @@ public class OrganizacionesResources {
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
+            System.out.println("paso1********************************************************" + organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
             // Buscar el Tipo de Organizacion
             TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion(organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion());
 
             // Buscar el Grupo de Organizacion
-            // TblGrupoOrganizacion tblGrupoOrganizacion = grupoOrganizacionRepository.findByIdGrupoOrganizacion(organizacionJson.getIdGrupoOrganizazion().getIdGrupoOrganizacion());
+          //  System.out.println("paso1********************************************************" + organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
+            TblGrupoOrganizacion tblGrupoOrganizacion = grupoOrganizacionRepository.findByIdGrupoOrganizacion(organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
 
+            System.out.println("paso2********************************************************" + organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion() );
             // Buscar el Categoria de Organizacion
             TblCategoriaOrganizacion _tblCategoriaOrganizacion = _categoriaOrganizacionRepository.findByIdCatOrganizacion(organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion());
 
@@ -199,11 +204,12 @@ public class OrganizacionesResources {
                     //Setea el valor Buscando de la Entidad Tipos de Usuario
                     organizacionJson.setIdTipoOrganizacion(tblTipoOrganizacion);
                     organizacionJson.setIdPaisOrganizacion(tblPais);
-                    // organizacionJson.setIdGrupoOrganizazion(tblGrupoOrganizacion);
+                    // organizacionJson.setIdGrupoOrganizacion(tblGrupoOrganizacion);
                     organizacionJson.setIdCatOrganizacion(_tblCategoriaOrganizacion);
 
                     //Realizamos la Persistencia de los Datos
                     organizacionRepository.save(organizacionJson);
+                   // organizacionJson.setIdGrupoOrganizacion(tblGrupoOrganizacion);
 
                     //return organizacionRepository.findAll();
                     msgMethod = "Se ha Ingresado de forma satisfactoria!!";
