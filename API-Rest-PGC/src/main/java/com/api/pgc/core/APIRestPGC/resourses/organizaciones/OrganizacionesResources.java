@@ -185,48 +185,58 @@ public class OrganizacionesResources {
 
         try {
             System.out.println("paso1********************************************************" + organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
-            // Buscar el Tipo de Organizacion
-            TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion(organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion());
-
             // Buscar el Grupo de Organizacion
-          //  System.out.println("paso1********************************************************" + organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
             TblGrupoOrganizacion tblGrupoOrganizacion = grupoOrganizacionRepository.findByIdGrupoOrganizacion(organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
 
-            System.out.println("paso2********************************************************" + organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion() );
-            // Buscar el Categoria de Organizacion
-            TblCategoriaOrganizacion _tblCategoriaOrganizacion = _categoriaOrganizacionRepository.findByIdCatOrganizacion(organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion());
+            try {
+                System.out.println("paso2********************************************************" + organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion());
+                // Buscar el Tipo de Organizacion
+                TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion(organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion());
 
-            if (tblTipoOrganizacion.isActivo() == true) {
-                // Buscar el el Pais de Organizacion
-                TblPais tblPais = paisRepository.findByIdPais(organizacionJson.getIdPaisOrganizacion().getIdPais());
+                try {
+                    System.out.println("paso3********************************************************" + organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion());
+                    // Buscar el Categoria de Organizacion
+                    TblCategoriaOrganizacion _tblCategoriaOrganizacion = _categoriaOrganizacionRepository.findByIdCatOrganizacion(organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion());
 
-                if (tblPais.getInicialesPais() != null) {
-                    //Setea el valor Buscando de la Entidad Tipos de Usuario
-                    organizacionJson.setIdTipoOrganizacion(tblTipoOrganizacion);
-                    organizacionJson.setIdPaisOrganizacion(tblPais);
-                    // organizacionJson.setIdGrupoOrganizacion(tblGrupoOrganizacion);
-                    organizacionJson.setIdCatOrganizacion(_tblCategoriaOrganizacion);
+                    if (tblTipoOrganizacion.isActivo() == true) {
+                        // Buscar el el Pais de Organizacion
+                        TblPais tblPais = paisRepository.findByIdPais(organizacionJson.getIdPaisOrganizacion().getIdPais());
 
-                    //Realizamos la Persistencia de los Datos
-                    organizacionRepository.save(organizacionJson);
-                   // organizacionJson.setIdGrupoOrganizacion(tblGrupoOrganizacion);
+                        if (tblPais.getInicialesPais() != null) {
+                            //Setea el valor Buscando de la Entidad Tipos de Usuario
+                            organizacionJson.setIdTipoOrganizacion(tblTipoOrganizacion);
+                            organizacionJson.setIdPaisOrganizacion(tblPais);
+                            organizacionJson.setIdGrupoOrganizacion(tblGrupoOrganizacion);
+                            organizacionJson.setIdCatOrganizacion(_tblCategoriaOrganizacion);
 
-                    //return organizacionRepository.findAll();
-                    msgMethod = "Se ha Ingresado de forma satisfactoria!!";
-                } else {
-                    msgMethod = "No existe el Pais de Organizacion que buscas, por favor verfica que el Identificador correcto ingresado es correcto.";
+                            //Realizamos la Persistencia de los Datos
+                            organizacionRepository.save(organizacionJson);
+                            organizacionRepository.flush();
+
+                            //return organizacionRepository.findAll();
+                            msgMethod = "Se ha Ingresado de forma satisfactoria!!";
+                        } else {
+                            msgMethod = "No existe el Pais de Organizacion que buscas, por favor verfica que el Identificador correcto ingresado es correcto.";
+                        }
+                    } else {
+                        msgMethod = "El Tipo de Organización que buscas, no Existe o no esta Habilitado.";
+                    }
+
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } catch (Exception ex) {
+                    msgMethod = "La Categoria de Organizacion que buscas no exite, pofavor verifica que sea la correcta ";
+                    throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
                 }
-            } else {
-                msgMethod = "El Tipo de Organización que buscas, no Existe o no esta Habilitado.";
+            } catch (Exception ex) {
+                msgMethod = "El Tipo de Organizaion que buscas no exite, pofavor verifica que sea el correcto ";
+                throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
             }
-
-            //Retorno del json
-            return msgExeptions.msgJson(msgMethod, 200);
         } catch (Exception ex) {
-            msgMethod = "Los datos Ingresados no son los correctos, pofavor verifica que correspondan a la informacion utilizada en la BD.";
+            msgMethod = "El grupo de organizacion que busca no existe, pofavor verifica que sea el correcto ";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
-    }
+    } // FIN | addOrganizacion
 
 
     /**

@@ -60,6 +60,7 @@ public class TblOrganizacion {
     private String webOrganizacion;
 
     @Column(name = "ACTIVO")
+    @ApiModelProperty(notes = "Organizacion Habilitada", readOnly = true)
     private boolean activo;
 
     // Detalles de Cooperanate
@@ -77,12 +78,12 @@ public class TblOrganizacion {
 
     @Column(name = "FECHA_CREACION", columnDefinition = "date DEFAULT '2999-12-31'")
     @Temporal(TemporalType.DATE)
-    //@ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss")
+    @ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss", readOnly = true)
     private Date fechaCreacion;
 
     @Column(name = "HORA_CREACION")
     @Temporal(TemporalType.TIME)
-    //@ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss")
+    @ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss", readOnly = true)
     private Date horaCreacion = new Date();
 
     // Relaciones con otras Tablas
