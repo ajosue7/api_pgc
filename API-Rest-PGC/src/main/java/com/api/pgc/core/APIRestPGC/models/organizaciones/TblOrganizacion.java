@@ -107,7 +107,7 @@ public class TblOrganizacion {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_GRUPO_ORGANIZACION", referencedColumnName = "ID_GRUPO_ORGANIZACION")
     @ApiModelProperty(notes = "Entidad del Grupo de Organizacion, se envia desde un Json (\"idGrupoOrganizazion\": { \"idGrupoOrganizazion\": \"valor\" })")
-    private TblGrupoOrganizacion idGrupoOrganizazion;
+    private TblGrupoOrganizacion idGrupoOrganizacion;
 
     // Mapeo de la Relacion de la Tabla de Organizacones con Categorias de Organizacion
     // Muchas Organizaciones = 1 Categoria de Organizacion
@@ -292,5 +292,13 @@ public class TblOrganizacion {
 
     public void setIdCatOrganizacion(TblCategoriaOrganizacion idCatOrganizacion) {
         this.idCatOrganizacion = idCatOrganizacion;
+    }
+
+    public TblGrupoOrganizacion getIdGrupoOrganizacion() {
+        return idGrupoOrganizacion;
+    }
+
+    public void setIdGrupoOrganizacion(TblGrupoOrganizacion idGrupoOrganizacion) {
+        this.idGrupoOrganizacion = idGrupoOrganizacion;
     }
 }
