@@ -137,6 +137,9 @@ public class configAPI {
     public static final String TIPO_FINANC_ACT_ENDPOINT = "/mant-actividades/tipo-financiamiento";
     public static final String TIPO_FINANC_ACT_ENDPOINT_FIND_BY_ID = "/mant-actividades/tipo-financiamiento/findById/{idTipoFinanciamiento}";
 
+    public static final String TIPO_TRANSAC_ACT_ENDPOINT = "/mant-actividades/tipo-transaccion";
+    public static final String TIPO_TRANSAC_ACT_ENDPOINT_FIND_BY_ID = "/mant-actividades/tipo-transaccion/findById/{idTipoTransaccion}";
+
     // Mapeo de las Rutas del Sub Modulo de Id Internas
     public static final String ID_INTERNA_ENDPOINT = "/mant-actividades/id-interna";
     public static final String ID_INTERNA_ENDPOINT_FIND_BY_CODIGO = "/mant-actividades/id-interna/findByCodInterna/{codIdInterna}";
@@ -215,6 +218,14 @@ public class configAPI {
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET = "/mant-actividades/financiamiento/detalle/findByCodigoFinancEnc/{codigoFinancDet}";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_DET = "/mant-actividades/financiamiento/detalle/new";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET = "/mant-actividades/financiamiento/detalle/delete/{codigoFinancDet}";
+
+    // Detalle de Compromisos =======================================================================================
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FINANC_DET_COMPROMISO = "/mant-actividades/financiamiento/detalle-compromiso";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET_COMPROMISO = "/mant-actividades/financiamiento/detalle-compromiso/findByIdActividadFinancDetCompromiso/{idActividadFinancDetCompromiso}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET_2 = "/mant-actividades/financiamiento/detalle-compromiso/findByIdActividadDet/{idActividadDet}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET_COMPROMISO = "/mant-actividades/financiamiento/detalle-compromiso/findByCodigoFinancDetCompromiso/{codigoFinancDetCompromiso}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_DET_COMPROMISO = "/mant-actividades/financiamiento/detalle-compromiso/new";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET_COMPROMISO = "/mant-actividades/financiamiento/detalle-compromiso/delete/{codigoFinancCompromiso}";
 
     /*==================================================================================================================
      *================================================================================================================ */
