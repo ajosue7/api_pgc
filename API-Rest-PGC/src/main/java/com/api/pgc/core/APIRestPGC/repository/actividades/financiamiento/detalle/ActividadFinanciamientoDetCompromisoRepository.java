@@ -57,7 +57,6 @@ public interface ActividadFinanciamientoDetCompromisoRepository extends JpaRepos
      */
     long countByCodigoFinancCompromiso(String codigoFinancCompromiso);
 
-
     /**
      * Metodo que despliega los Detalle del Financiamiento Compromiso de la BD
      *
@@ -66,8 +65,21 @@ public interface ActividadFinanciamientoDetCompromisoRepository extends JpaRepos
      * @autor Nahum Martinez | NAM
      * @version 04/06/2019/v1.0
      */
-    @Query("SELECT e FROM TblActividadFinanciamientoDetCompromiso e WHERE e.idActividadFinancDet = :idActividadFinancDet")
+    // @Query("SELECT e FROM TblActividadFinanciamientoDetCompromiso e WHERE e.idActividadFinancDet = :idActividadFinancDet")
+    @Query("SELECT a.idActividadFinancDetCompromiso, a.montoCompromiso, a.fechaTransaccion, " +
+            "b.idActividadFinancDet, " +
+            "c.descTipoTransaccion, " +
+            "d.nombreMoneda " +
+            "FROM TblActividadFinanciamientoDetCompromiso as a," +
+            "     TblActividadFinanciamientoDet as b, " +
+            "     TblActividadTipoTransaccion as c, " +
+            "     TblMonedaActividad as d " +
+            "WHERE a.idActividadFinancDet = b.idActividadFinancDet " +
+            "  AND a.idTipoTransaccion = c.idTipoTransaccion " +
+            "  AND a.idMonedaActividad = d.idMonedaActividad " +
+            "  AND a.idActividadFinancDet = :idActividadFinancDet")
     List<TblActividadFinanciamientoDetCompromiso> getByIdFinancDet(@Param("idActividadFinancDet") TblActividadFinanciamientoDet tblActividadFinanciamientoDet);
+
 
 
     /**

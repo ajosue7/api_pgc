@@ -90,7 +90,7 @@ public class ActividadFinanciamientoDetComprimisoResourses {
     /**
      * Metodo que despliega los Detalles de Financiamiento Compromiso a la Actividad de la BD
      *
-     * @param idActividadFinancDetCompromiso Identificador del Detalle de Financiamiento a Buscar
+     * @param idActividadDet Identificador del Detalle de Financiamiento a Buscar
      * @return Detalles de Financiamiento Compromiso de una Atividad de la BD
      * @autor Nahum Martinez | NAM
      * @version 06/06/2019/v1.0
@@ -98,13 +98,13 @@ public class ActividadFinanciamientoDetComprimisoResourses {
     @ApiOperation(value = "Retorna los Detalles de Financiamiento Compromiso de la Actividad enviada a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET_2, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getIdActividadFinancDetCompromiso(@ApiParam(value = "Identificador del Detalle de la Actividad a Buscar", required = true)
-                                                                     @PathVariable("idActividadFinancDetCompromiso") long idActividadFinancDetCompromiso) throws Exception {
+                                                                     @PathVariable("idActividadDet") long idActividadDet) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
             // Busca la Actividad para verificar si existe
-            TblActividadFinanciamientoDet _tblActividadFinanciamientoDet = _actividadFinanciamientoDetRepository.findByIdActividadFinancDet(idActividadFinancDetCompromiso);
+            TblActividadFinanciamientoDet _tblActividadFinanciamientoDet = _actividadFinanciamientoDetRepository.findByIdActividadFinancDet(idActividadDet);
 
             if (_actividadFinanciamientoDetCompromisoRepository.countByIdActividadFinancDet(_tblActividadFinanciamientoDet) == 0) {
                 // Sobreescirbe el Metodo de Mensajes
@@ -121,6 +121,7 @@ public class ActividadFinanciamientoDetComprimisoResourses {
                 msgExeptions.map.put("findRecord", true);
 
                 msgExeptions.map.put("data", _actividadFinanciamientoDetCompromisoRepository.getByIdFinancDet(_tblActividadFinanciamientoDet));
+                msgExeptions.map.put("countRecords", _actividadFinanciamientoDetCompromisoRepository.countByIdActividadFinancDet(_tblActividadFinanciamientoDet));
 
                 // Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
