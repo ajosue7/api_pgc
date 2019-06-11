@@ -256,11 +256,11 @@ public class ActividadFinanciamientoDetComprimisoResourses {
 
 
     /**
-     * Metodo que Solicita un json con los datos de la Entidad Financiamiento Detalle Compromiso con Relacion
+     * Metodo que Solicita un json con los datos de la Entidad Compromiso con Relacion
      * a Actividades
      *
-     * @param codigoFinancCompromiso Identificador de la Financiamiento Detalle con Proyecto a Eliminar
-     * @return Mensaje de Confirmacion de Eliminacion de Financiamiento Detalle
+     * @param codigoFinancCompromiso Identificador del Compromiso con Proyecto a Eliminar
+     * @return Mensaje de Confirmacion de Eliminacion de Compromiso
      * @autor Nahum Martinez | NAM
      * @version 06/06/2019/v1.0
      */
@@ -283,20 +283,23 @@ public class ActividadFinanciamientoDetComprimisoResourses {
                     _actividadFinanciamientoDetCompromisoRepository.flush();
 
                     // Retorno de la Funcion
-                    msgMethod = "El Financiamiento Detalle para este Proyecto, se ha Eliminado de forma satisfactoria!!";
+                    msgMethod = "El Compromiso para este Proyecto, se ha Eliminado de forma satisfactoria!!";
+                    msgExeptions.map.put("findRecord", true);
 
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
-                    msgMethod = "No Existe un registro de Detalle de Financiamiento Compromiso para este Proyecto !!";
+                    msgMethod = "No Existe un registro de Compromiso para este Proyecto !!";
+                    msgExeptions.map.put("findRecord", false);
+
                     throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod);
                 }
             } catch (Exception ex) {
-                msgMethod = "Ha Ocurrido un error al Eliminar el Financiamiento Detalle Compromiso del Proyecto !!";
+                msgMethod = "Ha Ocurrido un error al Eliminar el Compromiso del Proyecto !!";
                 throw new SQLException("Se ha producido una excepción con el mensaje: " + msgMethod, ex);
             }
         } catch (Exception ex) {
-            msgMethod = "No Existe un registro de Financiamiento Detalle Compromiso para este Proyecto , por favor verfica que lo has ingresado correctamente o que existe.";
+            msgMethod = "No Existe un registro de Compromiso para este Proyecto , por favor verfica que lo has ingresado correctamente o que existe.";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     } // FIN | deletedActividadActvidadFinancDetComprimiso
