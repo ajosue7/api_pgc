@@ -28,6 +28,10 @@ public class TblMonedaActividad {
     @ApiModelProperty(notes = "Nombre de la Moneda de la Actividad", required = true)
     private String nombreMoneda;
 
+    @Column(name = "DESC_MONEDA", nullable = false, length = 200)
+    @ApiModelProperty(notes = "Descripcion de la Moneda de la Actividad", required = true)
+    private String descMoneda;
+
     @Column(name = "TASA_CAMBIARIA", nullable = false)
     @ApiModelProperty(notes = "Tasa Cambiaria de la Moneda de la Actividad", required = true)
     private String tasaCambiaria;
@@ -87,5 +91,13 @@ public class TblMonedaActividad {
 
     public void setHabilitada(boolean habilitada) {
         this.habilitada = habilitada;
+    }
+
+    public String getDescMoneda() {
+        return descMoneda;
+    }
+
+    public void setDescMoneda(String descMoneda) {
+        this.descMoneda = descMoneda;
     }
 }

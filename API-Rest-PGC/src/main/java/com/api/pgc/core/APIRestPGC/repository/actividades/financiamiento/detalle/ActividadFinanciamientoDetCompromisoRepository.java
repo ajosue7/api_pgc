@@ -69,8 +69,8 @@ public interface ActividadFinanciamientoDetCompromisoRepository extends JpaRepos
     @Query("SELECT a.idActividadFinancDetCompromiso, a.codigoFinancCompromiso, " +
             "a.montoCompromiso, a.fechaTransaccion, " +
             "b.idActividadFinancDet, " +
-            "c.descTipoTransaccion, " +
-            "d.nombreMoneda " +
+            "c.descTipoTransaccion, c.idTipoTransaccion, " +
+            "d.nombreMoneda, d.idMonedaActividad " +
             "FROM TblActividadFinanciamientoDetCompromiso as a," +
             "     TblActividadFinanciamientoDet as b, " +
             "     TblActividadTipoTransaccion as c, " +
