@@ -24,7 +24,7 @@ public interface ActividadFinanciamientoDetCompromisoRepository extends JpaRepos
      * @autor Nahum Martinez | NAM
      * @version 04/06/2019/v1.0
      */
-    TblActividadFinanciamientoDetCompromiso findByidActividadFinancDetCompromiso(long idActividadFinancCompromiso);
+    TblActividadFinanciamientoDetCompromiso findByIdActividadFinancDetCompromiso(long idActividadFinancCompromiso);
 
     /**
      * Metodo que despliega las Detalle del Financiamiento Compromiso de la BD

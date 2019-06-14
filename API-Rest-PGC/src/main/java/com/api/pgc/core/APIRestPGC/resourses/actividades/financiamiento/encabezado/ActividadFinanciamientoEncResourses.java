@@ -216,7 +216,7 @@ public class ActividadFinanciamientoEncResourses {
 
                     // Retorno de la Funcion
                     msgMethod = "El Financiamiento Encabezado para este Proyecto, " + _actividadFinancEncJson.getCodigoFinancEnc() + " se ha Ingresado de forma satisfactoria!!";
-                    msgExeptions.map.put("data",  _actividadFinanciamientoEncRepository.findByCodigoFinancEnc(_actividadFinancEncJson.getCodigoFinancEnc()));
+                    msgExeptions.map.put("data", _actividadFinanciamientoEncRepository.findByCodigoFinancEnc(_actividadFinancEncJson.getCodigoFinancEnc()));
 
                     //Retorno del json
                     msgExeptions.map.put("findRecord", false);
@@ -278,5 +278,76 @@ public class ActividadFinanciamientoEncResourses {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     } // FIN | deletedActividadActvidadFinancEnc
+
+
+    /**
+     * Metodo que Solicita un json con los datos de la Entidad Financiamiento Encabezado con Relacion
+     * a Actividades
+     *
+     * @param _actividadFinancEncJson Obtiene desde el request los datos del Financiamiento Encabezado a Actualizar
+     * @param idActividadFinancEnc    Identificador del item de Encabezado a Actualizar
+     * @return Mensaje de Confirmacion de Actualizacion de Financiamiento Encabezado
+     * @autor Nahum Martinez | NAM
+     * @version 14/06/2019/v1.0
+     */
+    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del Financiamiento Encabezado de proyecto", authorizations = {@Authorization(value = "Token-PGC")})
+    @PutMapping(value = FINANCIAMIENTO_ACT_ENDPOINT_EDIT_FINANC_ENC, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> editActividadActvidadFinancEnc(@ApiParam(value = "Json de Financiamiento Encabezado del Proyecto a Actualizar", required = true)
+                                                                  @PathVariable("idActividadFinancEnc") long idActividadFinancEnc,
+                                                                  @RequestBody @Valid final TblActividadFinanciamientoEnc _actividadFinancEncJson) throws Exception {
+        // Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Fecha de Ingrso
+        Date dateActual = new Date();
+
+        try {
+            // Busca la el Financiamiento Encabezado de la Actividad, desde el Reporsitorio con el Parametro del Json enviado ( "idActividadFinancEnc": {"idActividadFinancEnc": valor })
+            TblActividadFinanciamientoEnc _tblActividadFinanciamientoEnc = _actividadFinanciamientoEncRepository.findByIdActividadFinancEnc(idActividadFinancEnc);
+
+            try {
+                // Busca la Financiamiento Encabezado, desde el Reporsitorio con el Parametro del Json enviado ( "idMonedaActividad": {"idMonedaActividad": valor })
+                TblMonedaActividad _tblMonedaActividad = _monedaActividadRepository.findByIdMonedaActividad(_actividadFinancEncJson.getIdMonedaActividad().getIdMonedaActividad());
+
+                // Busca el Proyecto con el Proposito de validar que no se meta otro Item mas,
+                // desde el Reporsitorio de Financiamiento Encabezado con el Parametro del Json enviado ( "idActividadFinancEnc": _tblActividadFinanciamientoEnc )
+
+                if (_actividadFinanciamientoEncRepository.countByCodigoFinancEnc(_actividadFinancEncJson.getCodigoFinancEnc()) > 0) {
+                    // Seteo de las Fecha y Hora de Creacion
+                    _tblActividadFinanciamientoEnc.setFechaModificacion(dateActual);
+                    _tblActividadFinanciamientoEnc.setHoraModificacion(dateActual);
+
+                    _tblActividadFinanciamientoEnc.setMontoActividad(_actividadFinancEncJson.getMontoActividad());
+                    _tblActividadFinanciamientoEnc.setFechaTransaccion(_actividadFinancEncJson.getFechaTransaccion());
+
+                    // Seteamos la Moneda de Financiamiento
+                    _tblActividadFinanciamientoEnc.setIdMonedaActividad(_tblMonedaActividad);
+
+                    // Realizamos la Persistencia de los Datos
+                    _actividadFinanciamientoEncRepository.save(_tblActividadFinanciamientoEnc);
+                    _actividadFinanciamientoEncRepository.flush();
+
+                    // Retorno de la Funcion
+                    msgMethod = "El Financiamiento Encabezado para este Proyecto, " + _actividadFinancEncJson.getCodigoFinancEnc() + " se ha Actualizado de forma satisfactoria!!";
+                    msgExeptions.map.put("data", _actividadFinanciamientoEncRepository.findByCodigoFinancEnc(_actividadFinancEncJson.getCodigoFinancEnc()));
+
+                    //Retorno del json
+                    msgExeptions.map.put("findRecord", true);
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } else {
+                    msgMethod = "No Existe un registro con el código de transacción Financiamiento Encabezado para este Proyecto !! " + _actividadFinancEncJson.getCodigoFinancEnc();
+
+                    msgExeptions.map.put("findRecord", false);
+                    return msgExeptions.msgJson(msgMethod, 200);
+                }
+            } catch (Exception ex) {
+                msgMethod = "Ha Ocurrido un error al intentar Actualizar el Financiamiento Encabezado del Proyecto, con la informacion indicada !!";
+                throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+            }
+        } catch (Exception ex) {
+            msgMethod = "No existe el Proyecto que buscas, por favor verfica que lo has ingresado correctamente.";
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    } // FIN | editActividadActvidadFinancEnc
 
 }
