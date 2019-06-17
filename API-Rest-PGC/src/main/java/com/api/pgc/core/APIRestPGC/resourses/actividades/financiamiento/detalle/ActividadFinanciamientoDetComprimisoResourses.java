@@ -90,7 +90,7 @@ public class ActividadFinanciamientoDetComprimisoResourses {
     /**
      * Metodo que despliega los Detalles de Financiamiento Compromiso a la Actividad de la BD
      *
-     * @param idActividadFinancDetCompromiso Identificador del Detalle de Financiamiento a Buscar
+     * @param idActividadDet Identificador del Detalle de Financiamiento a Buscar
      * @return Detalles de Financiamiento Compromiso de una Atividad de la BD
      * @autor Nahum Martinez | NAM
      * @version 06/06/2019/v1.0
@@ -98,13 +98,13 @@ public class ActividadFinanciamientoDetComprimisoResourses {
     @ApiOperation(value = "Retorna los Detalles de Financiamiento Compromiso de la Actividad enviada a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET_2, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getIdActividadFinancDetCompromiso(@ApiParam(value = "Identificador del Detalle de la Actividad a Buscar", required = true)
-                                                                     @PathVariable("idActividadFinancDetCompromiso") long idActividadFinancDetCompromiso) throws Exception {
+                                                                     @PathVariable("idActividadDet") long idActividadDet) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
             // Busca la Actividad para verificar si existe
-            TblActividadFinanciamientoDet _tblActividadFinanciamientoDet = _actividadFinanciamientoDetRepository.findByIdActividadFinancDet(idActividadFinancDetCompromiso);
+            TblActividadFinanciamientoDet _tblActividadFinanciamientoDet = _actividadFinanciamientoDetRepository.findByIdActividadFinancDet(idActividadDet);
 
             if (_actividadFinanciamientoDetCompromisoRepository.countByIdActividadFinancDet(_tblActividadFinanciamientoDet) == 0) {
                 // Sobreescirbe el Metodo de Mensajes
@@ -121,6 +121,7 @@ public class ActividadFinanciamientoDetComprimisoResourses {
                 msgExeptions.map.put("findRecord", true);
 
                 msgExeptions.map.put("data", _actividadFinanciamientoDetCompromisoRepository.getByIdFinancDet(_tblActividadFinanciamientoDet));
+                msgExeptions.map.put("countRecords", _actividadFinanciamientoDetCompromisoRepository.countByIdActividadFinancDet(_tblActividadFinanciamientoDet));
 
                 // Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
@@ -255,11 +256,11 @@ public class ActividadFinanciamientoDetComprimisoResourses {
 
 
     /**
-     * Metodo que Solicita un json con los datos de la Entidad Financiamiento Detalle Compromiso con Relacion
+     * Metodo que Solicita un json con los datos de la Entidad Compromiso con Relacion
      * a Actividades
      *
-     * @param codigoFinancCompromiso Identificador de la Financiamiento Detalle con Proyecto a Eliminar
-     * @return Mensaje de Confirmacion de Eliminacion de Financiamiento Detalle
+     * @param codigoFinancCompromiso Identificador del Compromiso con Proyecto a Eliminar
+     * @return Mensaje de Confirmacion de Eliminacion de Compromiso
      * @autor Nahum Martinez | NAM
      * @version 06/06/2019/v1.0
      */
@@ -282,22 +283,103 @@ public class ActividadFinanciamientoDetComprimisoResourses {
                     _actividadFinanciamientoDetCompromisoRepository.flush();
 
                     // Retorno de la Funcion
-                    msgMethod = "El Financiamiento Detalle para este Proyecto, se ha Eliminado de forma satisfactoria!!";
+                    msgMethod = "El Compromiso para este Proyecto, se ha Eliminado de forma satisfactoria!!";
+                    msgExeptions.map.put("findRecord", true);
 
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
-                    msgMethod = "No Existe un registro de Detalle de Financiamiento Compromiso para este Proyecto !!";
+                    msgMethod = "No Existe un registro de Compromiso para este Proyecto !!";
+                    msgExeptions.map.put("findRecord", false);
+
                     throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod);
                 }
             } catch (Exception ex) {
-                msgMethod = "Ha Ocurrido un error al Eliminar el Financiamiento Detalle Compromiso del Proyecto !!";
+                msgMethod = "Ha Ocurrido un error al Eliminar el Compromiso del Proyecto !!";
                 throw new SQLException("Se ha producido una excepción con el mensaje: " + msgMethod, ex);
             }
         } catch (Exception ex) {
-            msgMethod = "No Existe un registro de Financiamiento Detalle Compromiso para este Proyecto , por favor verfica que lo has ingresado correctamente o que existe.";
+            msgMethod = "No Existe un registro de Compromiso para este Proyecto , por favor verfica que lo has ingresado correctamente o que existe.";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     } // FIN | deletedActividadActvidadFinancDetComprimiso
 
+
+    /**
+     * Metodo que Solicita un json con los datos de la Entidad Compromiso con Relacion
+     * a Actividades
+     *
+     * @param _actividadFinancDetCompromisoJson Obtiene desde el request los datos del Compromiso a Eliminar
+     * @param idActividadFinancDetCompromiso    Identificador de la tabla
+     * @return Mensaje de Confirmacion de Registro de Financiamiento Detalle
+     * @autor Nahum Martinez | NAM
+     * @version 06/06/2019/v1.0
+     */
+    @ApiOperation(value = "Edita a la BD, la Información enviada por el Bean del Compromiso de proyecto", authorizations = {@Authorization(value = "Token-PGC")})
+    @PutMapping(value = FINANCIAMIENTO_ACT_ENDPOINT_EDIT_FINANC_DET_COMPROMISO, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> editActividadFinancDetCompromiso(@ApiParam(value = "Json de Compromiso del Proyecto a Editar", required = true)
+                                                                    @PathVariable("idActividadFinancDetCompromiso") long idActividadFinancDetCompromiso,
+                                                                    @RequestBody @Valid final TblActividadFinanciamientoDetCompromiso _actividadFinancDetCompromisoJson) throws Exception {
+        // Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Fecha de Ingrso
+        Date dateActual = new Date();
+
+        try {
+            // Busca Compromiso de la Actividad, desde el Reporsitorio con el Parametro del Json enviado ( "idActividadFinancDetCompromiso": {"idActividadFinancDetCompromiso": valor })
+            TblActividadFinanciamientoDetCompromiso _tblActividadFinanciamientoDetCompromiso = _actividadFinanciamientoDetCompromisoRepository.findByIdActividadFinancDetCompromiso(idActividadFinancDetCompromiso);
+
+            try {
+                // Busca el Tipo de Transacción, desde el Reporsitorio con el Parametro del Json enviado ( "idTipoTransaccion": {"idTipoTransaccion": valor })
+                TblActividadTipoTransaccion _tblActividadTipoTransaccion = _actividadTipoTransaccionRepository.findByIdTipoTransaccion(_actividadFinancDetCompromisoJson.getIdTipoTransaccion().getIdTipoTransaccion());
+
+                try {
+                    // Busca la Moneda de Transaccion, desde el Reporsitorio con el Parametro del Json enviado ( "idMonedaActividad": {"idMonedaActividad": valor })
+                    TblMonedaActividad _tblMonedaActividad = _monedaActividadRepository.findByIdMonedaActividad(_actividadFinancDetCompromisoJson.getIdMonedaActividad().getIdMonedaActividad());
+
+                    if (_actividadFinanciamientoDetCompromisoRepository.countByCodigoFinancCompromiso(_actividadFinancDetCompromisoJson.getCodigoFinancCompromiso()) > 0) {
+                        // Seteo de las Fecha y Hora de Creacion
+                        _tblActividadFinanciamientoDetCompromiso.setFechaModificacion(dateActual);
+                        _tblActividadFinanciamientoDetCompromiso.setHoraModificacion(dateActual);
+
+                        // Campos propios
+                        _tblActividadFinanciamientoDetCompromiso.setMontoCompromiso(_actividadFinancDetCompromisoJson.getMontoCompromiso());
+                        _tblActividadFinanciamientoDetCompromiso.setFechaTransaccion(_actividadFinancDetCompromisoJson.getFechaTransaccion());
+
+                        // Seteamos Detalle de Financ. de Actividad y Monenda y Tipo de Transaccion
+                        _tblActividadFinanciamientoDetCompromiso.setIdTipoTransaccion(_tblActividadTipoTransaccion);
+                        _tblActividadFinanciamientoDetCompromiso.setIdMonedaActividad(_tblMonedaActividad);
+
+                        // Realizamos la Persistencia de los Datos
+                        _actividadFinanciamientoDetCompromisoRepository.save(_tblActividadFinanciamientoDetCompromiso);
+                        _actividadFinanciamientoDetCompromisoRepository.flush();
+
+                        // Retorno de la Funcion
+                        msgMethod = "El Compromiso para este Proyecto, " + _actividadFinancDetCompromisoJson.getCodigoFinancCompromiso() + " se ha Actualizado de forma satisfactoria!!";
+
+                        // Retorno del json
+                        msgExeptions.map.put("data", _actividadFinanciamientoDetCompromisoRepository.findByCodigoFinancCompromiso(_actividadFinancDetCompromisoJson.getCodigoFinancCompromiso()));
+                        msgExeptions.map.put("findRecord", true);
+
+                        return msgExeptions.msgJson(msgMethod, 200);
+                    } else {
+                        msgMethod = "No Existe un registro con el código de transacción Compromiso para este Proyecto !! " + _actividadFinancDetCompromisoJson.getCodigoFinancCompromiso();
+
+                        msgExeptions.map.put("findRecord", false);
+                        return msgExeptions.msgJson(msgMethod, 200);
+                    }
+                } catch (Exception ex) {
+                    msgMethod = "Ha Ocurrido un error al Intentar Grabar el Compromiso para el Proyecto, con la informacion de Moneda seleccionada de Ayuda erronea!!";
+                    throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+                }
+            } catch (Exception ex) {
+                msgMethod = "Ha Ocurrido un error al Intentar Grabar el Compromiso del Proyecto, con la informacion de Tipo de Transacción erronea !!";
+                throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+            }
+        } catch (Exception ex) {
+            msgMethod = "No existe el Compromiso NAM que buscas, por favor verfica que lo has ingresado correctamente.";
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    } // FIN | addActividadFinancDetCompromiso
 }

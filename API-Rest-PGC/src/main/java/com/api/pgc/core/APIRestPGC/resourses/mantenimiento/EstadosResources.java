@@ -6,10 +6,7 @@ import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.GruposRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Authorization;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -108,9 +105,9 @@ public class EstadosResources {
      * @autor Nahum Martinez | NAM
      * @version 10/04/2018/v1.0
      */
-    //@ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Estado")
-    //@PostMapping(value = "/estados", produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> addEst(@ApiParam(value = "Json del nuevo Estado a Ingresar", required = true)
+    @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Bean del nuevo Estado", nickname = "addEstado")
+    @PostMapping(value = "/estados/new", produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> addEstado(@ApiParam(value = "Json del nuevo Estado a Ingresar", required = true)
                                           @RequestBody final TblEstado estadoJson) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
