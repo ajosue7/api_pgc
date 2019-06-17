@@ -78,7 +78,8 @@ public interface ActividadFinanciamientoDetCompromisoRepository extends JpaRepos
             "WHERE a.idActividadFinancDet = b.idActividadFinancDet " +
             "  AND a.idTipoTransaccion = c.idTipoTransaccion " +
             "  AND a.idMonedaActividad = d.idMonedaActividad " +
-            "  AND a.idActividadFinancDet = :idActividadFinancDet")
+            "  AND a.idActividadFinancDet = :idActividadFinancDet " +
+            "ORDER BY a.fechaTransaccion")
     List<TblActividadFinanciamientoDetCompromiso> getByIdFinancDet(@Param("idActividadFinancDet") TblActividadFinanciamientoDet tblActividadFinanciamientoDet);
 
 
