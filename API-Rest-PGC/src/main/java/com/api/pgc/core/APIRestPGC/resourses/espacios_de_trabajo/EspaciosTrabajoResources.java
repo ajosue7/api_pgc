@@ -5,6 +5,9 @@ package com.api.pgc.core.APIRestPGC.resourses.espacios_de_trabajo;
 import com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo.TblEspaciosTrabajo;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblCategoriaOrganizacion;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.repository.espacios_de_trabajo.EspaciosTrabajoRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
@@ -15,6 +18,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
@@ -161,5 +165,125 @@ public class EspaciosTrabajoResources {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     }//FIN
+
+    /**
+     * Metodo que Solcita un json con los datos de la Entidad de Organizacion
+     *
+     * @param espaciotrabajoJson Obtiene desde el request los datos de la Organizacion a ingresar
+     * @param idEspaciotrabajo    Identificador de la tabla
+     * @return Mensaje de Confirmacion de Registro de la Organizacion
+     * @autor Nahum Martinez | NAM
+     * @version 14/02/2019/v1.0
+     */
+    @ApiOperation(value = "Actualiza a la BD, la Información enviada por el Bean de la Organizacion", authorizations = {@Authorization(value = "Token-PGC")})
+    @PutMapping(value = ESPACIOS_TRABAJO_ENDPOINT_EDIT, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> editEspaciotrabajo(@ApiParam(value = "Json de Espaciotrabajo a Ingresar", required = true)
+                                                    @PathVariable("idEspaciotrabajo") long idEspaciotrabajo,
+                                                    @RequestBody final TblEspaciosTrabajo espaciotrabajoJson) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Fecha de Ingreso
+        Date dateActual = new Date();
+
+        // Buscamos el Espaciotrabajo solicitado para la Modificacion
+        try {
+            // Buacamos el Espaciotrabajo segun el Parametro enviado
+            TblEspaciosTrabajo _tblespaciotrabajo = espaciosTrabajoRepository.findByIdEspacioTrabajo(idEspaciotrabajo);
+
+            if (espaciosTrabajoRepository.countByIdEspacioTrabajo(idEspaciotrabajo) > 0) {
+                // Buacamos el tipo segun el Parametro enviado
+                TblTipo _tblTipo = tiposRepository.findByIdTipo(espaciotrabajoJson.getIdTipoEspacioTrabajo().getIdTipo());
+
+                // Buacamos el estado segun el Parametro enviado
+                TblEstado _tblEstado = estadosRepository.findByIdEstado(espaciotrabajoJson.getIdEstadoEspacioTrabajo().getIdEstado());
+
+                // Buacamos el Pais segun el Parametro enviado
+                TblPais _tblPais = paisRepository.findByIdPais(espaciotrabajoJson.getIdPais().getIdPais());
+
+                try {
+                    // Realizamos la Persistencia de los Datos
+                    _tblespaciotrabajo.setCodEspacioTrabajo(espaciotrabajoJson.getCodEspacioTrabajo());
+                    _tblespaciotrabajo.setNombreEspacioTrabajo(espaciotrabajoJson.getNombreEspacioTrabajo());
+                    _tblespaciotrabajo.setDescripcionEspacioTrabajo(espaciotrabajoJson.getDescripcionEspacioTrabajo());
+
+
+                    _tblespaciotrabajo.setIdTipoEspacioTrabajo(_tblTipo);
+                    _tblespaciotrabajo.setIdPais(_tblPais);
+                    _tblespaciotrabajo.setIdEstadoEspacioTrabajo(_tblEstado);
+
+                    espaciosTrabajoRepository.save(_tblespaciotrabajo);
+                    espaciosTrabajoRepository.flush();
+
+                    // return Repository
+                    msgMethod = "Se ha Actualizado de forma satisfactoria!!";
+
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } catch (Exception ex) {
+                    msgMethod = "Hay problemas al momento de Actualizar la Organizacion.";
+                    throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+                }
+            } else {
+                //Retorno del json
+                msgMethod = "No se encuentra un espaciotrabajo con el parametro enviado !!";
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        } catch (Exception ex) {
+            msgMethod = "Hay problemas al momento de Actualizar la Organizacion.";
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    } // FIN | editEspaciotrabajo
+
+    /**
+     * Metodo que Solcita un json con los datos de la Entidad de Organizacion
+     *
+     * @param idEspaciotrabajo Identificador de la tabla
+     * @return Mensaje de Confirmacion de Registro de la espaciotrabajo
+     * @autor Nahum Martinez | NAM
+     * @version 25/02/2019/v1.0
+     */
+    @ApiOperation(value = "Inhabilita a la BD, la Información enviada por el Bean de espaciotrabajo", authorizations = {@Authorization(value = "Token-PGC")})
+    @DeleteMapping(value = ESPACIOS_TRABAJO_ENDPOINT_DELETE, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> deleteEspaciotrabajo(@ApiParam(value = "Id de la Espaciotrabajo a Inhabilitar", required = true)
+                                                      @PathVariable("idEspaciotrabajo") long idEspaciotrabajo) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Fecha de Inhabilitacion
+        Date dateActual = new Date();
+
+        // Buscamos la Organizacion solicitada para la Modificacion
+        try {
+            // Buacamos la Organizacion segun el Parametro enviado
+            TblEspaciosTrabajo _tblEspaciotrabajo = espaciosTrabajoRepository.findByIdEspacioTrabajo(idEspaciotrabajo);
+
+            if (espaciosTrabajoRepository.countByIdEspacioTrabajo(idEspaciotrabajo) > 0) {
+                try {
+                    // Realizamos la Persistencia de los Datos
+
+                    espaciosTrabajoRepository.save(_tblEspaciotrabajo);
+                    espaciosTrabajoRepository.flush();
+
+                    // return Repository
+                    msgMethod = "Se ha Inhabilitado de forma satisfactoria!!";
+
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } catch (Exception ex) {
+                    msgMethod = "Hay problemas al momento de Inhabilitar la Organizacion.";
+                    throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+                }
+            } else {
+                //Retorno del json
+                msgMethod = "No se encuentra una Organizacion con el parametro enviado !!";
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        } catch (Exception ex) {
+            msgMethod = "Hay problemas al momento de Inhabilitar la Organizacion.";
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    } // FIN | deleteEspaciotrabajo
+
 
 }

@@ -1,6 +1,7 @@
 package com.api.pgc.core.APIRestPGC.models.mantenimiento;
 
 
+import com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo.TblEspaciosTrabajo;
 import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 
@@ -38,6 +39,7 @@ public class TblTipo {
     /*@ManyToOne
     @JoinColumn( name = "ID_GRUPO")
     private TblGrupo idGrupo;*/
+
 
 
     //Constructor vacio de la Clase, solo para Jpa

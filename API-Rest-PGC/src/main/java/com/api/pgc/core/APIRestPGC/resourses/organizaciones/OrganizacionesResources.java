@@ -9,7 +9,7 @@ import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadIdInternaRepository;
 import com.api.pgc.core.APIRestPGC.repository.organizaciones.CategoriaOrganizacionRepository;
-import com.api.pgc.core.APIRestPGC.repository.organizaciones.GrupoOrganizacionRepository;
+//import com.api.pgc.core.APIRestPGC.repository.organizaciones.GrupoOrganizacionRepository;
 import com.api.pgc.core.APIRestPGC.repository.organizaciones.OrganizacionRepository;
 import com.api.pgc.core.APIRestPGC.repository.organizaciones.TipoOrganizacionRepository;
 import com.api.pgc.core.APIRestPGC.repository.ubicacion_geografica.PaisRepository;
@@ -41,8 +41,8 @@ public class OrganizacionesResources {
     @Autowired
     TipoOrganizacionRepository tipoOrganizacionRepository;
 
-    @Autowired
-    GrupoOrganizacionRepository grupoOrganizacionRepository;
+  //  @Autowired
+   // GrupoOrganizacionRepository grupoOrganizacionRepository;
 
     @Autowired
     PaisRepository paisRepository;
@@ -184,17 +184,17 @@ public class OrganizacionesResources {
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
-            System.out.println("paso1********************************************************" + organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
+//           System.out.println("paso1********************************************************" + organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
             // Buscar el Grupo de Organizacion
-            TblGrupoOrganizacion tblGrupoOrganizacion = grupoOrganizacionRepository.findByIdGrupoOrganizacion(organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
+           // TblGrupoOrganizacion tblGrupoOrganizacion = grupoOrganizacionRepository.findByIdGrupoOrganizacion(organizacionJson.getIdGrupoOrganizacion().getIdGrupoOrganizacion());
 
             try {
-                System.out.println("paso2********************************************************" + organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion());
+                // System.out.println("paso2********************************************************" + organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion());
                 // Buscar el Tipo de Organizacion
                 TblTipoOrganizacion tblTipoOrganizacion = tipoOrganizacionRepository.findByIdTipoOrganizacion(organizacionJson.getIdTipoOrganizacion().getIdTipoOrganizacion());
 
                 try {
-                    System.out.println("paso3********************************************************" + organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion());
+               //     System.out.println("paso3********************************************************" + organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion());
                     // Buscar el Categoria de Organizacion
                     TblCategoriaOrganizacion _tblCategoriaOrganizacion = _categoriaOrganizacionRepository.findByIdCatOrganizacion(organizacionJson.getIdCatOrganizacion().getIdCatOrganizacion());
 
@@ -206,7 +206,7 @@ public class OrganizacionesResources {
                             //Setea el valor Buscando de la Entidad Tipos de Usuario
                             organizacionJson.setIdTipoOrganizacion(tblTipoOrganizacion);
                             organizacionJson.setIdPaisOrganizacion(tblPais);
-                            organizacionJson.setIdGrupoOrganizacion(tblGrupoOrganizacion);
+                            //organizacionJson.setIdGrupoOrganizacion(tblGrupoOrganizacion);
                             organizacionJson.setIdCatOrganizacion(_tblCategoriaOrganizacion);
 
                             //Realizamos la Persistencia de los Datos
@@ -288,6 +288,7 @@ public class OrganizacionesResources {
                     _tblOrganizacion.setDireccionFisicaOrganizacion(_organizacionJson.getDireccionFisicaOrganizacion());
                     _tblOrganizacion.setTelefonoOrganizacion(_organizacionJson.getTelefonoOrganizacion());
                     _tblOrganizacion.setEmailOrganizacion(_organizacionJson.getEmailOrganizacion());
+                    _tblOrganizacion.setDeptoReferencia(_organizacionJson.getDeptoReferencia());
                     _tblOrganizacion.setContactoReferencia(_organizacionJson.getContactoReferencia());
                     _tblOrganizacion.setWebOrganizacion(_organizacionJson.getWebOrganizacion());
 

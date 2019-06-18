@@ -166,10 +166,15 @@ public class TblEspaciosTrabajo {
     }
 
     public TblPais getIdPais() {
+
         return idPais;
     }
 
     public void setIdPais(TblPais idPais) {
+
         this.idPais = idPais;
     }
+
+
 }
+

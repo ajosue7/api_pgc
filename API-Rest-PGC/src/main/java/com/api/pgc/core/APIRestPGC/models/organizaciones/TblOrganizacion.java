@@ -105,10 +105,10 @@ public class TblOrganizacion {
 
     // Mapeo de la Relacion de la Tabla de Organizacones con Grupo de Organizacion
     // Muchas Grupo Organizaciones = 1 Grupo de Organizacion
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_GRUPO_ORGANIZACION", referencedColumnName = "ID_GRUPO_ORGANIZACION")
-    @ApiModelProperty(notes = "Entidad del Grupo de Organizacion, se envia desde un Json (\"idGrupoOrganizazion\": { \"idGrupoOrganizazion\": \"valor\" })")
-    private TblGrupoOrganizacion idGrupoOrganizacion;
+   // @ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "ID_GRUPO_ORGANIZACION", referencedColumnName = "ID_GRUPO_ORGANIZACION")
+    //@ApiModelProperty(notes = "Entidad del Grupo de Organizacion, se envia desde un Json (\"idGrupoOrganizazion\": { \"idGrupoOrganizazion\": \"valor\" })")
+    //private TblGrupoOrganizacion idGrupoOrganizacion;
 
     // Mapeo de la Relacion de la Tabla de Organizacones con Categorias de Organizacion
     // Muchas Organizaciones = 1 Categoria de Organizacion
@@ -295,11 +295,11 @@ public class TblOrganizacion {
         this.idCatOrganizacion = idCatOrganizacion;
     }
 
-    public TblGrupoOrganizacion getIdGrupoOrganizacion() {
-        return idGrupoOrganizacion;
-    }
+   // public TblGrupoOrganizacion getIdGrupoOrganizacion() {
+    //    return idGrupoOrganizacion;
+   // }
 
-    public void setIdGrupoOrganizacion(TblGrupoOrganizacion idGrupoOrganizacion) {
-        this.idGrupoOrganizacion = idGrupoOrganizacion;
-    }
+    //public void setIdGrupoOrganizacion(TblGrupoOrganizacion idGrupoOrganizacion) {
+      //  this.idGrupoOrganizacion = idGrupoOrganizacion;
+    //}
 }
