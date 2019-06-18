@@ -92,6 +92,7 @@ public class configAPI {
     // Espacios de Trabajos de la API ******************************************************************************
     // Mapeo de las Rutas del Modulo de Estados
     public static final String ESPACIOS_TRABAJO_ENDPOINT = "/espacios-trabajo";
+    // JOE|2019-18-06|Arreglando problemas de uri
     public static final String ESPACIOS_TRABAJO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo/findByIdEspaciotrabajo/{idEspacioTrabajo}";
     public static final String ESPACIOS_TRABAJO_ENDPOINT_NEW = "/espacios-trabajo/new";
     public static final String ESPACIOS_TRABAJO_ENDPOINT_FIND_BY_CODIGO = "/espacios-trabajo/findByCodEspaciotrabajo/{codEspaciotrabajo}";
