@@ -169,50 +169,52 @@ public class EspaciosTrabajoResources {
     /**
      * Metodo que Solcita un json con los datos de la Entidad de Organizacion
      *
-     * @param espaciotrabajoJson Obtiene desde el request los datos de la Organizacion a ingresar
-     * @param idEspaciotrabajo    Identificador de la tabla
+     * @param _espacioTrabajoJson Obtiene desde el request los datos de la Organizacion a ingresar
+     * @param idEspacioTrabajo    Identificador de la tabla
      * @return Mensaje de Confirmacion de Registro de la Organizacion
      * @autor Nahum Martinez | NAM
      * @version 14/02/2019/v1.0
      */
     @ApiOperation(value = "Actualiza a la BD, la Información enviada por el Bean de la Organizacion", authorizations = {@Authorization(value = "Token-PGC")})
     @PutMapping(value = ESPACIOS_TRABAJO_ENDPOINT_EDIT, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> editEspaciotrabajo(@ApiParam(value = "Json de Espaciotrabajo a Ingresar", required = true)
-                                                    @PathVariable("idEspaciotrabajo") long idEspaciotrabajo,
-                                                    @RequestBody final TblEspaciosTrabajo espaciotrabajoJson) throws Exception {
+    public HashMap<String, Object> editEspacioTrabajo(@ApiParam(value = "Json de EspacioTrabajo a Ingresar", required = true)
+                                                    @PathVariable("idEspacioTrabajo") long idEspacioTrabajo,
+                                                    @RequestBody final TblEspaciosTrabajo _espacioTrabajoJson) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         // Fecha de Ingreso
         Date dateActual = new Date();
 
-        // Buscamos el Espaciotrabajo solicitado para la Modificacion
+        // Buscamos la Organizacion solicitada para la Modificacion
         try {
-            // Buacamos el Espaciotrabajo segun el Parametro enviado
-            TblEspaciosTrabajo _tblespaciotrabajo = espaciosTrabajoRepository.findByIdEspacioTrabajo(idEspaciotrabajo);
+            // Buacamos la Organizacion segun el Parametro enviado
+            TblEspaciosTrabajo _tblEspacio = espaciosTrabajoRepository.findByIdEspacioTrabajo(idEspacioTrabajo);
 
-            if (espaciosTrabajoRepository.countByIdEspacioTrabajo(idEspaciotrabajo) > 0) {
-                // Buacamos el tipo segun el Parametro enviado
-                TblTipo _tblTipo = tiposRepository.findByIdTipo(espaciotrabajoJson.getIdTipoEspacioTrabajo().getIdTipo());
+            if (espaciosTrabajoRepository.countByIdEspacioTrabajo(idEspacioTrabajo) > 0) {
+                // Buacamos el Tipo Organizacion segun el Parametro enviado
+                TblTipo _tblTipoE = tiposRepository.findByIdTipo(_espacioTrabajoJson.getIdTipoEspacioTrabajo().getIdTipo());
 
-                // Buacamos el estado segun el Parametro enviado
-                TblEstado _tblEstado = estadosRepository.findByIdEstado(espaciotrabajoJson.getIdEstadoEspacioTrabajo().getIdEstado());
+                // Buacamos el Cat Organizacion segun el Parametro enviado
+                TblEstado _tblEstadoE = estadosRepository.findByIdEstado(_espacioTrabajoJson.getIdEstadoEspacioTrabajo().getIdEstado());
 
                 // Buacamos el Pais segun el Parametro enviado
-                TblPais _tblPais = paisRepository.findByIdPais(espaciotrabajoJson.getIdPais().getIdPais());
+                TblPais _tblPais = paisRepository.findByIdPais(_espacioTrabajoJson.getIdPais().getIdPais());
 
                 try {
                     // Realizamos la Persistencia de los Datos
-                    _tblespaciotrabajo.setCodEspacioTrabajo(espaciotrabajoJson.getCodEspacioTrabajo());
-                    _tblespaciotrabajo.setNombreEspacioTrabajo(espaciotrabajoJson.getNombreEspacioTrabajo());
-                    _tblespaciotrabajo.setDescripcionEspacioTrabajo(espaciotrabajoJson.getDescripcionEspacioTrabajo());
+                 //   _tblEspacio.setActivo(_organizacionJson.isActivo());
+                    _tblEspacio.setCodEspacioTrabajo(_espacioTrabajoJson.getCodEspacioTrabajo());
+                    _tblEspacio.setNombreEspacioTrabajo(_espacioTrabajoJson.getNombreEspacioTrabajo());
+                    _tblEspacio.setDescripcionEspacioTrabajo(_espacioTrabajoJson.getDescripcionEspacioTrabajo());
+                    _tblEspacio.setEspacioPadre(_espacioTrabajoJson.isEspacioPadre());
+                    _tblEspacio.setVistaPublica(_espacioTrabajoJson.isVistaPublica());
 
+                    _tblEspacio.setIdPais(_tblPais);
+                    _tblEspacio.setIdEstadoEspacioTrabajo(_tblEstadoE);
+                    _tblEspacio.setIdTipoEspacioTrabajo(_tblTipoE);
 
-                    _tblespaciotrabajo.setIdTipoEspacioTrabajo(_tblTipo);
-                    _tblespaciotrabajo.setIdPais(_tblPais);
-                    _tblespaciotrabajo.setIdEstadoEspacioTrabajo(_tblEstado);
-
-                    espaciosTrabajoRepository.save(_tblespaciotrabajo);
+                    espaciosTrabajoRepository.save(_tblEspacio);
                     espaciosTrabajoRepository.flush();
 
                     // return Repository
@@ -226,14 +228,15 @@ public class EspaciosTrabajoResources {
                 }
             } else {
                 //Retorno del json
-                msgMethod = "No se encuentra un espaciotrabajo con el parametro enviado !!";
+                msgMethod = "No se encuentra una Organizacion con el parametro enviado !!";
                 return msgExeptions.msgJson(msgMethod, 200);
             }
         } catch (Exception ex) {
             msgMethod = "Hay problemas al momento de Actualizar la Organizacion.";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
-    } // FIN | editEspaciotrabajo
+    } // FIN | editOrganizacion
+
 
     /**
      * Metodo que Solcita un json con los datos de la Entidad de Organizacion
