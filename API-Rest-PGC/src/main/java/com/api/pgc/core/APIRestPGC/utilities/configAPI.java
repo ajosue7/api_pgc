@@ -92,8 +92,18 @@ public class configAPI {
     // Espacios de Trabajos de la API ******************************************************************************
     // Mapeo de las Rutas del Modulo de Estados
     public static final String ESPACIOS_TRABAJO_ENDPOINT = "/espacios-trabajo";
-    public static final String ESPACIOS_TRABAJO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo/findByIdEspacio/{idEspacioTrabajo}";
+    public static final String ESPACIOS_TRABAJO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo/findByIdEspaciotrabajo/{idEspacioTrabajo}";
     public static final String ESPACIOS_TRABAJO_ENDPOINT_NEW = "/espacios-trabajo/new";
+    public static final String ESPACIOS_TRABAJO_ENDPOINT_FIND_BY_CODIGO = "/espacios-trabajo/findByCodEspaciotrabajo/{codEspaciotrabajo}";
+    public static final String ESPACIOS_TRABAJO_ENDPOINT_EDIT = "/espacios-trabajo/edit/{idEspacioTrabajo}";
+    public static final String ESPACIOS_TRABAJO_ENDPOINT_DELETE = "/espacios-trabajo/delete/{idEspaciotrabajo}";
+    public static final String TIPO__ESPACIOS_TRABAJO_ENDPOINT_FIND_BY_ID = "/tipos-espacios-trabajo/findByIdTipoEspaciotrabajo/{idTipoEspaciotrabajo}";
+    public static final String ESPACIOS_TRABAJO_ENDPOINT_FIND_BY_ID_PAIS = "/espacios-trabajo/findByIdPais/{idPais}";
+
+
+
+
+   //Espacios de Trabajo de Usuaio de la API
 
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT = "/espacios-trabajo-usuario";
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findByIdUsuario/{idUsuarioEspacioTrabajo}";

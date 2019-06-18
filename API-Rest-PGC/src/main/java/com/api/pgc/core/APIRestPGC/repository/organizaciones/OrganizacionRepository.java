@@ -1,7 +1,7 @@
 package com.api.pgc.core.APIRestPGC.repository.organizaciones;
 
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblCategoriaOrganizacion;
-import com.api.pgc.core.APIRestPGC.models.organizaciones.TblGrupoOrganizacion;
+//import com.api.pgc.core.APIRestPGC.models.organizaciones.TblGrupoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
@@ -115,13 +115,13 @@ public interface OrganizacionRepository extends JpaRepository<TblOrganizacion, I
     /**
      * Metodo que despliega la Organizacion de la BD con el Pais como parametro
      *
-     * @param tblGrupoOrganizacion
+     * @param// tblGrupoOrganizacion
      * @return Organizacion de la BD, por paramtro de ID Pais
      * @autor Nahum Martinez | NAM
      * @version 20/10/2018/v1.0
      */
-    @Query("SELECT e FROM TblGrupoOrganizacion e WHERE e.idGrupoOrganizacion = :idGrupoOrganizacion ")
-    List<TblGrupoOrganizacion> getGrupoOrganizacion(@Param("idGrupoOrganizacion") TblGrupoOrganizacion tblGrupoOrganizacion);
+   // @Query("SELECT e FROM TblGrupoOrganizacion e WHERE e.idGrupoOrganizacion = :idGrupoOrganizacion ")
+   // List<TblGrupoOrganizacion> getGrupoOrganizacion(@Param("idGrupoOrganizacion") TblGrupoOrganizacion tblGrupoOrganizacion);
 
 
 
