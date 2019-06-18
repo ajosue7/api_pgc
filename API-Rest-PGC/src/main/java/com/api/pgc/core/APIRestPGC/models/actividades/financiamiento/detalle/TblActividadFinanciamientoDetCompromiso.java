@@ -76,6 +76,16 @@ public class TblActividadFinanciamientoDetCompromiso {
     @ApiModelProperty(notes = "Hora de Creacion de la Actividad, formato hh:mm:ss", readOnly = true)
     private Date horaCreacion = new Date();
 
+    @Column(name = "FECHA_MODIFICACION", columnDefinition = "date DEFAULT '2999-12-31'")
+    @Temporal(TemporalType.DATE)
+    @ApiModelProperty(notes = "Fecha de Modificacion", readOnly = true)
+    private Date fechaModificacion;
+
+    @Column(name = "HORA_MODIFICACION")
+    @Temporal(TemporalType.TIME)
+    @ApiModelProperty(notes = "Hora de Modificacion, formato hh:mm:ss", readOnly = true)
+    private Date horaModificacion;
+
 
     /**
      * Constructor vacio de la Clase, solo para Jpa
@@ -173,5 +183,21 @@ public class TblActividadFinanciamientoDetCompromiso {
 
     public void setHoraCreacion(Date horaCreacion) {
         this.horaCreacion = horaCreacion;
+    }
+
+    public Date getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(Date fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
+    }
+
+    public Date getHoraModificacion() {
+        return horaModificacion;
+    }
+
+    public void setHoraModificacion(Date horaModificacion) {
+        this.horaModificacion = horaModificacion;
     }
 }

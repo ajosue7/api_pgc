@@ -4,9 +4,9 @@
 
 package com.api.pgc.core.APIRestPGC.repository.actividades.financiamiento.detalle;
 
-import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
 import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.detalle.TblActividadFinanciamientoDet;
 import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.encabezado.TblActividadFinanciamientoEnc;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -69,6 +69,20 @@ public interface ActividadFinanciamientoDetRepository extends JpaRepository<TblA
      */
     @Query("SELECT e FROM TblActividadFinanciamientoDet e WHERE e.idActividadFinancEnc = :idActividadFinancEnc")
     List<TblActividadFinanciamientoDet> getByIdFinancEnc(@Param("idActividadFinancEnc") TblActividadFinanciamientoEnc tblActividadFinanciamientoEnc);
+
+
+    /**
+     * Metodo que despliega los Financiamiento Detalle de la BD, con Socio al Desarrollo
+     *
+     * @param _tblActividadFinanciamientoEnc
+     * @param _tblOrganizacion
+     * @return Detalle de Financiamiento del Proyecto de la BD, por parametro de Código
+     * @autor Nahum Martinez | NAM
+     * @version 15/06/2019/v1.0
+     */
+    @Query("SELECT e FROM TblActividadFinanciamientoDet e WHERE e.idActividadFinancEnc = :idActividadFinancEnc AND e.idSocioDesarrollo = :idSocioDesarrollo")
+    List<TblActividadFinanciamientoDet> getByIdActividadFinancEncAndIdSocioDesarrollo(@Param("idActividadFinancEnc") TblActividadFinanciamientoEnc _tblActividadFinanciamientoEnc,
+                                                         @Param("idSocioDesarrollo") TblOrganizacion _tblOrganizacion);
 
 
     /**

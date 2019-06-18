@@ -18,7 +18,7 @@ public class TblEstado {
     private long idEstado;
 
     @Column(name = "COD_ESTADO", nullable = false, length=10)
-    @ApiModelProperty(notes = "Codigo Estado", required = true)
+    @ApiModelProperty(notes = "Codigo Estado", required = true, example = "EST-001")
     private String codEstado;
 
     @Column(name = "DESC_ESTADO", nullable = false, length=100)
@@ -32,7 +32,8 @@ public class TblEstado {
     // Muchos Estados = 1 Grupo
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_GRUPO", referencedColumnName = "ID_GRUPO")
-    @ApiModelProperty(notes = "Entidad del Grupo, se envia desde un Json (\"idGrupo\": { \"idGrupo\": \"valor\" })", required = true)
+    @ApiModelProperty(notes = "Entidad del Grupo, se envia desde un Json (\"idGrupo\": { \"idGrupo\": \"valor\" })", required = true,
+            example = "[\"v1\", \"v2\"]")
     private TblGrupo idGrupo;
 
 
