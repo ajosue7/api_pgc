@@ -29,7 +29,8 @@
 				<dependency>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
-					<scope>provided</scope>
+					<!-- NAM |2019-06-19 | Se cometa para el inicializador
+					<scope>provided</scope> -->
 				</dependency>
 			</dependencies>
 		</profile>
