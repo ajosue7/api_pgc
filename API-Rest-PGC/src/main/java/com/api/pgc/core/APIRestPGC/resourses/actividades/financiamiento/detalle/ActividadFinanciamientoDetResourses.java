@@ -159,7 +159,7 @@ public class ActividadFinanciamientoDetResourses {
                 // Busca el Socio al Desarrollo
                 TblOrganizacion _tblOrganizacion = _organizacionRepository.findByIdOrganizacion(idSocioDesarrollo);
 
-                if (_actividadFinanciamientoDetRepository.countByIdActividadFinancEnc(_tblActividadFinanciamientoEnc) == 0) {
+                if (_actividadFinanciamientoDetRepository.countByIdActividadFinancEncAndIdSocioDesarrollo(_tblActividadFinanciamientoEnc, _tblOrganizacion) == 0) {
                     // Sobreescirbe el Metodo de Mensajes
                     msgMethod = "No se ha encontrado dato de los Detalles de Financiamiento del Proyecto consultado";
 
@@ -167,7 +167,7 @@ public class ActividadFinanciamientoDetResourses {
                     msgExeptions.map.put("findRecord", false);
 
                     // Retorno del json
-                    return msgExeptions.msgJson(msgMethod, 400);
+                    return msgExeptions.msgJson(msgMethod, 200);
                 } else {
                     // Sobreescirbe el Metodo de Mensajes
                     msgMethod = "Detalle de los Detalles de Financiamiento del Proyecto";

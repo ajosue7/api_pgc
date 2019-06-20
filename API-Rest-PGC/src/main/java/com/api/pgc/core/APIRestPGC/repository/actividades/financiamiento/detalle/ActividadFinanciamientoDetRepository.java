@@ -82,7 +82,20 @@ public interface ActividadFinanciamientoDetRepository extends JpaRepository<TblA
      */
     @Query("SELECT e FROM TblActividadFinanciamientoDet e WHERE e.idActividadFinancEnc = :idActividadFinancEnc AND e.idSocioDesarrollo = :idSocioDesarrollo")
     List<TblActividadFinanciamientoDet> getByIdActividadFinancEncAndIdSocioDesarrollo(@Param("idActividadFinancEnc") TblActividadFinanciamientoEnc _tblActividadFinanciamientoEnc,
-                                                         @Param("idSocioDesarrollo") TblOrganizacion _tblOrganizacion);
+                                                                                      @Param("idSocioDesarrollo") TblOrganizacion _tblOrganizacion);
+
+
+    /**
+     * Metodo que despliega las Financiamiento Detalle de la BD
+     *
+     * @param _tblActividadFinanciamientoEnc
+     * @param _tblOrganizacion
+     * @return Financiamiento Detalle de la BD, por paramtro de Id Financiamiento Enc y
+     * Id Socio al Desarrollo
+     * @autor Nahum Martinez | NAM
+     * @version 20/06/2019/v1.0
+     */
+    long countByIdActividadFinancEncAndIdSocioDesarrollo(TblActividadFinanciamientoEnc _tblActividadFinanciamientoEnc, TblOrganizacion _tblOrganizacion);
 
 
     /**
