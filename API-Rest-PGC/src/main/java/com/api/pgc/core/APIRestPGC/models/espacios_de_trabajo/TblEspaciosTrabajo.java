@@ -43,12 +43,16 @@ public class TblEspaciosTrabajo {
     @Column(name = "FECHA_CREACION", columnDefinition = "date DEFAULT '2999-12-31'")
     @Temporal(TemporalType.DATE)
     //@ApiModelProperty(notes = "Fecha de Creacion del Usuario, formato hh:mm:ss")
-    private Date fechaCreacion;
+    private Date fechaCreacion = new Date();
 
     @Column(name = "HORA_CREACION")
     @Temporal(TemporalType.TIME)
     //@ApiModelProperty(notes = "Hora de Creacion del Usuario, formato hh:mm:ss")
     private Date horaCreacion = new Date();
+
+    @Column(name = "ACTIVO")
+    @ApiModelProperty(notes = "EspacioTrabajo Habilitado", readOnly = true)
+    private boolean activo;
 
 
     //Mapeo de la Relacion de la Tabla de Tipos con Espacios de Trabajo
@@ -175,6 +179,12 @@ public class TblEspaciosTrabajo {
         this.idPais = idPais;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
 
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 }
 

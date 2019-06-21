@@ -5,9 +5,6 @@ package com.api.pgc.core.APIRestPGC.resourses.espacios_de_trabajo;
 import com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo.TblEspaciosTrabajo;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
-import com.api.pgc.core.APIRestPGC.models.organizaciones.TblCategoriaOrganizacion;
-import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
-import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.repository.espacios_de_trabajo.EspaciosTrabajoRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
@@ -125,6 +122,9 @@ public class EspaciosTrabajoResources {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
+        // Fecha de Ingreso
+        Date dateActual = new Date();
+
         try {
             //Busca el Tipo de Espacio de Trabajo, desde el Reporsitorio con el Parametro del Json enviado ( "idTipoEspacioTrabajo": { "idTipo": valor })
             TblTipo tTE = tiposRepository.findByIdTipo( espacioTrabajoJson.getIdTipoEspacioTrabajo().getIdTipo() );
@@ -137,6 +137,8 @@ public class EspaciosTrabajoResources {
 
             //Graba los Datos de Tipos
             try {
+                espacioTrabajoJson.setFechaCreacion(dateActual);
+                espacioTrabajoJson.setHoraCreacion(dateActual);
                 //Setea el valor Buscado de la Entidad Espacios de Trabajo | Tipo
                 espacioTrabajoJson.setIdTipoEspacioTrabajo(tTE);
 
@@ -203,7 +205,7 @@ public class EspaciosTrabajoResources {
 
                 try {
                     // Realizamos la Persistencia de los Datos
-                 //   _tblEspacio.setActivo(_organizacionJson.isActivo());
+                    _tblEspacio.setActivo(_espacioTrabajoJson.isActivo());
                     _tblEspacio.setCodEspacioTrabajo(_espacioTrabajoJson.getCodEspacioTrabajo());
                     _tblEspacio.setNombreEspacioTrabajo(_espacioTrabajoJson.getNombreEspacioTrabajo());
                     _tblEspacio.setDescripcionEspacioTrabajo(_espacioTrabajoJson.getDescripcionEspacioTrabajo());
@@ -264,6 +266,7 @@ public class EspaciosTrabajoResources {
             if (espaciosTrabajoRepository.countByIdEspacioTrabajo(idEspaciotrabajo) > 0) {
                 try {
                     // Realizamos la Persistencia de los Datos
+                    _tblEspaciotrabajo.setActivo(false);
 
                     espaciosTrabajoRepository.save(_tblEspaciotrabajo);
                     espaciosTrabajoRepository.flush();
