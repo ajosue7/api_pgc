@@ -12,11 +12,11 @@ public interface TiposRecursosRepository extends JpaRepository<TblTipoRecurso, I
     /**
      * Metodo que despliega el Tipo de Recurso de la BD
      *
-     * @param idTipoRecurso
+     * @param idTipoRecursos
      * @return Tipo de Recurso de la BD, por paramtro de ID
      * @autor Nahum Martinez | NAM
      * @version 11/04/2019/v1.0
      */
-    TblTipoRecurso findByIdTipoRecurso(long idTipoRecurso);
+    TblTipoRecurso findByIdTipoRecursos(long idTipoRecursos);
 
 }

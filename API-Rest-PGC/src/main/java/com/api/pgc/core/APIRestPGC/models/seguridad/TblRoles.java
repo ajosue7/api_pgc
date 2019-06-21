@@ -19,11 +19,11 @@ public class TblRoles {
 
     @Column(name = "COD_ROL", nullable = false, length=10)
     @ApiModelProperty(notes = "Codigo Rol", required = true)
-    private String codUsuario;
+    private String codRol;
 
     @Column(name = "DESC_ROL", nullable = false, length=100)
     @ApiModelProperty(notes = "Descripcion del Rol", required = true)
-    private String nombre1Usuario;
+    private String descRol;
 
     @Column(name = "HABILITADA")
     @ApiModelProperty(notes = "Habilitado")
@@ -72,20 +72,20 @@ public class TblRoles {
         this.idRol = idRol;
     }
 
-    public String getCodUsuario() {
-        return codUsuario;
+    public String getCodRol() {
+        return codRol;
     }
 
-    public void setCodUsuario(String codUsuario) {
-        this.codUsuario = codUsuario;
+    public void setCodRol(String codRol) {
+        this.codRol = codRol;
     }
 
-    public String getNombre1Usuario() {
-        return nombre1Usuario;
+    public String getDescRol() {
+        return descRol;
     }
 
-    public void setNombre1Usuario(String nombre1Usuario) {
-        this.nombre1Usuario = nombre1Usuario;
+    public void setDescRol(String descRol) {
+        this.descRol = descRol;
     }
 
     public boolean isHabilitada() {
