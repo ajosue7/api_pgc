@@ -17,9 +17,9 @@ public class TblTipoRecurso {
     //Propiedades de la tabla
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_TIPO_RECURSO", columnDefinition = "serial")
+    @Column(name = "ID_TIPO_RECURSOS", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
-    private long idTipoRecurso;
+    private long idTipoRecursos;
 
     @Column(name = "COD_TIPO_RECURSO", nullable = false, length = 10)
     @ApiModelProperty(notes = "Codigo Tipo de Recurso", required = true)
@@ -44,12 +44,12 @@ public class TblTipoRecurso {
      *
      * @return
      */
-    public long getIdTipoRecurso() {
-        return idTipoRecurso;
+    public long getIdTipoRecursos() {
+        return idTipoRecursos;
     }
 
-    public void setIdTipoRecurso(long idTipoRecurso) {
-        this.idTipoRecurso = idTipoRecurso;
+    public void setIdTipoRecursos(long idTipoRecursos) {
+        this.idTipoRecursos = idTipoRecursos;
     }
 
     public String getCodtiporecurso() {

@@ -57,7 +57,7 @@ public class TiposRecursosResources {
     /**
      * Metodo que despliega el Tipo de Recurso de la BD
      *
-     * @param idTipoRecurso Identificador del Tipo de Recurso a Buscar
+     * @param idTipoRecursos Identificador del Tipo de Recurso a Buscar
      * @return Tipo Recurso de la BD
      * @autor Nahum Martinez | NAM
      * @version 11/04/2019/v1.0
@@ -70,12 +70,12 @@ public class TiposRecursosResources {
             @ApiResponse(code = 404, message = "Recurso no encontrado")})
     @GetMapping(value = RECURSOS_TIPO_ENDPOINT_FIND_BY_ID, produces = "application/json")
     public HashMap<String, Object> getTipoRecurso(@ApiParam(value = "Identificador del Tipo de Recurso a Buscar", required = true)
-                                                  @PathVariable("idTipoRecurso") long idTipoRecurso) throws Exception {
+                                                  @PathVariable("idTipoRecursos") long idTipoRecursos) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
-            if (_tiposRecursosRepository.findByIdTipoRecurso(idTipoRecurso) == null) {
+            if (_tiposRecursosRepository.findByIdTipoRecursos(idTipoRecursos) == null) {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se ha encontrado dato del Tipo de Recurso consultado";
                 msgExeptions.map.put("error", "No data found");
@@ -85,7 +85,7 @@ public class TiposRecursosResources {
             } else {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle del Tipo de Recurso Consultado";
-                msgExeptions.map.put("data", _tiposRecursosRepository.findByIdTipoRecurso(idTipoRecurso));
+                msgExeptions.map.put("data", _tiposRecursosRepository.findByIdTipoRecursos(idTipoRecursos));
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
