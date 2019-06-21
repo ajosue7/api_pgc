@@ -49,7 +49,7 @@ public class TblEspaciosTrabajoUsuarios {
     // Muchos Espacio de Trabajo Usuario = 1 Espacio de Trabajo
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_USUARIO_ESPACIO_TRABAJO", referencedColumnName = "ID_USUARIO")
-    @ApiModelProperty(notes = "Entidad de usuario quye tendra el espacio de trabajo asignado, se envia desde un Json (\"idUsuarioEspacioTrabajo\": { \"idUsuario\": \"valor\" })", required = true)
+    @ApiModelProperty(notes = "Entidad de usuario que tendra el espacio de trabajo asignado, se envia desde un Json (\"idUsuarioEspacioTrabajo\": { \"idUsuario\": \"valor\" })", required = true)
     private TblUsuarios idUsuarioEspacioTrabajo;
 
     // Mapeo de la Relacion de la Tabla de usuarios con Espacios de Trabajo
@@ -110,27 +110,17 @@ public class TblEspaciosTrabajoUsuarios {
         this.activo = activo;
     }
 
-    public TblEspaciosTrabajo getIdEspacioTrabajo() {
-        return idEspacioTrabajo;
-    }
+    public TblEspaciosTrabajo getIdEspacioTrabajo() { return idEspacioTrabajo; }
 
     public void setIdEspacioTrabajo(TblEspaciosTrabajo idEspacioTrabajo) {
         this.idEspacioTrabajo = idEspacioTrabajo;
     }
 
-    public TblUsuarios getIdUsuarioEspacioTrabajo() {
-        return idUsuarioEspacioTrabajo;
-    }
+    public TblUsuarios getIdUsuarioEspacioTrabajo() { return idUsuarioEspacioTrabajo;}
 
-    public void setIdUsuarioEspacioTrabajo(TblUsuarios idUsuarioEspacioTrabajo) {
-        this.idUsuarioEspacioTrabajo = idUsuarioEspacioTrabajo;
-    }
+    public void setIdUsuarioEspacioTrabajo(TblUsuarios idUsuarioEspacioTrabajo) { this.idUsuarioEspacioTrabajo = idUsuarioEspacioTrabajo; }
 
-    public TblRoles getIdRolEspacioTrabajo() {
-        return idRolEspacioTrabajo;
-    }
+    public TblRoles getIdRolEspacioTrabajo() { return idRolEspacioTrabajo; }
 
-    public void setIdRolEspacioTrabajo(TblRoles idRolEspacioTrabajo) {
-        this.idRolEspacioTrabajo = idRolEspacioTrabajo;
-    }
+    public void setIdRolEspacioTrabajo(TblRoles idRolEspacioTrabajo) { this.idRolEspacioTrabajo = idRolEspacioTrabajo; }
 }

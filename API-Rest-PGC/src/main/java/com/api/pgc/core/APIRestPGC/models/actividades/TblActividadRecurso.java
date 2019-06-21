@@ -48,9 +48,9 @@ public class TblActividadRecurso {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinColumn(name = "ID_TIPO_RECURSO", referencedColumnName = "ID_TIPO_RECURSO")
-    @ApiModelProperty(notes = "Entidad del Tipo de Recurso, se envia desde un Json (\"idTipoRecurso\": { \"idTipoRecurso\": \"valor\" })", required = true)
-    private TblTipoRecurso idTipoRecurso;
+    @JoinColumn(name = "ID_TIPO_RECURSOS", referencedColumnName = "ID_TIPO_RECURSOS")
+    @ApiModelProperty(notes = "Entidad del Tipo de Recurso, se envia desde un Json (\"idTipoRecursos\": { \"idTipoRecursos\": \"valor\" })", required = true)
+    private TblTipoRecurso idTipoRecursos;
 
 
     // Mapeo de la Relacion de la Tabla de Recursos con Usuarios
@@ -123,12 +123,12 @@ public class TblActividadRecurso {
         this.idActividad = idActividad;
     }
 
-    public TblTipoRecurso getIdTipoRecurso() {
-        return idTipoRecurso;
+    public TblTipoRecurso getIdTipoRecursos() {
+        return idTipoRecursos;
     }
 
-    public void setIdTipoRecurso(TblTipoRecurso idTipoRecurso) {
-        this.idTipoRecurso = idTipoRecurso;
+    public void setIdTipoRecurso(TblTipoRecurso idTipoRecursos) {
+        this.idTipoRecursos = idTipoRecursos;
     }
 
     public TblUsuarios getIdUsuario() {

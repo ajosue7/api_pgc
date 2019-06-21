@@ -47,13 +47,13 @@ public class EspaciosTrabajoUsuarioResources {
     RolesRepository _rolesRepository;
 
     /**
-     * Metodo que despliega la Lista de todos los Espacios de Trabajo Asignados al Usuario de la BD
+|     * Metodo que despliega la Lista de todos los Espacios de Trabajo Asignados al Usuario de la BD
      *
      * @return Lista de Espacios de Trabajo que tiene un Usuario de la BD
      * @autor Nahum Martinez | NAM
      * @version 12/1/2018/v1.0
      */
-    @ApiOperation(value = "Retorna el Listado de Todos los Espacios de Trabajo de la BD")
+    @ApiOperation(value = "Retorna el Listado de Todos los Espacios de Trabajo de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = ESPACIOS_TRABAJO_USUARIO_ENDPOINT, produces = "application/json")
     public HashMap<String, Object> getAllEspaciosTrabajoUsuario() throws Exception {
         //Ejecuta el try Cacth
@@ -92,6 +92,7 @@ public class EspaciosTrabajoUsuarioResources {
                                                             @PathVariable("idUsuarioEspacioTrabajo") long idUsuarioEspacioTrabajo) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
+
 
         try {
             // Buscamos el dato del Usuario que desamos saber sus Asignacion de Espacios de Trabajo
@@ -145,29 +146,23 @@ public class EspaciosTrabajoUsuarioResources {
             TblEspaciosTrabajo _tblEspaciosTrabajo = _espaciosTrabajoRepository.findByIdEspacioTrabajo( _espacioTrabajoUsuarioJson.getIdEspacioTrabajo().getIdEspacioTrabajo() );
 
             //Graba los Datos de Asignacion de Espacios de Trabajo
-            try {
+
                 //Busca el Usuario de Espacio de Trabajo, desde el Reporsitorio con el Parametro del Json enviado ( "IdUsuarioEspacioTrabajo": { "IdUsuario": valor })
-                TblUsuarios _tblUsuarios = _usuariosRepository.findByIdUsuario( _espacioTrabajoUsuarioJson.getIdUsuarioEspacioTrabajo().getIdUsuario() );
+                TblUsuarios _idUsuario = _usuariosRepository.findByIdUsuario( _espacioTrabajoUsuarioJson.getIdUsuarioEspacioTrabajo().getIdUsuario() );
 
                 //Busca el Rol de Espacio de Trabajo, desde el Reporsitorio con el Parametro del Json enviado ( "IdRolEspacioTrabajo": { "IdRol": valor })
-                TblRoles _tblRoles = _rolesRepository.findByIdRol( _espacioTrabajoUsuarioJson.getIdRolEspacioTrabajo().getIdRol());
+                TblRoles _idRol = _rolesRepository.findByIdRol( _espacioTrabajoUsuarioJson.getIdRolEspacioTrabajo().getIdRol());
 
-                if( espaciosTrabajoUsuarioRepository.countIdUsuarioEspacioTrabajoAndIdEspacioTrabajo( _tblUsuarios, _tblEspaciosTrabajo ) > 0 ){
-                    //return tiposRepository.findAll();
-                    msgMethod = "Se ha presentado un Error al momento de Asignar el Espacio de Trabajo al Usuario, por favor verifica que no estes repitiendo la información";
-
-                    //Retorno del json
-                    return msgExeptions.msgJson(msgMethod, 200);
-                } else {
+            try {
 
                     //Setea el valor Buscado de la Entidad Espacios de Trabajo | Espacio de Trabajo
                     _espacioTrabajoUsuarioJson.setIdEspacioTrabajo(_tblEspaciosTrabajo);
 
                     //Setea el valor Buscado de la Entidad Espacios de Trabajo | Usuarios
-                    _espacioTrabajoUsuarioJson.setIdUsuarioEspacioTrabajo(_tblUsuarios);
+                    _espacioTrabajoUsuarioJson.setIdUsuarioEspacioTrabajo(_idUsuario);
 
                     //Setea el valor Buscado de la Entidad Espacios de Trabajo | Roles
-                    _espacioTrabajoUsuarioJson.setIdRolEspacioTrabajo(_tblRoles);
+                    _espacioTrabajoUsuarioJson.setIdRolEspacioTrabajo(_idRol);
 
                     //Realizamos la Persistencia de los Datos
                     espaciosTrabajoUsuarioRepository.save(_espacioTrabajoUsuarioJson);
@@ -177,7 +172,7 @@ public class EspaciosTrabajoUsuarioResources {
 
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
-                }
+
             } catch (Exception ex) {
                 msgMethod = "Ha Ocurrido un error al Intentar Grabar el la Asignacion de Espacio de Trabajo del Usuario";
                 throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
