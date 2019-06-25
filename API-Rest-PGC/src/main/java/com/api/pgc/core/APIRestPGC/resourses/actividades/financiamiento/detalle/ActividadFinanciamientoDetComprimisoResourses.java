@@ -114,7 +114,7 @@ public class ActividadFinanciamientoDetComprimisoResourses {
                 msgExeptions.map.put("findRecord", false);
 
                 // Retorno del json
-                return msgExeptions.msgJson(msgMethod, 400);
+                return msgExeptions.msgJson(msgMethod, 200);
             } else {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle de los Compromisos del Proyecto";
@@ -156,7 +156,7 @@ public class ActividadFinanciamientoDetComprimisoResourses {
 
                 msgExeptions.map.put("data", _actividadFinanciamientoDetCompromisoRepository.countByCodigoFinancCompromiso(codigoFinancDetCompromiso));
                 msgExeptions.map.put("error", "No data found");
-                msgExeptions.map.put("find", false);
+                msgExeptions.map.put("findRecord", false);
 
                 // Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
@@ -164,7 +164,7 @@ public class ActividadFinanciamientoDetComprimisoResourses {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Se ha encontrado dato de compromisos asociados a Proyecto consultado";
                 msgExeptions.map.put("data", _actividadFinanciamientoDetCompromisoRepository.countByCodigoFinancCompromiso(codigoFinancDetCompromiso));
-                msgExeptions.map.put("find", true);
+                msgExeptions.map.put("findRecord", true);
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
