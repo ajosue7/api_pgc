@@ -2,8 +2,6 @@ package com.api.pgc.core.APIRestPGC.repository.mantenimiento;
 
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
-import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
-import com.api.pgc.core.APIRestPGC.models.organizaciones.TblTipoOrganizacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
