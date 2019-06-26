@@ -4,6 +4,7 @@
 
 package com.api.pgc.core.APIRestPGC.models.actividades;
 
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.models.recursos.TblTipoRecurso;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import io.swagger.annotations.ApiModelProperty;
@@ -26,9 +27,31 @@ public class TblActividadRecurso {
     @ApiModelProperty(notes = "Codigo de la Actividad", required = true)
     private String codigoActividadRecurso;
 
-    @Column(name = "URL_ACTIVIDAD_RECURSO", nullable = false, length = 50)
+    @Column(name = "TITULO", nullable = false, length = 50)
+    @ApiModelProperty(notes = "Titulo del recurso", required = true)
+    private String titulo;
+
+
+    @Column(name = "NOTA", nullable = false, length = 50)
+    @ApiModelProperty(notes = "Titulo del recurso", required = true)
+    private String nota;
+
+    @Column(name = "DESCRIPCION", nullable = false, length = 50)
     @ApiModelProperty(notes = "Url del recurso", required = true)
-    private String urlActividadRecurso;
+    private String descripcion;
+
+    @Column(name = "URL_ACTIVIDAD_RECURSO_DOCUMENTO", nullable = false, length = 50)
+    @ApiModelProperty(notes = "Url del recurso", required = true)
+    private String UrlActividadRecursoDocumento;
+
+    @Column(name = "URL_ACTIVIDAD_RECURSO_LINK", nullable = false, length = 50)
+    @ApiModelProperty(notes = "Url del recurso", required = true)
+    private String urlActividadRecursoLink;
+
+
+
+
+
 
 
     // Mapeo de la Relacion de la Tabla de Planifiacion con Actividades
@@ -63,22 +86,23 @@ public class TblActividadRecurso {
     @ApiModelProperty(notes = "Entidad del Usuario, se envia desde un Json (\"idUsuario\": { \"idUsuario\": \"valor\" })", required = true)
     private TblUsuarios idUsuario;
 
+    // Relación con Tabla TblTipo
+    @ManyToOne(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinColumn(name = "ID_TIPO", referencedColumnName = "ID_TIPO")
+    @ApiModelProperty(notes = "Entidad del Usuario, se envia desde un Json (\"idTipo\": { \"idTipo\": \"valor\" })", required = true)
+    private TblTipo idTipo;
 
-    // Campos de Auditoria
-    @Column(name = "FECHA_CREACION", columnDefinition = "date DEFAULT '2999-12-31'")
-    @Temporal(TemporalType.DATE)
-    @ApiModelProperty(notes = "Fecha de Creacion", readOnly = true)
-    private Date fechaCreacion;
 
-    @Column(name = "HORA_CREACION")
-    @Temporal(TemporalType.TIME)
-    @ApiModelProperty(notes = "Hora de Creacion del Recurso, formato hh:mm:ss", readOnly = true)
-    private Date horaCreacion = new Date();
+
 
 
     @Column(name = "ACTIVO")
     @ApiModelProperty(notes = "Activo", readOnly = true)
     private boolean activo = true;
+
 
     /*
      *Constructor vacio de la Clase, solo para Jpa
@@ -107,13 +131,6 @@ public class TblActividadRecurso {
         this.codigoActividadRecurso = codigoActividadRecurso;
     }
 
-    public String getUrlActividadRecurso() {
-        return urlActividadRecurso;
-    }
-
-    public void setUrlActividadRecurso(String urlActividadRecurso) {
-        this.urlActividadRecurso = urlActividadRecurso;
-    }
 
     public TblActividad getIdActividad() {
         return idActividad;
@@ -131,6 +148,10 @@ public class TblActividadRecurso {
         this.idTipoRecursos = idTipoRecursos;
     }
 
+    public void setIdTipoRecursos(TblTipoRecurso idTipoRecursos) {
+        this.idTipoRecursos = idTipoRecursos;
+    }
+
     public TblUsuarios getIdUsuario() {
         return idUsuario;
     }
@@ -139,21 +160,53 @@ public class TblActividadRecurso {
         this.idUsuario = idUsuario;
     }
 
-    public Date getFechaCreacion() {
-        return fechaCreacion;
+    public TblTipo getIdTipo (){return idTipo; }
+
+    public void setIdTipo(TblTipo idTipo) {this.idTipo = idTipo;}
+
+
+    public String getUrlActividadRecursoLink() {
+        return urlActividadRecursoLink;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setUrlActividadRecursoLink(String urlActividadRecursoLink) {
+        this.urlActividadRecursoLink = urlActividadRecursoLink;
     }
 
-    public Date getHoraCreacion() {
-        return horaCreacion;
+    public String getUrlActividadRecursoDocumento() {
+        return UrlActividadRecursoDocumento;
     }
 
-    public void setHoraCreacion(Date horaCreacion) {
-        this.horaCreacion = horaCreacion;
+    public void setUrlActividadRecursoDocumento(String urlActividadRecursoDocumento) {
+        UrlActividadRecursoDocumento = urlActividadRecursoDocumento;
     }
+
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+
 
     public boolean isActivo() {
         return activo;

@@ -26,7 +26,7 @@ public interface EspaciosTrabajoUsuarioRepository extends JpaRepository<TblEspac
 
     /**
      * Metodo que despliega que Busca los
-     *
+     *0000000000000000
      * @param tblUsuarios
      * @return Organizacion de la BD, por paramtro de ID Tipo
      * @autor Nahum Martinez | NAM
@@ -48,5 +48,24 @@ public interface EspaciosTrabajoUsuarioRepository extends JpaRepository<TblEspac
     @Query("SELECT COUNT(*) FROM TblEspaciosTrabajoUsuarios e WHERE e.idUsuarioEspacioTrabajo = :idUsuarioEspacioTrabajo AND e.idEspacioTrabajo = :idEspacioTrabajo ")
     long countIdUsuarioEspacioTrabajoAndIdEspacioTrabajo(@Param("idUsuarioEspacioTrabajo")  TblUsuarios tblUsuarios,
                                                          @Param("idEspacioTrabajo")TblEspaciosTrabajo tblEspaciosTrabajo);
+
+    /**
+     * Metodo que despliega el Espacio de Trabajo de la BD
+     * @autor Nahum Martinez | NAM
+     * @version  11/10/2018/v1.0
+     * @return Espacios de Trabajo de la BD, por paramtro de ID
+     * @param idEspacioTrabajoUsuario
+     */
+    TblEspaciosTrabajoUsuarios findByIdEspacioTrabajoUsuario(long idEspacioTrabajoUsuario);
+
+    /**
+     * Metodo que despliega la Organizacion de la BD
+     *
+     * @param idEspacioTrabajoUsuario
+     * * @return espaciotrabajo de la BD, por paramtro de ID
+     * @autor Nahum Martinez | NAM
+     * @version 14/02/2019/v1.0
+     */
+    long countByIdEspacioTrabajo(long idEspacioTrabajoUsuario);
 
 }

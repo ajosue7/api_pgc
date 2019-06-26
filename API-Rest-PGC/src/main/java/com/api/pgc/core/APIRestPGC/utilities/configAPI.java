@@ -112,8 +112,10 @@ public class configAPI {
    //Espacios de Trabajo de Usuaio de la API
 
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT = "/espacios-trabajo-usuario";
-    public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findByIdUsuario/{idUsuarioEspacioTrabajo}";
+    public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_IDUS = "/espacios-trabajo-usuario/findByIdEspaciotrabajousuario/{idEspacioTrabajoUsuario}";
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_NEW = "/espacios-trabajo-usuario/new";
+    public static final String ESPACIOS_TRABAJO_USUARIOS_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findBy";
+
 
     /*==================================================================================================================
      *================================================================================================================ */
@@ -181,6 +183,7 @@ public class configAPI {
     public static final String RECURSOS_DOC_ENDPOINT = "/mant-actividades/recursos-proyecto";
     public static final String RECURSOS_DOC_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/recursos-proyecto/findByCodActividadRecurso/{codActividadRecurso}";
     public static final String RECURSOS_DOC_ENDPOINT_NEW = "/mant-actividades/recursos-proyecto/new";
+    public static final String RECURSOS_DOC_ENDPOINT_EDIT = "/mant-actividades/recursos-proyecto/edit/{idActividadRecurso}";
     public static final String RECURSOS_DOC_ENDPOINT_DELETE = "/mant-actividades/recursos-proyecto/delete/{idActividadDocumento}";
     public static final String RECURSOS_DOC_UPLOAD_FILE = "/mant-actividades/recursos-proyecto/uploadFile";
     public static final String RECURSOS_DOC_UPLOAD_FILE_ARRAY = "/mant-actividades/recursos-proyecto/uploadMultipleFiles";
