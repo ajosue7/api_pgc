@@ -33,6 +33,11 @@ public class configAPI {
     public static final String TIPOS_ENDPOINT_FIND_BY_ID = "/tipos/findById/{idTipo}";
     public static final String TIPOS_ENDPOINT_FIND_BY_IDGRUPO = "/tipos/findByIdGrupo/{idGrupo}";
 
+    // Mapeo de las Rutas del Modulo de Tratos
+    public static final String TRATOS_ENDPOINT = "/tratos";
+    public static final String TRATOS_ENDPOINT_FIND_BY_ID = "/tratos/findById/{idTrato";
+    public static final String TRATOS_ENDPOINT_FIND_BY_IDGRUPO = "/tratos/findByIdGrupo/{idGrupo}";
+
     // Mapeo de las Rutas del Modulo de Ubicaciones | Pais | Departamentos | Municipios
     public static final String PAIS_ENDPOINT = "/ubicacion-geografica/pais";
     public static final String PAIS_ENDPOINT_FIND_BY_ID = "/ubicacion-geografica/pais/findByIdPais/{idPais}";
@@ -182,6 +187,17 @@ public class configAPI {
     public static final String RECURSOS_DOC_UPLOAD_FILE_DOWLOAD = "/mant-actividades/recursos-proyecto/downloadFile/{fileName:.+}";
     public static final String RECURSOS_TIPO_ENDPOINT = "/mant-actividades/recursos-proyecto/tipos";
     public static final String RECURSOS_TIPO_ENDPOINT_FIND_BY_ID = "/mant-actividades/recursos-proyecto/tipos/{idTipoRecursos}";
+
+    //Mapeo de las Rutas del Sub Modulo de Contactos
+
+    // Espacios de Trabajos de la API ******************************************************************************
+    // Mapeo de las Rutas del Modulo contactos
+    public static final String CONTACTOS_ENDPOINT = "/actividades_contactos";
+    public static final String CONTACTOS_ENDPOINT_FIND_BY_ID = "/actividades_contactos/findByIdContacto/{idContacto}";
+    public static final String CONTACTOS_ENDPOINT_NEW = "/actividades_contactos/new";
+    public static final String CONTACTOS_ENDPOINT_FIND_BY_CODIGO = "/actividades_contactos/findByCodigoContacto/{codigoContacto}";
+    public static final String CONTACTOS_ENDPOINT_EDIT = "/actividades_contactos/edit/{idContacto}";
+    public static final String CONTACTOS_ENDPOINT_DELETE = "/actividades_contactos/delete/{idContactos}";
 
     // Mapeo de las Rutas del Sub Modulo de Organizaciones
     // | Socio al Desarrollo |

@@ -12,8 +12,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "tbl_actividades_recursos",
-        indexes = {@Index(name = "idx_codigo_actividad_recurso", columnList = "CODIGO_ACTIVIDAD_RECURSO")})
+@Table(name = "tbl_actividades_contactos",
+        indexes = {@Index(name = "idx_codigo_actividades_contactos", columnList = "CODIGO_ACTIVIDAD_RECURSO")})
 public class TblActividadRecurso {
     // Propiedades de la tabla
     @Id
