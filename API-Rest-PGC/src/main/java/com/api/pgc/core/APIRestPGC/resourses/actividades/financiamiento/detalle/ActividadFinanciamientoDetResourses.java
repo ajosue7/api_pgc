@@ -345,6 +345,7 @@ public class ActividadFinanciamientoDetResourses {
             try {
                 if (_actividadFinanciamientoDetRepository.countByCodigoFinancDet(codigoFinancDet) > 0) {
                     // Realizamos la Persistencia de los Datos
+                    msgExeptions.map.put("findRecord", true);
 
                     _actividadFinanciamientoDetRepository.deleletedCodigoFinancDet(codigoFinancDet);
                     _actividadFinanciamientoDetRepository.flush();
@@ -355,6 +356,7 @@ public class ActividadFinanciamientoDetResourses {
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
+                    msgExeptions.map.put("findRecord", true);
                     msgMethod = "No Existe un registro de Detalle de Financiamiento para este Proyecto !!";
                     throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod);
                 }
