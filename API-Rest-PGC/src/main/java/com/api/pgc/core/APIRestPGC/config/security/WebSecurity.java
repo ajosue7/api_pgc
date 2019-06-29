@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,12 +29,12 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import static com.api.pgc.core.APIRestPGC.utilities.configAPI.ESTADOS_ENDPOINT_FIND_BY_IDGRUPO;
-import static com.api.pgc.core.APIRestPGC.utilities.configAPI.PAIS_ENDPOINT;
+import static com.api.pgc.core.APIRestPGC.utilities.configAPI.USUARIOS_ENDPOINT_FIND_BY_ROL;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 @EnableWebSecurity
-public class WebSecurity  extends WebSecurityConfigurerAdapter {
+public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     // Constantes de la API
     private configAPI configApi;
@@ -53,7 +52,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }
@@ -75,9 +74,9 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedHeaders(Arrays.asList("X-API-KEY", "Origin", "X-Requested-With", "Content-Type",
                 "Accept", "Access-Control-Request-Method"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET","POST", "OPTIONS", "PUT", "DELETE", "PATCH"));
+        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "OPTIONS", "PUT", "DELETE", "PATCH"));
         configuration.setAllowCredentials(false);
-        configuration.setExposedHeaders(Arrays.asList("Content-type","Authorization"));
+        configuration.setExposedHeaders(Arrays.asList("Content-type", "Authorization"));
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
@@ -98,33 +97,34 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                 //.cors().and()
                 .csrf().disable()
                 .authorizeRequests().antMatchers(secutityConfig.LOGIN_URL, secutityConfig.SIGN_UP_URL,
-                        // configApi.API_BASE_PATH + configApi.ESTADOS_ENDPOINT,
-                        configApi.API_BASE_PATH + ESTADOS_ENDPOINT_FIND_BY_IDGRUPO,
-                         // configApi.API_BASE_PATH + PAIS_ENDPOINT,
-                        // configApi.ESTADOS_ENDPOINT_LIST1,
-                        configApi.API_BASE_PATH + configApi.USUARIOS_ENDPOINT_NEW,
-                        // "/rest/registro", "/rest/usuarios/user/mail/{emailUsuario}",
-                         // "/rest/registro", configApi.API_BASE_PATH + configApi.SECTOR_EJECUTOR_ENDPOINT,
-                        "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
-                        "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
-                        "/swagger-resources/configuration/security")
-                    .permitAll() //permitimos el acceso a /login a cualquiera
-                    .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion *********************
-                    .and()
+                // configApi.API_BASE_PATH + configApi.ESTADOS_ENDPOINT,
+                configApi.API_BASE_PATH + ESTADOS_ENDPOINT_FIND_BY_IDGRUPO,
+                // configApi.API_BASE_PATH + PAIS_ENDPOINT,
+                // configApi.ESTADOS_ENDPOINT_LIST1,
+                configApi.API_BASE_PATH + USUARIOS_ENDPOINT_FIND_BY_ROL,
+                configApi.API_BASE_PATH + configApi.USUARIOS_ENDPOINT_NEW,
+                // "/rest/registro", "/rest/usuarios/user/mail/{emailUsuario}",
+                // "/rest/registro", configApi.API_BASE_PATH + configApi.SECTOR_EJECUTOR_ENDPOINT,
+                "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
+                "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html",
+                "/swagger-resources/configuration/security")
+                .permitAll() //permitimos el acceso a /login a cualquiera
+                .anyRequest().authenticated() //cualquier otra peticion requiere autenticacion *********************
+                .and()
                 // path del login
                 .formLogin()
-                    //.failureHandler(loginFailureHandler)
-                    .loginPage(secutityConfig.LOGIN_URL)
-                    //.defaultSuccessUrl("/", true)
-                    //.failureUrl("/login?error")
-                    .permitAll()
-                    .and()
+                //.failureHandler(loginFailureHandler)
+                .loginPage(secutityConfig.LOGIN_URL)
+                //.defaultSuccessUrl("/", true)
+                //.failureUrl("/login?error")
+                .permitAll()
+                .and()
                 // path del logout
                 .logout()
-                    // .logoutUrl(SIGN_UP_URL)
-                    .logoutSuccessUrl("/login?logout")
-                    .permitAll()
-                    .and()
+                // .logoutUrl(SIGN_UP_URL)
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
+                .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
                 // Las peticiones /login pasaran previamente por este filtro
@@ -135,7 +135,7 @@ public class WebSecurity  extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new JwtFilter(),
                         UsernamePasswordAuthenticationFilter.class);
 
-                // Configuracion de los Headers
+        // Configuracion de los Headers
                 /*.headers()
                 // the headers you want here. This solved all my CORS problems!
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*"))

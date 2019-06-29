@@ -4,6 +4,9 @@ package com.api.pgc.core.APIRestPGC.models.mantenimiento;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,6 +36,12 @@ public class TblGrupo {
     /*@OneToMany( cascade = CascadeType.ALL)
     @JoinColumn( name = "ID_GRUPO", referencedColumnName = "ID_GRUPO")
     private List<TblTipo> idGrupoTipo;*/
+
+    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "tbl_grupos")
+    private Set<TblTipo> TblTipo = new HashSet();*/
+
+    /*@OneToMany(mappedBy="idGrupo", fetch = FetchType.LAZY)
+    private List<TblTipo> idTipo = new ArrayList<TblTipo>();*/
 
 
     //Constructor de la Clase Modelo

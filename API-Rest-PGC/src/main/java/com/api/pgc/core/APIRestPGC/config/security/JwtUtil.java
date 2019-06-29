@@ -1,13 +1,11 @@
 package com.api.pgc.core.APIRestPGC.config.security;
 
-import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
+import com.api.pgc.core.APIRestPGC.service.UsuarioService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.joda.time.DateTime;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,26 +13,28 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
-import java.time.Instant;
-import java.util.*;
+import java.util.Date;
+import java.util.UUID;
 
-import static java.util.Collections.emptyList;
-// Constantes del Modulo de Seguridad
 import static com.api.pgc.core.APIRestPGC.config.security.SecurityConstants.*;
+import static java.util.Collections.emptyList;
+
+// Constantes del Modulo de Seguridad
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class JwtUtil {
 
+    @Autowired
+    UsuarioService _usuarioService;
 
     /*******************************************************************************************************************
      * @autor Nahum Martinez
      * @date 2018-07-01
      * Método para crear el JWT y enviarlo al cliente en el header de la respuesta
      ******************************************************************************************************************/
-    static void addAuthentication(HttpServletResponse res, String username) throws IOException {
+    static void addAuthentication(HttpServletResponse res, String userName) throws IOException {
         // System.out.println("Datos en: JwtUtil de la Funcion addAuthentication() - username **********  " +  username);
 
         //Parametros de Salida del Response
@@ -44,23 +44,26 @@ public class JwtUtil {
 
         JSONObject jsonResponse = new JSONObject();
 
+         // User = _usuarioService.loadUserByUsername(userName);
+
         // Parametros para crear el Token
         String id = UUID.randomUUID().toString().replace("-", "");
 
         // Generacion del Token
         String token;
-            token = Jwts.builder()
-                    .setId(id)
-                    .setSubject(username)
-                    // .setIssuedAt(NOW_TIME)
-                    // .setNotBefore(NOW_TIME)
-                    .setExpiration(new Date( System.currentTimeMillis() + (1000*BASE_TIME)))
-                    .signWith(SignatureAlgorithm.HS256, TOKEN_SECRET)
-                    .compact();
+        token = Jwts.builder()
+                .setId(id)
+                .setSubject(userName)
+                // .setIssuedAt(NOW_TIME)
+                // .setNotBefore(NOW_TIME)
+                .claim("userRole", "1")
+                .setExpiration(new Date(System.currentTimeMillis() + (1000 * BASE_TIME)))
+                .signWith(SignatureAlgorithm.HS256, TOKEN_SECRET)
+                .compact();
 
-            // System.out.println("Datos en: JwtUtil de la Funcion addAuthentication() - token **********  " +  token);
+        // System.out.println("Datos en: JwtUtil de la Funcion addAuthentication() - token **********  " +  token);
 
-        if( token != null ){
+        if (token != null) {
             //agregamos al encabezado el token
             res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
 
@@ -68,7 +71,7 @@ public class JwtUtil {
             try {
                 // Jsonresponse send
                 jsonResponse.put("token", token);
-                jsonResponse.put("userName",username);
+                jsonResponse.put("userName", userName);
                 jsonResponse.put("message", "Valor del Token de la Sesion, tienes 24 horas para usarlo, " +
                         "despues tu session finalizara");
                 jsonResponse.put("status", HttpStatus.OK.value());
@@ -98,7 +101,7 @@ public class JwtUtil {
             request.setAttribute("expired", "Mensaje de NAM");
 
             if (token != null) {
-               // System.out.println("Funcion getAuthentication Paso 1 - token con Datos ***************  " + token);
+                // System.out.println("Funcion getAuthentication Paso 1 - token con Datos ***************  " + token);
                 String user = Jwts.parser()
                         .setSigningKey(TOKEN_SECRET)
                         .parseClaimsJws(token.replace(TOKEN_PREFIX, "")) //este metodo es el que valida
@@ -108,14 +111,14 @@ public class JwtUtil {
                 // Recordamos que para las demás peticiones que no sean /auth/login
                 // no requerimos una autenticacion por username/password con el Token que es del Headers
                 // por este motivo podemos devolver un UsernamePasswordAuthenticationToken sin password
-                if( user != null ){
+                if (user != null) {
                     return new UsernamePasswordAuthenticationToken(user, null, emptyList());
                 } else {
                     System.out.println("User null ++++++++++++ ");
                 }
                 return null;
             }
-        } else if( token3 != null ) {
+        } else if (token3 != null) {
             System.out.println("Funcion getAuthentication Paso 2 - token3 con Datos ***************  " + token3);
             String user = Jwts.parser()
                     .setSigningKey(TOKEN_SECRET)
@@ -126,9 +129,9 @@ public class JwtUtil {
             // Recordamos que para las demás peticiones que no sean /auth/login
             // no requerimos una autenticacion por username/password con el Token3 que es del Parametro
             // por este motivo podemos devolver un UsernamePasswordAuthenticationToken sin password
-            if( user != null ){
+            if (user != null) {
                 return new UsernamePasswordAuthenticationToken(user, null, emptyList());
-            }else{
+            } else {
                 System.out.println("User null ++++++++++++ ");
             }
             return null;

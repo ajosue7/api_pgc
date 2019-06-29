@@ -102,9 +102,7 @@ public class configAPI {
     public static final String ESPACIOS_TRABAJO_ENDPOINT_FIND_BY_ID_PAIS = "/espacios-trabajo/findByIdPais/{idPais}";
 
 
-
-
-   //Espacios de Trabajo de Usuaio de la API
+    //Espacios de Trabajo de Usuaio de la API
 
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT = "/espacios-trabajo-usuario";
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findByIdUsuario/{idUsuarioEspacioTrabajo}";
@@ -357,6 +355,7 @@ public class configAPI {
     public static final String USUARIOS_ENDPOINT_UPDATE = "/usuarios/update/{idUsuario}";
     public static final String USUARIOS_ENDPOINT_DELETE = "/usuarios/delete/{idUsuario}";
     public static final String USUARIOS_ENDPOINT_TIPO = "/usuarios/kind";
+    public static final String USUARIOS_ENDPOINT_FIND_BY_ROL = "/usuarios/findByRol/{emailUsuario}";
 
     /*==================================================================================================================
      *================================================================================================================ */

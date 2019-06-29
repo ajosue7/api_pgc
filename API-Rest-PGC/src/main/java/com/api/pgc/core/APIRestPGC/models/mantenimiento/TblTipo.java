@@ -1,9 +1,10 @@
 package com.api.pgc.core.APIRestPGC.models.mantenimiento;
 
 
-import com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo.TblEspaciosTrabajo;
 import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "tbl_tipos",
@@ -27,10 +28,12 @@ public class TblTipo {
     private String descTipo;
 
     @Column(name = "ACTIVADA")
+    // @JsonIgnore
     private boolean activada;
 
     //Mapeo de la Relacion de la Tabla de Tipos con Grupos
     // Muchos Tipos = 1 Grupo
+    //@ManyToOne(fetch = FetchType.LAZY)
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_GRUPO", referencedColumnName = "ID_GRUPO")
     @ApiModelProperty(notes = "Entidad del Grupo, se envia desde un Json (\"idGrupo\": { \"idGrupo\": \"valor\" })", required = true)
@@ -39,7 +42,6 @@ public class TblTipo {
     /*@ManyToOne
     @JoinColumn( name = "ID_GRUPO")
     private TblGrupo idGrupo;*/
-
 
 
     //Constructor vacio de la Clase, solo para Jpa
