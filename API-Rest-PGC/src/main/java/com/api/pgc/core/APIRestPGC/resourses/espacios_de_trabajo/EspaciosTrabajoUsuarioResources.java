@@ -71,6 +71,46 @@ public class EspaciosTrabajoUsuarioResources {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     }//FIN
+    /**
+     * Metodo que despliega el  ID  de Espacio de Trabajo Usuario de la BD
+     * @autor Nahum Martinez | NAM
+     * @version  11/10/2018/v1.0
+     * @return Espacio de Trabajo Usuarios de la BD
+     * @param idEspacioTrabajoUsuario Identificador del ID de Espacio de Trabajo a Buscar
+     */
+    @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Registro Encontrado"),
+            @ApiResponse(code = 401, message = "No estas Autenticado"),
+            @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
+            @ApiResponse(code = 404, message = "Recurso no encontrado")})
+    @GetMapping( value = ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_IDUS, produces = "application/json")
+    public HashMap<String, Object> getEspacioTrabajo( @ApiParam(value="Identificador del Espacio de Trabajo a Buscar", required=true)
+                                                      @PathVariable ("idEspacioTrabajoUsuario") long idEspacioTrabajoUsuario  ) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        try{
+            if( espaciosTrabajoUsuarioRepository.findByIdEspacioTrabajoUsuario(idEspacioTrabajoUsuario) == null ){
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "No se ha encontrado dato del Espacio de Trabajo consultado";
+                msgExeptions.map.put("error", "No data found");
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 400);
+            }else {
+                //Sobreescirbe el Metodo de Mensajes
+                msgMethod = "Detalle del Espacio de Trabajo Consultado";
+                msgExeptions.map.put("data", espaciosTrabajoUsuarioRepository.findByIdEspacioTrabajoUsuario(idEspacioTrabajoUsuario));
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        }catch ( Exception ex ){
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }//FIN
+
 
 
     /**
@@ -87,7 +127,7 @@ public class EspaciosTrabajoUsuarioResources {
             @ApiResponse(code = 401, message = "No estas Autenticado"),
             @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
             @ApiResponse(code = 404, message = "Recurso no encontrado")})
-    @GetMapping(value = ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_ID, produces = "application/json")
+    @GetMapping(value = ESPACIOS_TRABAJO_USUARIOS_ENDPOINT_FIND_BY_ID, produces = "application/json")
     public HashMap<String, Object> getEspacioTrabajoUsuario(@ApiParam(value = "Identificador del Usuario que tiene Espacio de Trabajo a Buscar", required = true)
                                                             @PathVariable("idUsuarioEspacioTrabajo") long idUsuarioEspacioTrabajo) throws Exception {
         //Ejecuta el try Cacth

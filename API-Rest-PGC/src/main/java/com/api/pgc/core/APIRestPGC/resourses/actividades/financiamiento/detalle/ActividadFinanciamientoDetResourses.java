@@ -115,7 +115,7 @@ public class ActividadFinanciamientoDetResourses {
                 msgExeptions.map.put("findRecord", false);
 
                 // Retorno del json
-                return msgExeptions.msgJson(msgMethod, 400);
+                return msgExeptions.msgJson(msgMethod, 200);
             } else {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle de los Detalles de Financiamiento del Proyecto";
@@ -345,6 +345,7 @@ public class ActividadFinanciamientoDetResourses {
             try {
                 if (_actividadFinanciamientoDetRepository.countByCodigoFinancDet(codigoFinancDet) > 0) {
                     // Realizamos la Persistencia de los Datos
+                    msgExeptions.map.put("findRecord", true);
 
                     _actividadFinanciamientoDetRepository.deleletedCodigoFinancDet(codigoFinancDet);
                     _actividadFinanciamientoDetRepository.flush();

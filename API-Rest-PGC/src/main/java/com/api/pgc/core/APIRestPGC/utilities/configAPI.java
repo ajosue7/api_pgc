@@ -33,6 +33,11 @@ public class configAPI {
     public static final String TIPOS_ENDPOINT_FIND_BY_ID = "/tipos/findById/{idTipo}";
     public static final String TIPOS_ENDPOINT_FIND_BY_IDGRUPO = "/tipos/findByIdGrupo/{idGrupo}";
 
+    // Mapeo de las Rutas del Modulo de Tratos
+    public static final String TRATOS_ENDPOINT = "/tratos";
+    public static final String TRATOS_ENDPOINT_FIND_BY_ID = "/tratos/findById/{idTrato";
+    public static final String TRATOS_ENDPOINT_FIND_BY_IDGRUPO = "/tratos/findByIdGrupo/{idGrupo}";
+
     // Mapeo de las Rutas del Modulo de Ubicaciones | Pais | Departamentos | Municipios
     public static final String PAIS_ENDPOINT = "/ubicacion-geografica/pais";
     public static final String PAIS_ENDPOINT_FIND_BY_ID = "/ubicacion-geografica/pais/findByIdPais/{idPais}";
@@ -105,8 +110,10 @@ public class configAPI {
     //Espacios de Trabajo de Usuaio de la API
 
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT = "/espacios-trabajo-usuario";
-    public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findByIdUsuario/{idUsuarioEspacioTrabajo}";
+    public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_IDUS = "/espacios-trabajo-usuario/findByIdEspaciotrabajousuario/{idEspacioTrabajoUsuario}";
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_NEW = "/espacios-trabajo-usuario/new";
+    public static final String ESPACIOS_TRABAJO_USUARIOS_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findBy";
+
 
     /*==================================================================================================================
      *================================================================================================================ */
@@ -174,12 +181,24 @@ public class configAPI {
     public static final String RECURSOS_DOC_ENDPOINT = "/mant-actividades/recursos-proyecto";
     public static final String RECURSOS_DOC_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/recursos-proyecto/findByCodActividadRecurso/{codActividadRecurso}";
     public static final String RECURSOS_DOC_ENDPOINT_NEW = "/mant-actividades/recursos-proyecto/new";
+    public static final String RECURSOS_DOC_ENDPOINT_EDIT = "/mant-actividades/recursos-proyecto/edit/{idActividadRecurso}";
     public static final String RECURSOS_DOC_ENDPOINT_DELETE = "/mant-actividades/recursos-proyecto/delete/{idActividadDocumento}";
     public static final String RECURSOS_DOC_UPLOAD_FILE = "/mant-actividades/recursos-proyecto/uploadFile";
     public static final String RECURSOS_DOC_UPLOAD_FILE_ARRAY = "/mant-actividades/recursos-proyecto/uploadMultipleFiles";
     public static final String RECURSOS_DOC_UPLOAD_FILE_DOWLOAD = "/mant-actividades/recursos-proyecto/downloadFile/{fileName:.+}";
     public static final String RECURSOS_TIPO_ENDPOINT = "/mant-actividades/recursos-proyecto/tipos";
     public static final String RECURSOS_TIPO_ENDPOINT_FIND_BY_ID = "/mant-actividades/recursos-proyecto/tipos/{idTipoRecursos}";
+
+    //Mapeo de las Rutas del Sub Modulo de Contactos
+
+    // Espacios de Trabajos de la API ******************************************************************************
+    // Mapeo de las Rutas del Modulo contactos
+    public static final String CONTACTOS_ENDPOINT = "/actividades_contactos";
+    public static final String CONTACTOS_ENDPOINT_FIND_BY_ID = "/actividades_contactos/findByIdContacto/{idContacto}";
+    public static final String CONTACTOS_ENDPOINT_NEW = "/actividades_contactos/new";
+    public static final String CONTACTOS_ENDPOINT_FIND_BY_CODIGO = "/actividades_contactos/findByCodigoContacto/{codigoContacto}";
+    public static final String CONTACTOS_ENDPOINT_EDIT = "/actividades_contactos/edit/{idContacto}";
+    public static final String CONTACTOS_ENDPOINT_DELETE = "/actividades_contactos/delete/{idContactos}";
 
     // Mapeo de las Rutas del Sub Modulo de Organizaciones
     // | Socio al Desarrollo |
@@ -229,7 +248,7 @@ public class configAPI {
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET = "/mant-actividades/financiamiento/detalle/findByCodigoFinancDet/{codigoFinancDet}";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_DET = "/mant-actividades/financiamiento/detalle/new";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_EDIT_FINANC_DET = "/mant-actividades/financiamiento/detalle/edit/{idActividadFinancDet}";
-    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET = "/mant-actividades/financiamiento/detalle/delete/{codigoFinancDet}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET = "/mant-actividades/financiamiento/detalle/{codigoFinancDet}";
 
     // Detalle de Compromisos =======================================================================================
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FINANC_DET_COMPROMISO = "/mant-actividades/financiamiento/detalle-compromiso";
