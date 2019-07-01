@@ -5,6 +5,7 @@
 package com.api.pgc.core.APIRestPGC.repository.actividades.organizaciones;
 
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
+import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.detalle.TblActividadFinanciamientoDet;
 import com.api.pgc.core.APIRestPGC.models.actividades.organizaciones.TblActividadOrganizacionSocioDesarrollo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -34,7 +35,6 @@ public interface ActividadOrganizacionSocioDesarrolloRepository extends JpaRepos
      * @version 02/05/2019/v1.0
      */
     long countByCodigoActividad(String codigoActividad);
-
 
     /**
      * Metodo que despliega los Socio al Desarrollo de la BD

@@ -112,7 +112,7 @@ public class configAPI {
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT = "/espacios-trabajo-usuario";
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_IDUS = "/espacios-trabajo-usuario/findByIdEspaciotrabajousuario/{idEspacioTrabajoUsuario}";
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_NEW = "/espacios-trabajo-usuario/new";
-    public static final String ESPACIOS_TRABAJO_USUARIOS_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findBy";
+    public static final String ESPACIOS_TRABAJO_USUARIOS_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findByIdUsuarioEspacioTrabajo/{idUsuarioEspacioTrabajo}";
 
 
     /*==================================================================================================================
@@ -248,7 +248,7 @@ public class configAPI {
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET = "/mant-actividades/financiamiento/detalle/findByCodigoFinancDet/{codigoFinancDet}";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_DET = "/mant-actividades/financiamiento/detalle/new";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_EDIT_FINANC_DET = "/mant-actividades/financiamiento/detalle/edit/{idActividadFinancDet}";
-    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET = "/mant-actividades/financiamiento/detalle/{codigoFinancDet}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET = "/mant-actividades/financiamiento/detalle/delete/{codigoFinancDet}";
 
     // Detalle de Compromisos =======================================================================================
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_FINANC_DET_COMPROMISO = "/mant-actividades/financiamiento/detalle-compromiso";

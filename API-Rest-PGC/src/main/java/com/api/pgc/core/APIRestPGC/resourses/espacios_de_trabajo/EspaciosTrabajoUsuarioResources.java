@@ -4,18 +4,12 @@ package com.api.pgc.core.APIRestPGC.resourses.espacios_de_trabajo;
 
 import com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo.TblEspaciosTrabajo;
 import com.api.pgc.core.APIRestPGC.models.espacios_de_trabajo.TblEspaciosTrabajoUsuarios;
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblEstado;
-import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblRoles;
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
-import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.repository.espacios_de_trabajo.EspaciosTrabajoRepository;
 import com.api.pgc.core.APIRestPGC.repository.espacios_de_trabajo.EspaciosTrabajoUsuarioRepository;
-import com.api.pgc.core.APIRestPGC.repository.mantenimiento.EstadosRepository;
 import com.api.pgc.core.APIRestPGC.repository.seguridad.RolesRepository;
 import com.api.pgc.core.APIRestPGC.repository.seguridad.UsuariosRepository;
-import com.api.pgc.core.APIRestPGC.repository.ubicacion_geografica.PaisRepository;
-import com.api.pgc.core.APIRestPGC.repository.mantenimiento.TiposRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +41,7 @@ public class EspaciosTrabajoUsuarioResources {
     RolesRepository _rolesRepository;
 
     /**
-|     * Metodo que despliega la Lista de todos los Espacios de Trabajo Asignados al Usuario de la BD
+     * |     * Metodo que despliega la Lista de todos los Espacios de Trabajo Asignados al Usuario de la BD
      *
      * @return Lista de Espacios de Trabajo que tiene un Usuario de la BD
      * @autor Nahum Martinez | NAM
@@ -71,12 +65,15 @@ public class EspaciosTrabajoUsuarioResources {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     }//FIN
+
+
     /**
      * Metodo que despliega el  ID  de Espacio de Trabajo Usuario de la BD
-     * @autor Nahum Martinez | NAM
-     * @version  11/10/2018/v1.0
-     * @return Espacio de Trabajo Usuarios de la BD
+     *
      * @param idEspacioTrabajoUsuario Identificador del ID de Espacio de Trabajo a Buscar
+     * @return Espacio de Trabajo Usuarios de la BD
+     * @autor Nahum Martinez | NAM
+     * @version 11/10/2018/v1.0
      */
     @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @ApiResponses(value = {
@@ -84,21 +81,21 @@ public class EspaciosTrabajoUsuarioResources {
             @ApiResponse(code = 401, message = "No estas Autenticado"),
             @ApiResponse(code = 403, message = "No estas Autorizado para usar el Servicio"),
             @ApiResponse(code = 404, message = "Recurso no encontrado")})
-    @GetMapping( value = ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_IDUS, produces = "application/json")
-    public HashMap<String, Object> getEspacioTrabajo( @ApiParam(value="Identificador del Espacio de Trabajo a Buscar", required=true)
-                                                      @PathVariable ("idEspacioTrabajoUsuario") long idEspacioTrabajoUsuario  ) throws Exception {
+    @GetMapping(value = ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_IDUS, produces = "application/json")
+    public HashMap<String, Object> getEspacioTrabajo(@ApiParam(value = "Identificador del Espacio de Trabajo a Buscar", required = true)
+                                                     @PathVariable("idEspacioTrabajoUsuario") long idEspacioTrabajoUsuario) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
-        try{
-            if( espaciosTrabajoUsuarioRepository.findByIdEspacioTrabajoUsuario(idEspacioTrabajoUsuario) == null ){
+        try {
+            if (espaciosTrabajoUsuarioRepository.findByIdEspacioTrabajoUsuario(idEspacioTrabajoUsuario) == null) {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se ha encontrado dato del Espacio de Trabajo consultado";
                 msgExeptions.map.put("error", "No data found");
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 400);
-            }else {
+            } else {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle del Espacio de Trabajo Consultado";
                 msgExeptions.map.put("data", espaciosTrabajoUsuarioRepository.findByIdEspacioTrabajoUsuario(idEspacioTrabajoUsuario));
@@ -106,22 +103,21 @@ public class EspaciosTrabajoUsuarioResources {
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
             }
-        }catch ( Exception ex ){
+        } catch (Exception ex) {
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
     }//FIN
 
 
-
     /**
-     * Metodo que despliega el Espacio de Trabajo que tiene un Usuario de la BD
+     * Metodo que despliega el Espacios de Trabajo que tiene un Usuario de la BD
      *
      * @param idUsuarioEspacioTrabajo Identificador del Tipo a Buscar
      * @return Espacio de Trabajo que tiene asignado un Usuario de la BD
      * @autor Nahum Martinez | NAM
-     * @version 12/10/2018/v1.0
+     * @version 01/07/2019/v1.0
      */
-    @ApiOperation(value = "Retorna el Tipo enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
+    @ApiOperation(value = "Retorna los Espacios de Trabajo Asignados al Usuario", authorizations = {@Authorization(value = "Token-PGC")})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Registro Encontrado"),
             @ApiResponse(code = 401, message = "No estas Autenticado"),
@@ -183,35 +179,35 @@ public class EspaciosTrabajoUsuarioResources {
 
         try {
             //Busca el Tipo de Espacio de Trabajo, desde el Reporsitorio con el Parametro del Json enviado ( "IdEspacioTrabajo": { "IdEspacioTrabajo": valor })
-            TblEspaciosTrabajo _tblEspaciosTrabajo = _espaciosTrabajoRepository.findByIdEspacioTrabajo( _espacioTrabajoUsuarioJson.getIdEspacioTrabajo().getIdEspacioTrabajo() );
+            TblEspaciosTrabajo _tblEspaciosTrabajo = _espaciosTrabajoRepository.findByIdEspacioTrabajo(_espacioTrabajoUsuarioJson.getIdEspacioTrabajo().getIdEspacioTrabajo());
 
             //Graba los Datos de Asignacion de Espacios de Trabajo
 
-                //Busca el Usuario de Espacio de Trabajo, desde el Reporsitorio con el Parametro del Json enviado ( "IdUsuarioEspacioTrabajo": { "IdUsuario": valor })
-                TblUsuarios _idUsuario = _usuariosRepository.findByIdUsuario( _espacioTrabajoUsuarioJson.getIdUsuarioEspacioTrabajo().getIdUsuario() );
+            //Busca el Usuario de Espacio de Trabajo, desde el Reporsitorio con el Parametro del Json enviado ( "IdUsuarioEspacioTrabajo": { "IdUsuario": valor })
+            TblUsuarios _idUsuario = _usuariosRepository.findByIdUsuario(_espacioTrabajoUsuarioJson.getIdUsuarioEspacioTrabajo().getIdUsuario());
 
-                //Busca el Rol de Espacio de Trabajo, desde el Reporsitorio con el Parametro del Json enviado ( "IdRolEspacioTrabajo": { "IdRol": valor })
-                TblRoles _idRol = _rolesRepository.findByIdRol( _espacioTrabajoUsuarioJson.getIdRolEspacioTrabajo().getIdRol());
+            //Busca el Rol de Espacio de Trabajo, desde el Reporsitorio con el Parametro del Json enviado ( "IdRolEspacioTrabajo": { "IdRol": valor })
+            TblRoles _idRol = _rolesRepository.findByIdRol(_espacioTrabajoUsuarioJson.getIdRolEspacioTrabajo().getIdRol());
 
             try {
 
-                    //Setea el valor Buscado de la Entidad Espacios de Trabajo | Espacio de Trabajo
-                    _espacioTrabajoUsuarioJson.setIdEspacioTrabajo(_tblEspaciosTrabajo);
+                //Setea el valor Buscado de la Entidad Espacios de Trabajo | Espacio de Trabajo
+                _espacioTrabajoUsuarioJson.setIdEspacioTrabajo(_tblEspaciosTrabajo);
 
-                    //Setea el valor Buscado de la Entidad Espacios de Trabajo | Usuarios
-                    _espacioTrabajoUsuarioJson.setIdUsuarioEspacioTrabajo(_idUsuario);
+                //Setea el valor Buscado de la Entidad Espacios de Trabajo | Usuarios
+                _espacioTrabajoUsuarioJson.setIdUsuarioEspacioTrabajo(_idUsuario);
 
-                    //Setea el valor Buscado de la Entidad Espacios de Trabajo | Roles
-                    _espacioTrabajoUsuarioJson.setIdRolEspacioTrabajo(_idRol);
+                //Setea el valor Buscado de la Entidad Espacios de Trabajo | Roles
+                _espacioTrabajoUsuarioJson.setIdRolEspacioTrabajo(_idRol);
 
-                    //Realizamos la Persistencia de los Datos
-                    espaciosTrabajoUsuarioRepository.save(_espacioTrabajoUsuarioJson);
+                //Realizamos la Persistencia de los Datos
+                espaciosTrabajoUsuarioRepository.save(_espacioTrabajoUsuarioJson);
 
-                    //return tiposRepository.findAll();
-                    msgMethod = "Se ha Asignado el Espacio de Trabajo al Usuario " + " de forma satisfactoria!!";
+                //return tiposRepository.findAll();
+                msgMethod = "Se ha Asignado el Espacio de Trabajo al Usuario " + " de forma satisfactoria!!";
 
-                    //Retorno del json
-                    return msgExeptions.msgJson(msgMethod, 200);
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 200);
 
             } catch (Exception ex) {
                 msgMethod = "Ha Ocurrido un error al Intentar Grabar el la Asignacion de Espacio de Trabajo del Usuario";

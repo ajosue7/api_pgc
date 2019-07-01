@@ -10,9 +10,11 @@ package com.api.pgc.core.APIRestPGC.resourses.actividades.organizaciones;
  */
 
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
+import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.detalle.TblActividadFinanciamientoDet;
 import com.api.pgc.core.APIRestPGC.models.actividades.organizaciones.TblActividadOrganizacionSocioDesarrollo;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadRepository;
+import com.api.pgc.core.APIRestPGC.repository.actividades.financiamiento.detalle.ActividadFinanciamientoDetRepository;
 import com.api.pgc.core.APIRestPGC.repository.actividades.organizaciones.ActividadOrganizacionSocioDesarrolloRepository;
 import com.api.pgc.core.APIRestPGC.repository.organizaciones.OrganizacionRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
@@ -41,12 +43,14 @@ public class ActividadOrgSocioDesarrolloResourses {
     @Autowired
     ActividadOrganizacionSocioDesarrolloRepository _actividadOrganizacionSocioDesarrolloRepository;
 
-
     @Autowired
     ActividadRepository _actividadRepository;
 
     @Autowired
     OrganizacionRepository _organizacionRepository;
+
+    @Autowired
+    ActividadFinanciamientoDetRepository _actividadFinanciamientoDetRepository;
 
     /**
      * Metodo que despliega la Lista de todas los Socios al Desarrollo de una Actividad de la BD
@@ -178,7 +182,7 @@ public class ActividadOrgSocioDesarrolloResourses {
 
         // Fecha de Ingrso
         Date dateActual = new Date();
-        System.out.println( "************************"  +_actividadSocioDesarrolloJson.getPorcentajePart());
+        System.out.println("************************" + _actividadSocioDesarrolloJson.getPorcentajePart());
 
         try {
             // Busca la Actividad, desde el Reporsitorio con el Parametro del Json enviado ( "idActividad": {"idActividad": valor })
@@ -249,9 +253,13 @@ public class ActividadOrgSocioDesarrolloResourses {
             TblActividadOrganizacionSocioDesarrollo _tblActividadOrganizacionSocioDesarrollo = _actividadOrganizacionSocioDesarrolloRepository.findByCodigoActividad(codigoActividad);
 
             try {
+                // Busca los Items de Financiamiento Detalle, desde el Reporsitorio con el Parametro del Socio al Desarrollo ( idSocioDesarrollo )
+                // TblActividadFinanciamientoDet _tblActividadFinanciamientoDet = _actividadFinanciamientoDetRepository.count
+
                 if (_actividadOrganizacionSocioDesarrolloRepository.countByCodigoActividad(codigoActividad) > 0) {
                     // Realizamos la Persistencia de los Datos
 
+                    msgExeptions.map.put("findRecord", true);
                     _actividadOrganizacionSocioDesarrolloRepository.deleletedCodigoActividad(codigoActividad);
                     _actividadOrganizacionSocioDesarrolloRepository.flush();
 
@@ -261,8 +269,9 @@ public class ActividadOrgSocioDesarrolloResourses {
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
+                    msgExeptions.map.put("findRecord", false);
                     msgMethod = "No Existe un registro de Socio al Desarrollo para este Proyecto !!";
-                    throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod);
+                    return msgExeptions.msgJson(msgMethod, 200);
                 }
             } catch (Exception ex) {
                 msgMethod = "Ha Ocurrido un error al Eliminar el Socio Desarrollo del Proyecto !!";
