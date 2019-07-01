@@ -5,9 +5,6 @@
 package com.api.pgc.core.APIRestPGC.models.actividades;
 
 import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
-import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblDepartamentos;
-import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblMunicipios;
-import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblUbicacionImplementacion;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -17,8 +14,8 @@ import java.util.Date;
 @Entity
 @Table(name = "tbl_actividades_ubicaciones",
         indexes = {@Index(name = "idx_codigo_actividad_ubicacion", columnList = "CODIGO_ACTIVIDAD"),
-        @Index(name = "idx_id_actividad", columnList = "ID_ACTIVIDAD"),
-        @Index(name = "idx_id_ubicacion_impl", columnList = "ID_UBICACION_IMPL")})
+                @Index(name = "idx_id_actividad", columnList = "ID_ACTIVIDAD"),
+                @Index(name = "idx_id_ubicacion_impl", columnList = "ID_UBICACION_IMPL")})
 public class TblActividadUbicacion {
     //Propiedades de la tabla
     @Id
