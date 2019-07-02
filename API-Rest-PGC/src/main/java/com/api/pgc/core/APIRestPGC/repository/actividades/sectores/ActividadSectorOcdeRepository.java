@@ -71,4 +71,18 @@ public interface ActividadSectorOcdeRepository extends JpaRepository<TblActivida
     @Transactional
     @Query("DELETE FROM TblActividadSectorOcde e WHERE e.codigoActividad = :codigoActividad")
     void deleletedCodigoActividad(@Param("codigoActividad") String codigoActividad);
+
+
+    /**
+     * Metodo que despliega los Sectores OCDE/CAD de la BD
+     *
+     * @return SECTORES OCDE/CAD de la BD
+     * @autor Nahum Martinez | NAM
+     * @version 02/07/2019/v1.0
+     */
+    @Query("SELECT se.idActividadSectorOcde, se.codigoActividad," +
+            "se.idSectorOcde, se.idActividad, se.porcentaje_part," +
+            "se.activo, se.fechaCreacion, se.horaCreacion " +
+            "FROM TblActividadSectorOcde se ")
+    List<TblActividadSectorOcde> getAllActividadesSectoresOcde2();
 }

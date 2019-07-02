@@ -10,7 +10,6 @@ package com.api.pgc.core.APIRestPGC.resourses.actividades.sectores;
  */
 
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
-import com.api.pgc.core.APIRestPGC.models.actividades.TblActividadIdInterna;
 import com.api.pgc.core.APIRestPGC.models.actividades.sectores.TblActividadSectorOcde;
 import com.api.pgc.core.APIRestPGC.models.sectores.TblSectorOcdeCad;
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadRepository;
@@ -55,7 +54,7 @@ public class ActividadSectorOcdeResourses {
      * @autor Nahum Martinez | NAM
      * @version 14/04/2019/v1.0
      */
-    @ApiOperation(value = "Retorna el Listado de Todas las Id Internas de una Actividad de la BD", authorizations = {@Authorization(value = "Token-PGC")})
+    @ApiOperation(value = "Retorna el Listado de Todos los Sectores OCDE relaciones con Proyectos de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = SECTORES_OCDE_ACT_ENDPOINT, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getAllActvidadesSectoresOcde() throws Exception {
         // Ejecuta el try Cacth
@@ -64,9 +63,10 @@ public class ActividadSectorOcdeResourses {
         msgMethod = "Listado de todas los Sectores Ocde registrados en la BD";
 
         try {
+            System.out.println("Entro a cargar Sceto Act ++++++++++++++++++++++++++++");
             //Sobreescirbe el Metodo de Mensajes
-            msgExeptions.map.put("data", _actividadSectorOcdeRepository.findAll());
-            msgExeptions.map.put("countRecords", _actividadSectorOcdeRepository.count());
+            msgExeptions.map.put("data", _actividadSectorOcdeRepository.getAllActividadesSectoresOcde2());
+            // msgExeptions.map.put("countRecords", _actividadSectorOcdeRepository.count());
             //Retorno del json
             return msgExeptions.msgJson(msgMethod, 200);
         } catch (Exception ex) {
@@ -237,7 +237,7 @@ public class ActividadSectorOcdeResourses {
     @ApiOperation(value = "Elimina de la BD, la Información enviada por el codigo de Sector Ocde", authorizations = {@Authorization(value = "Token-PGC")})
     @DeleteMapping(value = SECTORES_OCDE_ENDPOINT_DELETE, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> deletedActividadSectorOcde(@ApiParam(value = "Codigo de Sector Ocde del Proyecto a Eliminar", required = true)
-                                                             @PathVariable("codigoActividad") String codigoActividad) throws Exception {
+                                                              @PathVariable("codigoActividad") String codigoActividad) throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
