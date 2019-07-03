@@ -17,18 +17,14 @@ import com.api.pgc.core.APIRestPGC.repository.sectores.NivelSectorRepository;
 import com.api.pgc.core.APIRestPGC.repository.sectores.SectorOcdeCadRepository;
 import com.api.pgc.core.APIRestPGC.repository.sectores.TipoSectorRepository;
 import com.api.pgc.core.APIRestPGC.repository.sectores.VistaSectorOcdeCadRepository;
-import com.api.pgc.core.APIRestPGC.service.TreeNodes.MyTreeNode;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeNode;
 import java.util.HashMap;
 
 import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
@@ -75,11 +71,9 @@ public class SectoresOcdeCadResources {
     }// FIN | getAllVSectoresOcdeCad
 
 
-
-
     @ApiOperation(value = "Prueba del Tree Node", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = "/sectores/ocde-cad/treenode", produces = "application/json; charset=UTF-8")
-    public  HashMap<String, Object> returnAllNodes(){
+    public HashMap<String, Object> returnAllNodes() {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -110,8 +104,6 @@ public class SectoresOcdeCadResources {
     }// FIN | getTreeNode
 
 
-
-
     /**
      * Metodo que despliega la Lista de todos los Sectores OCDE/CAD de la BD
      *
@@ -134,7 +126,8 @@ public class SectoresOcdeCadResources {
 
                 msgExeptions.map.put("error", "No data found");
                 msgExeptions.map.put("find", false);
-                msgExeptions.map.put("data", _sectorOcdeCadRepository.findAll(new Sort(Sort.Direction.DESC, "<idSector>")));
+                // msgExeptions.map.put("data", _sectorOcdeCadRepository.findAll(new Sort(Sort.Direction.DESC, "<idSector>")));
+                msgExeptions.map.put("data", _sectorOcdeCadRepository.findAll());
                 msgExeptions.map.put("totalRecors", _sectorOcdeCadRepository.count());
             } else {
                 msgExeptions.map.put("find", true);

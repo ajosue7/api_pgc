@@ -10,7 +10,6 @@ package com.api.pgc.core.APIRestPGC.resourses.actividades.organizaciones;
  */
 
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
-import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.detalle.TblActividadFinanciamientoDet;
 import com.api.pgc.core.APIRestPGC.models.actividades.organizaciones.TblActividadOrganizacionSocioDesarrollo;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadRepository;
