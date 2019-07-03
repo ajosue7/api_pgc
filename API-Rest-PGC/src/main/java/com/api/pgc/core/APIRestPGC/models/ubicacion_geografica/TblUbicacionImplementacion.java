@@ -72,6 +72,16 @@ public class TblUbicacionImplementacion {
     @ApiModelProperty(notes = "Entidad del Municipio de Ubicacion, se envia desde un Json (\"idMunicipioUbicacion\": { \"idMunicipio\": \"valor\" })")
     private TblMunicipios idMunicipioUbicacion;
 
+
+    @Column(name = "LATITUD_UBICACION", nullable = false, length = 150)
+    @ApiModelProperty(notes = "Latitud de Ubicacion de Implementación", required = true)
+    private String latitudUbicacion;
+
+
+    @Column(name = "LONGITUD_UBICACION", nullable = false, length = 150)
+    @ApiModelProperty(notes = "Nombre de Ubicacion de Implementación", required = true)
+    private String longitudUbicacion;
+
     /**
      * Constructor de la Clase, JPA realiza los CRUD
      */
@@ -159,5 +169,21 @@ public class TblUbicacionImplementacion {
 
     public void setIdMunicipioUbicacion(TblMunicipios idMunicipioUbicacion) {
         this.idMunicipioUbicacion = idMunicipioUbicacion;
+    }
+
+    public String getLatitudUbicacion() {
+        return latitudUbicacion;
+    }
+
+    public void setLatitudUbicacion(String latitudUbicacion) {
+        this.latitudUbicacion = latitudUbicacion;
+    }
+
+    public String getLongitudUbicacion() {
+        return longitudUbicacion;
+    }
+
+    public void setLongitudUbicacion(String longitudUbicacion) {
+        this.longitudUbicacion = longitudUbicacion;
     }
 }

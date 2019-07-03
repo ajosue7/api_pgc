@@ -24,9 +24,9 @@ public class TblMunicipios {
     @ApiModelProperty(notes = "Descripcion del Municipio", required = true)
     private String descMunicipio;
 
-    @Column(name = "LATITTUD_MUNIC", nullable = true, length = 150)
+    @Column(name = "LATITUD_MUNIC", nullable = true, length = 150)
     @ApiModelProperty(notes = "Latitud del Municipio", required = true)
-    private String latittudMunic;
+    private String latitudMunic;
 
     @Column(name = "LONGITUD_MUNIC", nullable = true, length = 150)
     @ApiModelProperty(notes = "Longitud del Municipio", required = true)
@@ -72,12 +72,12 @@ public class TblMunicipios {
         this.descMunicipio = descMunicipio;
     }
 
-    public String getLatittudMunic() {
-        return latittudMunic;
+    public String getLatitudMunic() {
+        return latitudMunic;
     }
 
-    public void setLatittudMunic(String latittudMunic) {
-        this.latittudMunic = latittudMunic;
+    public void setLatitudMunic(String latitudMunic) {
+        this.latitudMunic = latitudMunic;
     }
 
     public String getLongitudMunic() {
