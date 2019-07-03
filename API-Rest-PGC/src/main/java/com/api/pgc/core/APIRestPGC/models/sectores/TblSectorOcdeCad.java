@@ -70,7 +70,7 @@ public class TblSectorOcdeCad {
 
     // Mapeo de la Relacion de la Tabla de Sectores OCDE con Nivel de Sectores
     // Muchos Sector = 1 Nivel de Sector
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_NIVEL_SECTOR", referencedColumnName = "ID_NIVEL_SECTOR")
     @ApiModelProperty(notes = "Entidad del Nivel de Sector OCDE, se envia desde un Json (\"idNivelSector\": { \"idNivelSector\": \"valor\" })",
             required = true)
