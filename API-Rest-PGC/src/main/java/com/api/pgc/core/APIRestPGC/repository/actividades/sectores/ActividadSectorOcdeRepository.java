@@ -44,8 +44,18 @@ public interface ActividadSectorOcdeRepository extends JpaRepository<TblActivida
      * @autor Nahum Martinez | NAM
      * @version 13/04/2019/v1.0
      */
-    @Query("SELECT e FROM TblActividadSectorOcde e WHERE e.idActividad = :idActividad")
-    List<TblActividadSectorOcde> getCodigoActividadSector(@Param("idActividad") TblActividad tblActividad);
+    // @Query("SELECT e FROM TblActividadSectorOcde e WHERE e.idActividad = :idActividad")
+    @Query("SELECT new map(se.idActividadSectorOcde as idActividadSectorOcde, se.codigoActividad as codigoActividad," +
+            "sa.idSector as idSector, sa.nombreSector as nombreSector, " +
+            "ac.idActividad as idActividad, se.porcentaje_part as porcentaje_part," +
+            "se.activo as activo, se.fechaCreacion as fechaCreacion, se.horaCreacion as horaCreacion) " +
+            "FROM TblActividadSectorOcde as se " +
+            "INNER JOIN se.idSectorOcde as sa " +
+            "INNER JOIN se.idActividad as ac " +
+            "WHERE se.idActividad = :idActividad " +
+            "AND se.activo = true "+
+            "ORDER BY se.idActividadSectorOcde ")
+    List<TblActividadSectorOcde> getIdActividadSector(@Param("idActividad") TblActividad tblActividad);
 
     /**
      * Metodo que despliega las Id Internas de la BD
@@ -80,9 +90,12 @@ public interface ActividadSectorOcdeRepository extends JpaRepository<TblActivida
      * @autor Nahum Martinez | NAM
      * @version 02/07/2019/v1.0
      */
-    @Query("SELECT se.idActividadSectorOcde, se.codigoActividad," +
-            "se.idSectorOcde, se.idActividad, se.porcentaje_part," +
-            "se.activo, se.fechaCreacion, se.horaCreacion " +
-            "FROM TblActividadSectorOcde se ")
-    List<TblActividadSectorOcde> getAllActividadesSectoresOcde2();
+    @Query("SELECT new map(se.idActividadSectorOcde as idActividadSectorOcde, se.codigoActividad as codigoActividad," +
+            "sa.idSector as idSector, ac.idActividad as idActividad, se.porcentaje_part as porcentaje_part," +
+            "se.activo as activo, se.fechaCreacion as fechaCreacion, se.horaCreacion as horaCreacion) " +
+            "FROM TblActividadSectorOcde as se " +
+            "INNER JOIN se.idSectorOcde as sa " +
+            "INNER JOIN se.idActividad as ac " +
+            "ORDER BY se.idActividadSectorOcde ")
+    List<TblActividadSectorOcde> getAllActividadesSectoresOcde();
 }

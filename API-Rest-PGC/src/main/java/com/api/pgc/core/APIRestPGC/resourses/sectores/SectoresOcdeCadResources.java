@@ -121,17 +121,18 @@ public class SectoresOcdeCadResources {
 
         try {
             //Sobreescirbe el Metodo de Mensajes
-            if (_sectorOcdeCadRepository.findAll().isEmpty() || _sectorOcdeCadRepository.findAll() == null) {
+            // if (_sectorOcdeCadRepository.findAll().isEmpty() || _sectorOcdeCadRepository.findAll() == null) {
+            if (_sectorOcdeCadRepository.getAllSectoresOcdeCad().isEmpty() || _sectorOcdeCadRepository.getAllSectoresOcdeCad() == null) {
                 msgMethod = "No Existen, Sectores OCDE/CAD resgitrados en la Base de Datos, Contacta al Administrador";
 
                 msgExeptions.map.put("error", "No data found");
                 msgExeptions.map.put("find", false);
                 // msgExeptions.map.put("data", _sectorOcdeCadRepository.findAll(new Sort(Sort.Direction.DESC, "<idSector>")));
-                msgExeptions.map.put("data", _sectorOcdeCadRepository.findAll());
+                msgExeptions.map.put("data", _sectorOcdeCadRepository.getAllSectoresOcdeCad());
                 msgExeptions.map.put("totalRecors", _sectorOcdeCadRepository.count());
             } else {
                 msgExeptions.map.put("find", true);
-                msgExeptions.map.put("data", _sectorOcdeCadRepository.findAll());
+                msgExeptions.map.put("data", _sectorOcdeCadRepository.getAllSectoresOcdeCad());
                 msgExeptions.map.put("totalRecors", _sectorOcdeCadRepository.count());
             }
             // Retorno del JSON
