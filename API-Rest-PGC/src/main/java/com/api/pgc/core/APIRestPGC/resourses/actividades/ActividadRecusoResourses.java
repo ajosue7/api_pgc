@@ -81,24 +81,61 @@ public class ActividadRecusoResourses {
         }
     }// FIN | getAllActvidadesRecursos
 
-
     /**
      * Metodo que despliega el Recurso asociadas a la Actividad de la BD
      *
-     * @param ccodActividadRecurso Identificador del Recurso a Buscar
+     * @param idActividadRecurso Identificador del Recurso a Buscar
      * @return Recurso de Actividad de la BD
      * @autor Nahum Martinez | NAM
      * @version 12/04/2019/v1.0
      */
     @ApiOperation(value = "Retorna el Recurso enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = RECURSOS_DOC_ENDPOINT_FIND_BY_ID_ACTIVIDAD, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> getIdInternaByCodigoActividadRecurso(@ApiParam(value = "Recursos de la Actividad a Buscar", required = true)
-                                                                        @PathVariable("codActividadRecurso") String ccodActividadRecurso) throws Exception {
+    public HashMap<String, Object> getIdActividadRecurso(@ApiParam(value = "Recursos de la Actividad a Buscar", required = true)
+                                                                        @PathVariable("idActividadRecurso") long idActividadRecurso) throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
-            if (_actividadRecursoRepository.findByCodigoActividadRecurso(ccodActividadRecurso) == null) {
+            if (_actividadRecursoRepository.findByIdActividadRecurso(idActividadRecurso) == null) {
+                // Sobreescirbe el Metodo de Mensajes
+                msgMethod = "No se ha encontrado dato del Recurso consultado";
+
+                msgExeptions.map.put("error", "No data found");
+
+                //Retorno del json
+                return msgExeptions.msgJson(msgMethod, 400);
+            } else {
+                // Sobreescribe el Metodo de Mensajes
+                msgMethod = "Detalle del Recurso consultado";
+                msgExeptions.map.put("data", _actividadRecursoRepository.findByIdActividadRecurso(idActividadRecurso));
+
+                // Retorno del json
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    }// FIN
+
+
+    /**
+     * Metodo que despliega el Recurso asociadas a la Actividad de la BD
+     *
+     * @param codActividadRecurso Identificador del Recurso a Buscar
+     * @return Recurso de Actividad de la BD
+     * @autor Nahum Martinez | NAM
+     * @version 12/04/2019/v1.0
+     */
+    @ApiOperation(value = "Retorna el Recurso enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
+    @GetMapping(value = RECURSOS_DOC_ENDPOINT_FIND_BY_CODIGO_ACTIVIDAD, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> getIdInternaByCodigoActividadRecurso(@ApiParam(value = "Recursos de la Actividad a Buscar", required = true)
+                                                                        @PathVariable("codActividadRecurso") String codActividadRecurso) throws Exception {
+        // Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        try {
+            if (_actividadRecursoRepository.findByCodigoActividadRecurso(codActividadRecurso) == null) {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se ha encontrado dato del Recurso consultado";
 
@@ -109,7 +146,7 @@ public class ActividadRecusoResourses {
             } else {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle del Recurso consultado";
-                msgExeptions.map.put("data", _actividadRecursoRepository.findByCodigoActividadRecurso(ccodActividadRecurso));
+                msgExeptions.map.put("data", _actividadRecursoRepository.findByCodigoActividadRecurso(codActividadRecurso));
 
                 // Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
@@ -137,8 +174,7 @@ public class ActividadRecusoResourses {
 
 
         try {
-            //Busca el Tipo, desde el Repositorio con el Parametro del Json enviado ( "idTipo": { "idTipo": valor })
-            TblTipo tipo = tiposRepository.findByIdTipo( actividadRecursoJson.getIdTipo().getIdTipo() );
+
 
             //Busca la Actividad, desde el Repositorio con el Parametro del Json enviado ( "idActividad": { "idActividad": valor })
             TblActividad actividad = _actividadRepository.findByIdActividad( actividadRecursoJson.getIdActividad().getIdActividad() );
@@ -149,13 +185,15 @@ public class ActividadRecusoResourses {
             //Busca el Tipo de Recurso, desde el Repositorio con el Parametro del Json enviado ( "idTipoRecursos": { "idTipoRecursos": valor })
             TblTipoRecurso recurso = _tiposRecursosRepository.findByIdTipoRecursos( actividadRecursoJson.getIdTipoRecursos().getIdTipoRecursos() );
 
+            //Busca el Tipo de Recurso, desde el Repositorio con el Parametro del Json enviado ( "idTipoRecursos": { "idTipoRecursos": valor })
+            TblTipo tipo = tiposRepository.findByIdTipo(actividadRecursoJson.getIdTipo().getIdTipo());
 
 
-            //Graba los Datos de Tipos
+
+
             try {
-
-                //Setea el valor Buscado de la Entidad Espacios de Trabajo | Tipo
-                actividadRecursoJson.setIdTipo(tipo);
+                //Graba los Datos de Tipos
+                   actividadRecursoJson.setIdTipo(tipo);
 
                 //Setea el valor Buscado de la Entidad Espacios de Trabajo | Estados
                 actividadRecursoJson.setIdActividad(actividad);
@@ -215,19 +253,12 @@ public class ActividadRecusoResourses {
                 // Buscamos el Tipo de Recurso segun el Parametro enviado
                 TblTipo _tblTipoE = tiposRepository.findByIdTipo(_actividadRecursoJson.getIdTipo().getIdTipo());
 
-                // Buscamos la actividad  segun el Parametro enviado
-                TblActividad _tblActividad = _actividadRepository.findByIdActividad(_actividadRecursoJson.getIdActividad().getIdActividad());
-
-                // Buscamos el Usuario segun el Parametro enviado
-                TblUsuarios _tblUsuarios = _usuariosRepository.findByIdUsuario(_actividadRecursoJson.getIdUsuario().getIdUsuario());
 
                 // Buscamos el Recurso a utilizar segun el Parametro enviado
                 TblTipoRecurso _tblRecurso = _tiposRecursosRepository.findByIdTipoRecursos(_actividadRecursoJson.getIdTipoRecursos().getIdTipoRecursos());
 
                 try {
                     // Realizamos la Persistencia de los Datos
-                    _tblActividadRecurso.setActivo(_actividadRecursoJson.isActivo());
-                    _tblActividadRecurso.setCodigoActividadRecurso(_actividadRecursoJson.getCodigoActividadRecurso());
                     _tblActividadRecurso.setTitulo(_actividadRecursoJson.getTitulo());
                     _tblActividadRecurso.setDescripcion(_actividadRecursoJson.getDescripcion());
                     _tblActividadRecurso.setNota(_actividadRecursoJson.getNota());
@@ -235,9 +266,8 @@ public class ActividadRecusoResourses {
                     _tblActividadRecurso.setUrlActividadRecursoDocumento(_actividadRecursoJson.getUrlActividadRecursoDocumento());
 
 
+
                     _tblActividadRecurso.setIdTipo(_tblTipoE);
-                    _tblActividadRecurso.setIdActividad(_tblActividad);
-                    _tblActividadRecurso.setIdUsuario(_tblUsuarios);
                     _tblActividadRecurso.setIdTipoRecurso(_tblRecurso);
 
                     _actividadRecursoRepository.save(_tblActividadRecurso);
@@ -263,6 +293,56 @@ public class ActividadRecusoResourses {
         }
     } // FIN | editRecursoProyecto
 
+    /**
+     * Metodo que Solcita un json con los datos de la Entidad del Recurso de Proyecto
+     *
+     * @param idActividadRecurso Identificador de la tabla
+     * @return Mensaje de Confirmacion de Registro de la espaciotrabajo
+     * @autor Allan Madrid | AMA
+     * @version 03/07/2019/v1.0
+     */
+    @ApiOperation(value = "Inhabilita a la BD, la Información enviada por el Bean de idActividadRecurso", authorizations = {@Authorization(value = "Token-PGC")})
+    @DeleteMapping(value = RECURSOS_DOC_ENDPOINT_DELETE, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> deleteActividadRecurso(@ApiParam(value = "Id del Recurso de Proyecto a Inhabilitar", required = true)
+                                                        @PathVariable("idActividadRecurso") long idActividadRecurso) throws Exception {
+        //Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Fecha de Inhabilitacion
+        Date dateActual = new Date();
+
+        // Buscamos el Recurso de Proyecto solicitado para la Modificacion
+        try {
+            // Buscamos el Recurso de Proyecto segun el Parametro enviado
+            TblActividadRecurso _tblActividadRecurso = _actividadRecursoRepository.findByIdActividadRecurso(idActividadRecurso);
+
+            if (_actividadRecursoRepository.countByidActividadRecurso(idActividadRecurso) > 0) {
+                try {
+                    // Realizamos la Persistencia de los Datos
+                    _tblActividadRecurso.setActivo(false);
+
+                    _actividadRecursoRepository.save(_tblActividadRecurso);
+                    _actividadRecursoRepository.flush();
+
+                    // return Repository
+                    msgMethod = "Se ha Inhabilitado de forma satisfactoria el Recurso de Proyecto!!";
+
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } catch (Exception ex) {
+                    msgMethod = "Hay problemas al momento de Inhabilitar el Recurso de Proyecto.";
+                    throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+                }
+            } else {
+                //Retorno del json
+                msgMethod = "No se encuentra el Recurso de Proyecto con el parametro enviado !!";
+                return msgExeptions.msgJson(msgMethod, 200);
+            }
+        } catch (Exception ex) {
+            msgMethod = "Hay problemas al momento de Inhabilitar el Recurso de Proyecto.";
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    } // FIN | deleteActividadRecurso
 
 
 }

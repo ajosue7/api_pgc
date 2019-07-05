@@ -24,6 +24,8 @@ public interface ActividadRecursoRepository extends JpaRepository<TblActividadRe
      */
     TblActividadRecurso findByCodigoActividadRecurso(String codActividadRecurso);
 
+
+
     /**
      * Metodo que despliega el Espacio de Trabajo de la BD
      * @autor Nahum Martinez | NAM
