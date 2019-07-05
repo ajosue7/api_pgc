@@ -56,13 +56,13 @@ public class TblActividadUbicacion {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_UBICACION_IMPL", referencedColumnName = "ID_UBICACION_IMPLEMENTACION")
     @ApiModelProperty(notes = "Entidad del Nivel de Ubicacion de la Ubicacion, se envia desde un Json (\"idUbicacionImpl\": { \"idUbicacionImplementacion\": \"valor\" })")
-    private TblUbicacionImplementacion idUbicacionImpl;
+    private TblUbicacionImplementacion idUbicacionImplementacion;
 
     // Muchos Actividad = 1 Usuario
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_USUARIO_CREADOR", referencedColumnName = "ID_USUARIO")
     @ApiModelProperty(notes = "Entidad de Usuario de la Ubicacion, se envia desde un Json (\"idUsuarioCreador\": { \"idUsuario\": \"valor\" })")
-    private TblUsuarios idUsuarioCreador;
+    private TblUsuarios idUsuario;
 
     /**
      * Constructor de la Clase, JPA realiza los CRUD
@@ -105,12 +105,12 @@ public class TblActividadUbicacion {
         this.idActividad = idActividad;
     }
 
-    public TblUbicacionImplementacion getIdUbicacionImpl() {
-        return idUbicacionImpl;
+    public TblUbicacionImplementacion getIdUbicacionImplementacion() {
+        return idUbicacionImplementacion;
     }
 
-    public void setIdUbicacionImpl(TblUbicacionImplementacion idUbicacionImpl) {
-        this.idUbicacionImpl = idUbicacionImpl;
+    public void setIdUbicacionImplementacion(TblUbicacionImplementacion idUbicacionImplementacion) {
+        this.idUbicacionImplementacion = idUbicacionImplementacion;
     }
 
     public Date getFechaCreacion() {
@@ -129,11 +129,11 @@ public class TblActividadUbicacion {
         this.horaCreacion = horaCreacion;
     }
 
-    public TblUsuarios getIdUsuarioCreador() {
-        return idUsuarioCreador;
+    public TblUsuarios getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdUsuarioCreador(TblUsuarios idUsuarioCreador) {
-        this.idUsuarioCreador = idUsuarioCreador;
+    public void setIdUsuario(TblUsuarios idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }
