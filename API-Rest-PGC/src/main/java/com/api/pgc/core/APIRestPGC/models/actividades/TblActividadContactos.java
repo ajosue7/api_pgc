@@ -4,8 +4,8 @@
 
 package com.api.pgc.core.APIRestPGC.models.actividades;
 
-import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTratos;
+import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
