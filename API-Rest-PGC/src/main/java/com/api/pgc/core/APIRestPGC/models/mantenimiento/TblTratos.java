@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_tratos",
+@Table(name = "tbl_tratos_contacto",
         indexes = {@Index(name = "idx_codigo_trato", columnList = "CODIGO_TRATO")},
         uniqueConstraints = {@UniqueConstraint(columnNames = {"CODIGO_TRATO"})})
 //@SequenceGenerator( name = "id_tipo_sequence", sequenceName = "id_tipo_sequence", initialValue = 1, allocationSize = 1)
@@ -24,7 +24,7 @@ public class TblTratos {
 
     @Column(name = "DESC_TRATO", nullable = false, length = 100)
     @ApiModelProperty(notes = "Descripción del Trato", required = true)
-    private String desc_Trato;
+    private String descTrato;
 
     @Column(name = "ACTIVADA")
     private boolean activada;
@@ -50,12 +50,12 @@ public class TblTratos {
         this.codigoTrato = codigoTrato;
     }
 
-    public String getDesc_Trato() {
-        return desc_Trato;
+    public String getDescTrato() {
+        return descTrato;
     }
 
-    public void setDesc_Trato(String desc_Trato) {
-        this.desc_Trato = desc_Trato;
+    public void setDescTrato(String descTrato) {
+        this.descTrato = descTrato;
     }
 
     public boolean isActivada() {

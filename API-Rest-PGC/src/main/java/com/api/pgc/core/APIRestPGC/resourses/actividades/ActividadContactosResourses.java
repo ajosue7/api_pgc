@@ -14,7 +14,6 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -205,7 +204,7 @@ public class ActividadContactosResourses {
 
                 try {
                     // Realizamos la Persistencia de los Datos
-                    //_actvidadContacto.setActivo(_actividadContactosJson.isActivo());
+                    _actvidadContacto.setActivo(_actividadContactosJson.isActivo());
                     _actvidadContacto.setNombreContacto(_actividadContactosJson.getNombreContacto());
                     _actvidadContacto.setApellidoContacto(_actividadContactosJson.getApellidoContacto());
                     _actvidadContacto.setFuncionContacto(_actividadContactosJson.getFuncionContacto());
@@ -249,49 +248,55 @@ public class ActividadContactosResourses {
 
 
     /**
-     * Metodo que Solicita un json con los datos de la Entidad Contacto
+     * Metodo que Solcita un json con los datos de la Entidad de contactos
      *
-     * @param codigoContacto Identificador de Contacto con Proyecto a Eliminar
-     * @return Mensaje de Confirmacion de Eliminacion de Contacto
+     * @param idContacto Identificador de la tabla
+     * @return Mensaje de Confirmacion de Registro de la tabla de contactos
      * @autor Jorge Escamilla | JOE
-     * @version 25/06/2019/v1.0
+     * @version 25/006/2019/v1.0
      */
-    @ApiOperation(value = "Elimina de la BD, la Información enviada por el id del contacto", authorizations = {@Authorization(value = "Token-PGC")})
+    @ApiOperation(value = "Inhabilita a la BD, la Información enviada por el Bean de contactos", authorizations = {@Authorization(value = "Token-PGC")})
     @DeleteMapping(value = CONTACTOS_ENDPOINT_DELETE, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> deleletedCodigoContacto(@ApiParam(value = "id del contacto del Proyecto a Eliminar", required = true)
-                                                           @PathVariable("codigo_contacto") String codigoContacto) throws Exception {
-        // Ejecuta el try Cacth
+    public HashMap<String, Object> deleteContacto(@ApiParam(value = "Id de contacto Inhabilitar", required = true)
+                                                        @PathVariable("idContacto") long idContacto) throws Exception {
+        //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
+        // Fecha de Inhabilitacion
+        Date dateActual = new Date();
+
+        // Buscamos la Organizacion solicitada para la Modificacion
         try {
-            // Busca la Actividad, desde el Reporsitorio con el Parametro del Codigo enviado ( codigoActividad )
-            TblActividadContactos _actvidadCotnacto = _actividadContactosRepository.findByCodigoContacto(codigoContacto);
+            // Buacamos la Organizacion segun el Parametro enviado
+            TblActividadContactos _actividadContacto = _actividadContactosRepository.findByIdContacto(idContacto);
 
-            try {
-                if (_actividadContactosRepository.countByCodigoContacto(codigoContacto) > 0) {
+            if (_actividadContactosRepository.countByIdContacto(idContacto) > 0) {
+                try {
                     // Realizamos la Persistencia de los Datos
+                    _actividadContacto.setActivo(false);
 
-                    _actividadContactosRepository.deleletedCodigoContacto(codigoContacto);
+                    _actividadContactosRepository.save(_actividadContacto);
                     _actividadContactosRepository.flush();
 
-                    // Retorno de la Funcion
-                    msgMethod = "El Contacto para este Proyecto, se ha Eliminado de forma satisfactoria!!";
+                    // return Repository
+                    msgMethod = "Se ha Inhabilitado de forma satisfactoria!!";
 
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
-                } else {
-                    msgMethod = "No Existe un registro de contacto para este Proyecto !!";
-                    throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod);
+                } catch (Exception ex) {
+                    msgMethod = "Hay problemas al momento de Inhabilitar el contacto.";
+                    throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
                 }
-            } catch (Exception ex) {
-                msgMethod = "Ha Ocurrido un error al Eliminar el Contacto del Proyecto !!";
-                throw new SQLException("Se ha producido una excepción con el mensaje: " + msgMethod, ex);
+            } else {
+                //Retorno del json
+                msgMethod = "No se encuentra el contacto con el parametro enviado !!";
+                return msgExeptions.msgJson(msgMethod, 200);
             }
         } catch (Exception ex) {
-            msgMethod = "No Existe un registro de Contacto para este Proyecto , por favor verfica que lo has ingresado correctamente o que existe.";
+            msgMethod = "Hay problemas al momento de Inhabilitar el contacto.";
             throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
         }
-    } // FIN | deletedContacto
+    } // FIN | deleteContacto
 
 
 }

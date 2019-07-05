@@ -10,7 +10,6 @@ import com.api.pgc.core.APIRestPGC.models.seguridad.TblUsuarios;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "tbl_actividades_recursos",
