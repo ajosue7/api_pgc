@@ -34,9 +34,9 @@ public class configAPI {
     public static final String TIPOS_ENDPOINT_FIND_BY_IDGRUPO = "/tipos/findByIdGrupo/{idGrupo}";
 
     // Mapeo de las Rutas del Modulo de Tratos
-    public static final String TRATOS_ENDPOINT = "/tratos";
-    public static final String TRATOS_ENDPOINT_FIND_BY_ID = "/tratos/findById/{idTrato";
-    public static final String TRATOS_ENDPOINT_FIND_BY_IDGRUPO = "/tratos/findByIdGrupo/{idGrupo}";
+    public static final String TRATOS_ENDPOINT = "/tratos_contacto";
+    public static final String TRATOS_ENDPOINT_FIND_BY_ID = "/tratos_contacto/findById/{idTrato}";
+    public static final String TRATOS_ENDPOINT_FIND_BY_IDGRUPO = "/tratos_contacto/findByIdGrupo/{idGrupo}";
 
     // Mapeo de las Rutas del Modulo de Ubicaciones | Pais | Departamentos | Municipios
     public static final String PAIS_ENDPOINT = "/ubicacion-geografica/pais";
@@ -200,7 +200,11 @@ public class configAPI {
     public static final String CONTACTOS_ENDPOINT_NEW = "/actividades_contactos/new";
     public static final String CONTACTOS_ENDPOINT_FIND_BY_CODIGO = "/actividades_contactos/findByCodigoContacto/{codigoContacto}";
     public static final String CONTACTOS_ENDPOINT_EDIT = "/actividades_contactos/edit/{idContacto}";
-    public static final String CONTACTOS_ENDPOINT_DELETE = "/actividades_contactos/delete/{idContactos}";
+    public static final String CONTACTOS_ENDPOINT_DELETE = "/actividades_contactos/delete/{idContacto}";
+
+    // Mapeo de las Rutas del Modulo de contacto proyecto
+    public static final String CONTACTO_PROYECTO_ENDPOINT = "/contacto_proyecto";
+    public static final String CONTACTO_PROYECTO_ENDPOINT_FIND_BY_ID = "/contacto_proyecto/findById/{idContactoProyecto}";
 
     // Mapeo de las Rutas del Sub Modulo de Organizaciones
     // | Socio al Desarrollo |
