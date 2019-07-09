@@ -63,10 +63,9 @@ public class ActividadSectorOcdeResourses {
         msgMethod = "Listado de todas los Sectores Ocde registrados en la BD";
 
         try {
-            System.out.println("Entro a cargar Sceto Act ++++++++++++++++++++++++++++");
             //Sobreescirbe el Metodo de Mensajes
-            msgExeptions.map.put("data", _actividadSectorOcdeRepository.getAllActividadesSectoresOcde2());
-            // msgExeptions.map.put("countRecords", _actividadSectorOcdeRepository.count());
+            msgExeptions.map.put("data", _actividadSectorOcdeRepository.getAllActividadesSectoresOcde());
+            msgExeptions.map.put("countRecords", _actividadSectorOcdeRepository.count());
             //Retorno del json
             return msgExeptions.msgJson(msgMethod, 200);
         } catch (Exception ex) {
@@ -97,6 +96,7 @@ public class ActividadSectorOcdeResourses {
             if (_actividadSectorOcdeRepository.countByIdActividad(_tblActividad) == 0) {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se ha encontrado dato de los Sectores Ocde del Proyecto consultado";
+                msgExeptions.map.put("findRecords", false);
 
                 msgExeptions.map.put("error", "No data found");
 
@@ -105,7 +105,9 @@ public class ActividadSectorOcdeResourses {
             } else {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle de los Sectores Ocde del Proyecto";
-                msgExeptions.map.put("data", _actividadSectorOcdeRepository.getCodigoActividadSector(_tblActividad));
+                msgExeptions.map.put("data", _actividadSectorOcdeRepository.getIdActividadSector(_tblActividad));
+                msgExeptions.map.put("countRecords", _actividadSectorOcdeRepository.countByIdActividad(_tblActividad));
+                msgExeptions.map.put("findRecords", true);
 
                 // Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);

@@ -105,4 +105,25 @@ public interface SectorOcdeCadRepository extends JpaRepository<TblSectorOcdeCad,
     long countSectorOCByIdNivelSectorAndSectorPadreId(@Param("idNivelSector") TblNivelSector tblNivelSector,
                                                       @Param("sectorPadreId") TblSectorOcdeCad tblSectorOcdeCad);
 
+
+    /**
+     * Metodo que despliega los Sectores OCDE/CAD de la BD
+     *
+     * @return SECTORES OCDE/CAD de la BD
+     * @autor Nahum Martinez | NAM
+     * @version 03/07/2019/v1.0
+     */
+    @Query("SELECT new map( se.idSector as idSector, se.codigoSector as codigoSector," +
+            "ts.idTipoSector as idTipoSector, ts.nombreSector as nombreSector, " +
+            "np.sectorPadreId.idSector as sectorPadreId," +
+            "se.nombreSector as nombreSector, se.descripcionSector as descripcionSector," +
+            "se.activo as activo, se.fechaCreacion as fechaCreacion, se.horaCreacion as horaCreacion, " +
+            "ns.idNivelSector as idNivelSector, ns.nombreNivelSector as nombreNivelSector, " +
+            "se.imagenSector as imagenSector) " +
+            "FROM TblSectorOcdeCad as se " +
+            "INNER JOIN se.idTipoSector as ts " +
+            "INNER JOIN se.idNivelSector as ns " +
+            "LEFT OUTER JOIN se.sectorPadreId as np " +
+            "ORDER BY se.idSector ASC ")
+    List<TblSectorOcdeCad> getAllSectoresOcdeCad();
 }
