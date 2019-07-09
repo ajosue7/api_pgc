@@ -175,6 +175,7 @@ public class configAPI {
     public static final String UBICACIONES_ACT_ENDPOINT = "/mant-actividades/ubicaciones";
     public static final String UBICACIONES_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD = "/mant-actividades/ubicaciones/findByIdActividadUbicacion/{idActividad}";
     public static final String UBICACIONES_ACT_ENDPOINT_NEW = "/mant-actividades/ubicaciones/new";
+    public static final String UBICACIONES_ACT_ENDPOINT_EDIT = "/mant-actividades/ubicaciones/edit/{idActividadUbicacion}";
     public static final String UBICACIONES_ACT_ENDPOINT_DELETE = "/mant-actividades/ubicaciones/delete/{idUbicacionImpl}/{idActividad}";
 
     // Mapeo de las Rutas del Sub Modulo Recursos del Proyecto

@@ -142,8 +142,8 @@ public class ActividadUbicacionResourses {
      */
     @ApiOperation(value = "Ingresa a la BD, la Información enviada por el Json Bean de la nueva Ubicacion del proyecto", authorizations = {@Authorization(value = "Token-PGC")})
     @PostMapping(value = UBICACIONES_ACT_ENDPOINT_NEW, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> addUbicacionImpl(@ApiParam(value = "Json de la nueva Ubicacion del Proyecto a Ingresar", required = true)
-                                                    @RequestBody @Valid final TblActividadUbicacion _actividadUbicacionJson) throws Exception {
+    public HashMap<String, Object> addActividadUbicacion(@ApiParam(value = "Json de la nueva Ubicacion del Proyecto a Ingresar", required = true)
+                                                         @RequestBody @Valid final TblActividadUbicacion _actividadUbicacionJson) throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -166,14 +166,21 @@ public class ActividadUbicacionResourses {
                     // desde el Reporsitorio de Planificacion con el Parametro del Json enviado ( "idActividadIdInterna": _tblActividad )
 
                     if (_actividadUbicacionRepository.countByIdUbicacionImplementacionAndIdActividad(_tblUbicacionImplementacion, _tblActividad) > 0) {
-                        msgMethod = "Ya Existe un registro con el Código de Id Interna para este Proyecto !!";
+                        msgMethod = "Ya Existe un registro con el Código de Ubicación para este Proyecto !!";
+
+                        // Busca la Ubicacion Recien Ingresada
+                        msgExeptions.map.put("data", _actividadUbicacionRepository.findByIdUbicacionImplementacionAndIdActividad(_tblUbicacionImplementacion, _tblActividad));
                         msgExeptions.map.put("findRecord", true);
+
+                        // Ejecuta el Servicio de Actualizacion de la Ubicacion
+                        // editActividadUbicacion(_actividadUbicacionJson.getIdActividadUbicacion(), _actividadUbicacionJson);
 
                         return msgExeptions.msgJson(msgMethod, 200);
                     } else {
                         // Seteo de las Fecha y Hora de Creacion
                         _actividadUbicacionJson.setFechaCreacion(dateActual);
                         _actividadUbicacionJson.setHoraCreacion(dateActual);
+                        _actividadUbicacionJson.setPorcentajeUbicacion(_actividadUbicacionJson.getPorcentajeUbicacion());
 
                         // Seteamos la Actividad de la Id Interna y Organizacion
                         _actividadUbicacionJson.setIdActividad(_tblActividad);
@@ -189,7 +196,7 @@ public class ActividadUbicacionResourses {
                         msgExeptions.map.put("findRecord", false);
 
                         // Retorno de la Funcion
-                        msgMethod = "La Ubicacion para este Proyecto, se ha Ingresado de forma satisfactoria!!";
+                        msgMethod = "La Ubicacion: " + _actividadUbicacionJson.getCodigoActividad() + " para este Proyecto, se ha Ingresado de forma satisfactoria!!";
 
                         //Retorno del json
                         return msgExeptions.msgJson(msgMethod, 200);
@@ -221,9 +228,9 @@ public class ActividadUbicacionResourses {
      */
     @ApiOperation(value = "Elimina de la BD, la Información enviada por el indentificador de Ubicacion", authorizations = {@Authorization(value = "Token-PGC")})
     @DeleteMapping(value = UBICACIONES_ACT_ENDPOINT_DELETE, produces = "application/json; charset=UTF-8")
-    public HashMap<String, Object> deletedActividadUbicacionImpl(@ApiParam(value = "Indentificar de la Ubicacion del Proyecto a Eliminar", required = true)
-                                                                 @PathVariable("idUbicacionImpl") long idUbicacionImpl,
-                                                                 @ApiParam(value = "Indentificar del Proyecto a Eliminar", required = true) @PathVariable("idActividad") long idActividad) throws Exception {
+    public HashMap<String, Object> deletedActividadUbicacion(@ApiParam(value = "Indentificar de la Ubicacion del Proyecto a Eliminar", required = true)
+                                                             @PathVariable("idUbicacionImpl") long idUbicacionImpl,
+                                                             @ApiParam(value = "Indentificar del Proyecto a Eliminar", required = true) @PathVariable("idActividad") long idActividad) throws Exception {
         // Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
@@ -266,4 +273,75 @@ public class ActividadUbicacionResourses {
         }
     } // FIN
 
+
+    /**
+     * Metodo que Solicita un json con los datos de la Entidad Ubicaciones con Relacion
+     * a Actividades
+     *
+     * @param _actividadUbicacionJson Obtiene desde el request los datos de la Ubicacion a ingresar
+     * @param idActividadUbicacion    Identificardor de la tabla de Ubicaciones con Actiidades
+     * @return Mensaje de Confirmacion de Registro de Relacion de Ubicacion con Proyecto
+     * @autor Nahum Martinez | NAM
+     * @version 28/02/2019/v1.0
+     */
+    @ApiOperation(value = "Actualiza a la BD, la Información enviada por el Json Bean de la Ubicacion del proyecto", authorizations = {@Authorization(value = "Token-PGC")})
+    @PutMapping(value = UBICACIONES_ACT_ENDPOINT_EDIT, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> editActividadUbicacion(@ApiParam(value = "Identificador de la Ubicacion del Proyecto a Actualizar", required = true)
+                                                          @PathVariable("idActividadUbicacion") long idActividadUbicacion,
+                                                          @ApiParam(value = "Json de la nueva Ubicacion del Proyecto a Ingresar", required = true)
+                                                          @RequestBody @Valid final TblActividadUbicacion _actividadUbicacionJson) throws Exception {
+        // Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Fecha de Ingrso
+        Date dateActual = new Date();
+
+        try {
+            // Busca la Ubicacion de la Actividad, desde el Reporsitorio con el Parametro del Json enviado ( "idUbicacionImplementacion")
+            TblActividadUbicacion _tblActividadUbicacion = _actividadUbicacionRepository.findByIdActividadUbicacion(idActividadUbicacion);
+
+            // Condiciona si tiene cambios
+            if (_tblActividadUbicacion.getPorcentajeUbicacion() == _actividadUbicacionJson.getPorcentajeUbicacion()) {
+                // No actualiza los datos que no se han modificado
+                msgExeptions.map.put("findRecord", true);
+                msgExeptions.map.put("findChange", false);
+                msgMethod = "El registro de Ubicación no tiene cambios!!";
+
+                return msgExeptions.msgJson(msgMethod, 200);
+            } else {
+
+                if (_actividadUbicacionRepository.countByIdActividadUbicacion(idActividadUbicacion) > 0) {
+                    // Seteo de las Fecha y Hora de Creacion
+                    _tblActividadUbicacion.setFechaModificacion(dateActual);
+                    _tblActividadUbicacion.setHoraModificacion(dateActual);
+                    _tblActividadUbicacion.setPorcentajeUbicacion(_actividadUbicacionJson.getPorcentajeUbicacion());
+
+
+                    // Realizamos la Persistencia de los Datos
+                    _actividadUbicacionRepository.save(_tblActividadUbicacion);
+                    _actividadUbicacionRepository.flush();
+
+                    // Busca la Ubicacion Recien Actualizada
+                    msgExeptions.map.put("data", _actividadUbicacionRepository.findByIdActividadUbicacion(idActividadUbicacion));
+                    msgExeptions.map.put("findRecord", true);
+                    msgExeptions.map.put("findChange", true);
+
+                    // Retorno de la Funcion
+                    msgMethod = "La Ubicacion " + _actividadUbicacionJson.getCodigoActividad() + " para este Proyecto, se ha Actualizado de forma satisfactoria!!";
+
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } else {
+                    msgExeptions.map.put("findRecord", false);
+                    msgExeptions.map.put("findChange", true);
+                    msgMethod = "No Existe un registro con el Código de Ubicación para este Proyecto !!";
+
+                    return msgExeptions.msgJson(msgMethod, 200);
+                }
+            }
+        } catch (Exception ex) {
+            msgMethod = "Ha Ocurrido un error al Intentar Actualizar, No existe un registro de Ubicación para este Proyecto!!";
+            throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    } // FIN | editActividadUbicacion
 }

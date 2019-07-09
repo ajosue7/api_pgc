@@ -64,6 +64,17 @@ public class TblActividadUbicacion {
     @ApiModelProperty(notes = "Entidad de Usuario de la Ubicacion, se envia desde un Json (\"idUsuarioCreador\": { \"idUsuario\": \"valor\" })")
     private TblUsuarios idUsuario;
 
+
+    @Column(name = "FECHA_MODIFICACION")
+    @Temporal(TemporalType.DATE)
+    @ApiModelProperty(notes = "Fecha Modificacion", readOnly = true)
+    private Date fechaModificacion;
+
+    @Column(name = "HORA_MODIFICACION")
+    @Temporal(TemporalType.TIME)
+    @ApiModelProperty(notes = "Hora de Modificacion, formato hh:mm:ss", readOnly = true)
+    private Date horaModificacion;
+
     /**
      * Constructor de la Clase, JPA realiza los CRUD
      */
@@ -135,5 +146,21 @@ public class TblActividadUbicacion {
 
     public void setIdUsuario(TblUsuarios idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Date getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(Date fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
+    }
+
+    public Date getHoraModificacion() {
+        return horaModificacion;
+    }
+
+    public void setHoraModificacion(Date horaModificacion) {
+        this.horaModificacion = horaModificacion;
     }
 }

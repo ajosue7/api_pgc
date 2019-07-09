@@ -17,6 +17,30 @@ import java.util.List;
 
 public interface ActividadUbicacionRepository extends JpaRepository<TblActividadUbicacion, Integer> {
     /**
+     * Metodo que despliega la Ubicacion de la BD
+     * validando la Actividad y la Ubicacion
+     *
+     * @param idActividadUbicacion
+     * @return Ubicacion de Actividad de la BD, por paramtro de Codigo
+     * @autor Nahum Martinez | NAM
+     * @version 06/07/2019/v1.0
+     */
+    TblActividadUbicacion findByIdActividadUbicacion(long idActividadUbicacion);
+
+
+    /**
+     * Metodo que despliega la Ubicacion de la BD
+     * validando la Actividad y la Ubicacion
+     *
+     * @param idActividadUbicacion
+     * @return Ubicacion de Actividad de la BD, por paramtro de Codigo
+     * @autor Nahum Martinez | NAM
+     * @version 06/07/2019/v1.0
+     */
+    long countByIdActividadUbicacion(long idActividadUbicacion);
+
+
+    /**
      * Metodo que despliega las Ubicaciones de la BD
      * validando la Actividad y la Ubicacion
      *
@@ -78,14 +102,19 @@ public interface ActividadUbicacionRepository extends JpaRepository<TblActividad
             "au.porcentajeUbicacion as porcentajeUbicacion, " +
             "au.fechaCreacion as fechaCreacion, au.horaCreacion as horaCreacion, " +
             "ui.idUbicacionImplementacion.idUbicacionImplementacion as idUbicacionImplementacion, ui.idUbicacionImplementacion.nombreUbicacionImpl as nombreUbicacionImpl," +
+            "ni.idNivel as idNivelImplementacion, ni.nombreNivelImpl as nombreNivelImpl, " +
+            "nu.idNivelUbicacion as idNivelUbicacion, nu.nombreNivelUbicacion as nombreNivelUbicacion, " +
             "ui.latitudUbicacion as latitudUbicacion, ui.longitudUbicacion as longitudUbicacion, " +
             "ac.idActividad.idActividad as idActividad, ac.idActividad.codigoActividad as codigoActividad, " +
             "us.idUsuario.idUsuario as idUsuarioCreador) " +
             "FROM TblActividadUbicacion as au " +
             "INNER JOIN au.idUbicacionImplementacion as ui " +
+            "INNER JOIN ui.idUbicacionImplementacion.idNivelImplementacion as ni " +
+            "INNER JOIN ui.idUbicacionImplementacion.idNivelUbicacion as nu " +
             "INNER JOIN au.idActividad as ac " +
             "INNER JOIN au.idUsuario as us " +
-            "WHERE au.idActividad = :idActividad")
+            "WHERE au.idActividad = :idActividad " +
+            "ORDER BY au.idActividadUbicacion ")
     // List<TblActividadUbicacion> getUbicacionByIdActividad(TblActividad _tblActividad);
     List<TblActividadUbicacion> getUbicacionByIdActividad(@Param("idActividad") TblActividad _tblActividad);
 
