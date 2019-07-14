@@ -27,7 +27,7 @@ public class TblTipoIniciativaCss {
 
     @Column(name = "DESC_TIPO_INICIATIVA", nullable = false, length=150)
     @ApiModelProperty(notes = "Descripcion Sector Ejecutor", required = true)
-    private String desctipoiniciativa;
+    private String descTipoiniciativa;
 
     @Column(name = "ACTIVO")
     private boolean activo;
@@ -59,12 +59,12 @@ public class TblTipoIniciativaCss {
         this.codIniciativa = codIniciativa;
     }
 
-    public String getDesctipoiniciativa() {
-        return desctipoiniciativa;
+    public String getDescTipoiniciativa() {
+        return descTipoiniciativa;
     }
 
-    public void setDesctipoiniciativa(String desctipoiniciativa) {
-        this.desctipoiniciativa = desctipoiniciativa;
+    public void setDescTipoiniciativa(String descTipoiniciativa) {
+        this.descTipoiniciativa = descTipoiniciativa;
     }
 
     public boolean isActivo() {

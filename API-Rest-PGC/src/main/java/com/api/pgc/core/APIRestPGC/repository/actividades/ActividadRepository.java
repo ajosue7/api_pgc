@@ -6,6 +6,9 @@ package com.api.pgc.core.APIRestPGC.repository.actividades;
 
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface ActividadRepository extends JpaRepository<TblActividad, Integer> {
 
@@ -63,6 +66,71 @@ public interface ActividadRepository extends JpaRepository<TblActividad, Integer
      */
     long countByIdActividad(long idProyecto);
 
+    /**
+     * Metodo que despliega los Detalle de los Proyectos de la BD
+     *
+     * @return Todos los Proyectos de la BD
+     * @autor Nahum Martinez | NAM
+     * @version 13/07/2019/v1.0
+     */
+    @Query("SELECT new map( a.idActividad as idActividad, a.codigoActividad as codigoActividad, " +
+            "b.idEstado as idEstado, b.descEstado as descEstado," +
+            "a.explicacionEstado as explicacionEstado, a.antecedentesActividad as antecedentesActividad, " +
+            "a.objetivoActividad as objetivoActividad, a.descripcionActividad as descripcionActividad, " +
+            "a.condicionesActividad as condicionesActividad, a.codigoSIAFIBIP as codigoSIAFIBIP, " +
+            "c.idEstrategia as idEstrategia, c.descEstrategia as descEstrategia, " +
+            "d.idPresupuesto as idPresupuesto, d.descPresupuesto as descPresupuesto,  " +
+            "e.idSectorEjecutor as idSectorEjecutor, e.descripcionSectorEjecutor as descripcionSectorEjecutor,  " +
+            "a.resultadosEsperados as resultadosEsperados, a.resultadosAlaFecha as resultadosAlaFecha,  " +
+            "a.justificacionActividad as justificacionActividad,  " +
+            "a.costoActividad as costoActividad,  " +
+            "f.idMonedaActividad as idMonedaActividad, f.nombreMoneda as nombreMoneda, " +
+            "a.fechaFinanciamiento as fechaFinanciamiento, a.nombreActividad as nombreActividad, " +
+            "a.productosEsperados as productosEsperados, a.horaCreacion as horaCreacion, " +
+            "g.idUsuario as idUsuarioCreador, g.nombre1Usuario as nombre1Usuario, g.apellido1Usuario as apellido1Usuario, " +
+            "h.idEspacioTrabajo as idEspacioTrabajo, h.nombreEspacioTrabajo as nombreEspacioTrabajo, " +
+            "a.activo as activo, " +
+            "i.idEstado as idEstadoValid, i.descEstado as descEstado, " +
+            "a.fechaCreacion as fechaCreacion, " +
+            "j.idTipoIniciativa as idTipoIniciativaCssAct, j.descTipoiniciativa as descTipoiniciativa, " +
+            "a.actividadesCss as actividadesCss, " +
+            "a.fechaModificacion as fechaModificacion, a.horaModificacion as horaModificacion, " +
+            "k.idUsuario as idUsuarioMod, k.nombre1Usuario as nombre1Usuario, k.apellido1Usuario as apellido1Usuario ) " +
+            "FROM TblActividad as a " +
+            "     LEFT OUTER JOIN a.idEstadoActivity as b " +
+            "     LEFT OUTER JOIN a.idEstrategiaActivity as c " +
+            "     LEFT OUTER JOIN a.idPresupuestoActivity as d " +
+            "     LEFT OUTER JOIN a.idSectorEjecutorActivity as e " +
+            "     LEFT OUTER JOIN a.idMonedaActividadActivity as f " +
+            "     LEFT OUTER JOIN a.idUsuarioCreador as g " +
+            "     LEFT OUTER JOIN a.idEspacioTrabajoActivity as h " +
+            "     LEFT OUTER JOIN a.idEstadoValid as i " +
+            "     LEFT OUTER JOIN a.idTipoIniciativaCssAct as j " +
+            "     LEFT OUTER JOIN a.idUsuarioMod as k " +
+            "ORDER BY a.idActividad")
+    List<TblActividad> getAllActividades();
+
+
+    /**
+     * Metodo que despliega los Detalle de los Proyectos de la BD
+     *
+     * @return Todos los Proyectos de la BD
+     * @autor Nahum Martinez | NAM
+     * @version 13/07/2019/v1.0
+     */
+    @Query("SELECT COUNT(*) " +
+            "FROM TblActividad as a " +
+            "     LEFT OUTER JOIN a.idEstadoActivity as b " +
+            "     LEFT OUTER JOIN a.idEstrategiaActivity as c " +
+            "     LEFT OUTER JOIN a.idPresupuestoActivity as d " +
+            "     LEFT OUTER JOIN a.idSectorEjecutorActivity as e " +
+            "     LEFT OUTER JOIN a.idMonedaActividadActivity as f " +
+            "     LEFT OUTER JOIN a.idUsuarioCreador as g " +
+            "     LEFT OUTER JOIN a.idEspacioTrabajoActivity as h " +
+            "     LEFT OUTER JOIN a.idEstadoValid as i " +
+            "     LEFT OUTER JOIN a.idTipoIniciativaCssAct as j " +
+            "     LEFT OUTER JOIN a.idUsuarioMod as k ")
+    long countGetAllActividades();
 
 
 }

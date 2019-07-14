@@ -21,7 +21,7 @@ public class TblSectorEjecutor {
     @ApiModelProperty(notes = "Codigo del Sector Ejecutor de la Actividad", required = true)
     private String codigoSectorEjecutor;
 
-    @Column(name = "descripion_sector_ejecutor", nullable = false, length=150)
+    @Column(name = "DESCRIPION_SECTOR_EJECUTOR", nullable = false, length=150)
     @ApiModelProperty(notes = "Descripcion Sector Ejecutor", required = true)
     private String descripcionSectorEjecutor;
 
@@ -40,20 +40,20 @@ public class TblSectorEjecutor {
         this.idSectorEjecutor = idSectorEjecutor;
     }
 
-    public String getCodSectorEjecutor() {
+    public String getCodigoSectorEjecutor() {
         return codigoSectorEjecutor;
     }
 
-    public void setCodSectorEjecutor(String codSectorEjecutor) {
-        this.codigoSectorEjecutor = codSectorEjecutor;
+    public void setCodigoSectorEjecutor(String codigoSectorEjecutor) {
+        this.codigoSectorEjecutor = codigoSectorEjecutor;
     }
 
-    public String getDescSectorEjecutor() {
+    public String getDescripcionSectorEjecutor() {
         return descripcionSectorEjecutor;
     }
 
-    public void setDescSectorEjecutor(String descSectorEjecutor) {
-        this.descripcionSectorEjecutor = descSectorEjecutor;
+    public void setDescripcionSectorEjecutor(String descripcionSectorEjecutor) {
+        this.descripcionSectorEjecutor = descripcionSectorEjecutor;
     }
 
     public boolean isHabilitada() {

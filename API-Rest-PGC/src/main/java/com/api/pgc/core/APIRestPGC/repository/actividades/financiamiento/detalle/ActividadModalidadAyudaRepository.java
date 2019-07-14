@@ -8,7 +8,6 @@ import com.api.pgc.core.APIRestPGC.models.actividades.financiamiento.detalle.Tbl
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ActividadModalidadAyudaRepository extends JpaRepository<TblActividadModalidadAyuda, Integer> {
-
     /**
      * Metodo que despliega la Moneda de la BD
      *

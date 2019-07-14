@@ -63,7 +63,7 @@ public class ModalidadAyudaResources {
     @ApiOperation(value = "Retorna la Modalidades de Ayuda enviado a buscar de la BD", authorizations = {@Authorization(value = "Token-PGC")})
     @GetMapping(value = MOD_AYUDA_ACT_ENDPOINT_FIND_BY_ID, produces = "application/json; charset=UTF-8")
     public HashMap<String, Object> getByIdModalidadAyuda(@ApiParam(value = "Identificador dla Modalidades de Ayuda a Buscar", required = true)
-                                              @PathVariable("idModalidadAyuda") long idModalidadAyuda) throws Exception {
+                                                         @PathVariable("idModalidadAyuda") long idModalidadAyuda) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 

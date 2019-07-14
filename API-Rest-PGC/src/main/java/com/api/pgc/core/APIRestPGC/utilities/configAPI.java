@@ -265,6 +265,24 @@ public class configAPI {
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_EDIT_FINANC_DET_COMPROMISO = "/mant-actividades/financiamiento/detalle-compromiso/edit/{idActividadFinancDetCompromiso}";
     public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET_COMPROMISO = "/mant-actividades/financiamiento/detalle-compromiso/delete/{codigoFinancCompromiso}";
 
+    // Detalle de Desembolso =======================================================================================
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FINANC_DET_DESEMBOLSO = "/mant-actividades/financiamiento/detalle-desembolso";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET_DESEMBOLSO = "/mant-actividades/financiamiento/detalle-desembolso/findByIdActividadFinancDetDesembolso/{idActividadFinancDetDesembolso}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET_DESEMBOLSO_2 = "/mant-actividades/financiamiento/detalle-desembolso/findByIdActividadDet/{idActividadDet}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET_DESEMBOLSO = "/mant-actividades/financiamiento/detalle-desembolso/findByCodigoFinancDetDesembolso/{codigoFinancDetDesembolso}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_DET_DESEMBOLSO = "/mant-actividades/financiamiento/detalle-desembolso/new";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_EDIT_FINANC_DET_DESEMBOLSO = "/mant-actividades/financiamiento/detalle-desembolso/edit/{idActividadFinancDetDesembolso}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET_DESEMBOLSO = "/mant-actividades/financiamiento/detalle-desembolso/delete/{codigoFinancDesembolso}";
+
+    // Detalle de Gastos =======================================================================================
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FINANC_DET_GASTO = "/mant-actividades/financiamiento/detalle-gasto";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET_GASTO = "/mant-actividades/financiamiento/detalle-gasto/findByIdActividadFinancDetGasto/{idActividadFinancDetGasto}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_ID_ACTIVIDAD_FINANC_DET_GASTO_2 = "/mant-actividades/financiamiento/detalle-gasto/findByIdActividadDet/{idActividadDet}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_FIND_BY_COD_FINANC_DET_GASTO = "/mant-actividades/financiamiento/detalle-gasto/findByCodigoFinancDetGasto/{codigoFinancDetGasto}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_NEW_FINANC_DET_GASTO = "/mant-actividades/financiamiento/detalle-gasto/new";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_EDIT_FINANC_DET_GASTO = "/mant-actividades/financiamiento/detalle-gasto/edit/{idActividadFinancDetGasto}";
+    public static final String FINANCIAMIENTO_ACT_ENDPOINT_DELETE_FINANC_DET_GASTO = "/mant-actividades/financiamiento/detalle-gasto/delete/{codigoFinancGasto}";
+
     /*==================================================================================================================
      *================================================================================================================ */
 

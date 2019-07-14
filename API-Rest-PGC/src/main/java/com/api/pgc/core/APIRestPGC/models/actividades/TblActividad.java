@@ -42,7 +42,7 @@ public class TblActividad {
     @ApiModelProperty(notes = "Explicacion del Estado")
     private String explicacionEstado;
 
-    @Column(name = "ANTECEDENTES_ATIVIDAD")
+    @Column(name = "ANTECEDENTES_ACTIVIDAD")
     @ApiModelProperty(notes = "Actecedentes de Actividad")
     private String antecedentesActividad;
 
