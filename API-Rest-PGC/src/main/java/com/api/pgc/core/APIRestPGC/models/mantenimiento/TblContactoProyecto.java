@@ -1,6 +1,7 @@
-package com.api.pgc.core.APIRestPGC.models.actividades;
+package com.api.pgc.core.APIRestPGC.models.mantenimiento;
 
 
+import com.api.pgc.core.APIRestPGC.models.actividades.TblActividadContactos;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTipo;
 import io.swagger.annotations.ApiModelProperty;

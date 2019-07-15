@@ -257,7 +257,7 @@ public class ActividadProgramaPlanNacionResourses {
                     //Retorno del json
                     return msgExeptions.msgJson(msgMethod, 200);
                 } else {
-                    msgMethod = "No Existe un registro de Sector de Gobierno para este Proyecto !!";
+                    msgMethod = "No Existe un registro de programas de plan de nacion  !!";
                     throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod);
                 }
             } catch (Exception ex) {
