@@ -47,7 +47,7 @@ public class TblActividadProgramaPlanNacion {
 
     @Column(name = "PORCENTAJE_PART")
     @ApiModelProperty(notes = "Porcentaje participacion")
-    private double porcentaje_part;
+    private double porcentajePart;
 
 
     // Auditoria
@@ -109,12 +109,12 @@ public class TblActividadProgramaPlanNacion {
         this.idActividad = idActividad;
     }
 
-    public double getPorcentaje_part() {
-        return porcentaje_part;
+    public double getPorcentajePart() {
+        return porcentajePart;
     }
 
-    public void setPorcentaje_part(double porcentaje_part) {
-        this.porcentaje_part = porcentaje_part;
+    public void setPorcentajePart(double porcentajePart) {
+        this.porcentajePart = porcentajePart;
     }
 
     public boolean isActivo() {

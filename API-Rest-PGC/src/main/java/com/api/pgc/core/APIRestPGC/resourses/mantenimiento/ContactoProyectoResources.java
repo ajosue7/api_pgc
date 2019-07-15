@@ -1,8 +1,8 @@
-package com.api.pgc.core.APIRestPGC.resourses.actividades;
+package com.api.pgc.core.APIRestPGC.resourses.mantenimiento;
 
 //Imports de la Clase
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadContactosRepository;
-import com.api.pgc.core.APIRestPGC.repository.actividades.ContactoProyectoRepository;
+import com.api.pgc.core.APIRestPGC.repository.mantenimiento.ContactoProyectoRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.GruposRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.TiposRepository;
 import com.api.pgc.core.APIRestPGC.utilities.msgExceptions;

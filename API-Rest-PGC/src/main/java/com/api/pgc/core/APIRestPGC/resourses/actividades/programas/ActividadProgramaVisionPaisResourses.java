@@ -202,6 +202,7 @@ public class ActividadProgramaVisionPaisResourses {
                     // Seteamos la Actividad de Actividad y Vida Mejor
                     _actividadVisionPaisJson.setIdActividad(_tblActividad);
                     _actividadVisionPaisJson.setIdProgramaVisionPais(_tblProgramaVisionPais);
+                   // _actividadVisionPaisJson.setPorcentajePart(_actividadVisionPaisJson.getPorcentajePart());
 
                     // Realizamos la Persistencia de los Datos
                     _actividadProgramaVisionPaisRepository.save(_actividadVisionPaisJson);

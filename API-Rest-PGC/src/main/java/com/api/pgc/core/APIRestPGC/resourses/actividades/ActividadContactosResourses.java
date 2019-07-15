@@ -5,6 +5,7 @@ package com.api.pgc.core.APIRestPGC.resourses.actividades;
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividadContactos;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTratos;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
+import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import com.api.pgc.core.APIRestPGC.repository.actividades.ActividadContactosRepository;
 import com.api.pgc.core.APIRestPGC.repository.mantenimiento.TratosRepository;
 import com.api.pgc.core.APIRestPGC.repository.organizaciones.OrganizacionRepository;
@@ -67,8 +68,8 @@ public class ActividadContactosResourses {
 
     /**
      * Metodo que despliega el Espacio de Trabajo de la BD
-     * @autor Nahum Martinez | NAM
-     * @version  11/10/2018/v1.0
+     * Jorge Escamilla | JOE
+     * @version  25/06/2019/v1.0
      * @return Espacio de Trabajo de la BD
      * @param idContacto Identificador del Tipo a Buscar
      */
@@ -108,8 +109,8 @@ public class ActividadContactosResourses {
 
     /**
      * Metodo que Solcita un json con los datos de la Entidad Espacios de Trabajo
-     * @autor Nahum Martinez | NAM
-     * @version  11/10/2018/v1.0
+     * Jorge Escamilla | JOE
+     * @version  25/06/2019/v1.0
      * @return Mensaje de Confirmacion de Registro de tipo
      * @param _actividadContactosJson Obtiene desde el request los datos del Espacio de Trabajo a ingresar
      */
@@ -132,20 +133,20 @@ public class ActividadContactosResourses {
             TblOrganizacion tORg = _organizacionRepository.findByIdOrganizacion( _actividadContactosJson.getIdOrganizacion().getIdOrganizacion() );
 
             //Busca el Pais de Espacio de Trabajo, desde el Reporsitorio con el Parametro del Json enviado ( "idPais": { "idPais": valor })
-            //TblPais tPE = paisRepository.findByIdPais( espacioTrabajoJson.getIdPais().getIdPais() );
+            TblPais tP = _paisRepository.findByIdPais( _actividadContactosJson.getIdPais().getIdPais() );
 
             //Graba los Datos de Tipos
             try {
                 _actividadContactosJson.setFechaCreacion(dateActual);
                 _actividadContactosJson.setHoraCreacion(dateActual);
-                //Setea el valor Buscado de la Entidad Espacios de Trabajo | Tipo
+                //Setea el valor Buscado de la Entidad Contactos | Tipo
                 _actividadContactosJson.setIdTrato(tRT);
 
-                //Setea el valor Buscado de la Entidad Espacios de Trabajo | Estados
+                //Setea el valor Buscado de la Entidad Contactos | Estados
                 _actividadContactosJson.setIdOrganizacion(tORg);
 
-                //Setea el valor Buscado de la Entidad Espacios de Trabajo | Pais
-                //espacioTrabajoJson.setIdPais(tPE);
+                //Setea el valor Buscado de la Entidad Contactos | Pais
+                _actividadContactosJson.setIdPais(tP);
 
 
                 //Realizamos la Persistencia de los Datos
@@ -200,7 +201,7 @@ public class ActividadContactosResourses {
                 TblOrganizacion _tblOrg = _organizacionRepository.findByIdOrganizacion(_actividadContactosJson.getIdOrganizacion().getIdOrganizacion());
 
                 // Buacamos el Pais segun el Parametro enviado
-                //  TblPais _tblPais = paisRepository.findByIdPais(_espacioTrabajoJson.getIdPais().getIdPais());
+                 TblPais _tblPais = _paisRepository.findByIdPais(_actividadContactosJson.getIdPais().getIdPais());
 
                 try {
                     // Realizamos la Persistencia de los Datos
@@ -219,7 +220,7 @@ public class ActividadContactosResourses {
 
 
 
-                    //_tblEspacio.setIdPais(_tblPais);
+                    _actvidadContacto.setIdPais(_tblPais);
                     _actvidadContacto.setIdTrato(_tblTratos);
                     _actvidadContacto.setIdOrganizacion(_tblOrg);
 
