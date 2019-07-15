@@ -33,7 +33,7 @@ public class TblActividad {
 
     // Mapeo de la Relacion de la Tabla de Estados con Activiades
     // Muchos Actividad = 1 Estado
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ESTADO", referencedColumnName = "ID_ESTADO")
     @ApiModelProperty(notes = "Entidad del Estado de la Actividad, se envia desde un Json (\"idEstadoActivity\": { \"idEstado\": \"valor\" })", required = true)
     private TblEstado idEstadoActivity;

@@ -66,11 +66,6 @@ public class ActividadSectorOcdeResourses {
 
             //Sobreescirbe el Metodo de Mensajes
             msgExeptions.map.put("data", _actividadSectorOcdeRepository.getAllActividadesSectoresOcde());
-
-
-            //Sobreescirbe el Metodo de Mensajes
-            msgExeptions.map.put("data", _actividadSectorOcdeRepository.findAll());
-
             msgExeptions.map.put("countRecords", _actividadSectorOcdeRepository.count());
             //Retorno del json
             return msgExeptions.msgJson(msgMethod, 200);

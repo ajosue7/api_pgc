@@ -90,7 +90,6 @@ public interface ActividadSectorOcdeRepository extends JpaRepository<TblActivida
      * @autor Nahum Martinez | NAM
      * @version 02/07/2019/v1.0
      */
-
    @Query("SELECT new map(se.idActividadSectorOcde as idActividadSectorOcde, se.codigoActividad as codigoActividad," +
           "sa.idSector as idSector, ac.idActividad as idActividad, se.porcentaje_part as porcentaje_part," +
           "se.activo as activo, se.fechaCreacion as fechaCreacion, se.horaCreacion as horaCreacion) " +
@@ -99,11 +98,4 @@ public interface ActividadSectorOcdeRepository extends JpaRepository<TblActivida
          "INNER JOIN se.idActividad as ac " +
          "ORDER BY se.idActividadSectorOcde ")
    List<TblActividadSectorOcde> getAllActividadesSectoresOcde();
-
-  @Query("SELECT se.idActividadSectorOcde, se.codigoActividad," +
-        "se.idSectorOcde, se.idActividad, se.porcentajePart," +
-       "se.activo, se.fechaCreacion, se.horaCreacion " +
-       "FROM TblActividadSectorOcde se ")
-      List<TblActividadSectorOcde> getAllActividadesSectoresOcde2();
-
 }
