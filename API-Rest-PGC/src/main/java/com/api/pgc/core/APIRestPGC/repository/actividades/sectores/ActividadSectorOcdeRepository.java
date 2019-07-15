@@ -47,7 +47,7 @@ public interface ActividadSectorOcdeRepository extends JpaRepository<TblActivida
     // @Query("SELECT e FROM TblActividadSectorOcde e WHERE e.idActividad = :idActividad")
     @Query("SELECT new map(se.idActividadSectorOcde as idActividadSectorOcde, se.codigoActividad as codigoActividad," +
             "sa.idSector as idSector, sa.nombreSector as nombreSector, " +
-            "ac.idActividad as idActividad, se.porcentaje_part as porcentaje_part," +
+            "ac.idActividad as idActividad, se.porcentajePart as porcentajePart," +
             "se.activo as activo, se.fechaCreacion as fechaCreacion, se.horaCreacion as horaCreacion) " +
             "FROM TblActividadSectorOcde as se " +
             "INNER JOIN se.idSectorOcde as sa " +
@@ -90,20 +90,13 @@ public interface ActividadSectorOcdeRepository extends JpaRepository<TblActivida
      * @autor Nahum Martinez | NAM
      * @version 02/07/2019/v1.0
      */
-<<<<<<< HEAD
     @Query("SELECT new map(se.idActividadSectorOcde as idActividadSectorOcde, se.codigoActividad as codigoActividad," +
-            "sa.idSector as idSector, ac.idActividad as idActividad, se.porcentaje_part as porcentaje_part," +
+            "sa.idSector as idSector, sa.nombreSector as nombreSector, " +
+            "ac.idActividad as idActividad, se.porcentajePart as porcentajePart," +
             "se.activo as activo, se.fechaCreacion as fechaCreacion, se.horaCreacion as horaCreacion) " +
             "FROM TblActividadSectorOcde as se " +
             "INNER JOIN se.idSectorOcde as sa " +
             "INNER JOIN se.idActividad as ac " +
             "ORDER BY se.idActividadSectorOcde ")
     List<TblActividadSectorOcde> getAllActividadesSectoresOcde();
-=======
-    @Query("SELECT se.idActividadSectorOcde, se.codigoActividad," +
-            "se.idSectorOcde, se.idActividad, se.porcentajePart," +
-            "se.activo, se.fechaCreacion, se.horaCreacion " +
-            "FROM TblActividadSectorOcde se ")
-    List<TblActividadSectorOcde> getAllActividadesSectoresOcde2();
->>>>>>> 339ba1c754f1bc67ad20a2d3912728080a1bd4d1
 }
