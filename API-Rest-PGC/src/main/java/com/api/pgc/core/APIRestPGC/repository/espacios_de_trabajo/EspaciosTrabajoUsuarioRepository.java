@@ -54,18 +54,18 @@ public interface EspaciosTrabajoUsuarioRepository extends JpaRepository<TblEspac
      * @autor Nahum Martinez | NAM
      * @version  11/10/2018/v1.0
      * @return Espacios de Trabajo de la BD, por paramtro de ID
-     * @param idEspacioTrabajoUsuario
+     * @param idEspaciosTrabajoUsuarios
      */
-    TblEspaciosTrabajoUsuarios findByIdEspacioTrabajoUsuario(long idEspacioTrabajoUsuario);
+    TblEspaciosTrabajoUsuarios findByIdEspaciosTrabajoUsuarios(long idEspaciosTrabajoUsuarios);
 
     /**
      * Metodo que despliega la Organizacion de la BD
      *
-     * @param idEspacioTrabajoUsuario
+     * @param idEspaciosTrabajoUsuarios
      * * @return espaciotrabajo de la BD, por paramtro de ID
      * @autor Nahum Martinez | NAM
      * @version 14/02/2019/v1.0
      */
-    long countByIdEspacioTrabajo(long idEspacioTrabajoUsuario);
+    long countByIdEspacioTrabajo(long idEspaciosTrabajoUsuarios);
 
 }
