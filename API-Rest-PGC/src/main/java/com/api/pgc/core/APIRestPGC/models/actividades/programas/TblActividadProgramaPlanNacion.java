@@ -7,6 +7,8 @@ package com.api.pgc.core.APIRestPGC.models.actividades.programas;
 import com.api.pgc.core.APIRestPGC.models.actividades.TblActividad;
 import com.api.pgc.core.APIRestPGC.models.programas.TblProgramaPlanNacion;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -38,6 +40,7 @@ public class TblActividadProgramaPlanNacion {
     // Mapeo de la Relacion de la Tabla de Id Interna con Actividades
     // Muchos Sector Ocde = 1 Actividad
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_ACTIVIDAD", referencedColumnName = "ID_ACTIVIDAD")
     @ApiModelProperty(notes = "Entidad de la Proyectos, se envia desde un Json (\"idActividad\": { \"idActividad\": \"valor\" })", required = true)
     private TblActividad idActividad;

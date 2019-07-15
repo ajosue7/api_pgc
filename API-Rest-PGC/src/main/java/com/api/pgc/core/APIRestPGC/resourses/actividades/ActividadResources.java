@@ -35,7 +35,7 @@ import static com.api.pgc.core.APIRestPGC.utilities.configAPI.*;
 @RestController
 @RequestMapping(value = API_BASE_PATH)
 // @ApiIgnore | Ignora los EndPoints
-@Api(value = "activityApi", description = "Operaciones sobre el Modulo de Proyectos", tags = "Proyectos")
+@Api(value = "activityApi", description = "Operaciones sobre el Modulo de Proyectos", tags = "Datos Generales de Proyecto")
 public class ActividadResources {
     /**
      * Propiedades de la Clase
@@ -140,7 +140,8 @@ public class ActividadResources {
                 // Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle de Información del Proyecto consultado";
                 msgExeptions.map.put("totalRecords", _actividadRepository.countByIdActividad(idActivity));
-                msgExeptions.map.put("data", _actividadRepository.findByIdActividad(idActivity));
+                // msgExeptions.map.put("data", _actividadRepository.findByIdActividad(idActivity));
+                msgExeptions.map.put("data", _actividadRepository.getByIdActividad(idActivity));
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
@@ -387,4 +388,56 @@ public class ActividadResources {
         }
     }/** FIN | updateActividad */
 
+
+    /**
+     * Metodo que Solicita el Id del Proyecto a Eliminar
+     *
+     * @param idActividad Identificador del Proyecto a Eliminar
+     * @return Mensaje de Confirmacion de Eliminacion
+     * @autor Nahum Martinez | NAM
+     * @version 14/07/2019/v1.0
+     */
+    @ApiOperation(value = "Elimina de la BD, la Información enviada por el ID de Proyecto", authorizations = {@Authorization(value = "Token-PGC")})
+    @DeleteMapping(value = ACTIVITY_ENDPOINT_DELETE, produces = "application/json; charset=UTF-8")
+    public HashMap<String, Object> deletedByIdActividad(@ApiParam(value = "Identificador del Proyecto a Eliminar", required = true)
+                                                        @PathVariable("idActivity") long idActividad) throws Exception {
+        // Ejecuta el try Cacth
+        msgExceptions msgExeptions = new msgExceptions();
+
+        // Codigo de Proyecto a Eliminar
+        String codigoProyecto = null;
+
+        try {
+            // Busca la Actividad, desde el Reporsitorio con el Parametro del Identificador enviado ( idActividad )
+            TblActividad _tblActividad = _actividadRepository.findByIdActividad(idActividad);
+            codigoProyecto = _tblActividad.getCodigoActividad();
+
+            try {
+                if (_actividadRepository.countByIdActividad(idActividad) > 0) {
+                    // Realizamos la Persistencia de los Datos
+
+                    _actividadRepository.deleletedByIdActividad(idActividad);
+                    _actividadRepository.flush();
+
+                    // Retorno de la Funcion
+                    msgMethod = "El Proyecto, " + codigoProyecto + " se ha Eliminado de forma satisfactoria!!";
+                    msgExeptions.map.put("findRecord", true);
+
+                    //Retorno del json
+                    return msgExeptions.msgJson(msgMethod, 200);
+                } else {
+                    msgMethod = "No Existe un registro de Proyecto para este Proyecto !!";
+                    msgExeptions.map.put("findRecord", false);
+
+                    throw new SQLException("Se ha producido una excepción con el mensaje : " + msgMethod);
+                }
+            } catch (Exception ex) {
+                msgMethod = "Ha Ocurrido un error al Eliminar el Proyecto !!";
+                throw new SQLException("Se ha producido una excepción con el mensaje: " + msgMethod, ex);
+            }
+        } catch (Exception ex) {
+            msgMethod = "No Existe un registro en la BD de este Proyecto , por favor verfica que lo has ingresado correctamente o que existe.";
+            throw new RuntimeException("Se ha producido una excepción con el mensaje : " + msgMethod, ex);
+        }
+    } // FIN | deletedByIdActividad
 }
