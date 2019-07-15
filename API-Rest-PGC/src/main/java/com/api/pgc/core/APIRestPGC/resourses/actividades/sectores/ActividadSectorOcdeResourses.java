@@ -63,10 +63,10 @@ public class ActividadSectorOcdeResourses {
         msgMethod = "Listado de todas los Sectores Ocde registrados en la BD";
 
         try {
-            System.out.println("Entro a cargar Sceto Act ++++++++++++++++++++++++++++");
+
             //Sobreescirbe el Metodo de Mensajes
-            msgExeptions.map.put("data", _actividadSectorOcdeRepository.getAllActividadesSectoresOcde2());
-            // msgExeptions.map.put("countRecords", _actividadSectorOcdeRepository.count());
+            msgExeptions.map.put("data", _actividadSectorOcdeRepository.findAll());
+            msgExeptions.map.put("countRecords", _actividadSectorOcdeRepository.count());
             //Retorno del json
             return msgExeptions.msgJson(msgMethod, 200);
         } catch (Exception ex) {
@@ -203,6 +203,7 @@ public class ActividadSectorOcdeResourses {
                     // Seteamos la Actividad de la Id Interna y Sector Ocde
                     _actividadSectorOcdeJson.setIdActividad(_tblActividad);
                     _actividadSectorOcdeJson.setIdSectorOcde(_tblSectorOcdeCad);
+                    _actividadSectorOcdeJson.setPorcentajePart(_actividadSectorOcdeJson.getPorcentajePart());
 
                     // Realizamos la Persistencia de los Datos
                     _actividadSectorOcdeRepository.save(_actividadSectorOcdeJson);

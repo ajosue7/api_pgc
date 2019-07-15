@@ -31,7 +31,7 @@ public class TblActividadSectorOcde {
     // Muchos Actividad = 1 Sector Ocde
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "ID_SECTOR_OCDE", referencedColumnName = "ID_SECTOR")
-    @ApiModelProperty(notes = "Entidad del Sector Ocde, se envia desde un Json (\"idSectorOcde\": { \"idSectorOcde\": \"valor\" })", required = true)
+    @ApiModelProperty(notes = "Entidad del Sector Ocde, se envia desde un Json (\"idSectorOcde\": { \"idSector\": \"valor\" })", required = true)
     private TblSectorOcdeCad idSectorOcde;
 
 
@@ -44,7 +44,7 @@ public class TblActividadSectorOcde {
 
     @Column(name = "PORCENTAJE_PART")
     @ApiModelProperty(notes = "Porcentaje participacion")
-    private double porcentaje_part;
+    private double porcentajePart;
 
 
     // Auditoria
@@ -104,12 +104,12 @@ public class TblActividadSectorOcde {
         this.idActividad = idActividad;
     }
 
-    public double getPorcentaje_part() {
-        return porcentaje_part;
+    public double getPorcentajePart() {
+        return porcentajePart;
     }
 
-    public void setPorcentaje_part(double porcentaje_part) {
-        this.porcentaje_part = porcentaje_part;
+    public void setPorcentajePart(double porcentajePart) {
+        this.porcentajePart = porcentajePart;
     }
 
     public boolean isActivo() {

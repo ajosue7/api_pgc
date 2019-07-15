@@ -81,7 +81,7 @@ public interface ActividadSectorOcdeRepository extends JpaRepository<TblActivida
      * @version 02/07/2019/v1.0
      */
     @Query("SELECT se.idActividadSectorOcde, se.codigoActividad," +
-            "se.idSectorOcde, se.idActividad, se.porcentaje_part," +
+            "se.idSectorOcde, se.idActividad, se.porcentajePart," +
             "se.activo, se.fechaCreacion, se.horaCreacion " +
             "FROM TblActividadSectorOcde se ")
     List<TblActividadSectorOcde> getAllActividadesSectoresOcde2();

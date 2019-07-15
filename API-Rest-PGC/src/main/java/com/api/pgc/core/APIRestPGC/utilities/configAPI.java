@@ -110,7 +110,7 @@ public class configAPI {
     //Espacios de Trabajo de Usuaio de la API
 
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT = "/espacios-trabajo-usuario";
-    public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_IDUS = "/espacios-trabajo-usuario/findByIdEspaciotrabajousuario/{idEspacioTrabajoUsuario}";
+    public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_IDUS = "/espacios-trabajo-usuario/findByIdEspaciotrabajousuario/{idEspaciosTrabajoUsuarios}";
     public static final String ESPACIOS_TRABAJO_USUARIO_ENDPOINT_NEW = "/espacios-trabajo-usuario/new";
     public static final String ESPACIOS_TRABAJO_USUARIOS_ENDPOINT_FIND_BY_ID = "/espacios-trabajo-usuario/findByIdUsuarioEspacioTrabajo/{idUsuarioEspacioTrabajo}";
 
