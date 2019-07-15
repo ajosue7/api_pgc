@@ -18,7 +18,7 @@ public class TblEspaciosTrabajoUsuarios {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ESPACIOS_TRABAJO_USUARIOS", columnDefinition = "serial")
     @ApiModelProperty(notes = "Identificador de la Tabla, se Autogenera")
-    private long idEspacioTrabajoUsuario;
+    private long idEspaciosTrabajoUsuarios;
 
     @Column(name = "COD_ESPACIO_TRABAJO_USUARIO", nullable = false, length = 50)
     @ApiModelProperty(notes = "Codigo Espacio de Trabajo de Usuario", required = true)
@@ -70,12 +70,12 @@ public class TblEspaciosTrabajoUsuarios {
     /**
      * Metodos Getters y Setters
      */
-    public long getIdEspacioTrabajoUsuario() {
-        return idEspacioTrabajoUsuario;
+    public long getIdEspaciosTrabajoUsuarios() {
+        return idEspaciosTrabajoUsuarios;
     }
 
-    public void setIdEspacioTrabajoUsuario(long idEspacioTrabajoUsuario) {
-        this.idEspacioTrabajoUsuario = idEspacioTrabajoUsuario;
+    public void setIdEspaciosTrabajoUsuarios(long idEspaciosTrabajoUsuarios) {
+        this.idEspaciosTrabajoUsuarios = idEspaciosTrabajoUsuarios;
     }
 
     public String getCodEspacioTrabajoUsuario() {

@@ -31,7 +31,7 @@ public class TblActividadSectorCampoTransversal {
     // Muchos Actividad = 1 Campo Transversal
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "ID_SECTOR_CAMPO", referencedColumnName = "ID_SECTOR")
-    @ApiModelProperty(notes = "Entidad del Campo Transversal, se envia desde un Json (\"idSectorCampo\": { \"idSectorCampo\": \"valor\" })", required = true)
+    @ApiModelProperty(notes = "Entidad del Campo Transversal, se envia desde un Json (\"idSectorCampo\": { \"idSector\": \"valor\" })", required = true)
     private TblSectorCampoTransversal idSectorCampo;
 
 
@@ -44,7 +44,7 @@ public class TblActividadSectorCampoTransversal {
 
     @Column(name = "PORCENTAJE_PART")
     @ApiModelProperty(notes = "Porcentaje participacion")
-    private double porcentaje_part;
+    private double porcentajePart;
 
 
     // Auditoria
@@ -106,12 +106,12 @@ public class TblActividadSectorCampoTransversal {
         this.idActividad = idActividad;
     }
 
-    public double getPorcentaje_part() {
-        return porcentaje_part;
+    public double getPorcentajePart() {
+        return porcentajePart;
     }
 
-    public void setPorcentaje_part(double porcentaje_part) {
-        this.porcentaje_part = porcentaje_part;
+    public void setPorcentajePart(double porcentajePart) {
+        this.porcentajePart = porcentajePart;
     }
 
     public boolean isActivo() {

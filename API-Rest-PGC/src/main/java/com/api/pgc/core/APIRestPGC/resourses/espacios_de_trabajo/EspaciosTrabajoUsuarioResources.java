@@ -70,7 +70,7 @@ public class EspaciosTrabajoUsuarioResources {
     /**
      * Metodo que despliega el  ID  de Espacio de Trabajo Usuario de la BD
      *
-     * @param idEspacioTrabajoUsuario Identificador del ID de Espacio de Trabajo a Buscar
+     * @param idEspaciosTrabajoUsuarios Identificador del ID de Espacio de Trabajo a Buscar
      * @return Espacio de Trabajo Usuarios de la BD
      * @autor Nahum Martinez | NAM
      * @version 11/10/2018/v1.0
@@ -83,12 +83,12 @@ public class EspaciosTrabajoUsuarioResources {
             @ApiResponse(code = 404, message = "Recurso no encontrado")})
     @GetMapping(value = ESPACIOS_TRABAJO_USUARIO_ENDPOINT_FIND_BY_IDUS, produces = "application/json")
     public HashMap<String, Object> getEspacioTrabajo(@ApiParam(value = "Identificador del Espacio de Trabajo a Buscar", required = true)
-                                                     @PathVariable("idEspacioTrabajoUsuario") long idEspacioTrabajoUsuario) throws Exception {
+                                                     @PathVariable("idEspaciosTrabajoUsuarios") long idEspaciosTrabajoUsuarios) throws Exception {
         //Ejecuta el try Cacth
         msgExceptions msgExeptions = new msgExceptions();
 
         try {
-            if (espaciosTrabajoUsuarioRepository.findByIdEspacioTrabajoUsuario(idEspacioTrabajoUsuario) == null) {
+            if (espaciosTrabajoUsuarioRepository.findByIdEspaciosTrabajoUsuarios(idEspaciosTrabajoUsuarios) == null) {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "No se ha encontrado dato del Espacio de Trabajo consultado";
                 msgExeptions.map.put("error", "No data found");
@@ -98,7 +98,7 @@ public class EspaciosTrabajoUsuarioResources {
             } else {
                 //Sobreescirbe el Metodo de Mensajes
                 msgMethod = "Detalle del Espacio de Trabajo Consultado";
-                msgExeptions.map.put("data", espaciosTrabajoUsuarioRepository.findByIdEspacioTrabajoUsuario(idEspacioTrabajoUsuario));
+                msgExeptions.map.put("data", espaciosTrabajoUsuarioRepository.findByIdEspaciosTrabajoUsuarios(idEspaciosTrabajoUsuarios));
 
                 //Retorno del json
                 return msgExeptions.msgJson(msgMethod, 200);
