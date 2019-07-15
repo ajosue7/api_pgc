@@ -6,6 +6,7 @@ package com.api.pgc.core.APIRestPGC.models.actividades;
 
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblTratos;
 import com.api.pgc.core.APIRestPGC.models.organizaciones.TblOrganizacion;
+import com.api.pgc.core.APIRestPGC.models.ubicacion_geografica.TblPais;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
@@ -84,6 +85,14 @@ public class TblActividadContactos {
     @ApiModelProperty(notes = "Entidad de id trato, se envia desde un Json (\"idOrganizacion\": { \"idOrganizacion\": \"valor\" })", required = true)
     private TblOrganizacion idOrganizacion;
 
+    // Relaciones con otras Tablas
+    // Mapeo de la Relacion de la Tabla de Contactos con Pais
+    // Muchas Contactos = 1 Pais
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_PAIS", referencedColumnName = "ID_PAIS")
+    @ApiModelProperty(notes = "Entidad del Pais, se envia desde un Json (\"idPais\": { \"idPais\": \"valor\" })",
+            required = true)
+    private TblPais idPais;
 
     // Campos de Auditoria
     @Column(name = "FECHA_CREACION", columnDefinition = "date DEFAULT '2999-12-31'")
@@ -230,6 +239,14 @@ public class TblActividadContactos {
 
     public void setIdOrganizacion(TblOrganizacion idOrganizacion) {
         this.idOrganizacion = idOrganizacion;
+    }
+
+    public TblPais getIdPais() {
+        return idPais;
+    }
+
+    public void setIdPais(TblPais idPais) {
+        this.idPais = idPais;
     }
 
     public Date getFechaCreacion() {

@@ -1,7 +1,7 @@
-package com.api.pgc.core.APIRestPGC.repository.actividades;
+package com.api.pgc.core.APIRestPGC.repository.mantenimiento;
 
 
-import com.api.pgc.core.APIRestPGC.models.actividades.TblContactoProyecto;
+import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblContactoProyecto;
 import com.api.pgc.core.APIRestPGC.models.mantenimiento.TblGrupo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
