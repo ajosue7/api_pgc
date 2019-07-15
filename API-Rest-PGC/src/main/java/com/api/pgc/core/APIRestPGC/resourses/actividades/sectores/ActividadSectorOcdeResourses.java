@@ -63,20 +63,9 @@ public class ActividadSectorOcdeResourses {
         msgMethod = "Listado de todas los Sectores Ocde registrados en la BD";
 
         try {
-<<<<<<< HEAD
-            //Sobreescirbe el Metodo de Mensajes
-            msgExeptions.map.put("data", _actividadSectorOcdeRepository.getAllActividadesSectoresOcde());
-
-=======
 
             //Sobreescirbe el Metodo de Mensajes
             msgExeptions.map.put("data", _actividadSectorOcdeRepository.getAllActividadesSectoresOcde());
-
-
-            //Sobreescirbe el Metodo de Mensajes
-            msgExeptions.map.put("data", _actividadSectorOcdeRepository.findAll());
-
->>>>>>> 2938e102f812464b813338f4ba7e4627c708b663
             msgExeptions.map.put("countRecords", _actividadSectorOcdeRepository.count());
             //Retorno del json
             return msgExeptions.msgJson(msgMethod, 200);

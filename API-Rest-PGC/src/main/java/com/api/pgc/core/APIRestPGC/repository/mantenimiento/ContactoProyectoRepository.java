@@ -40,4 +40,5 @@ public interface ContactoProyectoRepository extends JpaRepository<TblContactoPro
    @Query("SELECT COUNT(e) FROM TblContactoProyecto e WHERE e.idGrupo = :idGrupo ")
    List<TblContactoProyecto> getCountContactoProyectoPerfiles(@Param("idGrupo") TblGrupo tblGrupo);
 
+   // comentario de prueba
 }
